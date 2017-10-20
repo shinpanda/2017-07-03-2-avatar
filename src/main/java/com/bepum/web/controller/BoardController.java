@@ -32,7 +32,7 @@ public class BoardController {
 		return "board.question.del";
 	}
 	
-	@RequestMapping(value="board/question/reg", method=RequestMethod.GET)
+	@RequestMapping(value="question/reg", method=RequestMethod.GET)
 	public String questionReg() {
 		return "board.question.reg";
 	}

@@ -202,6 +202,13 @@ input[type="text"], textarea {
 
 /* list */
 /* list 부분 */
+.board-style{
+    width: 1000px;
+    padding: 50px 30px;
+    box-sizing: border-box;
+}
+
+
 .table-container{
 	margin:auto;
 	width:95%;
@@ -259,4 +266,40 @@ input[type="text"], textarea {
 		    text-overflow: ellipsis;
 		    text-align: left;
 		}
+
+/* reg style */
+.reg-container {
+    background: whitesmoke;
+    padding: 30px;
+}
+
+	.reg-wrapper {
+	    background: white;
+	    border: 1px solid #cacaca;
+	    border-collapse: collapse;
+	    display: flex;
+	    flex-direction: column;
+	}
+	
+		.reg-wrapper input[type="text"] {
+		    border: 0px;
+		    padding: 7px 5px;
+		}
 		
+		.reg-wrapper .reg-style-btn-container {
+		    background: whitesmoke;
+		    padding: 3px;
+		}
+
+	
+		.reg-wrapper .reg-content {
+		    min-height: 450px;
+		    max-height: 700px;
+		    padding: 5px;
+		    font-size: 14px;
+		}
+	
+	.reg-btn-container {
+	    text-align: right;
+	    padding: 10px 10px 0px 0px;
+	}
