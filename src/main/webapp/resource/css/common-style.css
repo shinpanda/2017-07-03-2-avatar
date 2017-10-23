@@ -303,3 +303,81 @@ input[type="text"], textarea {
 	    text-align: right;
 	    padding: 10px 10px 0px 0px;
 	}
+/* chat */
+.chat-container {
+    width: 750px;
+    background: #142D45;
+    height: 750px;
+    display: flex;
+    flex-direction: column;
+    border: 3px solid #142D45;
+    margin: 50px 100px;
+}
+
+.chat-container > span {
+    line-height: 40px;
+    padding: 0px 6px;
+    color: white;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.chat-wrapper {
+    background: white;
+    padding: 10px;
+    flex-grow: 1;
+}
+
+
+.row.chat-date p {
+    font-size: 12px;
+    text-align: center;
+    color: #565656;
+    margin: 0px;
+}
+
+.chat-wrapper .row h5 {
+    margin: 10px 0px 0px 0px;
+}
+
+.chat-wrapper .row {
+    padding: 0px 5px;
+    border-bottom: 1px solid #999999;
+}
+
+.chat-wrapper .row.chat-date {
+    border-bottom: 0px;
+}	
+
+
+.chat-wrapper .row h5 span {
+    font-weight: 400;
+    color: #868686;
+}
+
+.chat-wrapper .row p {
+    font-size: 14px;
+
+}
+
+.chat-message {
+    height: 85px;
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+}
+
+.chat-message textarea {
+    width: 641px;
+    resize: none;
+    border-radius: 8px;
+}
+
+.chat-message input[type="button"] {
+    width: 80px;
+    border-radius: 8px;
+    border: 1px solid white;
+    background: #142D45;
+    color: white;
+}
+

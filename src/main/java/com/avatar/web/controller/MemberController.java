@@ -13,5 +13,10 @@ public class MemberController {
 		return "member.login";
 	}
 	
+	@RequestMapping(value="chat", method=RequestMethod.GET)
+	public String chat() {
+		return "member.chat";
+	}
+	
 	
 }

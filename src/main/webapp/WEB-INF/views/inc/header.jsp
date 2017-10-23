@@ -27,7 +27,7 @@
 						<li><a href="${ctx}/student/sit-change">자리바꾸기</a></li>
 					</ul>
 					<ul class="main-menu btn-container">
-						<li><a href="">채팅방 입장</a>
+						<li><a href="${ctx}/member/chat">채팅방 입장</a>
 						<li><a href="">Complete</a>
 					</ul>
 				</nav>
