@@ -1,4 +1,4 @@
-package com.bepum.web.controller;
+package com.avatar.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
