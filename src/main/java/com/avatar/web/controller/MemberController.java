@@ -18,5 +18,4 @@ public class MemberController {
 		return "member.chat";
 	}
 	
-	
 }

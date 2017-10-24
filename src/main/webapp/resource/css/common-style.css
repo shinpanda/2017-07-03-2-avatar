@@ -326,6 +326,7 @@ input[type="text"], textarea {
     background: white;
     padding: 10px;
     flex-grow: 1;
+    overflow: auto;
 }
 
 
@@ -342,17 +343,25 @@ input[type="text"], textarea {
 
 .chat-wrapper .row {
     padding: 0px 5px;
-    border-bottom: 1px solid #999999;
+    border-bottom: 1px solid #c7c7c7;
 }
 
 .chat-wrapper .row.chat-date {
     border-bottom: 0px;
 }	
 
+.chat-wrapper .row div {
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-.chat-wrapper .row h5 span {
+
+.chat-wrapper .row > div span {
     font-weight: 400;
     color: #868686;
+    font-size: 13px;
+    
 }
 
 .chat-wrapper .row p {
@@ -361,7 +370,8 @@ input[type="text"], textarea {
 }
 
 .chat-message {
-    height: 85px;
+	height:85px;
+    min-height: 85px;
     display: flex;
     justify-content: space-around;
     padding: 5px;
@@ -380,4 +390,6 @@ input[type="text"], textarea {
     background: #142D45;
     color: white;
 }
+
+
 

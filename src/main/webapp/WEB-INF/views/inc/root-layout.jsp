@@ -10,6 +10,7 @@
 <title>Avatar</title>
 <link href="${ctx}/resource/css/common-style.css" type="text/css"
 	rel="stylesheet">
+<script src="${ctx}/resource/js/chat.js"></script>
 </head>
 <body>
 	<div class="body">
