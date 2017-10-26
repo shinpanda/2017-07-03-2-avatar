@@ -6,7 +6,11 @@
 		http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd">
 
 	<websocket:handlers>
-        <websocket:mapping path="/member/chat" handler="socketHandler"/>
+        <websocket:mapping path="/echo" handler="socketHandler"/>
+        <!-- HttpSession에 접근하여 저장된 값을 읽어 들여 사용하기 위함 -->
+        <websocket:handshake-interceptors>
+        	<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"></bean>
+        </websocket:handshake-interceptors>
     </websocket:handlers>
  
     <bean id="socketHandler" class="com.avatar.web.SocketHandler"/>
