@@ -11,7 +11,6 @@
 <link href="${ctx}/resource/css/loginstyle.css" type="text/css"
 	rel="stylesheet">
 <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-
 </head>
 
 <body>
@@ -46,11 +45,7 @@
 			</div>
 			</form>
 		</div>
-
-
 	</div>
-
-	
 <script src="${ctx}/resource/js/login.js"></script>
 </body>
 </html>
