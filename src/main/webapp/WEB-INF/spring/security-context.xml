@@ -6,9 +6,11 @@
 	<http> <!-- user-service : auto-config="true" -->
 		<intercept-url pattern="/board/**" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/student/**" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/index" access="hasRole('ROLE_USER')" /> 
+
 		
 		<form-login login-page="/member/login" default-target-url="/index" />
-	<!-- 	<logout logout-success-url="/member/login" /> -->
+	 	<logout logout-success-url="/member/login" />
 		
 	</http>
 	<authentication-manager>
