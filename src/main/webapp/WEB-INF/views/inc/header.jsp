@@ -35,7 +35,12 @@
 					<h1 class="hidden">회원메뉴</h1>
 					<ul>
 						<li><a href="${ctx}/member/home">마이페이지</a></li>
-						<li><a href="${ctx}/logout">로그아웃</a></li>
+						<li><form action="${ctx}/logout" method="post">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+							<input type="submit" value="로그아웃">
+							
+							</form></li>
+						
 					</ul>
 				</nav>
 			</section>
