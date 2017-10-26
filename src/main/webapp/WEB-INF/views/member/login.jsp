@@ -21,16 +21,16 @@
 		</video>
 
 		<div id="form">
-			<form action="${path}/login" method="post">
+			<form action="${ctx}/login" method="post">
 			<h1 class="logo">
 				<a href="${ctx}/index">
 				<img src="${ctx}/resource/images/logo2.png" alt="avatar" style="width: 200px; padding-left: 75px;" /></a>
 			</h1>
 			<div class="form-item">
-				<input type="email" name="email" id="email" class="form-style" placeholder="이메일을 입력해주세요" autocomplete="off" />
+				<input type="text" name="username" class="form-style" placeholder="아이디를 입력해주세요" /><!-- autocomplete="off"  -->
 			</div>
 			<div class="form-item">
-				<input type="password" name="password" id="password" class="form-style" placeholder="비밀번호를 입력해주세요" />
+				<input type="password" name="password" class="form-style" placeholder="비밀번호를 입력해주세요" />
 				<!-- <div class="pw-view"><i class="fa fa-eye"></i></div> -->
 				<p>
 					<a href="#"><small>Forgot Password ?</small></a>

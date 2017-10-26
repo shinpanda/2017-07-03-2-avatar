@@ -9,7 +9,7 @@ window.addEventListener("load", function() {
 		var chatWindow = document.querySelector('.chat-wrapper');
 		var firstCheck = false;
 		var data = null;
-		const ws = new WebSocket("ws://localhost/web/echo");
+		const ws = new WebSocket("ws://localhost:8080/web/echo");
 
 		ws.onopen = function(e) {
 			
