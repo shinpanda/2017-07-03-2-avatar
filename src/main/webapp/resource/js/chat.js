@@ -9,7 +9,8 @@ window.addEventListener("load", function() {
 		var chatWindow = document.querySelector('.chat-wrapper');
 		var firstCheck = false;
 		var data = null;
-		const ws = new WebSocket("ws://localhost:8080/web/echo");
+
+		const ws = new WebSocket("ws://211.238.142.93/web/echo");
 
 		ws.onopen = function(e) {
 			
@@ -25,7 +26,8 @@ window.addEventListener("load", function() {
 				if (!"Notification" in window) {
 					alert("This browser does not support desktop notification");
 				} else if (Notification.permission === "granted") {
-					var notification = new Notification(data.content);
+					var n = new Notification(data.content);
+					setTimeout(n.close.bind(n), 4000);
 				} else if (Notification.permission !== 'denied') {
 					Notification.requestPermission(function(permission) {
 	
@@ -34,7 +36,8 @@ window.addEventListener("load", function() {
 						}
 	
 						if (permission === "granted") {
-							var notification = new Notification(e.data);
+							var n = new Notification(e.data);
+							setTimeout(n.close.bind(n), 4000);
 						}
 					});
 				}

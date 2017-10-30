@@ -59,22 +59,24 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 		temp = jsonObject.get("classId").toString().split("\"");
 		String classId = temp[1];
 		System.out.println(classId);
-		jsonObject.remove("id");
+		//jsonObject.remove("id");
 		
 		System.out.println(jsonObject);
 		//session.sendMessage(new TextMessage(message.getPayload()));
-		session.sendMessage(new TextMessage(message.getPayload()));
+		//session.sendClass(new TextMessage(message.getPayload()));
+		//sendClass(message);
+		sendClass(message, classId);
 		/*System.out.println("payload : "+message.getPayload());
 		System.out.println("toString : "+message.toString());*/
 	}
 	//sendMessage에 classId 도 넘겨 받도록 해야함.
-	public void sendMessage(String message, String classId) {
-		//for (WebSocketSession session : this.list) {
+	public void sendClass(TextMessage message, String classId) {
+		//for (WebSocketSession session : list) {
 		for(WebSocketSession session : map.keySet()) {
 			if(map.get(session) == "c") {
 				if (session.isOpen()) {
 					try {
-						session.sendMessage(new TextMessage(message));
+						session.sendMessage(message);
 					} catch (Exception ignored) {
 						//this.logger.error("fail to send message!", ignored);
 						System.out.println("fail to send message!"+ ignored);

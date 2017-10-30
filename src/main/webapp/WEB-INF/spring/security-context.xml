@@ -9,9 +9,10 @@
 		<intercept-url pattern="/teacher/**" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/index" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/member/chat" access="hasRole('ROLE_USER')" />
+
 		
 		<form-login login-page="/member/login" default-target-url="/index" />
-	<!-- 	<logout logout-success-url="/member/login" /> -->
+	 	<logout logout-success-url="/member/login" />
 		
 	</http>
 	<authentication-manager>

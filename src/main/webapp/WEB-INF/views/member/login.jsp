@@ -46,6 +46,12 @@
 			</form>
 		</div>
 	</div>
+	
+	<div class="register-choice">
+		<div class="choice-container"><img src="/web/resource/images/student.png"><a href="" class="register-btn-style">학생</a></div>
+		<div class="choice-container"><img src="/web/resource/images/teacher.png"><a class="register-btn-style">선생님</a></div>
+	</div>
+	
 <script src="${ctx}/resource/js/login.js"></script>
 </body>
 </html>
