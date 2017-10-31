@@ -44,7 +44,7 @@ div.logo svg{
 
 div#form{
 	position: absolute;
-	width:360px;
+	width:400px;
 	height:320px;
 	height:auto;
 	background-color: rgba(255, 255, 255, 0.86); /* // #fff  */
@@ -53,7 +53,7 @@ div#form{
 	padding:20px;
 	left:50%;
 	top:50%;
-	margin-left:-180px;
+	margin-left:-200px;
 	margin-top:-400px;/* -400px; */
 }
 div.form-item{position: relative; display: block; margin-bottom: 20px;}

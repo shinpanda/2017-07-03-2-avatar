@@ -19,7 +19,7 @@
 		<div id="form">
 			<form action="${ctx}/join" method="post">
 			<h1 class="logo">
-				<img src="${ctx}/resource/images/join.png" alt="join" style="width: 200px; padding-left: 75px;" />
+				<img src="${ctx}/resource/images/join.png" alt="join" style="width: 200px; padding-left: 95px;" />
 			</h1>
 			<div class="form-item">
 			<div class="form-title">이름</div>
