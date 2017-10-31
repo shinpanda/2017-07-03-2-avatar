@@ -15,4 +15,24 @@ $(document).ready(function(){
 	$('p.formLabel').click(function(){
 		 $(this).parent().children('.form-style').focus();
 	});
+	
+	$('.register-choice').addClass("hidden");
+	$(".pull-left small").click(function(){
+		/*$('.register-choice').css("display","flex");
+		$('#form').css("display","none");*/
+		$('.register-choice').removeClass("hidden");
+		$('#form').addClass("hidden");
+	});
+	
+	$(document).mouseup(function(e){
+		var container=$('.register-choice');
+		if(!container.is(e.target)&&container.has(e.target).length == 0){
+			container.addClass("hidden");
+			$('#form').removeClass("hidden");
+		}
+	});
+	
+	
 });
+
+

@@ -47,17 +47,38 @@ div#form{
 	width:360px;
 	height:320px;
 	height:auto;
-	/* background-color: rgb(95, 106, 94); // #fff; */
+	background-color: rgba(255, 255, 255, 0.86); /* // #fff  */
 	margin:auto;
 	border-radius: 5px;
 	padding:20px;
 	left:50%;
 	top:50%;
 	margin-left:-180px;
-	margin-top:-200px;/* -400px; */
+	margin-top:-400px;/* -400px; */
 }
 div.form-item{position: relative; display: block; margin-bottom: 20px;}
  input{transition: all .2s ease;}
+ .form-title{
+	/* color:#ffffff; *//*#8a8a8a  */
+	display: block;
+	width: 90%;
+	height: 34px;
+	padding: 0px 2%;
+/*	border:1px solid #ccc;
+ 	-moz-border-radius: 27px;
+	-webkit-border-radius: 27px;
+	border-radius: 27px; 
+	background-color: #fff;
+	font-size: 105%;
+	border-radius: 5px;
+	*/
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	font-family:'HelveticaNeue','Arial', sans-serif;
+	font-weight: bold;
+	letter-spacing: .8px;
+}
  input.form-style{
 	color:#8a8a8a;
 	display: block;
@@ -65,9 +86,10 @@ div.form-item{position: relative; display: block; margin-bottom: 20px;}
 	height: 44px;
 	padding: 5px 5%;
 	border:1px solid #ccc;
-	-moz-border-radius: 27px;
+/* 	-moz-border-radius: 27px;
 	-webkit-border-radius: 27px;
-	border-radius: 27px;
+	 */
+	 border-radius: 6px;
 	-moz-background-clip: padding;
 	-webkit-background-clip: padding-box;
 	background-clip: padding-box;
