@@ -1,10 +1,12 @@
 package com.avatar.web.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.avatar.web.dao.ChatDao;
 import com.avatar.web.dao.MemberDao;
-
+import com.avatar.web.entity.ChatView;
 import com.avatar.web.entity.Member;
 
 
@@ -21,6 +23,11 @@ public class MemberService {
 		return classId;
 	}
 
+	public List<ChatView> getChatList(String id){
+		return chatDao.getList(getClassId(id));
+	}
+	
+	
 	public int insertChat(String content, String writerId) {
 		String classId = getClassId(writerId);
 		System.out.println(classId);
@@ -31,5 +38,6 @@ public class MemberService {
 	public int insertMember(Member member) {
 		return memberDao.insert(member);
 	}
+	
 	
 }

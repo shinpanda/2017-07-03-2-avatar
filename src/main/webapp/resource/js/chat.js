@@ -27,7 +27,7 @@ window.addEventListener("load", function() {
 					alert("This browser does not support desktop notification");
 				} else if (Notification.permission === "granted") {
 					var n = new Notification(data.content);
-					setTimeout(n.close.bind(n), 4000);
+					/*setTimeout(n.close.bind(n), 4000);*/
 				} else if (Notification.permission !== 'denied') {
 					Notification.requestPermission(function(permission) {
 	
@@ -37,7 +37,7 @@ window.addEventListener("load", function() {
 	
 						if (permission === "granted") {
 							var n = new Notification(e.data);
-							setTimeout(n.close.bind(n), 4000);
+							/*setTimeout(n.close.bind(n), 4000);*/
 						}
 					});
 				}
@@ -73,6 +73,7 @@ window.addEventListener("load", function() {
 					console.log(chatMessage);
 					var json = {
 						/*<security:authentication property="name"/>*/	
+						classId : "c",
 						content : chatMessage,
 						role : "학생",
 						date : Date.now()

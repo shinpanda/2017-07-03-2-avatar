@@ -39,6 +39,7 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 		//System.out.println(className);
 		// list.add(session);
 		map.put(session, classId);
+		System.out.println("접속 : classId "+classId);
 
 		//System.out.println("session:" + session);
 		//System.out.println(session.getRemoteAddress().getHostName());
@@ -67,6 +68,8 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 			// session.sendMessage(new TextMessage(message.getPayload()));
 			// session.sendClass(new TextMessage(message.getPayload()));
 			// sendClass(message);
+			System.out.println("sendClass classId : "+service.getClassId(session.getPrincipal().getName()));
+			//sendClass(message, service.getClassId(session.getPrincipal().getName()));
 			sendClass(message, service.getClassId(session.getPrincipal().getName()));
 			/*
 			 * System.out.println("payload : "+message.getPayload());
@@ -79,7 +82,8 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 	public void sendClass(TextMessage message, String classId) {
 		// for (WebSocketSession session : list) {
 		for (WebSocketSession session : map.keySet()) {
-			if (map.get(session) == classId) {
+			if (map.get(session).equals(classId)) {
+
 				if (session.isOpen()) {
 					try {
 						session.sendMessage(message);

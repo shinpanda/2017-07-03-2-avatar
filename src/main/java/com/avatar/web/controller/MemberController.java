@@ -2,6 +2,9 @@ package com.avatar.web.controller;
 
 
 import java.io.IOException;
+import java.security.Principal;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,9 +51,10 @@ public class MemberController {
 		return "redirect:login";
 	}
 	@RequestMapping(value="chat", method=RequestMethod.GET)
-	public String chat(Model model) {
+	public String chat(Principal principal, Model model) {
 		
-		//model.addAttribute(list, )
+		model.addAttribute("list", service.getChatList(principal.getName()));
+				
 		return "member.chat";
 	}
 	
