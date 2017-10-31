@@ -11,6 +11,13 @@ public class Member {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Member(String id, String pwd, String name, String email) {
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.email = email;
+	}
+
 	public String getId() {
 		return id;
 	}
