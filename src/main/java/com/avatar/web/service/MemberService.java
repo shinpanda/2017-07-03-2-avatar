@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.avatar.web.dao.ChatDao;
 import com.avatar.web.dao.MemberDao;
 
+import com.avatar.web.entity.Member;
+
+
 public class MemberService {
 	
 	@Autowired
@@ -25,4 +28,8 @@ public class MemberService {
 		return chatDao.insert(content, writerId, classId); 
 	}
 
+	public int insertMember(Member member) {
+		return memberDao.insert(member);
+	}
+	
 }

@@ -27,5 +27,6 @@
 
 	<!-- Service 객체들 -->
 	<bean class="com.avatar.web.service.MemberService" />		
+
 	<context:annotation-config />
 </beans>
