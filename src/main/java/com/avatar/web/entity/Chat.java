@@ -12,6 +12,28 @@ public class Chat {
 	public Chat() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public Chat(String content, String writerId, String classId) {
+		super();
+		this.content = content;
+		this.writerId = writerId;
+		this.classId = classId;
+	}
+
+
+
+	public Chat(String no, String content, Date regDate, String writerId, String classId) {
+		super();
+		this.no = no;
+		this.content = content;
+		this.regDate = regDate;
+		this.writerId = writerId;
+		this.classId = classId;
+	}
+
+
 
 	public String getNo() {
 		return no;

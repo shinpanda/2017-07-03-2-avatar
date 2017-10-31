@@ -8,4 +8,9 @@
 	<select id="getList" resultType="com.avatar.web.entity.ChatView">
 		select * from ChatView where classId = #{classId}
 	</select>
+
+	<insert id="insert" parameterType="com.avatar.web.entity.Chat">
+		insert into Chat(no, content, writerId, classId)
+		values ((select IFNULL(max(cast(no as unsigned)), 0)+1 from Chat c), #{content}, #{writerId}, #{classId})
+	</insert>
 </mapper>    

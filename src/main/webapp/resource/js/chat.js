@@ -73,7 +73,6 @@ window.addEventListener("load", function() {
 					console.log(chatMessage);
 					var json = {
 						/*<security:authentication property="name"/>*/	
-						classId : "c",
 						content : chatMessage,
 						role : "학생",
 						date : Date.now()
