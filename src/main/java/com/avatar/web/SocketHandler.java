@@ -61,7 +61,7 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 			String classId = temp[1];
 			System.out.println(classId);
 			// jsonObject.remove("id");
-			//service.insertChat(classId, content);
+			//service.insertChat(classId, content, writerId);
 			// session.sendMessage(new TextMessage(message.getPayload()));
 			// session.sendClass(new TextMessage(message.getPayload()));
 			// sendClass(message);

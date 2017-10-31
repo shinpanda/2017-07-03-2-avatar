@@ -72,7 +72,7 @@ window.addEventListener("load", function() {
 				} else{
 					console.log(chatMessage);
 					var json = {
-						id : "test",
+						/*<security:authentication property="name"/>*/	
 						classId : "c",
 						content : chatMessage,
 						role : "학생",
