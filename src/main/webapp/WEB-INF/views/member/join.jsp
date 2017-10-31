@@ -17,7 +17,7 @@
 	<div id="formWrapper">
 
 		<div id="form">
-			<form action="${ctx}/join" method="post">
+			<form action="?${_csrf.parameterName}=${_csrf.token}" method="post">
 			<h1 class="logo">
 				<img src="${ctx}/resource/images/join.png" alt="join" style="width: 200px; padding-left: 95px;" />
 			</h1>
@@ -27,12 +27,12 @@
 			</div>
 			<div class="form-item">
 			<div class="form-title">아이디</div>
-				<input type="text" name="username" class="form-style" placeholder="아이디를 입력해주세요" />
+				<input type="text" name="id" class="form-style" placeholder="아이디를 입력해주세요" />
 			</div>
 
 			<div class="form-item">
 			<div class="form-title">비밀번호</div>
-				<input type="password" name="password" class="form-style" placeholder="비밀번호를 입력해주세요" />
+				<input type="password" name="pwd" class="form-style" placeholder="비밀번호를 입력해주세요" />
 			</div>
 			
 			<div class="form-item">
