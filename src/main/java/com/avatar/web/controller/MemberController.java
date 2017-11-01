@@ -2,9 +2,13 @@ package com.avatar.web.controller;
 
 
 import java.io.IOException;
+import java.security.Principal;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -19,7 +23,7 @@ public class MemberController {
 	
 	
 	@Autowired
-	private MemberDao service;
+	private MemberService service;
 	
 	
 	@RequestMapping(value="login", method=RequestMethod.GET)
@@ -33,17 +37,18 @@ public class MemberController {
 	
 	@RequestMapping(value="join", method=RequestMethod.POST)
 	public String join(Member member) throws IOException{
-		
-		
+
 		System.out.println("이멜:"+member.getEmail());
 		System.out.println("이름 : "+member.getName());
 		int row = service.insert(member);
-
 		
 		return "redirect:login";
 	}
 	@RequestMapping(value="chat", method=RequestMethod.GET)
-	public String chat() {
+	public String chat(Principal principal, Model model) {
+		
+		model.addAttribute("list", service.getChatList(principal.getName()));
+				
 		return "member.chat";
 	}
 	

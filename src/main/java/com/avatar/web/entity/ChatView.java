@@ -3,17 +3,33 @@ package com.avatar.web.entity;
 import java.util.Date;
 
 public class ChatView {
+	private String no;
 	private String content;
 	private String classId;
 	private String role;
 	private Date regDate;
+
+	public ChatView() {
+		// TODO Auto-generated constructor stub
+	}
 	
-	public ChatView(String content, String classId, String role, Date regDate) {
+	
+	public ChatView(String no, String content, String classId, String role, Date regDate) {
 		super();
+		this.no = no;
 		this.content = content;
 		this.classId = classId;
 		this.role = role;
 		this.regDate = regDate;
+	}
+
+
+	public String getNo() {
+		return no;
+	}
+
+	public void setNo(String no) {
+		this.no = no;
 	}
 
 	public String getContent() {
@@ -47,6 +63,5 @@ public class ChatView {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	
-	
+
 }

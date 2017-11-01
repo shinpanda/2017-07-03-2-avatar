@@ -1,6 +1,5 @@
 package com.avatar.web.dao.mybatis;
 
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,6 +10,14 @@ public class MybatisMemberDao implements MemberDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+
+
+	@Override
+	public String getClassId(String id) {
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		String classId = memberDao.getClassId(id);
+		return classId;
+	}
 	
 	@Override
 	public int insert(Member member) {
@@ -27,6 +34,6 @@ public class MybatisMemberDao implements MemberDao {
 	public int insert(String id, String pwd, String name, String email) {
 		return insert(new Member(id, pwd, name, email));
 	}
-		
+
 
 }

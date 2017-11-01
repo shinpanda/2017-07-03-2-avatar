@@ -24,9 +24,9 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 	// 2. 반별로 나눔 선생님, 학생 구분 없음
 	private Map<WebSocketSession, String> map;
 
-/*	@Autowired
+	@Autowired
 	private MemberService service;
-*/
+
 	public SocketHandler() {
 		// list = new ArrayList<WebSocketSession>();
 		map = new HashMap<WebSocketSession, String>();
@@ -35,12 +35,14 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		super.afterConnectionEstablished(session);
-		// String className = service.getClassName(session.getPrincipal().getName());
+		String classId = service.getClassId(session.getPrincipal().getName());
+		//System.out.println(className);
 		// list.add(session);
-		map.put(session, "c");
+		map.put(session, classId);
+		System.out.println("접속 : classId "+classId);
 
-		System.out.println("session:" + session);
-		System.out.println(session.getRemoteAddress().getHostName());
+		//System.out.println("session:" + session);
+		//System.out.println(session.getRemoteAddress().getHostName());
 	}
 
 	// 클라이언트에서 send()로 메시지 발송을 하였을 때 이벤트
@@ -49,7 +51,7 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		super.handleTextMessage(session, message);
-
+		//System.out.println("test:"+session.getPrincipal().getName());
 		JsonParser jsonParser = new JsonParser();
 
 		JsonObject jsonObject = (JsonObject) jsonParser.parse(message.getPayload());
@@ -57,15 +59,18 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 		if (!jsonObject.isJsonNull()) {
 			String[] temp = jsonObject.get("content").toString().split("\"");
 			String content = temp[1];
-			temp = jsonObject.get("classId").toString().split("\"");
-			String classId = temp[1];
-			System.out.println(classId);
+			/*temp = jsonObject.get("classId").toString().split("\"");
+			String classId = temp[1];*/
 			// jsonObject.remove("id");
-			//service.insertChat(classId, content);
+			//System.out.println(session.getPrincipal().getName());
+			int result = service.insertChat(content, session.getPrincipal().getName());
+			System.out.println("result"+result);
 			// session.sendMessage(new TextMessage(message.getPayload()));
 			// session.sendClass(new TextMessage(message.getPayload()));
 			// sendClass(message);
-			sendClass(message, classId);
+			System.out.println("sendClass classId : "+service.getClassId(session.getPrincipal().getName()));
+			//sendClass(message, service.getClassId(session.getPrincipal().getName()));
+			sendClass(message, service.getClassId(session.getPrincipal().getName()));
 			/*
 			 * System.out.println("payload : "+message.getPayload());
 			 * System.out.println("toString : "+message.toString());
@@ -77,7 +82,8 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 	public void sendClass(TextMessage message, String classId) {
 		// for (WebSocketSession session : list) {
 		for (WebSocketSession session : map.keySet()) {
-			if (map.get(session) == "c") {
+			if (map.get(session).equals(classId)) {
+
 				if (session.isOpen()) {
 					try {
 						session.sendMessage(message);
