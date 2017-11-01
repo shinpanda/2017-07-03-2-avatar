@@ -23,6 +23,10 @@ public class MemberService {
 		return classId;
 	}
 
+	public int insert(Member member) {
+		memberDao.insert(member);
+		return 0;
+	}
 	public List<ChatView> getChatList(String id){
 		return chatDao.getList(getClassId(id));
 	}
@@ -35,9 +39,5 @@ public class MemberService {
 		return chatDao.insert(content, writerId, classId); 
 	}
 
-	public int insertMember(Member member) {
-		return memberDao.insert(member);
-	}
-	
 	
 }

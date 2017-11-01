@@ -36,17 +36,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="join", method=RequestMethod.POST)
-	public String join(String id, String pwd, String name, String email) throws IOException{
-		
-		
-		System.out.println("이멜:"+email);
-	//	int row = service.insertAndPointUp(notice);
-		int row = service.insertMember(new Member(id, pwd, name, email));
-	//	memberDao.pointUp(principal.getName());
-	//	int row = noticeDao.insert(title,content,writerId);
-	//	int row2 = noticeDao.insert(new Notice(title,content,writerId));
+	public String join(Member member) throws IOException{
 
-	//		noticeFileDao.insert(new NoticeFile(null,fileName,nextId));
+		System.out.println("이멜:"+member.getEmail());
+		System.out.println("이름 : "+member.getName());
+		int row = service.insert(member);
 		
 		return "redirect:login";
 	}

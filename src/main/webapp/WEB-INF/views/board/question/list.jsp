@@ -15,9 +15,9 @@
 					<div class="cell w120">작성날짜</div>
 					<div class="cell w80">조회수</div>
 				</div>
-				<c:forEach begin="0" end="14" var="i">
+				<c:forEach begin="0" end="14" items="${list}" var="n">
 					<div class="row">
-						<div class="cell">${i}</div>
+						<div class="cell">${n.no}</div>
 						<div class="cell title">test</div>
 						<div class="cell">2017.10.18</div>
 						<div class="cell">0</div>
@@ -36,7 +36,7 @@
 			</div>
 		</div>
 		<div class="btn reg-btn">
-			<a href="./question-reg">쓰기</a>
+			<a href="./question/reg">쓰기</a>
 		</div>
 	</div>
 </div>

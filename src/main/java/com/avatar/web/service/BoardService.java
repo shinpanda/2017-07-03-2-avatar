@@ -8,11 +8,12 @@ import com.avatar.web.dao.QuestionDao;
 import com.avatar.web.entity.BoardView;
 
 public class BoardService {
-	
+
 	@Autowired
 	private QuestionDao questionDao;
 
 	public List<BoardView> getQuestionList(Integer page, String field, String query) {
+		System.out.println("service");
 		List<BoardView> list = questionDao.getList(page, field, query);
 		return list;
 	}

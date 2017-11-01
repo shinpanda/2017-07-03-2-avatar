@@ -32,5 +32,6 @@
 	<bean class="com.avatar.web.service.MemberService" />		
 	<bean class="com.avatar.web.service.BoardService" />
 
+
 	<context:annotation-config />
 </beans>

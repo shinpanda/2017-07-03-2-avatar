@@ -2,13 +2,16 @@ package com.avatar.web.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.avatar.web.entity.Board;
 import com.avatar.web.entity.BoardView;
 import com.avatar.web.service.BoardService;
 
@@ -18,6 +21,7 @@ import com.avatar.web.service.BoardService;
 @RequestMapping("/board/*")
 public class BoardController {
 	
+	@Autowired
 	private BoardService service;
 	
 	@RequestMapping("question")
@@ -25,6 +29,7 @@ public class BoardController {
 			@RequestParam(value="f", defaultValue="title") String field,
 			@RequestParam(value="q", defaultValue="") String query,
 			Model model) {
+		
 		model.addAttribute("list", service.getQuestionList(page, field, query));
 		model.addAttribute("count", service.getQuestionCount());
 		
@@ -47,9 +52,16 @@ public class BoardController {
 		return "board.question.reg";
 	}
 	
+	@RequestMapping(value="question/reg", method=RequestMethod.POST)
+	public String questionReg(Board board) {
+		return "board.question.reg";
+	}
+	
+	
 	@RequestMapping(value="question/edit", method=RequestMethod.GET)
 	public String questionEdit(@RequestParam(value="id", defaultValue="") String id,
 			Model model) {
 		return "board.question.edit";
 	}
 }
+
