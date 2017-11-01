@@ -24,6 +24,7 @@
 	<!-- DAO 객체들 -->
 	<bean class="com.avatar.web.dao.mybatis.MybatisChatDao" />
 	<bean class="com.avatar.web.dao.mybatis.MybatisMemberDao" />
-	
+	<!-- service 객체들 -->
+	<bean class="com.avatar.web.service.MemberService"/>
 	<context:annotation-config />
 </beans>

@@ -17,7 +17,8 @@ public class MemberService {
 	}
 
 	public int insert(Member member) {
-		return memberDao.insert(member);
+		memberDao.insert(member);
+		return 0;
 	}
 	
 	
