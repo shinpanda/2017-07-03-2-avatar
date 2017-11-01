@@ -14,6 +14,8 @@ public class MybatisQuestionDao implements QuestionDao {
 	
 	@Override
 	public List<BoardView> getList(Integer page, String field, String query) {
+		System.out.println("mybatis");
+		System.out.println("page "+ page+"field "+field+"query "+query);
 		QuestionDao questionDao = sqlSession.getMapper(QuestionDao.class);
 		return questionDao.getList(page, field, query);
 	}

@@ -1,17 +1,17 @@
 package com.avatar.web.entity;
 
-public class BoardView {
+public class BoardView extends Board{
 	private int countCmt;
 	
 	public BoardView() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
-
+	
 	public BoardView(int countCmt) {
 		super();
 		this.countCmt = countCmt;
 	}
-
+	
 	public int getCountCmt() {
 		return countCmt;
 	}

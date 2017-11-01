@@ -1,20 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <main class="main">
 <div class="chat-container">
 	<span>C class</span>
 	<div class="chat-wrapper">
-		<div class="row chat-date">
-			<p>10월 20일</p>
-		</div>
-		<c:forEach items="${list}" var="n">
+		<c:forEach items="${list}" var="n" varStatus="status">
+			<c:if test="${status.index-1>0}">
+			<fmt:formatDate value="${n.regDate}" pattern="YY.MM.dd" var="regDate" />	
+			<fmt:formatDate value="${list[status.index-1].regDate}" pattern="YY.MM.dd" var="prevRegDate" />
+				<c:if test="${prevRegDate != regDate}">
+				<div class="row chat-date">
+					<p><fmt:formatDate value="${n.regDate}" pattern="MM월 dd일"/></p>
+				</div>
+				</c:if>
+			</c:if>
 			<div class="row">
 				<h5>${n.role}</h5>
 				<div>
 					<p>${n.content}</p>
-					<span><fmt:formatDate value="${n.regDate}" pattern="hh:mm"/></span>
+					<span><fmt:formatDate value="${n.regDate}" pattern="HH:mm" /></span>
 				</div>
 			</div>
 		</c:forEach>
@@ -33,7 +39,6 @@
 		<input type="button" value="전송" />
 	</div>
 	<script>
-	
 		
 	</script>
 </div>

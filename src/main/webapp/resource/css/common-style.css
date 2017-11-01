@@ -348,6 +348,7 @@ input[type="text"], textarea {
 
 .chat-wrapper .row.chat-date {
     border-bottom: 0px;
+    margin-top: 5px;
 }	
 
 .chat-wrapper .row div {

@@ -9,7 +9,9 @@ window.addEventListener("load", function() {
 		var chatWindow = document.querySelector('.chat-wrapper');
 		var firstCheck = false;
 		var data = null;
-
+		if(chatWindow != null)
+			chatWindow.scrollTop = chatWindow.scrollHeight;
+		
 		const ws = new WebSocket("ws://211.238.142.93/web/echo");
 
 		ws.onopen = function(e) {
@@ -63,7 +65,7 @@ window.addEventListener("load", function() {
 		ws.onerror = function(event) {
 			console.log("Server error message: ", event.data);
 		}
-		
+		if(submitButton != null){
 			submitButton.onclick = function(e) {
 				var chatMessage = document.querySelector(".chat-message").firstElementChild.value;
 				if(chatMessage ==  ""){
@@ -82,4 +84,5 @@ window.addEventListener("load", function() {
 				}
 				document.querySelector(".chat-message").firstElementChild.value = "";
 			}
+		}
 });
