@@ -394,3 +394,16 @@ input[type="text"], textarea {
 
 
 
+.seat {
+	display:inline-block;
+	width: 80px;
+	height: 50px;
+	background: url('../images/image.png');
+	text-align: center;
+    line-height: 50px;
+}
+
+
+#bottom #area div {
+    display: flex;
+}
