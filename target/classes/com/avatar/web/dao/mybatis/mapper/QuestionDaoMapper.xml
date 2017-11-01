@@ -3,10 +3,27 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
+
 <mapper namespace="com.avatar.web.dao.QuestionDao">
 	<select id="getList" resultType="com.avatar.web.entity.BoardView">
-		SELECT * FROM QuestionView where ${param2} like '%${param3}%' order by regDate DESC limit ${(param1-1)*10}, 10
+		SELECT * FROM QuestionView where classId = #{param5} and
+		(${param2} like '%${param4}%' or ${param3} like '%${param4}%') order by
+		regDate DESC limit ${(param1-1)*10}, 10
 	</select>
-
+	<select id="getCount" resultType="int">
+		SELECT count(no) as count FROM
+		QuestionView where
+		classId=#{classId}
+	</select>
+	<select id="get" resultType="com.avatar.web.entity.BoardView">
+		select * from QuestionView where
+		no=#{no}
+	</select>
+	<insert id="insert" parameterType="com.avatar.web.entity.Chat">
+		insert into Question(no, title, content, writerId, classId)
+		values ((select IFNULL(max(cast(no as unsigned)), 0)+1 from Question q), #{title}, #{content}, #{writerId}, #{classId})
+	</insert>
+	<update id="updateHit">
+		update Question set hit=hit+1 where no=#{no} 
+	</update>
 </mapper>    

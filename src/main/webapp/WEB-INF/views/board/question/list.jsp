@@ -25,12 +25,12 @@
 				</c:forEach>
 			</div>
 			<div class="search-form-container">
-				<form action="" method="get" class="search-form">
-					<select name="search-sel">
+				<form method="get" class="search-form">
+					<select name="f">
 						<option value="title">제목</option>
 						<option value="title-content">제목 + 내용</option>
 						<option value="content">내용</option>
-					</select> <input type="search" name="search" /> <input type="submit"
+					</select> <input type="search" name="q" /> <input type="submit"
 						class="search search-btn-img" />
 				</form>
 			</div>
