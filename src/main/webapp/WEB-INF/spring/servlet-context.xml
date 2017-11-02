@@ -7,6 +7,12 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
+	<!-- 파일 전송 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- <property name="maxUploadSize" value="10485760" />곱셈 안됨10MB -->
+		<property name="maxUploadSize" value="1048576000" /><!-- 곱셈 안됨 --><!-- 1000MB -->
+	</bean>
+
 	<context:component-scan base-package="com.avatar.web.controller" />
 	<bean
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">

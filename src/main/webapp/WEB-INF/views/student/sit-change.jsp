@@ -99,17 +99,43 @@
 					
 				} 
 				changeButton.disabled = false;
+				pickButton.disabled = false;
+				
 			};
 			
 			
 			
 			pickButton.onclick = function(){
-				var b1 = parseInt(row.value);
+				/* var b1 = parseInt(row.value);
 			    var b2 = parseInt(column.value);
 				
-				
-				
-			};
+					 
+				for(j=1; j<=b2; j++){
+					var div = document.createElement("div");							
+					container.appendChild(div);
+						for (i = 1; i <= b1; i++) {								
+							var li = document.createElement("span");									 
+							li.className = "seat";
+							div.appendChild(li);
+						}	
+				}
+				pickButton.disabled = 'true';		 */	
+				 var xhr = new XMLHttpRequest();
+
+				 xhr.onload = function(e){
+				 	var div = document.createElement("div");
+				 	container.appendChild(div);
+				 	var member =JSON.parse(e.target.responseText);
+				 	 var li = document.createElement("span");
+				  	li.textContent = member[1];
+				 	li.className = "seat";
+				 	div.appendChild(li);
+				 	
+				 };
+				 xhr.open("GET", "../student/sit-change-ajax?${_csrf.parameterName}=${_csrf.token}"); 
+				xhr.send(); 	
+				pickButton.disabled = 'true';	
+			};			
 		});
 	    
 </script>

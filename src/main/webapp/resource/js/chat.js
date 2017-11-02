@@ -9,9 +9,11 @@ window.addEventListener("load", function() {
 		var chatWindow = document.querySelector('.chat-wrapper');
 		var firstCheck = false;
 		var data = null;
-
+		if(chatWindow != null)
+			chatWindow.scrollTop = chatWindow.scrollHeight;
+		var str = location.pathname;	
 		const ws = new WebSocket("ws://211.238.142.93/web/echo");
-
+		
 		ws.onopen = function(e) {
 			
 		};
@@ -19,7 +21,6 @@ window.addEventListener("load", function() {
 		//서버로부터 메시지 수신
 		ws.onmessage = function(e) {
 			var data = JSON.parse(e.data);
-			var str = location.pathname;	
 			//if(!str.indexOf("/member/chat")){
 			//잠시 notification 설정을 위해 조건문 바꿈
 			
@@ -64,6 +65,7 @@ window.addEventListener("load", function() {
 			console.log("Server error message: ", event.data);
 		}
 		
+		if(str.indexOf("/member/chat")){
 			submitButton.onclick = function(e) {
 				var chatMessage = document.querySelector(".chat-message").firstElementChild.value;
 				if(chatMessage ==  ""){
@@ -82,4 +84,5 @@ window.addEventListener("load", function() {
 				}
 				document.querySelector(".chat-message").firstElementChild.value = "";
 			}
+		}
 });
