@@ -23,7 +23,7 @@
 							value="html">
 						</div>
 					</div>
-					<div id="content" class="reg-content" contenteditable="true"></div>
+					<div id="content" class="reg-content" contenteditable="true" spellcheck="false" ></div>
 				</div>
 			</div>
 
@@ -41,31 +41,15 @@
 		// 할 일 1. var reg-style-btn-container에 이벤트 걸기
 		// 버튼들 이미지로 변경
 		var btnWrapper = document.querySelector('.reg-style-btn-wrapper');
+		btnWrapper.onclick = function(e) {
+			var value = e.target.value;
+			if(e.target.nodeName!='BUTTON'){
+				value = e.target.parentNode.value;
+			}
+			document.execCommand(value, false, null);
+			 
+		};
 		
-		btnWrapper.addEventListener("click", function(e) {
-			document.execCommand(e.target.value, false, null);
-		});
-		/* var b1 = document
-				.querySelector('.reg-style-btn-container > button[value="bold"]');
-		b1.onclick = function() {
-			alert('test');
-			//document.execCommand('bold', false, null);
-		}
-		var b2 = document
-				.querySelector('.reg-style-btn-container > button[value="italic"]');
-		b2.onclick = function() {
-			document.execCommand('italic', false, null);
-		}
-		var b3 = document
-				.querySelector('.reg-style-btn-container > button[value="underline"]');
-		b3.onclick = function() {
-			document.execCommand('underline', false, null);
-		}
-		var b4 = document
-				.querySelector('.reg-style-btn-container > input[value="U"]');
-		b3.onclick = function() {
-			document.execCommand('underline', false, null);
-		} */
 	</script>
 
 </div>
