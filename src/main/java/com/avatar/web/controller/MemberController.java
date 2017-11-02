@@ -36,10 +36,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="join", method=RequestMethod.POST)
-	public String join(Member member) throws IOException{
-
-		System.out.println("이멜:"+member.getEmail());
-		System.out.println("이름 : "+member.getName());
+	public String join(Member member, HttpServletRequest request) throws IOException{
 		int row = service.insert(member);
 		
 		return "redirect:login";
