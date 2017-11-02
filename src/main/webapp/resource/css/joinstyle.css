@@ -79,7 +79,14 @@ div.form-item{position: relative; display: block; margin-bottom: 20px;}
 	font-weight: bold;
 	letter-spacing: .8px;
 }
- input.form-style{
+.form-item>div.form-style{
+	color: black;
+	display: block;
+    text-align: center;
+	ont-variant: petite-caps;
+    font-size: 25px;
+}
+ input.form-style, div.form-style{
 	color:#8a8a8a;
 	display: block;
 	width: 90%;
