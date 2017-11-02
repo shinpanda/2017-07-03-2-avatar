@@ -36,8 +36,8 @@
 					<ul>
 						<li><a href="${ctx}/member/home">마이페이지</a></li>
 						<li><form action="${ctx}/logout" method="post">
-							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-							<input type="submit" value="로그아웃">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+							<input type="submit" value="로그아웃" class="logout-btn"/>
 							
 							</form></li>
 						

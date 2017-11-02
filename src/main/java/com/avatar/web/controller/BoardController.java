@@ -1,5 +1,6 @@
 package com.avatar.web.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,16 +29,18 @@ public class BoardController {
 	public String question(@RequestParam(value="p", defaultValue="1") Integer page, 
 			@RequestParam(value="f", defaultValue="title") String field,
 			@RequestParam(value="q", defaultValue="") String query,
+			Principal principal,
 			Model model) {
 		
-		model.addAttribute("list", service.getQuestionList(page, field, query));
-		model.addAttribute("count", service.getQuestionCount());
+		model.addAttribute("list", service.getQuestionList(page, field, query, principal.getName()));
+		model.addAttribute("count", service.getQuestionCount(principal.getName()));
 		
 		return "board.question.list";
 	}
 	
 	@RequestMapping("question/{id}")
-	public String questionDetail(@PathVariable("id") String id, Model model) {
+	public String questionDetail(@PathVariable("no") String no, Model model) {
+		model.addAttribute("b", service.getQuestion(no));
 		return "board.question.detail";
 	}
 	
@@ -53,8 +56,10 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="question/reg", method=RequestMethod.POST)
-	public String questionReg(Board board) {
-		return "board.question.reg";
+	public String questionReg(Principal principal, Board board) {
+		board.setWriterId(principal.getName());
+		int result = service.insertQuestion(board);
+		return "redirect: ../question";
 	}
 	
 	

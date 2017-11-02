@@ -9,12 +9,13 @@ public class Board {
 	String content;
 	Date regDate;
 	int hit;
+	String classId;
 	
 	public Board() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Board(String no, String writerId, String title, String content, Date regDate, int hit) {
+	public Board(String no, String writerId, String title, String content, Date regDate, int hit, String classId) {
 		super();
 		this.no = no;
 		this.writerId = writerId;
@@ -22,6 +23,7 @@ public class Board {
 		this.content = content;
 		this.regDate = regDate;
 		this.hit = hit;
+		this.classId = classId;
 	}
 
 	public String getNo() {
@@ -70,6 +72,14 @@ public class Board {
 
 	public void setHit(int hit) {
 		this.hit = hit;
+	}
+
+	public String getClassId() {
+		return classId;
+	}
+
+	public void setClassId(String classId) {
+		this.classId = classId;
 	}
 	
 	
