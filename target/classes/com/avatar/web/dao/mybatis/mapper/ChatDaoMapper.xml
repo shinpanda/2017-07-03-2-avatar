@@ -6,7 +6,7 @@
     
 <mapper namespace="com.avatar.web.dao.ChatDao">
 	<select id="getList" resultType="com.avatar.web.entity.ChatView">
-		select * from ChatView where classId = #{classId}
+		select * from ChatView where classId = #{classId} order by regDate asc
 	</select>
 
 	<insert id="insert" parameterType="com.avatar.web.entity.Chat">

@@ -38,7 +38,7 @@ public class BoardController {
 		return "board.question.list";
 	}
 	
-	@RequestMapping("question/{id}")
+	@RequestMapping("question/{no}")
 	public String questionDetail(@PathVariable("no") String no, Model model) {
 		model.addAttribute("b", service.getQuestion(no));
 		return "board.question.detail";
@@ -57,6 +57,7 @@ public class BoardController {
 	
 	@RequestMapping(value="question/reg", method=RequestMethod.POST)
 	public String questionReg(Principal principal, Board board) {
+		System.out.println(board.getContent());
 		board.setWriterId(principal.getName());
 		int result = service.insertQuestion(board);
 		return "redirect: ../question";
