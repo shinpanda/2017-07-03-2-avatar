@@ -11,10 +11,9 @@
 						<div class="reg-style-btn-wrapper">
 						<div>
 						<!-- button은 뒤로 넘어감.. 원인 찾아볼것 -->
-							<input class="reg-style-btn" type="button" value="bold"><b>B</b></input>
-							<input class="reg-style-btn" type="button" value="italic"><i>i</i></input> 
-							<input class="reg-style-btn" type="button" value="underline"><u>U</u></input>
-							<button><b>B</b></button>
+							<button class="reg-style-btn" type="button" value="bold"><b>B</b></button>
+							<button class="reg-style-btn" type="button" value="italic"><i>i</i></button> 
+							<button class="reg-style-btn" type="button" value="underline"><u>U</u></button>
 						</div>	
 						
 						<span class="reg-style-btn">color</span>
@@ -41,8 +40,12 @@
 	<script>
 		// 할 일 1. var reg-style-btn-container에 이벤트 걸기
 		// 버튼들 이미지로 변경
-
-		var b1 = document
+		var btnWrapper = document.querySelector('.reg-style-btn-wrapper');
+		
+		btnWrapper.addEventListener("click", function(e) {
+			document.execCommand(e.target.value, false, null);
+		});
+		/* var b1 = document
 				.querySelector('.reg-style-btn-container > button[value="bold"]');
 		b1.onclick = function() {
 			alert('test');
@@ -62,7 +65,7 @@
 				.querySelector('.reg-style-btn-container > input[value="U"]');
 		b3.onclick = function() {
 			document.execCommand('underline', false, null);
-		}
+		} */
 	</script>
 
 </div>
