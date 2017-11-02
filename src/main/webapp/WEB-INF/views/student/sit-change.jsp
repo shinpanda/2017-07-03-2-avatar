@@ -17,6 +17,7 @@
 		var changeButton =document.getElementById("change");
 		var resetButton =document.getElementById("reset");
 		var pickButton =document.getElementById("pick");
+		var delButton =document.getElementById("del");
 					
 		var container =document.querySelector("#area");
 		
@@ -79,6 +80,7 @@
 			
 			
 			changeButton.disabled = 'true';
+			pickButton.disabled = 'true';
 			
 			
 			//console.log(tag);
@@ -106,12 +108,13 @@
 			
 			
 			pickButton.onclick = function(){
-				/* var b1 = parseInt(row.value);
+				 var b1 = parseInt(row.value);
 			    var b2 = parseInt(column.value);
 				
 					 
 				for(j=1; j<=b2; j++){
-					var div = document.createElement("div");							
+					var div = document.createElement("div");
+					
 					container.appendChild(div);
 						for (i = 1; i <= b1; i++) {								
 							var li = document.createElement("span");									 
@@ -119,8 +122,21 @@
 							div.appendChild(li);
 						}	
 				}
-				pickButton.disabled = 'true';		 */	
-				 var xhr = new XMLHttpRequest();
+				
+				 				 
+				var spans = container.querySelectorAll("span");
+				var index = Math.floor(Math.random()*spans.length);
+				spans[index].style.background="url('../../../resource/images/image.png')";
+				//div.childNodes[index].style.background="url('../../../resource/images/image.png')";
+				
+				
+				changeButton.disabled = 'true';
+				pickButton.disabled = 'true';		 
+				
+				
+				
+				
+				/*  var xhr = new XMLHttpRequest();
 
 				 xhr.onload = function(e){
 				 	var div = document.createElement("div");
@@ -133,11 +149,17 @@
 				 	
 				 };
 				 xhr.open("GET", "../student/sit-change-ajax?${_csrf.parameterName}=${_csrf.token}"); 
-				xhr.send(); 	
-				pickButton.disabled = 'true';	
-			};			
+				xhr.send(); 
+				
+				changeButton.disabled = 'true';
+				pickButton.disabled = 'true'; */
+				
+			};	
+			
+			
+			
 		});
-	    
+	
 </script>
 </head>
 
@@ -149,13 +171,14 @@
 		<div id ="top" style="display:flex; height:70px;">
 					
 					<div id="text">
-						행 입력: <input type="text" id="row" />
-						열 입력: <input type="text" id="column" />
+						행 입력: <input type="number" id="row" />
+						열 입력: <input type="number" id="column" />
 					</div>
 					<div id="button">
-					 	<input type="button" value="자리바꾸기" id="change" />
-					 	<input type="button" value="초기화"  id="reset" />
+					 	<input type="button" value="자리바꾸기" id="change" />					 	
 					 	<input type="button" value="오늘의 당첨자" id="pick"/>
+					 	<input type="button" value="초기화"  id="reset" />
+					 	
 					</div>
 					<div>
 				<%-- 	<c:forEach var="n" items="${list}">							
