@@ -14,7 +14,7 @@
 						value="${b.regDate}" pattern="YY-MM-dd HH:MM" var="regDate" />${regDate}</span></span>
 			</div>
 			<div class="wch-info clearfix">
-				<span class="writer">${b.writerId}</span>
+				<span class="writer"></span>
 				<div class="ch-wrapper">
 					<span class="comment-num">댓글 수 ${b.countCmt} </span> <span
 						class="hit">조회수 ${b.hit}</span>
@@ -25,11 +25,9 @@
 				<a href="../question" class="btn">목록</a>
 				<div class="ed-wrapper">
 				 	<sec:authentication property="principal.username" var="username" />
-				 	${username}
-				 	${b.writerId}
 					<c:if test="${username.equals(b.writerId)}">
-						<a href="free-edit?no=${b.no}" class="btn">수정</a>
-						<a href="free-del?no=${b.no}" class="btn">삭제</a>
+						<a href="edit?no=${b.no}" class="btn">수정</a>
+						<a href="del?no=${b.no}" class="btn">삭제</a>
 					</c:if>
 				</div>
 			</div>
@@ -43,12 +41,12 @@
 			<c:forEach items="${cmtList}" var="c" varStatus="i">
 				<div class="cmt-row">
 					<div class="cmt-info">
-						<span><b>${i.count}. ${c.writerId}</b></span><span><fmt:formatDate
+						<span><b>${i.count}. </b></span><span><fmt:formatDate
 								value="${c.regDate}" pattern="YY-MM-dd HH:MM" var="regDate" />${regDate}</span>
-						<c:if test="${c.writerId.equals(b.writerId)}">
+						<c:if test="${username.equals(c.writerId)}">
 							<div class="cmt-btn-wrapper">
-								<span> <a href="free-cmt-edit?no=${c.no}" class="btn-a">수정</a>
-									<a href="free-cmt-del?no=${c.no}" class="btn-a">삭제</a>
+								<span> <a href="cmt-edit?no=${c.no}" class="btn-a">수정</a>
+									<a href="cmt-del?no=${c.no}" class="btn-a">삭제</a>
 								</span>
 							</div>
 						</c:if>
@@ -58,7 +56,9 @@
 				</div>
 			</c:forEach>
 			<div class="cmt-reg">
-				<textarea name="cmt"></textarea>
+				<textarea name="content"></textarea>
+				<input type="hidden"
+					name="${_csrf.parameterName}" value="${_csrf.token}">
 				<input type="submit" name="cmt-btn" value="등록"
 					class="btn comment-btn">
 			</div>

@@ -8,7 +8,7 @@
 	<select id="getList" resultType="com.avatar.web.entity.BoardView">
 		SELECT * FROM QuestionView where classId = #{param5} and
 		(${param2} like '%${param4}%' or ${param3} like '%${param4}%') order by
-		regDate DESC limit ${(param1-1)*10}, 10
+		regDate DESC limit ${(param1-1)*15}, 15
 	</select>
 	<select id="getCount" resultType="int">
 		SELECT count(no) as count FROM
@@ -19,7 +19,7 @@
 		select * from QuestionView where
 		no=#{no}
 	</select>
-	<insert id="insert" parameterType="com.avatar.web.entity.Chat">
+	<insert id="insert" parameterType="com.avatar.web.entity.Board">
 		insert into Question(no, title, content, writerId, classId)
 		values ((select IFNULL(max(cast(no as unsigned)), 0)+1 from Question q), #{title}, #{content}, #{writerId}, #{classId})
 	</insert>

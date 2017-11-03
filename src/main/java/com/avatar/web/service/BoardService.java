@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.avatar.web.dao.MemberDao;
+import com.avatar.web.dao.QuestionCmtDao;
 import com.avatar.web.dao.QuestionDao;
 import com.avatar.web.entity.Board;
+import com.avatar.web.entity.BoardCmt;
 import com.avatar.web.entity.BoardView;
 
 public class BoardService {
@@ -15,6 +17,9 @@ public class BoardService {
 	
 	@Autowired
 	private QuestionDao questionDao;
+	
+	@Autowired
+	private QuestionCmtDao questionCmtDao;
 
 	public List<BoardView> getQuestionList(Integer page, String field, String query, String id) {
 		String classId = memberDao.getClassId(id);
@@ -31,7 +36,7 @@ public class BoardService {
 	}
 
 	public int getQuestionCount(String id) {
-		int count = questionDao.getCount(id);
+		int count = questionDao.getCount(memberDao.getClassId(id));
 		return count;
 	}
 
@@ -40,11 +45,21 @@ public class BoardService {
 		int result = questionDao.updateHit(no);
 		return b;
 	}
+	
+	public List<BoardCmt> getQuestionCmt(String no) {
+		List<BoardCmt> list = questionCmtDao.getList(no);
+		return list;
+	}
 
 	public int insertQuestion(Board board) {
 		board.setClassId(memberDao.getClassId(board.getWriterId()));
 		int result = questionDao.insert(board);
 		return result;
+	}
+
+	public int insertQuestionCmt(BoardCmt cmt) {
+		int result = questionCmtDao.insert(cmt);
+		return result; 
 	}
 	
 	
