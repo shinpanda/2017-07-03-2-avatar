@@ -44,7 +44,7 @@ div.logo svg{
 
 div#form{
 	position: absolute;
-	width:400px;
+	width:500px;
 	height:320px;
 	height:auto;
 	background-color: rgba(255, 255, 255, 0.86); /* // #fff  */
@@ -53,7 +53,7 @@ div#form{
 	padding:20px;
 	left:50%;
 	top:50%;
-	margin-left:-200px;
+	margin-left:-250px;
 	margin-top:-400px;/* -400px; */
 }
 div.form-item{position: relative; display: block; margin-bottom: 20px;}
@@ -79,14 +79,21 @@ div.form-item{position: relative; display: block; margin-bottom: 20px;}
 	font-weight: bold;
 	letter-spacing: .8px;
 }
+.form-item .half{
+	display: flex;
+}
+.form-item>select.form-style {
+    width: 100%;
+}
 .form-item>div.form-style{
 	color: black;
 	display: block;
     text-align: center;
-	ont-variant: petite-caps;
+	font-variant: petite-caps;
     font-size: 25px;
 }
- input.form-style, div.form-style{
+
+ input.form-style, div.form-style, select.form-style{
 	color:#8a8a8a;
 	display: block;
 	width: 90%;

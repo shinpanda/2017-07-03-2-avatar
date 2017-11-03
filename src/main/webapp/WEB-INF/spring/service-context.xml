@@ -26,6 +26,7 @@
 	<bean class="com.avatar.web.dao.mybatis.MybatisMemberDao" />
 	<bean class="com.avatar.web.dao.mybatis.MybatisQuestionDao" />
 	<bean class="com.avatar.web.dao.mybatis.MybatisSitChangeDao" />
+	<bean class="com.avatar.web.dao.mybatis.MybatisClassDao" />
 	
 
 	<!-- Service 객체들 -->
