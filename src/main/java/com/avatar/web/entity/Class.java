@@ -14,6 +14,16 @@ public class Class {
 	public Class() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Class(String id, String name, String pwd, String course, Date openDate, Date completeDate, String openerId) {
+		this.id = id;
+		this.name = name;
+		this.pwd = pwd;
+		this.course = course;
+		this.openDate = openDate;
+		this.completeDate = completeDate;
+		this.openerId = openerId;
+	}
 
 	public String getId() {
 		return id;
