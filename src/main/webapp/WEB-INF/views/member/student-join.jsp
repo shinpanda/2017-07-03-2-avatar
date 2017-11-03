@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
+<c:set var="param" value="${pageContext.request.requestURL }"/>
 
 <!DOCTYPE html>
 <html>
@@ -39,8 +40,8 @@
 				<input type="email" name="email" class="form-style" placeholder="이메일을 입력해주세요" />
 			</div>
 			<div class="form-item">
-			<div class="form-title">직업</div>
-				<input type="text" name="role" class="form-style" value="${role}" />
+			<div class="form-title">등급</div>
+				<div class="form-style" >${param.role} </div>
 			</div>
 			<div class="form-item">
 				<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>

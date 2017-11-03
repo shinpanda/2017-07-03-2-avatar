@@ -44,6 +44,14 @@
 				<div class="form-style" >${param.role} </div>
 			</div>
 			<div class="form-item">
+			<div class="form-title">클래스이름</div>
+				<div class="form-style" ><%-- ${class.name} --%> </div>
+			</div>
+			<div class="form-item">
+			<div class="form-title">클래스비밀번호</div>
+				<input type="password" name="pwd" class="form-style" placeholder="클래스 비밀번호를 입력해주세요" />
+			</div>
+			<div class="form-item">
 				<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
 				<input type="submit" class="login pull-right" value="Sign In">
 				<div class="clear-fix"></div>
