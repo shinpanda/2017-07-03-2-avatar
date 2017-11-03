@@ -15,12 +15,30 @@
 					<div class="cell w120">작성날짜</div>
 					<div class="cell w80">조회수</div>
 				</div>
-				<c:forEach begin="0" end="14" items="${list}" var="n">
+				<c:forEach begin="0" end="14" items="${list}" var="b">
 					<div class="row">
-						<div class="cell">${n.no}</div>
-						<div class="cell title">test</div>
-						<div class="cell">2017.10.18</div>
-						<div class="cell">0</div>
+						<div class="cell">${b.no}</div>
+						<div class="cell title">
+							<a href="./question/${b.no}">${b.title}</a>
+						</div>
+						<jsp:useBean id="now" class="java.util.Date"></jsp:useBean>
+						<fmt:parseNumber value="${now.time}" integerOnly="true"
+							var="today" />
+						<fmt:parseNumber value="${notice.regDate.time}" integerOnly="true"
+							var="regDateNum" />
+						<div class="cell">
+							<c:if test="${((today - regDateNum)/(1000*60*60*24)) < 1}">
+								<fmt:formatDate value="${b.regDate}" pattern="HH:MM"
+									var="regDate" />
+														${regDate}
+													</c:if>
+							<c:if test="${((today - regDateNum)/(1000*60*60*24)) >= 1}">
+								<fmt:formatDate value="${b.regDate}" pattern="YY.MM.dd"
+									var="regDate" />
+														${regDate}
+													</c:if>
+						</div>
+						<div class="cell">${b.hit}</div>
 					</div>
 				</c:forEach>
 			</div>

@@ -16,6 +16,11 @@
 				</div>
 				</c:if>
 			</c:if>
+			<c:if test="${status.index == 0}">
+				<div class="row chat-date">
+					<p><fmt:formatDate value="${n.regDate}" pattern="MM월 dd일"/></p>
+				</div>
+			</c:if>
 			<div class="row">
 				<h5>${n.role}</h5>
 				<div>
