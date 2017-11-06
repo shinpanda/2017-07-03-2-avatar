@@ -19,9 +19,17 @@ public class MybatisSitChangeDao implements SitChangeDao {
 	
 	@Override
 	public List<SitChangeView> getList(String classId) {
-		SitChangeDao noticeDao = sqlSession.getMapper(SitChangeDao.class);
-		List<SitChangeView> list = noticeDao.getList(classId);
+		SitChangeDao sitChangeDao = sqlSession.getMapper(SitChangeDao.class);
+		List<SitChangeView> list = sitChangeDao.getList(classId);
 	return list;
+	}
+
+
+	@Override
+	public List<SitChangeView> getHeader(String sessionId) {
+		SitChangeDao sitChangeDao = sqlSession.getMapper(SitChangeDao.class);
+		List<SitChangeView> list = sitChangeDao.getHeader(sessionId);
+		return list;
 	}
 
 

@@ -40,8 +40,8 @@
 	<bean class="com.avatar.web.dao.mybatis.MybatisQuestionCmtDao" />
 	<bean class="com.avatar.web.dao.mybatis.MybatisSitChangeDao" />
 	<bean class="com.avatar.web.dao.mybatis.MybatisClassDao" />
+	<bean class="com.avatar.web.dao.mybatis.MybatisMemberRoleDao" />
 	
-
 	<!-- Service 객체들 -->
 	<bean class="com.avatar.web.service.MemberService" />		
 	<bean class="com.avatar.web.service.BoardService" />
