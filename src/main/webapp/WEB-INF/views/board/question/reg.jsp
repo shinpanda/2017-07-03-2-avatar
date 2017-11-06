@@ -23,9 +23,12 @@
 							</div>
 
 							<span class="reg-style-btn">color</span> <input type="color" />
-							<input type="button" value="Link"> <input type="button"
-								value="html"> <input type="file" id="pic" name="pic"
-								accept=".jpg, .jpeg, .png" />
+							<input type="button" value="Link"> 
+							<img src="../../resource/images/imagebtn.png" class="img-btn"/> 
+							<input type="file" id="pic" name="pic"
+								accept=".jpg, .jpeg, .png" style="display:none;"/>
+							<input type="button" value="html">	
+								
 						</div>
 					</div>
 					<div id="content" class="reg-content" contenteditable="true"
@@ -44,6 +47,21 @@
 
 	</form>
 	<script>
+	
+		var btnHtml = document
+		.querySelector('.reg-style-btn-wrapper > input[value="html"]');
+		var check = false;
+		btnHtml.onclick = function() {
+			var content = document.querySelector('#content');
+			if (check == false) {
+				content.textContent = content.innerHTML;
+				check = true;
+			} else {
+				content.innerHTML = content.textContent;
+				check = false;
+			}
+		};
+	
 		var imgButton = document.querySelector('#pic');
 			
 		imgButton.onchange = function() {
@@ -81,7 +99,7 @@
 		var sb = document.querySelector('.reg-btn-container input[type="submit"]');
 		sb.onclick = function(e) {
 			var input = document.querySelector('input[name="content"]');
-			var content = document.querySelector("#content");
+			//var content = document.querySelector("#content");
 			if(content.innerHTML == ""){
 				alert("내용을 입력하세요.");
 				e.preventDefault();
@@ -98,20 +116,7 @@
 
 		};
 
-		var btnHtml = document
-				.querySelector('.reg-style-btn-wrapper > input[value="html"]');
-		var check = false;
-		btnHtml.onclick = function() {
-			var content = document.querySelector('#content');
-
-			if (check == false) {
-				content.textContent = content.innerHTML;
-				check = true;
-			} else {
-				content.innerHTML = content.textContent;
-				check = false;
-			}
-		};
+		
 	</script>
 
 </div>
