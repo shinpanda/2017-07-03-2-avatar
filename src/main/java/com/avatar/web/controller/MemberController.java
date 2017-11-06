@@ -38,13 +38,12 @@ public class MemberController {
 	public String join(Model model) {
 		List<Class> list = classDao.getList();
 		model.addAttribute("list", list);
-		
 		return "member.join";
 	}
 	
 	@RequestMapping(value="join", method=RequestMethod.POST)
-	public String join(Member member, HttpServletRequest request) throws IOException{
-		int row = service.insert(member);
+	public String join(Member member, Class c, HttpServletRequest request) throws IOException{
+		int row = service.insert(member, c);
 		
 		return "redirect:login";
 	}

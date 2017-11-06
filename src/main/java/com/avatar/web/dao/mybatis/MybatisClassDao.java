@@ -20,4 +20,13 @@ public class MybatisClassDao implements ClassDao {
 		return list;
 	}
 
+	@Override
+	public int check(Class c) {
+		
+		
+		return 0;
+	}
+
+	
+
 }

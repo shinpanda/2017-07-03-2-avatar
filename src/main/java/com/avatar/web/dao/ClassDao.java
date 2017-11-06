@@ -6,4 +6,7 @@ public interface ClassDao {
 
 	List<Class> getList();
 
+	int check(Class c);
+
+
 }

@@ -8,4 +8,8 @@
 	<select id="getList" resultType="com.avatar.web.entity.Class">		
 		select * from Class;
 	</select>
+	
+	<select id="check" resultType="com.avatar.web.entity.Class">
+		select * from Class where id =#{id}
+	</select>
 </mapper>    
