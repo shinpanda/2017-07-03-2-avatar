@@ -23,9 +23,6 @@ public class MybatisMemberDao implements MemberDao {
 	public int insert(Member member) {
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 		
-		System.out.println("id: "+member.getId());
-		System.out.println("email"+member.getEmail());
-		
 		return memberDao.insert(member);
 	}
 	
