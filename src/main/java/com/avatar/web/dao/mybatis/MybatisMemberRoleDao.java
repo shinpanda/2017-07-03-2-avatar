@@ -4,6 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.avatar.web.dao.MemberRoleDao;
+import com.avatar.web.entity.Member;
 
 public class MybatisMemberRoleDao  implements MemberRoleDao{
 
@@ -21,4 +22,8 @@ public class MybatisMemberRoleDao  implements MemberRoleDao{
 		return role;
 	}
 
-}
+	@Override
+	public int insert(String memberId, String role) {
+		MemberRoleDao memberRoleDao = sqlSession.getMapper(MemberRoleDao.class);
+		return memberRoleDao.insert(memberId,role);
+	}}

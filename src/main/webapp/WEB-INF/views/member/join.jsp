@@ -72,6 +72,7 @@ window.onload = function(){
 			<div class="form-item">
 			<div class="form-title">등급</div>
 				<div class="form-style" >${param.role} </div>
+				<input type="hidden" name="role" value="${param.role}"/>
 			</div>
 			
 			<!-- <div class="student-form" style="display:none;"> -->
