@@ -1,5 +1,6 @@
 package com.avatar.web.controller;
 
+import java.security.Principal;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,12 +26,14 @@ public class StudentController {
 
 	@RequestMapping("sit-change-ajax")
 	@ResponseBody
-	public String sitChangeAjax(Model model) {
+	public String sitChangeAjax(Model model, Principal principal) {
 
 		StringBuilder json = new StringBuilder();
 		json.append("[");
 
-		String classId = "1";
+		String sessionId =principal.getName();
+		String classId = sitChangeDao.getClassId(sessionId);
+		
 		List<SitChangeView> list = sitChangeDao.getList(classId);
 		
 		Collections.shuffle(list);
@@ -59,9 +62,20 @@ public class StudentController {
 	}
 
 	@RequestMapping("sit-change")
-	public String sitChange(Model model) {
-
-		String classId = "1";
+	public String sitChange(Model model, Principal principal) {
+		//System.out.println(principal.getName());		
+		
+		String sessionId =principal.getName();
+		
+		//System.out.println(sessionId);
+		
+		
+		
+		String classId = sitChangeDao.getClassId(sessionId);
+		
+		System.out.println(classId);
+		
+		//String classId = "1";
 		List<SitChangeView> list = sitChangeDao.getList(classId);
 		model.addAttribute("list", list);
 

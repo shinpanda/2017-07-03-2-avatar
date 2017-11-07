@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
+
+<tiles:importAttribute name="classInfo"/>
+<tiles:importAttribute name="memberRole"/>
+
 <header class="header">
 			<h1 class="logo">
 				<a href="${ctx}/index">Avatar</a>
@@ -10,10 +17,14 @@
 			<div class="member-info-container">
 				<div class="member-info-wrapper">
 					<h2 class="hidden">멤버 정보</h2>
-					<div>STUDENT</div>
+					<div>${memberRole}</div>
 					<div>
-						<div>C class</div>
-						<div>2017.07.03</div>
+						
+						<c:forEach var="h" items="${classInfo}">
+							<div>${h.className} class</div>
+							<div>
+							<fmt:formatDate value="${h.classOpenDate}" pattern="yyyy.MM.dd" /></div>
+						</c:forEach>
 					</div>
 				</div>
 			</div>
