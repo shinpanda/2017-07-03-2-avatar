@@ -78,20 +78,20 @@ window.onload = function(){
 			
 			<div class="form-item">
 			<div class="form-title">클래스이름</div>
-				<select name="class-name" class="form-style">
-				<c:forEach var="n" items="${list}">	
-					<option value="${n.name}">${n.name}</option>
+				<select class="form-style" name="classId">
+				<c:forEach var="c" items="${classList}">	
+					<option value="${c.id}">${c.name}</option>
 					</c:forEach>
 				</select>
 			</div>
 			<div class="form-item">
 			<div class="form-title">클래스비밀번호</div>
-				<input type="password" name="class-pwd" class="form-style" placeholder="클래스 비밀번호를 입력해주세요" />
+				<input type="password" name="classPwd" class="form-style" placeholder="클래스 비밀번호를 입력해주세요" />
 			</div>
 			
 			<!-- </div> -->
 			
-			
+			<div style="color: red;">${message}</div>
 			<div class="form-item">
 				<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
 				<input type="submit" class="login pull-right" value="Sign In">

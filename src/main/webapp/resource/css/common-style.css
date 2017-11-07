@@ -382,13 +382,46 @@ input[type="text"], textarea {
 				    display: flex;
  					align-items: center;
 				}
-				.reg-style-btn-wrapper div {
+				.reg-style-btn-wrapper ul {
 				    border: 1px solid #929292;
 				    display: inline-flex;
 				    /* padding: 0px 5px; */
 				    border-radius: 2px;
 				    background: rgb(255, 255, 255);
+				   	height: 23px;
+				   	margin-left: 10px;
 				}
+					.reg-style-btn-wrapper ul:first-child {
+					    margin-left: 5px;
+					}
+				
+					.reg-style-btn-wrapper > ul >li {
+					    flex-grow: 1;
+					    border-left: 1px solid #929292;
+					    padding: 1px;
+					    width: 22px;
+					    text-align: center;
+					}
+					.reg-style-btn-wrapper > ul:first-child >li:first-child {
+					    width: auto;
+					    line-height: 18px;
+					}
+					.reg-style-btn-wrapper > ul:first-child >li:first-child select {
+					    outline: none;
+					    border: 0px;
+					}
+					.reg-style-btn-wrapper > ul >li:first-child {
+					    border-left: 0px;
+					    align-items: center;
+					}
+						.reg-style-btn-wrapper > ul > li.color-btn {
+						    width: 10px;
+						    font-size: 9px;
+						    align-items: center;
+						    display: flex;
+						    color: #616161;
+						    cursor: default;
+						}
 				
 					button.reg-style-btn {
 					    padding: 2px 5px;
@@ -396,7 +429,7 @@ input[type="text"], textarea {
 					    background: none;
 					    border: 0px;
 					    /* width: 15px; */
-					    border-right: 1px solid #929292;
+					  /*   border-right: 1px solid #929292; */
 					    /* padding-right: 4px; */
 					    flex-grow: 1;
 					}
@@ -406,12 +439,41 @@ input[type="text"], textarea {
 					    /* padding-right: 0px; */
 					}	
 					.reg-style-btn-wrapper  img.img-btn {
-					    background: white;
-					    padding: 3px;
+					       /* background: white; */
+						    padding-top: 3px;
+						    /* border: 1px solid #929292; */
+						    /* border-radius: 2px; */
+						    /* cursor: pointer; */
+						    /* width: 16px; */
+						    /* height: 16px; */
+					} 
+					
+					.link-box {
+					    display: flex;
+					    flex-direction: column;
+					    width: 200px;
 					    border: 1px solid #929292;
-					    border-radius: 2px;
-					    cursor:pointer;
+					    background: #f7f7f7;
+					    padding: 10px;
+					    font-size: 14px;
 					}
+					.reg-style-btn-wrapper > ul:last-child >li {
+					    -webkit-appearance: none;
+					    width: auto;
+					    font-size: 11px;
+					    font-weight: bold;
+					    line-height: 21px;
+					    /* padding: 1px 5px; */
+					}
+						.reg-style-btn-wrapper > ul:last-child >li input[value="html"] {
+						    -webkit-appearance: none;
+						    background: none;
+						    border: none;
+						    font-size: 11px;
+						    font-weight: bold;
+						    padding: 1px 5px;
+						    line-height: 21px;
+						}
 			.reg-wrapper .reg-content {
 			    min-height: 450px;
 			    max-height: 624px;

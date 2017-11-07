@@ -19,23 +19,19 @@ public class MemberService {
 	
 	@Autowired
 	private MemberDao memberDao;
-	@Autowired
-	private ClassDao classDao;
-	
-	
 
 	public String getClassId(String id) {
 		String classId = memberDao.getClassId(id);
 		return classId;
 	}
-	
+	/*
 	@Transactional
 	public int insert(Member member, Class c){
 		int result = 0;
 		result = memberDao.insert(member);
 		result = classDao.check(c);
 		return result;
-	}
+	}*/
 	public List<ChatView> getChatList(String id){
 		return chatDao.getList(getClassId(id));
 	}
@@ -46,6 +42,10 @@ public class MemberService {
 		System.out.println(classId);
 		
 		return chatDao.insert(content, writerId, classId); 
+	}
+	@Transactional
+	public int insert(Member member) {
+		return memberDao.insert(member);
 	}
 
 	
