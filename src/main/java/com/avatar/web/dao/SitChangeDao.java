@@ -8,5 +8,5 @@ import com.avatar.web.entity.SitChangeView;
 
 public interface SitChangeDao {
 	List<SitChangeView> getList(String classId);
-	
+	String getClassId(String sessionId);
 }
