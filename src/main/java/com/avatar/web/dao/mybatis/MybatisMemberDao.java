@@ -22,12 +22,7 @@ public class MybatisMemberDao implements MemberDao {
 	@Override
 	public int insert(Member member) {
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
-		MemberDao ClassDao = sqlSession.getMapper(MemberDao.class);
-		
-		int result = 0;
-		result += memberDao.insert(member);
-		/*result += memberDao.checkClass();*/
-		return result;
+		return memberDao.insert(member);
 	}
 	
 
