@@ -22,19 +22,20 @@ public class HeaderPreparerController implements ViewPreparer  {
 
 	@Autowired
 	private MemberRoleDao memberRoleDao;
-	
+
 	
 	@Override
 	public void execute(Request context, AttributeContext attributeContext) {
 		Authentication authentication =SecurityContextHolder.getContext().getAuthentication();
 		System.out.println(authentication.getName());
 		String sessionId = authentication.getName();
+
 		List<SitChangeView> list = sitChangeDao.getHeader(sessionId);
 		attributeContext.putAttribute("classInfo", new Attribute(list),true); 
 		
 	
-		String role = memberRoleDao.get(sessionId);
-		System.out.println(role);
+		String role = memberRoleDao.getRole(sessionId);
+		System.out.println(role+"////controllor");
 		attributeContext.putAttribute("memberRole", new Attribute(role),true); 
 	}
 

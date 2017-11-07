@@ -47,26 +47,31 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="join", method=RequestMethod.POST)
-	public String join(Member member,@RequestParam(value="classId", defaultValue="") String classId, @RequestParam(value="classPwd", defaultValue="") String classPwd, Model model) throws IOException{
-		/*@ModelAttribute String classid,@ModelAttribute String classpwd,  */
-		//System.out.println("cl.id:"+cl.getId());
-		/*System.out.println("classid:"+classid);
-		System.out.println("classpwd:"+classpwd);*/
-		
+	public String join(Member member,
+			@RequestParam(value="classId", defaultValue="") String classId, 
+			@RequestParam(value="classPwd", defaultValue="") String classPwd, 
+			@RequestParam(value="role", defaultValue="") String role, 
+			Model model) throws IOException{
+        
 		int result =0;
 		result = classDao.checkPw(classId, classPwd);
 		
 		System.out.println(result);
-        if(result > 0){ // ºñ¹Ð¹øÈ£°¡ ÀÏÄ¡ÇÏ¸é ¼öÁ¤ Ã³¸®ÈÄ,  ¸®´ÙÀÌ·ºÆ®
-			int row = service.insert(member);
+        if(result > 0){ // ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½,  ï¿½ï¿½ï¿½ï¿½ï¿½Ì·ï¿½Æ®
+        	int row =0;
+        	if(role.equals("student"))
+        		row = service.insert(member,role,classId);
+        	else {
+        		row = service.insert(member,role);
+        	}
             return "redirect:login";
-        } else { // ºñ¹Ð¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê´Â´Ù¸é, div¿¡ ºÒÀÏÄ¡ ¹®±¸ Ãâ·Â, viwe.jsp·Î Æ÷¿öµå
-            // °¡ÀÔÀÏÀÚ, ¼öÁ¤ÀÏÀÚ ÀúÀå
+        } else { // ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´Ù¸ï¿½, divï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½, viwe.jspï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
           //  MemberVO vo2 = memberService.viewMember(vo.getUserId());
             //vo.setUserRegdate(vo2.getUserRegdate());
             //vo.setUserUpdatedate(vo2.getUserUpdatedate());
             //model.addAttribute("dto", cl);
-          //  model.addAttribute("message", "ºñ¹Ð¹øÈ£ ºÒÀÏÄ¡");
+          //  model.addAttribute("message", "ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½Ä¡");
             return "member.join";
         }
 	}
