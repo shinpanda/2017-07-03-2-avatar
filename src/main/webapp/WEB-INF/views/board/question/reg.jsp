@@ -23,7 +23,7 @@
 							</div>
 
 							<span class="reg-style-btn">color</span> <input type="color" />
-							<input type="button" value="Link"> 
+							<input type="button" value="createlink"> 
 							<img src="../../resource/images/imagebtn.png" class="img-btn"/> 
 							<input type="file" id="pic" name="pic"
 								accept=".jpg, .jpeg, .png" style="display:none;"/>
