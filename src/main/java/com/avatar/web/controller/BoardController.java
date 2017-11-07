@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.avatar.web.entity.Board;
+import com.avatar.web.entity.BoardCmt;
 import com.avatar.web.entity.BoardView;
 import com.avatar.web.service.BoardService;
 
@@ -38,10 +39,19 @@ public class BoardController {
 		return "board.question.list";
 	}
 	
-	@RequestMapping("question/{id}")
+	@RequestMapping(value="question/{no}", method=RequestMethod.GET)
 	public String questionDetail(@PathVariable("no") String no, Model model) {
 		model.addAttribute("b", service.getQuestion(no));
+		model.addAttribute("cmtList", service.getQuestionCmt(no));
 		return "board.question.detail";
+	}
+	
+	@RequestMapping(value="question/{no}", method=RequestMethod.POST)
+	public String questionDetail(@PathVariable("no") String no, BoardCmt cmt, Principal principal) {
+		cmt.setWriterId(principal.getName());
+		cmt.setBoardNo(no);
+		service.insertQuestionCmt(cmt);
+		return "redirect: "+no;
 	}
 	
 	@RequestMapping(value="question/del", method=RequestMethod.GET)
@@ -57,6 +67,7 @@ public class BoardController {
 	
 	@RequestMapping(value="question/reg", method=RequestMethod.POST)
 	public String questionReg(Principal principal, Board board) {
+		System.out.println(board.getContent());
 		board.setWriterId(principal.getName());
 		int result = service.insertQuestion(board);
 		return "redirect: ../question";

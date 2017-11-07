@@ -8,8 +8,13 @@
 	<select id="getList" resultType="com.avatar.web.entity.SitChangeView">		
 		select memberName from SitChangeView where classId=#{classId};
 	</select>
-	
+
 	<select id="getClassId" resultType="String">		
 		select classId from SitChangeView where memberId=#{sessionId};
 	</select>
+
+	<select id="getHeader" resultType="com.avatar.web.entity.SitChangeView">		
+		select className, classOpenDate from SitChangeView where memberId=#{sessionId};
+	</select>	
+
 </mapper>    

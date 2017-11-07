@@ -1,10 +1,14 @@
 package com.avatar.web.entity;
 
+import java.util.Date;
+
 public class SitChangeView {
 	private String memberId;
 	private String memberName;
 	private String classId;
 	private String className;
+	private Date classOpenDate;
+	
 	
 	
 	public SitChangeView() {
@@ -33,6 +37,11 @@ public class SitChangeView {
 	public void setClassName(String className) {
 		this.className = className;
 	}
-	
+	public Date getClassOpenDate() {
+		return classOpenDate;
+	}
+	public void setClassOpenDate(Date classOpenDate) {
+		this.classOpenDate = classOpenDate;
+	}
 	
 }

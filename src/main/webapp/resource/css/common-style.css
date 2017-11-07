@@ -14,6 +14,7 @@ ol, ul {
 
 a {
 	text-decoration: none;
+	color: black;
 }
 
 input[type="text"], textarea {
@@ -39,7 +40,7 @@ input[type="text"], textarea {
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
 }
 /* header style */
 .header{
@@ -220,6 +221,7 @@ input[type="text"], textarea {
 .table-container{
 	margin:auto;
 	width:95%;
+	text-align:center;
 }
 .table-wrapper {
     width: 100%;
@@ -233,7 +235,6 @@ input[type="text"], textarea {
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
-    text-align:center;
 }
 	.board-table .table-header {
 	    border-top: 1px solid rgb(214, 214, 214);
@@ -302,6 +303,33 @@ input[type="text"], textarea {
 			    text-indent: -999px;
 			    border: none;
 			}
+		.paging-container {
+			display: inline-flex;
+		    margin: auto;
+		    margin-top:14px;
+		    font-size:14px;
+		}
+		.paging-container div {
+		    padding: 0px 8px;
+		}
+		
+		.paging-container div a,
+		.paging-container ul li a
+		{
+			color: #999;
+		}
+		
+		.paging-container ul li {
+		    float: left;
+		    padding: 0px 8px;
+		}
+		
+		.paging-container .page-present{
+			color:black;
+		}
+		
+			
+			
 		.btn{
 			display: inline-block;
 		    padding: 4px 10px;  
@@ -350,7 +378,10 @@ input[type="text"], textarea {
 			    /* background: whitesmoke; */
 			    padding: 5px 10px;
 			}
-		
+				.reg-style-btn-wrapper{
+				    display: flex;
+ 					align-items: center;
+				}
 				.reg-style-btn-wrapper div {
 				    border: 1px solid #929292;
 				    display: inline-flex;
@@ -374,14 +405,21 @@ input[type="text"], textarea {
 					    border-right: 0px;
 					    /* padding-right: 0px; */
 					}	
-					
+					.reg-style-btn-wrapper  img.img-btn {
+					    background: white;
+					    padding: 3px;
+					    border: 1px solid #929292;
+					    border-radius: 2px;
+					    cursor:pointer;
+					}
 			.reg-wrapper .reg-content {
 			    min-height: 450px;
-			    max-height: 700px;
+			    max-height: 624px;
 			    padding: 5px;
 			    background: white;
 			    border-radius: 0px 0px 10px 10px;
 			    font-size: 14px;
+			    overflow: auto;
 			}
 	
 	.reg-btn-container {
@@ -401,7 +439,117 @@ input[type="text"], textarea {
 	.reg-cancel {
 	    margin-left: 10px;
 	}
+/* detail style */	
+.detail-container {
+    text-align: left;
+    margin-bottom : 10px;
+}
+
+.tr-info {
+    border-bottom: 1px solid rgba(214, 214, 214, 0.7);
+    border-top: 1px solid rgba(214, 214, 214, 0.7);
+    background: rgba(228, 228, 228, 0.3);
+    line-height: 35px;
+    padding: 0px 10px;
+}
+	.tr-info .title{
+		font-size:14px;
+		float:left;
+		font-weight:600;
+	}
 	
+	.tr-info .reg-date{
+		font-size:12px;
+		float:right;	
+	}
+	
+		.reg-date.date-wrapper span {
+		    padding-left: 10px;
+		}
+	
+.wch-info {
+    background: rgb(251, 251, 251);
+    line-height: 29px;
+    font-size: 13px;
+    padding: 0px 10px;
+}
+	 .wch-info  .writer {
+    	float: left;
+	}
+	.ch-wrapper{
+		float: right;
+	}
+		.ch-wrapper .hit {
+		    margin-left: 10px;
+		}	
+	
+	.detail-content {
+	    padding: 30px 10px;
+	    font-size: 14px;
+	    word-break: break-all;
+	}
+	
+	.ed-wrapper{
+		float:right;
+		padding-right:5px;
+	}
+/*댓글 부분*/
+.cmt-container{
+	border-top: 1px solid rgba(214, 214, 214, 0.7);
+}
+.cmt-row {
+    text-align: left;
+    padding: 15px;
+    font-size: 13px;
+}
+.cmt-row {
+	border-top: 1px solid rgba(214, 214, 214, 0.7);
+}
+.cmt-row:first-child {
+	border-top: 0px;
+}
+
+	.cmt-info {
+	    margin-bottom: 5px;
+	}	
+		.cmt-info span:first-child ~ span {
+		    margin-left: 10px;
+		    font-size: 12px;
+		    color: #515151;
+		}
+	.cmt-row .cmt-btn-wrapper {
+	    display: inline-block;
+	    float: right;
+	}	
+	.cmt-row .btn-a {
+	    border: none;
+	    background: none;
+	    font-size: 12px;
+	    padding: 0px 1px;
+	    color: #8b8888;
+	    font-family: 맑은 고딕, 고딕, sans-serif;
+	}	
+		
+.cmt-reg {
+    display: flex;
+}
+	.cmt-reg textarea {
+	    resize: none;
+	    width: 90%;
+	    height: 60px;
+	    border-radius: 6px;
+	    overflow: auto;
+	}	
+	
+	.cmt-reg .comment-btn {
+	    display: inline-block;
+	    padding: 0px 30px;
+	    font-size: 12px;
+	    border: 1px solid #d6d6d6;
+	    border-radius: 3px;
+	    margin-left: 16px;
+	}
+
 /* chat */
 .chat-container {
     width: 750px;
@@ -423,7 +571,7 @@ input[type="text"], textarea {
 
 .chat-wrapper {
     background: white;
-    padding: 10px;
+    padding: 0px 10px;
     flex-grow: 1;
     overflow: auto;
 }

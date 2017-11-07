@@ -2,13 +2,25 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+		
+		
+	<!--transaction  -->	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	
 	<bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://211.238.142.247/avatardb?autoReconnect=true&amp;useSSL=false&amp;characterEncoding=UTF-8"/>
 		<property name="username" value="avatar"/>
 		<property name="password" value="avatar123"/>
+	</bean>
+	<!-- Transaction을 처리하는 방법 1 + 4번 방법 Annotation에서 재료로 사용 -->
+	<bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	   <property name="dataSource" ref="dataSource"/>
 	</bean>
 	
 	<!-- mybatis -->
@@ -25,9 +37,11 @@
 	<bean class="com.avatar.web.dao.mybatis.MybatisChatDao" />
 	<bean class="com.avatar.web.dao.mybatis.MybatisMemberDao" />
 	<bean class="com.avatar.web.dao.mybatis.MybatisQuestionDao" />
+	<bean class="com.avatar.web.dao.mybatis.MybatisQuestionCmtDao" />
 	<bean class="com.avatar.web.dao.mybatis.MybatisSitChangeDao" />
+	<bean class="com.avatar.web.dao.mybatis.MybatisClassDao" />
+	<bean class="com.avatar.web.dao.mybatis.MybatisMemberRoleDao" />
 	
-
 	<!-- Service 객체들 -->
 	<bean class="com.avatar.web.service.MemberService" />		
 	<bean class="com.avatar.web.service.BoardService" />

@@ -3,6 +3,7 @@ package com.avatar.web.controller;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.avatar.web.dao.ClassDao;
 import com.avatar.web.dao.MemberDao;
 import com.avatar.web.entity.Member;
 import com.avatar.web.service.MemberService;
@@ -24,6 +26,8 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
+	@Autowired
+	private ClassDao classDao;
 	
 	
 	@RequestMapping(value="login", method=RequestMethod.GET)
@@ -31,13 +35,15 @@ public class MemberController {
 		return "member.login";
 	}
 	@RequestMapping(value="join", method=RequestMethod.GET)
-	public String join() {
+	public String join(Model model) {
+		List<Class> list = classDao.getList();
+		model.addAttribute("list", list);
 		return "member.join";
 	}
 	
 	@RequestMapping(value="join", method=RequestMethod.POST)
-	public String join(Member member, HttpServletRequest request) throws IOException{
-		int row = service.insert(member);
+	public String join(Member member, Class c, HttpServletRequest request) throws IOException{
+		int row = service.insert(member, c);
 		
 		return "redirect:login";
 	}
