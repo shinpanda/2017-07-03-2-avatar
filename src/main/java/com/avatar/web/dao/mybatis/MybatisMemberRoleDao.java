@@ -12,12 +12,10 @@ public class MybatisMemberRoleDao  implements MemberRoleDao{
 	
 	
 	@Override
-	public String get(String sessionId) {
+	public String getRole(String sessionId) {
 		MemberRoleDao memberRoleDao = sqlSession.getMapper(MemberRoleDao.class);
-		//String role = memberRoleDao.get(sessionId);
-		//System.out.println(role+"role");
-		System.out.println(sessionId+"id");
-		String role = "student";
+		String role = memberRoleDao.getRole(sessionId);	
+		System.out.println(role+"rorororo");
 		return role;
 	}
 
