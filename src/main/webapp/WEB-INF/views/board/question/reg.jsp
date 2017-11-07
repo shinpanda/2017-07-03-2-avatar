@@ -65,11 +65,16 @@
 								type="file" id="pic" name="pic" accept=".jpg, .jpeg, .png"
 								style="display: none;" /></li>
 								<li><img
-								src="../../resource/images/if_icon_set_outlinder-12_2519681 (1).png" class="img-btn" /><input type="button" value="Link" style="display: none;"/></li>
+								src="../../resource/images/if_icon_set_outlinder-12_2519681 (1).png" class="img-btn" />
+								<div class="link-box">
+									<span>링크를 입력하세요</span>
+									<input type="text" />
+									<input type="button" value="Link"/>
+								</div></li>
+								
 							</ul> 
 							<ul>
-								
-								<li><label>html</label><input type="button" value="html" style="display:none"></li>
+								<li><input type="button" value="html" class="html-btn"></li>
 							</ul>
 
 						</div>
@@ -104,6 +109,18 @@
 			}
 		};
 		
+		var fontSize = document.querySelector(".font-size");
+		fontSize.onchange = function() {
+			if(check == true)
+				return;
+			//console.log(fontSize.value);
+			//document.execCommand('fontSize', false, fontSize.value);
+			var span = document.createElement("span");
+			span.textContent = document.getSelection();
+			span.style.fontSize = fontSize.value + "pt";
+			exec('insertHTML', span.outerHTML);
+		}
+		
 		var sortButton = document.querySelector(".sort-btn-wrapper");
 		
 		sortButton.onclick = function(e) {
@@ -118,43 +135,54 @@
 		}
 		
 		var imgButton = document.querySelector('#pic');
+		var imgProxy = document.querySelector('#pic-btn');
 
-		imgButton.onchange = function(e) {
+		imgProxy.onclick = function(e){
 			if(check == true)
 				return;
-			var file = imgButton.files[0];
-			var d = Date.now();
-
-			var formData = new FormData();
-			formData.append("now", "" + d);
-			formData.append("file", file);
-
-			var xhr = new XMLHttpRequest(); // XML을 HTTP으로 요청을 보내고 응답을 받을 수 있는 도구
-			xhr.upload.onprogress = function(e) {
-
+			var event = new MouseEvent("click", {
+				'view' : window,
+				'bubbles' : true,
+				'cancelable' : true
+			});
+			imgButton.dispatchEvent(event);
+			imgButton.onchange = function(e) {
+				if(check == true)
+					return;
+				var file = imgButton.files[0];
+				var d = Date.now();
+	
+				var formData = new FormData();
+				formData.append("now", "" + d);
+				formData.append("file", file);
+	
+				var xhr = new XMLHttpRequest(); // XML을 HTTP으로 요청을 보내고 응답을 받을 수 있는 도구
+				xhr.upload.onprogress = function(e) {
+	
+				};
+	
+				xhr.upload.onloadend = function(e) {
+					var content = document.querySelector('#content');
+					var img = document.createElement('img');
+					//img.src = 'http://i.huffpost.com/gen/5524070/thumbs/o-THE-570.jpg?3'+d+file.name;
+					//img.src = 'http://i.huffpost.com/gen/5524070/thumbs/o-THE-570.jpg?3';
+					img.src = '../../resource/upload/' + d + file.name;
+					content.appendChild(img);
+				}
+	
+				xhr.upload.onload = function(e) {
+				};
+	
+				xhr.onerror = function(e) {
+					alert("예기치 못한 오류가 발생하였습니다.");
+				};
+				xhr.open("POST",
+						"../../upload?${_csrf.parameterName}=${_csrf.token}", true); // 데이터를 요청하기 위한 설정 // 세번째 파라메터 -> 비동기(true) or 동기(false) 설정
+				xhr.send(formData);
 			};
-
-			xhr.upload.onloadend = function(e) {
-				var content = document.querySelector('#content');
-				var img = document.createElement('img');
-				//img.src = 'http://i.huffpost.com/gen/5524070/thumbs/o-THE-570.jpg?3'+d+file.name;
-				//img.src = 'http://i.huffpost.com/gen/5524070/thumbs/o-THE-570.jpg?3';
-				img.src = '../../resource/upload/' + d + file.name;
-				content.appendChild(img);
-			}
-
-			xhr.upload.onload = function(e) {
-			};
-
-			xhr.onerror = function(e) {
-				alert("예기치 못한 오류가 발생하였습니다.");
-			};
-			xhr.open("POST",
-					"../../upload?${_csrf.parameterName}=${_csrf.token}", true); // 데이터를 요청하기 위한 설정 // 세번째 파라메터 -> 비동기(true) or 동기(false) 설정
-			xhr.send(formData);
 		};
 		
-		function colorChange(value, color) {
+		function exec(value, color) {
 			document.execCommand(value, false, color);
 		};
 		
@@ -173,7 +201,7 @@
 				var btn = document.querySelector(".reg-style-btn.fore-color");
 				foreColor = foreColorBtn.value;
 				btn.style.color = foreColor;
-				colorChange('foreColor', foreColor);
+				exec('foreColor', foreColor);
 			}
 		}
 		
@@ -192,7 +220,7 @@
 				var btn = document.querySelector(".reg-style-btn.back-color");
 				backColor = backColorBtn.value;
 				btn.style.background = backColor;
-				colorChange('backColor', foreColor);
+				exec('backColor', foreColor);
 			}
 		}
 		
@@ -218,9 +246,9 @@
 			}
 			
 			if(value=="foreColor")
-				colorChange(value, foreColor);
+				exec(value, foreColor);
 			else
-				colorChange(value, backColor);
+				exec(value, backColor);
 		};
 		
 		var sb = document

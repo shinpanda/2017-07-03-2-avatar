@@ -447,13 +447,33 @@ input[type="text"], textarea {
 						    /* width: 16px; */
 						    /* height: 16px; */
 					} 
+					
+					.link-box {
+					    display: flex;
+					    flex-direction: column;
+					    width: 200px;
+					    border: 1px solid #929292;
+					    background: #f7f7f7;
+					    padding: 10px;
+					    font-size: 14px;
+					}
 					.reg-style-btn-wrapper > ul:last-child >li {
+					    -webkit-appearance: none;
 					    width: auto;
 					    font-size: 11px;
 					    font-weight: bold;
 					    line-height: 21px;
-					    padding: 1px 5px;
+					    /* padding: 1px 5px; */
 					}
+						.reg-style-btn-wrapper > ul:last-child >li input[value="html"] {
+						    -webkit-appearance: none;
+						    background: none;
+						    border: none;
+						    font-size: 11px;
+						    font-weight: bold;
+						    padding: 1px 5px;
+						    line-height: 21px;
+						}
 			.reg-wrapper .reg-content {
 			    min-height: 450px;
 			    max-height: 624px;
