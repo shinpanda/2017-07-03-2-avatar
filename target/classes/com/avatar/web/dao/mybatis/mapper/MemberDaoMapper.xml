@@ -16,5 +16,8 @@
 		insert into Member(id,pwd,name,email)
 		values(#{id}, #{pwd}, #{name}, #{email});
 	</insert>
+	
+	
+	
 
 </mapper>    

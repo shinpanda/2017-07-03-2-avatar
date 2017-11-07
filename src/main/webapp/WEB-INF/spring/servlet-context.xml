@@ -23,6 +23,7 @@
  	<bean
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions" value="/WEB-INF/tiles.xml" />
+		<property name="preparerFactoryClass" value="org.springframework.web.servlet.view.tiles3.SimpleSpringPreparerFactory"></property>
 	</bean>
 	
 	
