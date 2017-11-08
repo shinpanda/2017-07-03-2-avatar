@@ -68,13 +68,16 @@
 									src="../../resource/images/if_icon-image_211677.png"
 									class="img-btn" id="pic-btn" /> <input type="file" id="pic"
 									name="pic" accept=".jpg, .jpeg, .png" style="display: none;" /></li>
-								<li><img
+								<li>
+								
+								<img
 									src="../../resource/images/if_icon_set_outlinder-12_2519681 (1).png"
-									class="img-btn" />
-									<div class="link-box">
-										<span>링크를 입력하세요</span> <input type="text" /> <input
-											type="button" value="Link" />
-									</div></li>
+									class="img-btn" id="link" />
+									<div id="linkbox" class="link-box" style="display:none">
+										<span>링크를 입력하세요</span> <input type="text" id="link-url"/>
+										<input type="button" value="Link" id="link-reg" />
+									</div>
+								</li>
 
 							</ul>
 							<ul>
@@ -99,6 +102,11 @@
 
 	</form>
 	<script>
+	
+	
+
+		 
+		    
 		var btnHtml = document
 				.querySelector('.reg-style-btn-wrapper input[value="html"]');
 		var check = false;
@@ -187,10 +195,46 @@
 			};
 		};
 
-		function exec(value, color) {
-			document.execCommand(value, false, color);
-		};
-
+		function exec(value, param) {
+			document.execCommand(value, false, param);
+		}
+		;
+	
+		
+		/* 		 function createLink() {
+		
+	        var url =;
+	
+	        if (url)
+	            document.execCommand(“createlink”, false, url);
+	
+	    } */
+	
+		var linkBtn = document.querySelector('#link');
+		var linkReg = document.querySelector("#link-reg");
+		
+		var selectText = null;
+		
+		linkBtn.onclick = function() {
+			selectText = document.getSelection();
+			console.log(selectText);
+			document.getElementById("linkbox").style.display = "flex";
+		}
+	
+		linkReg.onclick = function() {
+			var url=document.querySelector("#link-url");
+			var aTag = document.createElement("a");
+			console.log("ttttt"+selectText);
+			aTag.textContent = selectText; 
+			aTag.href = url;
+			exec('insertHTML', aTag.outerHTML);
+			
+			document.getElementById("linkbox").style.display = "none";
+			
+		}
+	
+	
+	
 		var foreColorBtn = document.querySelector("#fore-color-btn");
 		var foreColorBtnWrapper = document
 				.querySelector(".color-btn.fore-color");
