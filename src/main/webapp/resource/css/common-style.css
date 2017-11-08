@@ -196,21 +196,49 @@ input[type="text"], textarea {
 /* index */
 .widget-container {
     display: table;
-    width: 100%;
+    width: 970px;
     height: 100%;
     padding: 30px;
     box-sizing: border-box;
 }
 
-.widgets {
-    display: table-row;
-}
 
-.widgets div {
-    display: table-cell;
-}
-
-
+	.widget-container .row{
+		display:table-row;
+	}
+	
+	.widget-container .cell{
+		display:table-cell;
+	}
+		.widgets h3 {
+		    margin: 0;
+		    font-size: 18px;
+		}
+		.widget-board{
+			display:table;
+			width:100%;
+			font-size:14px;
+			table-layout: fixed;
+		}
+		.widget {
+		    padding: 0px 24px;
+		}
+			.widgets.row{
+				height:50%;
+			}
+			.widget.cell {
+			    width: 455px;
+			    table-layout: fixed;
+			    box-sizing: border-box;
+			}
+			.w45{
+				width:45px;
+			}
+			.widget-board .cell.w45 {
+			    color: #848484;
+			    font-size: 13px;
+			}
+					
 /* list */
 /* list 부분 */
 .board-style{
@@ -256,22 +284,22 @@ input[type="text"], textarea {
 		    box-sizing: border-box;
 		}
 		
-		.board-table .w60 {
+		.w60 {
 		    width:60px;
 		}
 		
-		.board-table .w80 {
+		.w80 {
 		    width:80px;
 		}
-		.board-table .w100{
+		.w100{
 			width:100px;
 		}
 		
-		.board-table .w120{
+		.w120{
 			width:120px;
 		}
 		
-		.board-table .title {
+		.title {
 		    white-space: nowrap;
 		    overflow: hidden;
 		    text-overflow: ellipsis;

@@ -8,6 +8,8 @@ import org.apache.tiles.AttributeContext;
 import org.apache.tiles.preparer.ViewPreparer;
 import org.apache.tiles.request.Request;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.avatar.web.dao.MemberRoleDao;
 import com.avatar.web.dao.SitChangeDao;
@@ -20,17 +22,20 @@ public class HeaderPreparerController implements ViewPreparer  {
 
 	@Autowired
 	private MemberRoleDao memberRoleDao;
+
 	
 	@Override
-	public void execute(Request context, AttributeContext attributeContext ) {
-	
-		String sessionId = "test4";
+	public void execute(Request context, AttributeContext attributeContext) {
+		Authentication authentication =SecurityContextHolder.getContext().getAuthentication();
+		System.out.println(authentication.getName());
+		String sessionId = authentication.getName();
+
 		List<SitChangeView> list = sitChangeDao.getHeader(sessionId);
 		attributeContext.putAttribute("classInfo", new Attribute(list),true); 
 		
 	
-		String role = memberRoleDao.get(sessionId);
-		System.out.println(role);
+		String role = memberRoleDao.getRole(sessionId);
+		System.out.println(role+"////controllor");
 		attributeContext.putAttribute("memberRole", new Attribute(role),true); 
 	}
 
