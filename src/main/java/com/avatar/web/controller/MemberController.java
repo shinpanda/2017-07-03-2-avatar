@@ -65,8 +65,7 @@ public class MemberController {
         		row = service.insert(member,role);
         	}
             return "redirect:login";
-        } else { // ��й�ȣ�� ��ġ���� �ʴ´ٸ�, div�� ����ġ ���� ���, viwe.jsp�� ������
-            // ��������, �������� ����
+        } else { 
           //  MemberVO vo2 = memberService.viewMember(vo.getUserId());
             //vo.setUserRegdate(vo2.getUserRegdate());
             //vo.setUserUpdatedate(vo2.getUserUpdatedate());
