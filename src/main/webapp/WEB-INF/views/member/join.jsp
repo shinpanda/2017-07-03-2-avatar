@@ -91,7 +91,6 @@ window.onload = function(){
 			 </div>
 			 </c:if>
 			 
-		<%-- 	<div style="color: red;">${message}</div> --%>
 			<div class="form-item">
 				<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
 				<input type="submit" class="login pull-right" value="Sign In">

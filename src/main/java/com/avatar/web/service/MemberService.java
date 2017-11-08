@@ -49,14 +49,13 @@ public class MemberService {
 		
 		return chatDao.insert(content, writerId, classId); 
 	}
-	/*@Transactional*/
+	@Transactional
 	public int insert(Member member,String role) {
 		int result = memberDao.insert(member);
 		result = memberRoleDao.insert(member.getId(),role);
-		
-		
 		return result;
 	}
+	@Transactional
 	public int insert(Member member, String role, String classId) {
 		int result = memberDao.insert(member);
 		result = memberRoleDao.insert(member.getId(),role);

@@ -56,21 +56,24 @@ public class MemberController {
 		int result =0;
 		result = classDao.checkPw(classId, classPwd);
 		
-		System.out.println(result);
-        if(result > 0){ // ��й�ȣ�� ��ġ�ϸ� ���� ó����,  �����̷�Ʈ
-        	int row =0;
+		
+		int row =0;
+        if(result > 0){ 
+        	
         	if(role.equals("student"))
         		row = service.insert(member,role,classId);
         	else {
-        		row = service.insert(member,role);
+        		System.out.println("학생가입오류");
+        		 return "member.join";
         	}
             return "redirect:login";
-        } else { 
-          //  MemberVO vo2 = memberService.viewMember(vo.getUserId());
-            //vo.setUserRegdate(vo2.getUserRegdate());
-            //vo.setUserUpdatedate(vo2.getUserUpdatedate());
-            //model.addAttribute("dto", cl);
-          //  model.addAttribute("message", "��й�ȣ ����ġ");
+        }else if(role.equals("teacher")) {
+        	row = service.insert(member,role);
+        	
+        	return "redirect:login";
+        	
+        }else { 
+        	System.out.println("가입실패");
             return "member.join";
         }
 	}
