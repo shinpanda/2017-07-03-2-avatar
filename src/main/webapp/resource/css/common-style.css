@@ -17,6 +17,8 @@ a {
 	color: black;
 }
 
+
+
 input[type="text"], textarea {
     font-family: 맑은 고딕, 고딕, sans-serif;
 }
@@ -394,6 +396,7 @@ input[type="text"], textarea {
 		    border: 1px solid #cacaca;
 		    padding: 7px 5px;
 		    border-radius: 4px;
+		    z-index: 999;
 		}
 		
 		.content-wrapper {
@@ -484,6 +487,7 @@ input[type="text"], textarea {
 					    background: #f7f7f7;
 					    padding: 10px;
 					    font-size: 14px;
+					    position: absolute;
 					}
 					.reg-style-btn-wrapper > ul:last-child >li {
 					    -webkit-appearance: none;
@@ -511,6 +515,11 @@ input[type="text"], textarea {
 			    font-size: 14px;
 			    overflow: auto;
 			}
+				.reg-content a:-webkit-any-link {
+				    color: -webkit-link;
+				    cursor: auto;
+				    text-decoration: underline;
+				}
 	
 	.reg-btn-container {
 	    text-align: right;
