@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
+import java.security.Principal;
 import java.util.Date;
 
 import javax.servlet.ServletContext;
@@ -21,7 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class HomeController {
 	
 	@RequestMapping("index")
-	public String index() {
+	public String index(Principal principal) {
 		return "home.index";
 	}
 	
