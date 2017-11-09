@@ -13,8 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.avatar.web.dao.SitChangeDao;
-import com.avatar.web.entity.SitChangeView;
+import com.avatar.web.dao.SeatDao;
+import com.avatar.web.entity.SeatView;
 import com.google.gson.Gson;
 
 @Controller
@@ -22,19 +22,19 @@ import com.google.gson.Gson;
 public class StudentController {
 
 	@Autowired
-	private SitChangeDao sitChangeDao;
+	private SeatDao seatDao;
 
-	@RequestMapping("sit-change-ajax")
+	@RequestMapping("seat-change-ajax")
 	@ResponseBody
-	public String sitChangeAjax(Model model, Principal principal) {
+	public String seatChangeAjax(Model model, Principal principal) {
 
 		StringBuilder json = new StringBuilder();
 		json.append("[");
 
 		String sessionId =principal.getName();
-		String classId = sitChangeDao.getClassId(sessionId);
+		String classId = seatDao.getClassId(sessionId);
 		
-		List<SitChangeView> list = sitChangeDao.getList(classId);
+		List<SeatView> list = seatDao.getList(classId);
 		
 		Collections.shuffle(list);
 		
@@ -61,8 +61,8 @@ public class StudentController {
 		return json.toString();
 	}
 
-	@RequestMapping("sit-change")
-	public String sitChange(Model model, Principal principal) {
+	@RequestMapping("seat-change")
+	public String seatChange(Model model, Principal principal) {
 		//System.out.println(principal.getName());		
 		
 		String sessionId =principal.getName();
@@ -71,15 +71,15 @@ public class StudentController {
 		
 		
 		
-		String classId = sitChangeDao.getClassId(sessionId);
+		String classId = seatDao.getClassId(sessionId);
 		
 		System.out.println(classId);
 		
 		//String classId = "1";
-		List<SitChangeView> list = sitChangeDao.getList(classId);
+		List<SeatView> list = seatDao.getList(classId);
 		model.addAttribute("list", list);
 
-		return "student.sit-change";
+		return "student.seat-change";
 	}
 
 }
