@@ -69,7 +69,6 @@
 									class="img-btn" id="pic-btn" /> <input type="file" id="pic"
 									name="pic" accept=".jpg, .jpeg, .png" style="display: none;" /></li>
 								<li>
-								
 								<img
 									src="../../resource/images/if_icon_set_outlinder-12_2519681 (1).png"
 									class="img-btn" id="link" />
@@ -212,23 +211,26 @@
 	
 		var linkBtn = document.querySelector('#link');
 		var linkReg = document.querySelector("#link-reg");
-		
-		var selectText = null;
-		
+		var text="";
+		var selection = {anchorNode:null, anchorOffset:null, focusNode:null, focusOffset:null};
 		linkBtn.onclick = function() {
-			selectText = document.getSelection();
-			console.log(selectText);
+			selection = {anchorNode:document.getSelection().anchorNode, anchorOffset:document.getSelection().anchorOffset, focusNode:document.getSelection().focusNode, focusOffset:document.getSelection().focusOffset};//.anchorNode;
+			console.log(selection);
+			text = document.getSelection().toString();
+			
 			document.getElementById("linkbox").style.display = "flex";
 		}
 	
 		linkReg.onclick = function() {
 			var url=document.querySelector("#link-url");
 			var aTag = document.createElement("a");
-			console.log("ttttt"+selectText);
-			aTag.textContent = selectText; 
-			aTag.href = url;
-			exec('insertHTML', aTag.outerHTML);
 			
+			if(document.getSelection().anchorNode.nodeName=="DIV"){
+				document.getSelection().setBaseAndExtent(selection.anchorNode, selection.anchorOffset,selection.focusNode,selection.focusOffset);
+				aTag.textContent = text; }
+			aTag.textContent = document.getSelection();
+			aTag.href = url.value;
+			exec('insertHTML', aTag.outerHTML);
 			document.getElementById("linkbox").style.display = "none";
 			
 		}
