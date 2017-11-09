@@ -18,23 +18,19 @@ import com.avatar.web.entity.SeatView;
 public class HeaderPreparerController implements ViewPreparer  {
 	
 	@Autowired
-	private SeatDao sitChangeDao;
+	private SeatDao seatDao;
 
 	@Autowired
 	private MemberRoleDao memberRoleDao;
 
 	
-	
-	
 	@Override
-	public void execute(Request context, AttributeContext attributeContext ) {
-		
-		
+	public void execute(Request context, AttributeContext attributeContext) {
 		Authentication authentication =SecurityContextHolder.getContext().getAuthentication();
-	    System.out.println(authentication.getName());
-		
 		String sessionId =authentication.getName();
-		List<SeatView> list = sitChangeDao.getHeader(sessionId);
+		List<SeatView> list = seatDao.getHeader(sessionId);
+
+
 		attributeContext.putAttribute("classInfo", new Attribute(list),true); 
 		
 	

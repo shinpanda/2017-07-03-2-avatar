@@ -8,5 +8,8 @@
 	<select id="getRole" resultType="String">		
 		select role from MemberRole where memberId =#{sessionId};
 	</select>
-	
+	<insert id="insert" parameterType="com.avatar.web.entity.MemberRole">
+		insert into MemberRole(memberId,role)
+		values(#{param1}, #{param2});
+	</insert>
 </mapper>    

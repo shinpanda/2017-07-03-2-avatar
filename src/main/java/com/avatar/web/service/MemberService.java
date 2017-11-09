@@ -7,7 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.avatar.web.dao.ChatDao;
 import com.avatar.web.dao.ClassDao;
+import com.avatar.web.dao.MemberClassDao;
 import com.avatar.web.dao.MemberDao;
+import com.avatar.web.dao.MemberRoleDao;
 import com.avatar.web.entity.ChatView;
 import com.avatar.web.entity.Member;
 
@@ -19,6 +21,10 @@ public class MemberService {
 	
 	@Autowired
 	private MemberDao memberDao;
+	@Autowired
+	private MemberRoleDao memberRoleDao;
+	@Autowired
+	private MemberClassDao memberClassDao;
 
 	public String getClassId(String id) {
 		String classId = memberDao.getClassId(id);
@@ -44,8 +50,19 @@ public class MemberService {
 		return chatDao.insert(content, writerId, classId); 
 	}
 	@Transactional
-	public int insert(Member member) {
-		return memberDao.insert(member);
+	public int insert(Member member,String role) {
+		int result = memberDao.insert(member);
+		result = memberRoleDao.insert(member.getId(),role);
+		return result;
+	}
+	@Transactional
+	public int insert(Member member, String role, String classId) {
+		int result = memberDao.insert(member);
+		result = memberRoleDao.insert(member.getId(),role);
+		result = memberClassDao.insert(member.getId(),classId);
+		
+		
+		return result;
 	}
 
 	

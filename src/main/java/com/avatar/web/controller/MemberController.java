@@ -47,26 +47,33 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="join", method=RequestMethod.POST)
-	public String join(Member member,@RequestParam(value="classId", defaultValue="") String classId, @RequestParam(value="classPwd", defaultValue="") String classPwd, Model model) throws IOException{
-		/*@ModelAttribute String classid,@ModelAttribute String classpwd,  */
-		//System.out.println("cl.id:"+cl.getId());
-		/*System.out.println("classid:"+classid);
-		System.out.println("classpwd:"+classpwd);*/
-		
+	public String join(Member member,
+			@RequestParam(value="classId", defaultValue="") String classId, 
+			@RequestParam(value="classPwd", defaultValue="") String classPwd, 
+			@RequestParam(value="role", defaultValue="") String role, 
+			Model model) throws IOException{
+        
 		int result =0;
 		result = classDao.checkPw(classId, classPwd);
 		
-		System.out.println(result);
-        if(result > 0){ // ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏ¸é ¼öÁ¤ Ã³¸®ÈÄ,  ¸®´ÙÀÌ·ºÆ®
-			int row = service.insert(member);
+		
+		int row =0;
+        if(result > 0){ 
+        	
+        	if(role.equals("student"))
+        		row = service.insert(member,role,classId);
+        	else {
+        		System.out.println("í•™ìƒê°€ì…ì˜¤ë¥˜");
+        		 return "member.join";
+        	}
             return "redirect:login";
-        } else { // ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê´Â´Ù¸é, div¿¡ ºÒÀÏÄ¡ ¹®±¸ Ãâ·Â, viwe.jsp·Î Æ÷¿öµå
-            // °¡ÀÔÀÏÀÚ, ¼öÁ¤ÀÏÀÚ ÀúÀå
-          //  MemberVO vo2 = memberService.viewMember(vo.getUserId());
-            //vo.setUserRegdate(vo2.getUserRegdate());
-            //vo.setUserUpdatedate(vo2.getUserUpdatedate());
-            //model.addAttribute("dto", cl);
-          //  model.addAttribute("message", "ºñ¹Ğ¹øÈ£ ºÒÀÏÄ¡");
+        }else if(role.equals("teacher")) {
+        	row = service.insert(member,role);
+        	
+        	return "redirect:login";
+        	
+        }else { 
+        	System.out.println("ê°€ì…ì‹¤íŒ¨");
             return "member.join";
         }
 	}
