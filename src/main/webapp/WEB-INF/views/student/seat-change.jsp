@@ -75,7 +75,7 @@
 				};	  */
 			 };
 				
-			xhr.open("GET", "../student/sit-change-ajax?${_csrf.parameterName}=${_csrf.token}"); 
+			xhr.open("GET", "../student/seat-change-ajax?${_csrf.parameterName}=${_csrf.token}"); 
 			xhr.send(); 
 			
 			
@@ -171,21 +171,27 @@
 		<div id ="top" style="display:flex; height:70px;">
 					
 					<div id="text">
-						행 입력: <input type="number" id="row" />
-						열 입력: <input type="number" id="column" />
+						<span class="input input--haruki">
+							<input class="input__field input__field--haruki" type="number" id="row" />
+							<label class="input__label input__label--haruki" for="row">
+								<span class="input__label-content input__label-content--haruki">가로</span>
+							</label>
+						</span>
+						
+						<span class="input input--haruki">
+							<input class="input__field input__field--haruki" type="number" id="column" />
+							<label class="input__label input__label--haruki" for="column">
+								<span class="input__label-content input__label-content--haruki">세로</span>
+							</label>
+						</span>
+						
 					</div>
 					<div id="button">
-					 	<input type="button" value="자리바꾸기" id="change" />					 	
-					 	<input type="button" value="오늘의 당첨자" id="pick"/>
-					 	<input type="button" value="초기화"  id="reset" />
+					 	<input type="button" class="btn btn-primary btn-lg raised" value="자리바꾸기" id="change" />					 	
+					 	<input type="button" class="btn btn-primary btn-lg raised" value="오늘의 당첨자" id="pick"/>
+					 	<input type="button" class="btn btn-primary btn-lg raised" value="초기화"  id="reset" />
 					 	
-					</div>
-					<div>
-				<%-- 	<c:forEach var="n" items="${list}">							
-					${n.memberName}								
-				</c:forEach> --%>
-					</div>
-	
+					</div>	
 		</div>
 		
 		<div id ="bottom" style="height: -webkit-fill-available;">

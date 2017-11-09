@@ -125,7 +125,7 @@ input[type="submit"].login:focus{outline: none;}
 .choice-container {
     width: 287px;
     display: flex;
-    background: white;
+   /*  background: black; */
     border-radius: 7px;
     flex-direction: column;
     text-align: center;
@@ -133,17 +133,18 @@ input[type="submit"].login:focus{outline: none;}
     justify-content: space-around;
     padding: 25px;
     box-sizing: border-box;
+       /*  opacity: 0.8; */
 }
-
+/*
 .register-btn-style {
-    border: 1px solid rgb(95, 106, 94);
-    color: rgb(95, 106, 94);
+     border: 1px solid rgb(95, 106, 94);
+    color: rgb(95, 106, 94); 
     padding: 10px 62px;
     border-radius: 5px;
     width: 188px;
     box-sizing: border-box;
     font-weight: 600;
-}
+}*/
 
 .register-btn-style:hover {
     color: #55b1df;
