@@ -9,4 +9,9 @@
 		insert into MemberClass(id,memberId,classId)
 		values((select ifnull(max(cast(id as unsigned)),0) + 1 from MemberClass c),#{param1}, #{param2});
 	</insert>
+	
+	<select id="getClassId" resultType="String">
+		<!-- select name from Class where id=(select classId from MemberClass where memberId = #{id}); -->
+		select classId from MemberClass where memberId = #{id}
+	</select>
 </mapper>    
