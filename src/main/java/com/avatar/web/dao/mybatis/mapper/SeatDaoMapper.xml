@@ -4,8 +4,8 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-<mapper namespace="com.avatar.web.dao.SitChangeDao">
-	<select id="getList" resultType="com.avatar.web.entity.SitChangeView">		
+<mapper namespace="com.avatar.web.dao.SeatDao">
+	<select id="getList" resultType="com.avatar.web.entity.SeatView">		
 		select memberName from SitChangeView where classId=#{classId};
 	</select>
 
@@ -13,7 +13,7 @@
 		select classId from SitChangeView where memberId=#{sessionId};
 	</select>
 
-	<select id="getHeader" resultType="com.avatar.web.entity.SitChangeView">		
+	<select id="getHeader" resultType="com.avatar.web.entity.SeatView">		
 		select className, classOpenDate from SitChangeView where memberId=#{sessionId};
 	</select>	
 

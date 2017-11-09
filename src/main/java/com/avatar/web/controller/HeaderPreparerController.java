@@ -12,13 +12,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.avatar.web.dao.MemberRoleDao;
-import com.avatar.web.dao.SitChangeDao;
-import com.avatar.web.entity.SitChangeView;
+import com.avatar.web.dao.SeatDao;
+import com.avatar.web.entity.SeatView;
 
 public class HeaderPreparerController implements ViewPreparer  {
 	
 	@Autowired
-	private SitChangeDao sitChangeDao;
+	private SeatDao sitChangeDao;
 
 	@Autowired
 	private MemberRoleDao memberRoleDao;
@@ -34,7 +34,7 @@ public class HeaderPreparerController implements ViewPreparer  {
 	    System.out.println(authentication.getName());
 		
 		String sessionId =authentication.getName();
-		List<SitChangeView> list = sitChangeDao.getHeader(sessionId);
+		List<SeatView> list = sitChangeDao.getHeader(sessionId);
 		attributeContext.putAttribute("classInfo", new Attribute(list),true); 
 		
 	

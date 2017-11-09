@@ -38,7 +38,7 @@
 	<bean class="com.avatar.web.dao.mybatis.MybatisMemberDao" />
 	<bean class="com.avatar.web.dao.mybatis.MybatisQuestionDao" />
 	<bean class="com.avatar.web.dao.mybatis.MybatisQuestionCmtDao" />
-	<bean class="com.avatar.web.dao.mybatis.MybatisSitChangeDao" />
+	<bean class="com.avatar.web.dao.mybatis.MybatisSeatDao" />
 	<bean class="com.avatar.web.dao.mybatis.MybatisClassDao" />
 	<bean class="com.avatar.web.dao.mybatis.MybatisMemberRoleDao" />
 	
