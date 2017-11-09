@@ -74,25 +74,23 @@ window.onload = function(){
 				<div class="form-style" >${param.role} </div>
 				<input type="hidden" name="role" value="${param.role}"/>
 			</div>
-			
-			<!-- <div class="student-form" style="display:none;"> -->
-			
-			<div class="form-item">
-			<div class="form-title">클래스이름</div>
-				<select class="form-style" name="classId">
-				<c:forEach var="c" items="${classList}">	
-					<option value="${c.id}">${c.name}</option>
-					</c:forEach>
-				</select>
-			</div>
-			<div class="form-item">
-			<div class="form-title">클래스비밀번호</div>
-				<input type="password" name="classPwd" class="form-style" placeholder="클래스 비밀번호를 입력해주세요" />
-			</div>
-			
-			<!-- </div> -->
-			
-			<div style="color: red;">${message}</div>
+				<c:if test="${param.role eq 'student' }">
+			 <div class="student-form">
+				<div class="form-item">
+				<div class="form-title">클래스이름</div>
+					<select class="form-style" name="classId">
+					<c:forEach var="c" items="${classList}">	
+						<option value="${c.id}">${c.name}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="form-item">
+				<div class="form-title">클래스비밀번호</div>
+					<input type="password" name="classPwd" class="form-style" placeholder="클래스 비밀번호를 입력해주세요" />
+				</div>
+			 </div>
+			 </c:if>
+			 
 			<div class="form-item">
 				<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
 				<input type="submit" class="login pull-right" value="Sign In">

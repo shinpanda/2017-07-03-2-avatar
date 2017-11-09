@@ -6,7 +6,7 @@
 
 <mapper namespace="com.avatar.web.dao.MemberClassDao">
 	<insert id="insert" parameterType="com.avatar.web.entity.MemberClass">
-		insert into MemberRole(id,memberId,role)
-		values((select ifnull(max(cast(id as unsigned)),0) + 1 from MemberRole r),#{param1}, #{param2});
+		insert into MemberClass(id,memberId,classId)
+		values((select ifnull(max(cast(id as unsigned)),0) + 1 from MemberClass c),#{param1}, #{param2});
 	</insert>
 </mapper>    

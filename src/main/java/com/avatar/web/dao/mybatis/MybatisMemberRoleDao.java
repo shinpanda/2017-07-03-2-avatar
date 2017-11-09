@@ -16,7 +16,7 @@ public class MybatisMemberRoleDao  implements MemberRoleDao{
 	public String getRole(String sessionId) {
 		MemberRoleDao memberRoleDao = sqlSession.getMapper(MemberRoleDao.class);
 		String role = memberRoleDao.getRole(sessionId);	
-		System.out.println(role+"rorororo");
+		//System.out.println(role+"rorororo");
 		return role;
 	}
 
