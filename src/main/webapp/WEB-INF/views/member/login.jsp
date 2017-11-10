@@ -48,15 +48,12 @@
 	
 	<div class="register-choice">
 		<div class="choice-container">
-			<img src="/web/resource/images/student.png">
-			<a href="${ctx}/member/join?role=student" class="register-btn-style">학생</a>
+			<a href="${ctx}/member/join?role=student" class="register-btn-style"><img src="/web/resource/images/student.png"></a>
 		</div>
 		<div class="choice-container">
-			<img src="/web/resource/images/teacher.png">
-			<a href="${ctx}/member/join?role=teacher" class="register-btn-style">선생님</a>
+			<a href="${ctx}/member/join?role=teacher" class="register-btn-style"><img src="/web/resource/images/teacher.png"></a>
 		</div>
 	</div>
-	
 <script src="${ctx}/resource/js/login.js"></script>
 </body>
 </html>

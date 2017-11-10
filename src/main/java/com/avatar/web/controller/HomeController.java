@@ -8,21 +8,35 @@ import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.security.Principal;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.avatar.web.entity.BoardView;
+import com.avatar.web.service.BoardService;
+import com.avatar.web.service.HomeService;
 
 @Controller
 @RequestMapping("/*")
 public class HomeController {
 	
+	@Autowired
+	private HomeService service;
+	
 	@RequestMapping("index")
-	public String index(Principal principal) {
+	public String index(Principal principal, Model model) {
+		String classId = service.getClassId(principal.getName());
+		model.addAttribute("noticeList", service.getNoticeList(classId));
+		model.addAttribute("questionList", service.getQuestionList(classId));
+		model.addAttribute("infomationList", service.getInfomationList(classId));
 		return "home.index";
 	}
 	

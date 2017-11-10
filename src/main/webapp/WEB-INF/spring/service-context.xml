@@ -38,7 +38,7 @@
 	<bean class="com.avatar.web.dao.mybatis.MybatisMemberDao" />
 	<bean class="com.avatar.web.dao.mybatis.MybatisQuestionDao" />
 	<bean class="com.avatar.web.dao.mybatis.MybatisQuestionCmtDao" />
-	<bean class="com.avatar.web.dao.mybatis.MybatisSitChangeDao" />
+	<bean class="com.avatar.web.dao.mybatis.MybatisSeatDao" />
 	<bean class="com.avatar.web.dao.mybatis.MybatisClassDao" />
 	<bean class="com.avatar.web.dao.mybatis.MybatisMemberRoleDao" />
 	<bean class="com.avatar.web.dao.mybatis.MybatisMemberClassDao" />
@@ -47,7 +47,7 @@
 	<!-- Service 객체들 -->
 	<bean class="com.avatar.web.service.MemberService" />		
 	<bean class="com.avatar.web.service.BoardService" />
-
+	<bean class="com.avatar.web.service.HomeService" />
 
 	<context:annotation-config />
 </beans>

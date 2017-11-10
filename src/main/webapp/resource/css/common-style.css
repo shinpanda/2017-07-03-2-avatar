@@ -739,6 +739,8 @@ input[type="text"], textarea {
 }
 
 
+/*----- seat-change----- */  
+
 
 .seat {
 	display:inline-block;
@@ -749,7 +751,169 @@ input[type="text"], textarea {
     line-height: 50px;
 }
 
+#top{
+	padding: 50px 30px;
+	width: 1000px;
+}
+#bottom{
+    padding: 50px 30px;
+	width: 1000px;
+}
 
 #bottom #area div {
-    display: flex;
+    display: flex;    
 }
+
+
+#top #text{
+	padding-left: 130px;
+}
+/*----- seat button----- */  
+/* 
+
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 10px 16px;
+}
+  
+.btn-lg {
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 6px;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #808080;
+  border-color: #586a7e;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: #586a7e;
+  border-color: #142D45;
+}
+
+**********************
+  RAISED BUTTONS
+***********************
+.btn-primary.raised {
+    box-shadow: 0 3px 0 0 #3270ad;
+}
+.btn-primary.raised:active, .btn-primary.raised.active {
+    background: #3270ad;
+    box-shadow: none;
+    margin-bottom: -3px;
+    margin-top: 3px;
+}
+
+**********************
+  CUSTON BTN VALUES
+***********************
+
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+
+.btn-primary {
+    background: #142D45;
+    color: #ffffff;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #142D45;
+}
+.btn-primary:active, .btn-primary.active {
+    background: #586a7e;
+    box-shadow: none;
+}
+
+
+ */
+/* -------------------------input text ----------------------*/
+
+.input--haruki {
+	margin: 4em 1em 1em;
+}
+
+.input__field--haruki {
+	padding: 0.4em 0.25em;
+	width: 50px;
+	background: transparent;
+	color: #AFB5BB;
+	font-size: 1.55em;
+}
+
+
+/* 
+.input__label--haruki {
+	position: absolute;
+	width: 100%;
+	text-align: left;
+	pointer-events: none;
+}
+
+.input__label-content--haruki {
+	transition: transform 0.3s;
+}
+
+.input__label--haruki::before,
+.input__label--haruki::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	z-index: -1;
+	width: 100%;
+	height: 4px;
+	background: #6a7989;
+	transition: transform 0.3s;
+}
+
+.input__label--haruki::before {
+	top: 0;
+}
+
+.input__label--haruki::after {
+	bottom: 0;
+}
+
+.input__field--haruki:focus + .input__label--haruki .input__label-content--haruki,
+.input--filled .input__label-content--haruki {
+	transform: translate3d(0, -90%, 0);
+}
+
+.input__field--haruki:focus + .input__label--haruki::before,
+.input--filled .input__label--haruki::before {
+	transform: translate3d(0, -0.5em, 0);
+}
+
+.input__field--haruki:focus + .input__label--haruki::after,
+.input--filled .input__label--haruki::after {
+	transform: translate3d(0, 0.5em, 0);
+} */
