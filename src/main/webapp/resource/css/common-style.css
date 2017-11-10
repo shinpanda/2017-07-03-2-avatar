@@ -769,7 +769,7 @@ input[type="text"], textarea {
 	padding-left: 130px;
 }
 /*----- seat button----- */  
-
+/* 
 
 .btn {
   display: inline-block;
@@ -814,9 +814,9 @@ input[type="text"], textarea {
   border-color: #142D45;
 }
 
-/***********************
+**********************
   RAISED BUTTONS
-************************/
+***********************
 .btn-primary.raised {
     box-shadow: 0 3px 0 0 #3270ad;
 }
@@ -827,9 +827,9 @@ input[type="text"], textarea {
     margin-top: 3px;
 }
 
-/***********************
+**********************
   CUSTON BTN VALUES
-************************/
+***********************
 
 .btn {
     padding: 14px 24px;
@@ -855,7 +855,7 @@ input[type="text"], textarea {
 }
 
 
-
+ */
 /* -------------------------input text ----------------------*/
 
 .input--haruki {
