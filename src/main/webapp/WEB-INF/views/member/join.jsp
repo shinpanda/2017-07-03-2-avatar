@@ -12,7 +12,7 @@
 	rel="stylesheet">
 <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script type="text/javascript">
-window.onload = function(){
+$(function(){
 	
 	$('#user-pw').keyup(function() {
 		$('font[name=check]').text('');
@@ -31,7 +31,7 @@ window.onload = function(){
 									.html("<span style='color:blue'>**올바른 비밀번호를 입력하였습니다.<\/span><input type='hidden' name='pwd-check' value='yes'>");
 						}
 					}); 		
-}
+});
 
 </script>
 </head>

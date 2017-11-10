@@ -27,7 +27,7 @@ public class MemberService {
 	private MemberClassDao memberClassDao;
 
 	public String getClassId(String id) {
-		String classId = memberDao.getClassId(id);
+		String classId = memberClassDao.getClassId(id);
 		return classId;
 	}
 	/*

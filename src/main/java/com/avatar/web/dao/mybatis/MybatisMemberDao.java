@@ -11,14 +11,6 @@ public class MybatisMemberDao implements MemberDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-
-	@Override
-	public String getClassId(String id) {
-		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
-		String classId = memberDao.getClassId(id);
-		return classId;
-	}
-	
 	@Override
 	public int insert(Member member) {
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);

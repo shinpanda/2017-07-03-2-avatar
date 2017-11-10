@@ -35,8 +35,7 @@ public class StudentController {
 		String classId = seatDao.getClassId(sessionId);
 		
 		List<SeatView> list = seatDao.getList(classId);
-		
-		Collections.shuffle(list);
+				Collections.shuffle(list);
 		
 		for (int i = 0; i < list.size(); i++) {
 			json.append(String.format("\"%s\"", list.get(i).getMemberName()));
