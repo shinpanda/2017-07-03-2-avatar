@@ -55,13 +55,15 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="question/del", method=RequestMethod.GET)
-	public String questionDel(@RequestParam(value="id", defaultValue="") String id,
+	public String questionDel(@RequestParam(value="no", defaultValue="") String no,
 			Model model) {
-		return "board.question.del";
+		model.addAttribute("b", service.getQuestion(no));
+		return "board.question.delete";
 	}
 	
 	@RequestMapping(value="question/reg", method=RequestMethod.GET)
-	public String questionReg() {
+	public String questionReg(Model model) {
+		model.addAttribute("board", "reg");
 		return "board.question.reg";
 	}
 	
@@ -75,8 +77,10 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="question/edit", method=RequestMethod.GET)
-	public String questionEdit(@RequestParam(value="id", defaultValue="") String id,
+	public String questionEdit(@RequestParam(value="no", defaultValue="") String no,
 			Model model) {
+		model.addAttribute("board", "edit");
+		model.addAttribute("b", service.getQuestion(no));
 		return "board.question.edit";
 	}
 }
