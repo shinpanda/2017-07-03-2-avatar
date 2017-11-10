@@ -9,7 +9,7 @@
 
 
 
-<main class="main" >
+<main class="main" id="calendar-main">
 <form name="calendarFrm" id="calendarFrm" action="" method="GET">
 
 <div class="calendar" >

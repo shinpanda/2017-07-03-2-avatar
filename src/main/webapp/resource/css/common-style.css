@@ -769,9 +769,8 @@ input[type="text"], textarea {
 	padding-left: 130px;
 }
 /*----- seat button----- */  
-/* 
 
-.btn {
+.seat-btn {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
@@ -792,23 +791,23 @@ input[type="text"], textarea {
   padding: 10px 16px;
 }
   
-.btn-lg {
+.seat-btn-lg {
   font-size: 18px;
   line-height: 1.33;
   border-radius: 6px;
 }
 
-.btn-primary {
+.seat-btn-primary {
   color: #fff;
   background-color: #808080;
   border-color: #586a7e;
 }
 
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active,
-.btn-primary.active,
-.open .dropdown-toggle.btn-primary {
+.seat-btn-primary:hover,
+.seat-btn-primary:focus,
+.seat-btn-primary:active,
+.vbtn-primary.active,
+.open .dropdown-toggle.seat-btn-primary {
   color: #fff;
   background-color: #586a7e;
   border-color: #142D45;
@@ -817,10 +816,10 @@ input[type="text"], textarea {
 **********************
   RAISED BUTTONS
 ***********************
-.btn-primary.raised {
+.seat-btn-primary.raised {
     box-shadow: 0 3px 0 0 #3270ad;
 }
-.btn-primary.raised:active, .btn-primary.raised.active {
+.seat-btn-primary.raised:active, .seat-btn-primary.raised.active {
     background: #3270ad;
     box-shadow: none;
     margin-bottom: -3px;
@@ -831,31 +830,31 @@ input[type="text"], textarea {
   CUSTON BTN VALUES
 ***********************
 
-.btn {
+.seat-btn {
     padding: 14px 24px;
     border: 0 none;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
-.btn:focus, .btn:active:focus, .btn.active:focus {
+.seat-btn:focus, .seat-btn:active:focus, .seat-btn.active:focus {
     outline: 0 none;
 }
 
-.btn-primary {
+.seat-btn-primary {
     background: #142D45;
     color: #ffffff;
 }
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+.seat-btn-primary:hover, .seat-btn-primary:focus, .seat-btn-primary:active, .seat-btn-primary.active, .open > .dropdown-toggle.seat-btn-primary {
     background: #142D45;
 }
-.btn-primary:active, .btn-primary.active {
+.seat-btn-primary:active, .seat-btn-primary.active {
     background: #586a7e;
     box-shadow: none;
 }
 
 
- */
+
 /* -------------------------input text ----------------------*/
 
 .input--haruki {
@@ -917,3 +916,12 @@ input[type="text"], textarea {
 .input--filled .input__label--haruki::after {
 	transform: translate3d(0, 0.5em, 0);
 } */
+
+
+
+
+/*   Calendar  */
+
+#calendar-main{
+	margin-left:0px !important;
+} 

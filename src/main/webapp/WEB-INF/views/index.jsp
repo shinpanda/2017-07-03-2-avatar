@@ -25,7 +25,7 @@
 			<div class="widget-board">
 					<div class="row">
 						<div class="cell title">
-							<a href="Calendar.jsp"></a>
+							<jsp:include page="/WEB-INF/views/test/calendar.jsp" flush="flash"/>
 						</div>
 					</div>
 			</div>
