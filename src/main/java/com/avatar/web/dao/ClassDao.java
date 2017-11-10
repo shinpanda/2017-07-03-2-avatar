@@ -8,6 +8,7 @@ public interface ClassDao {
 
 	List<Class> getList();
 
+	
 	int checkPw(String classId, String classPwd);
 
 
