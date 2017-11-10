@@ -22,6 +22,13 @@
 		<div class="widget cell">
 			<h3>달력</h3>
 			<hr />
+			<div class="widget-board">
+					<div class="row">
+						<div class="cell title">
+							<jsp:include page="/WEB-INF/views/test/calendar.jsp" flush="flash"/>
+						</div>
+					</div>
+			</div>
 		</div>
 	</div>
 	<div class="widgets row">
