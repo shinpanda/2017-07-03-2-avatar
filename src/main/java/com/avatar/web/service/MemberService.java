@@ -64,6 +64,11 @@ public class MemberService {
 		
 		return result;
 	}
+	public int idCheck(String id) {
+		int result = memberDao.idCheck(id);
+		
+		return result;
+	}
 
 	
 }

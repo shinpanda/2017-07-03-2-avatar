@@ -33,6 +33,40 @@ $(function(){
 					}); 		
 });
 
+var idCheck = 0;
+var pwdCheck = 0;
+//아이디 체크하여 가입버튼 비활성화, 중복확인.
+function checkId() {
+    var inputed = $('#id').val();
+    $.ajax({
+        data : {
+            id : inputed
+        },
+        url : "idCheck",
+        success : function(data) {
+            if(inputed=="" && data=='0') {
+                $("#sign").prop("disabled", true);
+                $("#sign").css("background-color", "#aaaaaa");
+                $("#id").css("background-color", "#FFCECE");
+                idCheck = 0;
+            } else if (data == '0') {
+                $("#id").css("background-color", "#B0F6AC");
+                idCheck = 1;
+                if(idCheck==1 && pwdCheck == 1) {
+                    $("#sign").prop("disabled", false);
+                    $("#sign").css("background-color", "#4CAF50");
+                    signupCheck();
+                } 
+            } else if (data == '1') {
+                $("#sign").prop("disabled", true);
+                $("#sign").css("background-color", "#aaaaaa");
+                $("#id").css("background-color", "#FFCECE");
+                idCheck = 0;
+            } 
+        }
+    });
+}
+
 </script>
 </head>
 
@@ -50,7 +84,7 @@ $(function(){
 			</div>
 			<div class="form-item">
 			<div class="form-title">아이디</div>
-				<input type="text" name="id" class="form-style" placeholder="아이디를 입력해주세요" />
+				<input type="text" id="id" name="id" class="form-style" placeholder="아이디를 입력해주세요" oninput="checkId()"/>
 			</div>
 
 			<div class="form-item">
@@ -93,7 +127,7 @@ $(function(){
 			 
 			<div class="form-item">
 				<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-				<input type="submit" class="login pull-right" value="Sign In">
+				<input type="submit" class="login pull-right" id="sign" value="Sign In" disabled="disabled">
 				<div class="clear-fix"></div>
 			</div>
 			</form>
