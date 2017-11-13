@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <main class="main">
 <div class="board-style">
 	<form method="post">
@@ -54,27 +56,30 @@
 							</ul>
 							<ul class="sort-btn-wrapper">
 								<li role="justifyLeft"><img
-									src="../../resource/images/if_align-left_2561323 (1).png"
+									src="${ctx}/resource/images/if_align-left_2561323 (1).png"
 									class="img-btn" alt="왼쪽정렬" id="justifyLeft" /></li>
 								<li value="justifyCenter"><img
-									src="../../resource/images/if_align-center_2561319 (1).png"
+									src="${ctx}/resource/images/if_align-center_2561319 (1).png"
 									class="img-btn" alt="가운데정렬" id="justifyCenter" /></li>
 								<li value="justifyRight"><img
-									src="../../resource/images/if_align-right_2561324 (1).png"
+									src="${ctx}/resource/images/if_align-right_2561324 (1).png"
 									class="img-btn" alt="오른쪽정렬" id="justifyRight" /></li>
 							</ul>
 							<ul>
 								<li><img
-									src="../../resource/images/if_icon-image_211677.png"
+									src="${ctx}/resource/images/if_icon-image_211677.png"
 									class="img-btn" id="pic-btn" /> <input type="file" id="pic"
 									name="pic" accept=".jpg, .jpeg, .png" style="display: none;" /></li>
 								<li>
 								<img
-									src="../../resource/images/if_icon_set_outlinder-12_2519681 (1).png"
+									src="${ctx}/resource/images/if_icon_set_outlinder-12_2519681 (1).png"
 									class="img-btn" id="link" />
 									<div id="linkbox" class="link-box" style="display:none">
 										<span>링크를 입력하세요</span> <input type="text" id="link-url"/>
-										<input type="button" value="Link" id="link-reg" />
+										<div>
+											<input type="button" value="확인" id="link-reg" />
+											<input type="button" value="취소" id="link-cancel" />
+										</div>
 									</div>
 								</li>
 
@@ -101,16 +106,12 @@
 
 	</form>
 	<script>
-	
-	
-
-		 
-		    
+		var content = document.querySelector('#content');
 		var btnHtml = document
 				.querySelector('.reg-style-btn-wrapper input[value="html"]');
 		var check = false;
 		btnHtml.onclick = function() {
-			var content = document.querySelector('#content');
+			
 			if (check == false) {
 				content.textContent = content.innerHTML;
 				check = true;
@@ -173,7 +174,7 @@
 				};
 
 				xhr.upload.onloadend = function(e) {
-					var content = document.querySelector('#content');
+					//var content = document.querySelector('#content');
 					var img = document.createElement('img');
 					//img.src = 'http://i.huffpost.com/gen/5524070/thumbs/o-THE-570.jpg?3'+d+file.name;
 					//img.src = 'http://i.huffpost.com/gen/5524070/thumbs/o-THE-570.jpg?3';
@@ -211,13 +212,11 @@
 	
 		var linkBtn = document.querySelector('#link');
 		var linkReg = document.querySelector("#link-reg");
-		var text="";
+		var linkCancel = document.querySelector("#link-cancel");
 		var selection = {anchorNode:null, anchorOffset:null, focusNode:null, focusOffset:null};
 		linkBtn.onclick = function() {
 			selection = {anchorNode:document.getSelection().anchorNode, anchorOffset:document.getSelection().anchorOffset, focusNode:document.getSelection().focusNode, focusOffset:document.getSelection().focusOffset};//.anchorNode;
-			console.log(selection);
-			text = document.getSelection().toString();
-			
+
 			document.getElementById("linkbox").style.display = "flex";
 		}
 	
@@ -227,15 +226,17 @@
 			
 			if(document.getSelection().anchorNode.nodeName=="DIV"){
 				document.getSelection().setBaseAndExtent(selection.anchorNode, selection.anchorOffset,selection.focusNode,selection.focusOffset);
-				aTag.textContent = text; }
-			aTag.textContent = document.getSelection();
+			}
+		 	aTag.textContent = document.getSelection();
 			aTag.href = url.value;
 			exec('insertHTML', aTag.outerHTML);
 			document.getElementById("linkbox").style.display = "none";
 			
 		}
 	
-	
+		linkCancel.onclick = function(){
+			document.getElementById("linkbox").style.display = "none";
+		}
 	
 		var foreColorBtn = document.querySelector("#fore-color-btn");
 		var foreColorBtnWrapper = document
@@ -316,6 +317,11 @@
 				content.innerHTML = content.textContent;
 			input.value = content.innerHTML;
 		};
+		
+		var content = document.querySelector("#content");
+		content.ondblclick  = function(e) {
+			console.log(e.target.nodeName);
+		}
 	</script>
 
 </div>
