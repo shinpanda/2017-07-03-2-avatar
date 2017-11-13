@@ -209,7 +209,6 @@
 	            document.execCommand(“createlink”, false, url);
 	
 	    } */
-	
 		var linkBtn = document.querySelector('#link');
 		var linkReg = document.querySelector("#link-reg");
 		var linkCancel = document.querySelector("#link-cancel");
@@ -227,7 +226,9 @@
 			if(document.getSelection().anchorNode.nodeName=="DIV"){
 				document.getSelection().setBaseAndExtent(selection.anchorNode, selection.anchorOffset,selection.focusNode,selection.focusOffset);
 			}
-		 	aTag.textContent = document.getSelection();
+			var container = document.createElement("div");
+			container.appendChild(document.getSelection().getRangeAt(0).cloneContents());
+			aTag.innerHTML = container.innerHTML;
 			aTag.href = url.value;
 			exec('insertHTML', aTag.outerHTML);
 			document.getElementById("linkbox").style.display = "none";
