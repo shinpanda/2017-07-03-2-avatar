@@ -9,19 +9,26 @@
 			<h3>공지</h3>
 			<hr />
 			<div class="widget-board">
-				<%-- <c:forEach items="${noticeList}" var="n"> --%>
+				<c:forEach items="${noticeList}" var="n">
 					<div class="row">
 						<div class="cell title">
-							<a href="#">아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ</a>
+							<a href="#">${n.title}</a>
 						</div>
 						<div class="cell w45">11-07</div>
 					</div>
-				<%-- </c:forEach> --%>
+				</c:forEach>
 			</div>
 		</div>
-		<div class="cell">
+		<div class="widget cell">
 			<h3>달력</h3>
 			<hr />
+			<div class="widget-board">
+					<div class="row">
+						<div class="cell title">
+							<jsp:include page="/WEB-INF/views/test/calendar.jsp" flush="flash"/>
+						</div>
+					</div>
+			</div>
 		</div>
 	</div>
 	<div class="widgets row">
@@ -32,7 +39,7 @@
 				<c:forEach items="${noticeList}" var="n">
 					<div class="row">
 						<div class="cell title">
-							<a href="#">아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ</a>
+							<a href="#">${n.title}</a>
 						</div>
 						<div class="cell w45">11-07</div>
 					</div>
@@ -46,7 +53,7 @@
 				<c:forEach items="${noticeList}" var="n">
 					<div class="row">
 						<div class="cell title">
-							<a href="#">아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ</a>
+							<a href="#">${n.title}</a>
 						</div>
 						<div class="cell w45">11-07</div>
 					</div>

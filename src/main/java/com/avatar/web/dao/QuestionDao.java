@@ -9,6 +9,7 @@ public interface QuestionDao {
 
 	List<BoardView> getList(Integer page, String field, String query, String classId);
 	List<BoardView> getList(Integer page, String field, String field2, String query, String classId);
+	List<BoardView> getList(String classId);
 
 	int getCount(String classId);
 	

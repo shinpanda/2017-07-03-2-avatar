@@ -1,12 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+	pageEncoding="UTF-8"%>
 
-</body>
-</html>
+<main id="main" class="main del-body">
+<form method="post" action="" name="del-form">
+	<div class="simple-container">
+		<div>제목 : ${b.title}</div>
+		<div>글쓴이 : ${b.writerId}</div>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		<input type="hidden" name="no" value="${b.no}" />
+		<div>
+			<span>삭제하시겠습니까?</span> <input type="submit" class="btn" value="삭제">
+		</div>
+	</div>
+
+</form>
+</main>

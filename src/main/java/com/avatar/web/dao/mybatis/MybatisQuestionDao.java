@@ -14,12 +14,14 @@ public class MybatisQuestionDao implements QuestionDao {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
+	public List<BoardView> getList(String classId) {
+		// TODO Auto-generated method stub
+		return getList(1, "title","content", "", classId);
+	}
+
+	@Override
 	public List<BoardView> getList(Integer page, String field, String query, String classId) {
-		/*QuestionDao questionDao = sqlSession.getMapper(QuestionDao.class);
-		return questionDao.getList(page, field, query);*/
-		System.out.println(classId);
-		QuestionDao questionDao = sqlSession.getMapper(QuestionDao.class);
-		return questionDao.getList(page, field,"content", query, classId);
+		return getList(page, field,"content", query, classId);
 	}
 
 	@Override
@@ -51,6 +53,7 @@ public class MybatisQuestionDao implements QuestionDao {
 		QuestionDao questionDao = sqlSession.getMapper(QuestionDao.class);
 		return questionDao.updateHit(no);
 	}
+
 
 
 }

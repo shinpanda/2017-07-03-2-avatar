@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+
+<c:set var="ctx" value="${pageContext.request.contextPath}" />    
 <!DOCTYPE html>
 <html>
 <head>
@@ -126,7 +127,8 @@
 				 				 
 				var spans = container.querySelectorAll("span");
 				var index = Math.floor(Math.random()*spans.length);
-				spans[index].style.background="url('../../../resource/images/image.png')";
+				spans[index].style.background="url('${ctx}/resource/images/redmonitor.png')";
+				
 				//div.childNodes[index].style.background="url('../../../resource/images/image.png')";
 				
 				
@@ -172,8 +174,8 @@
 					
 					<div id="text">
 						<span class="input input--haruki">
-							<input class="input__field input__field--haruki" type="number" id="row" />
-							<label class="input__label input__label--haruki" for="row">
+							<input class="input__field input__field--haruki" type="number" id="row" min="1" max="8"/>
+							<label class="input__label input__label--haruki" for="row" min="1" max="5">
 								<span class="input__label-content input__label-content--haruki">가로</span>
 							</label>
 						</span>
@@ -187,14 +189,14 @@
 						
 					</div>
 					<div id="button">
-					 	<input type="button" class="btn btn-primary btn-lg raised" value="자리바꾸기" id="change" />					 	
-					 	<input type="button" class="btn btn-primary btn-lg raised" value="오늘의 당첨자" id="pick"/>
-					 	<input type="button" class="btn btn-primary btn-lg raised" value="초기화"  id="reset" />
+					 	<input type="button" class="seat-btn seat-btn-primary seat-btn-lg raised" value="자리바꾸기" id="change" />					 	
+					 	<input type="button" class="seat-btn seat-btn-primary seat-btn-lg raised" value="오늘의 당첨자" id="pick"/>
+					 	<input type="button" class="seat-btn seat-btn-primary seat-btn-lg raised" value="초기화"  id="reset" />
 					 	
 					</div>	
 		</div>
 		
-		<div id ="bottom" style="height: -webkit-fill-available;">
+		<div id ="bottom" style="height: -webkit-fill-available;margin-left: 75px;">
 			<div id="area" style="height: -webkit-fill-available;">
 				<!-- <span id="seat"></span>  -->
 				
