@@ -38,5 +38,4 @@ public class MybatisMemberDao implements MemberDao {
 		return result;
 	}
 
-
 }

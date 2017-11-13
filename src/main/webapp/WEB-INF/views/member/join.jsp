@@ -11,9 +11,11 @@
 <link href="${ctx}/resource/css/joinstyle.css" type="text/css"
 	rel="stylesheet">
 <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+
 <script type="text/javascript">
 $(function(){
-	
+	var signButton = $(".form input[type='submit']");
+    
 	$('#user-pw').keyup(function() {
 		$('font[name=check]').text('');
 	}); //#user_pass.keyup	
@@ -23,18 +25,16 @@ $(function(){
 								.val()) {
 							$('font[name=check]').text('');
 							$('font[name=check]')
-									.html("<span style='color:red'>**패스워드가 같지 않습니다.<\/span><input type='hidden' name='pwd-check' value='no'>");
+									.html("<span style='color:red'>**패스워드가 같지 않습니다.<\/span><input type='hidden' id='pwd-check' value='no'>");
 
 						} else {
 							$('font[name=check]').text('');
 							$('font[name=check]')
-									.html("<span style='color:blue'>**올바른 비밀번호를 입력하였습니다.<\/span><input type='hidden' name='pwd-check' value='yes'>");
+									.html("<span style='color:blue'>**올바른 비밀번호를 입력하였습니다.<\/span><input type='hidden' id='pwd-check' value='yes'>");
 						}
 					}); 		
-});
 
 //아이디 체크하여 가입버튼 비활성화, 중복확인.
-$(function(){
 	$("#id").change(function(){
 		 //console.log($("#id").val());
 		$.get("../member/idCheck?${_csrf.parameterName}=${_csrf.token}&id="+$("#id").val() ,function(result){
@@ -49,8 +49,6 @@ $(function(){
 					
 		});
 	});
-});
-$(function(){
 	$("#email").change(function(){
 	//	 console.log($("#email").val());
 		$.get("../member/emailCheck?${_csrf.parameterName}=${_csrf.token}&email="+$("#email").val() ,function(result){
@@ -65,22 +63,14 @@ $(function(){
 					
 		});
 	});
-});
-$(function(){
-	$("#classPwd").change(function(){
-	//	 console.log($("#email").val());
-		$.get("../member/classCheck?${_csrf.parameterName}=${_csrf.token}&classPwd="+$("#classPwd").val() ,function(result){
-//			   alert(result);
-			if(result == 0)
-				$('font[name=class-pwd-check]')
-				.html("<span style='color:blue'>**올바른 클래스 비밀번호입니다.<\/span><input type='hidden' name='class-pwd-check' value='yes'>");
-				else
-				$('font[name=class-pwd-check]')
-					.html("<span style='color:red'>**올바른 클래스 비밀번호를 입력해주세요.<\/span><input type='hidden' name='class-pwd-check' value='no'>");
-				
-					
-		});
-	});
+	
+	 signButton.click(function(){
+	//	if($("#pwd-check").val() == "no")
+			alert("비밀번호를 확인해주세요.");
+		
+	})
+	 
+	
 });
 </script>
 </head>

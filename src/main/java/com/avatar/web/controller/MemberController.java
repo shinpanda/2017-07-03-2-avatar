@@ -86,10 +86,7 @@ public class MemberController {
 		String id = request.getParameter("id");
 		Gson gson = new Gson();
 		String json = "";
-		int rowcount = service.idCheck(id);
-		String result =String.valueOf(rowcount);
-		json = gson.toJson(rowcount);
-		//System.out.println(rowcount);
+		json = gson.toJson(service.idCheck(id));
 		return json;
 	}
 	@RequestMapping(value="emailCheck")
@@ -98,13 +95,9 @@ public class MemberController {
 		String email = request.getParameter("email");
 		Gson gson = new Gson();
 		String json = "";
-		int rowcount = service.emailCheck(email);
-		String result =String.valueOf(rowcount);
-		json = gson.toJson(rowcount);
-		System.out.println(rowcount);
+		json = gson.toJson(service.emailCheck(email));
 		return json;
-	}
-	
+	}	
 	@RequestMapping(value="chat", method=RequestMethod.GET)
 	public String chat(Principal principal, Model model) {
 		

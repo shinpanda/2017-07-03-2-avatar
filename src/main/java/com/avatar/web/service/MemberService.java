@@ -12,6 +12,7 @@ import com.avatar.web.dao.MemberDao;
 import com.avatar.web.dao.MemberRoleDao;
 import com.avatar.web.entity.ChatView;
 import com.avatar.web.entity.Member;
+import com.google.gson.JsonElement;
 
 
 public class MemberService {
@@ -25,7 +26,10 @@ public class MemberService {
 	private MemberRoleDao memberRoleDao;
 	@Autowired
 	private MemberClassDao memberClassDao;
+	@Autowired
+	private ClassDao classDao;
 
+	
 	public String getClassId(String id) {
 		String classId = memberClassDao.getClassId(id);
 		return classId;
@@ -66,14 +70,11 @@ public class MemberService {
 	}
 	public int idCheck(String id) {
 		int result = memberDao.idCheck(id);
-		
 		return result;
 	}
 	public int emailCheck(String email) {
 	int result = memberDao.emailCheck(email);
-		
 		return result;
 	}
-
 	
 }

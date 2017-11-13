@@ -12,4 +12,5 @@ public interface MemberClassDao {
 	List<MemberClassView> getList(String classId);
 
 	List<MemberClassView> getHeader(String sessionId);
+
 }
