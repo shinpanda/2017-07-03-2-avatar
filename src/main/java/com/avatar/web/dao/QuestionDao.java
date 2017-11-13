@@ -16,5 +16,7 @@ public interface QuestionDao {
 	BoardView get(String no);
 	int insert(Board board);
 	int updateHit(String no);
+	int update(Board board);
+	int delete(String no);
 
 }

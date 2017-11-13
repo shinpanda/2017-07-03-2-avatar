@@ -27,4 +27,10 @@ public class MybatisQuestionCmtDao implements QuestionCmtDao {
 		return list;
 	}
 
+	@Override
+	public int deleteQuestion(String no) {
+		QuestionCmtDao questionCmtDao = sqlSession.getMapper(QuestionCmtDao.class);
+		return questionCmtDao.deleteQuestion(no);
+	}
+
 }

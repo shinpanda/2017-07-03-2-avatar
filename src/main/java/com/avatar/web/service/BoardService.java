@@ -57,11 +57,22 @@ public class BoardService {
 		int result = questionDao.insert(board);
 		return result;
 	}
+	public int editQuestion(Board board) {
+		int result = questionDao.update(board);
+		return result; 
+	}
 
 	public int insertQuestionCmt(BoardCmt cmt) {
 		int result = questionCmtDao.insert(cmt);
 		return result; 
 	}
+
+	public int deleteQuestion(String no) {
+		int result = questionCmtDao.deleteQuestion(no);
+		result += questionDao.delete(no);
+		return result; 
+	}
+
 	
 	
 	

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <main class="main">
-<div class="board-style">
+<div class="board-style reg-board">
 	<form method="post">
 		<div class="reg-container">
 			<div class="reg-wrapper">
@@ -77,12 +77,11 @@
 									<div id="linkbox" class="link-box" style="display:none">
 										<span>링크를 입력하세요</span> <input type="text" id="link-url"/>
 										<div>
-											<input type="button" value="확인" id="link-reg" />
-											<input type="button" value="취소" id="link-cancel" />
+											<input type="button" value="확인" id="link-reg" class="btn" />
+											<input type="button" value="취소" id="link-cancel" class="btn" />
 										</div>
 									</div>
 								</li>
-
 							</ul>
 							<ul>
 								<li><input type="button" value="html" class="html-btn"></li>
@@ -94,7 +93,7 @@
 						spellcheck="false" required></div>
 				</div>
 			</div>
-
+			
 			<div class="reg-btn-container">
 				<input type="hidden" name="content" /> <input type="hidden"
 					name="${_csrf.parameterName}" value="${_csrf.token}"> <input
@@ -103,10 +102,23 @@
 					class="btn reg-btn reg-cancel">취소</button>
 			</div>
 		</div>
-
+		<div class="img-edit-container" style="display:none;">
+			<div>
+				<label>너비 :</label>
+				<input type="text" name="img-width"/>
+			</div>
+			<div>
+				<label>높이 :</label>
+				<input type="text" name="img-height"/>
+			</div>
+			<div class="img-edit-btn-wrapper">
+				<input type="button" value="확인" id="img-edit-submit" class="btn img-edit-btn"/>
+				<input type="button" value="취소" id="img-edit-cancel" class="btn img-edit-btn" />
+			</div>
+		</div>
 	</form>
 	<script>
-		var content = document.querySelector('#content');
+		/* var content = document.querySelector('#content');
 		var btnHtml = document
 				.querySelector('.reg-style-btn-wrapper input[value="html"]');
 		var check = false;
@@ -209,8 +221,7 @@
 	            document.execCommand(“createlink”, false, url);
 	
 	    } */
-	
-		var linkBtn = document.querySelector('#link');
+		/*var linkBtn = document.querySelector('#link');
 		var linkReg = document.querySelector("#link-reg");
 		var linkCancel = document.querySelector("#link-cancel");
 		var selection = {anchorNode:null, anchorOffset:null, focusNode:null, focusOffset:null};
@@ -221,13 +232,17 @@
 		}
 	
 		linkReg.onclick = function() {
+			if (check == true)
+				return;
 			var url=document.querySelector("#link-url");
 			var aTag = document.createElement("a");
 			
 			if(document.getSelection().anchorNode.nodeName=="DIV"){
 				document.getSelection().setBaseAndExtent(selection.anchorNode, selection.anchorOffset,selection.focusNode,selection.focusOffset);
 			}
-		 	aTag.textContent = document.getSelection();
+			var container = document.createElement("div");
+			container.appendChild(document.getSelection().getRangeAt(0).cloneContents());
+			aTag.innerHTML = container.innerHTML;
 			aTag.href = url.value;
 			exec('insertHTML', aTag.outerHTML);
 			document.getElementById("linkbox").style.display = "none";
@@ -318,10 +333,47 @@
 			input.value = content.innerHTML;
 		};
 		
+		var imgEditContainer = document.querySelector(".img-edit-container");
+		var imgWidth = imgEditContainer.querySelector('input[name="img-width"]');
+		var imgHeight = imgEditContainer.querySelector('input[name="img-height"]');
+		var imgEditButton = imgEditContainer.querySelector("#img-edit-submit");
+		var imgCancel = imgEditContainer.querySelector("#img-edit-cancel");
+		var selectImg = null;
 		var content = document.querySelector("#content");
 		content.ondblclick  = function(e) {
-			console.log(e.target.nodeName);
+			if(e.target.nodeName == "IMG"){
+				imgEditContainer.style.display = "flex";
+				imgWidth.value = parseInt(e.target.width);
+				imgHeight.value = parseInt(e.target.height);
+				selectImg = e.target;
+			}
+		};
+		imgWidth.onkeyup = function() {
+			if(!isNaN(imgWidth.value)){
+				imgHeight.value= parseInt(selectImg.height)*parseInt(imgWidth.value)/parseInt(selectImg.width);
+				if(isNaN(imgHeight.value))
+					imgHeight.value=0;
+			}
 		}
+		imgHeight.onkeyup = function() {
+			if(!isNaN(imgHeight.value)){
+				imgWidth.value= parseInt(selectImg.width)*parseInt(imgHeight.value)/parseInt(selectImg.height);
+				if(isNaN(imgWidth.value))
+					imgWidth.value=0;
+			}
+		}
+		imgEditButton.onclick = function() {
+			if(imgWidth.value != "")
+				selectImg.style.width = imgWidth.value+"px";
+			if(imgHeight.value != "")
+				selectImg.style.height = imgHeight.value+"px";
+			imgEditContainer.style.display = "none";
+		};
+		
+		imgCancel.onclick = function(){
+			imgEditContainer.style.display = "none";
+		};
+		 */
 	</script>
 
 </div>

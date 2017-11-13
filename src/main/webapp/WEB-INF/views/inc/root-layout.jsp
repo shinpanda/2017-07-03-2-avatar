@@ -12,10 +12,10 @@
 	rel="stylesheet">
 <script src="${ctx}/resource/js/chat.js"></script>
 <c:if test="${not empty board}">
-	<%-- <meta name="_csrf" content="${_csrf.token}"/> --%>
+	<meta name="_csrf" content="${_csrf.token}"/>
 	<!-- default header name is X-CSRF-TOKEN -->
-	<%-- <meta name="_csrf_parameter" content="${_csrf.parameterName}"/>
-	<script src="${ctx}/resource/js/editor.js"></script> --%>
+	<meta name="_csrf_parameter" content="${_csrf.parameterName}"/>
+	<script src="${ctx}/resource/js/editor.js"></script>
 </c:if>
 </head>
 <body>
