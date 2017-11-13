@@ -248,7 +248,6 @@ input[type="text"], textarea {
     box-sizing: border-box;
 }
 
-
 .table-container{
 	margin:auto;
 	width:95%;
@@ -378,10 +377,16 @@ input[type="text"], textarea {
 			color:#505050;
 		}
 /* reg style */
+.board-style.reg-board{
+	position: relative;
+}
+
 .reg-container {
     background: whitesmoke;
     padding: 30px;
     border-radius: 10px;
+    box-sizing: border-box;
+    width: 890px;
 }
 
 	.reg-wrapper {
@@ -541,6 +546,33 @@ input[type="text"], textarea {
 	.reg-cancel {
 	    margin-left: 10px;
 	}
+	
+	/*  */
+	.img-edit-container {
+	    display: flex;
+	    flex-direction: column;
+	    width: 77px;
+	    border: 1px solid #cacaca;
+	    background: #f7f7f7;
+	    padding: 10px 7px;
+	    font-size: 11px;
+	    position: absolute;
+	    top: 143px;
+	    left: 890px;
+	    height: 100px;
+	    justify-content: space-around;
+	    border-radius: 10px;
+	}
+		.img-edit-container input[type="text"] {
+		    width: 40px;
+		}
+		.btn.img-edit-btn {
+		    width: 36px;
+		    padding: 3px;
+		}
+		.img-edit-container .img-edit-btn-wrapper {
+		    text-align: right;
+		}
 /* detail style */	
 .detail-container {
     text-align: left;

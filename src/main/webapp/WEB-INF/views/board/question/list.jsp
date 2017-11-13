@@ -20,12 +20,12 @@
 					<div class="row">
 						<div class="cell">${b.no}</div>
 						<div class="cell title">
-							<a href="./question/${b.no}">${b.title}</a>
+							<a href="./question/${b.no}">${b.title} [${b.countCmt}]</a>
 						</div>
 						<jsp:useBean id="now" class="java.util.Date"></jsp:useBean>
 						<fmt:parseNumber value="${now.time}" integerOnly="true"
 							var="today" />
-						<fmt:parseNumber value="${notice.regDate.time}" integerOnly="true"
+						<fmt:parseNumber value="${b.regDate.time}" integerOnly="true"
 							var="regDateNum" />
 						<div class="cell">
 							<c:if test="${((today - regDateNum)/(1000*60*60*24)) < 1}">

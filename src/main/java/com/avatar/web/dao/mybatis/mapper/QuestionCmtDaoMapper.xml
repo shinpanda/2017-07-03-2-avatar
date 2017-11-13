@@ -9,7 +9,10 @@
 		SELECT no, regDate, content, writerId FROM QuestionComment where QuestionNo = #{no} order by regDate ASC;
 	</select>
 	<insert id="insert" parameterType="com.avatar.web.entity.BoardCmt">
-		insert into QuestionComment(no, content, writerId, QuestionNo)
+		insert into QuestionComment(no, content, writerId, questionNo)
 		values ((select IFNULL(max(cast(no as unsigned)), 0)+1 from QuestionComment q), #{content}, #{writerId}, #{boardNo})
 	</insert>
+	<delete id="deleteQuestion">
+		delete from QuestionComment where questionNo = #{no} 
+	</delete>
 </mapper>    

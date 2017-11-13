@@ -54,6 +54,15 @@ public class MybatisQuestionDao implements QuestionDao {
 		return questionDao.updateHit(no);
 	}
 
+	@Override
+	public int update(Board board) {
+		QuestionDao questionDao = sqlSession.getMapper(QuestionDao.class);
+		return questionDao.update(board);
+	}
 
-
+	@Override
+	public int delete(String no) {
+		QuestionDao questionDao = sqlSession.getMapper(QuestionDao.class);
+		return questionDao.delete(no);
+	}
 }

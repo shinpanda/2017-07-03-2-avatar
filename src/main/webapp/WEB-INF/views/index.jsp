@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<jsp:useBean id="now" class="java.util.Date"></jsp:useBean>
+<fmt:parseNumber value="${now.time}" integerOnly="true" var="today" />
 <main class="main">
 <div class="widget-container">
 	<div class="widgets row">
@@ -9,12 +11,27 @@
 			<h3>공지</h3>
 			<hr />
 			<div class="widget-board">
-				<c:forEach items="${noticeList}" var="n">
+				<c:forEach items="${noticeList}" var="b">
 					<div class="row">
 						<div class="cell title">
-							<a href="#">${n.title}</a>
+							<a href="#">${b.title}</a>
 						</div>
-						<div class="cell w45">11-07</div>
+						<div class="cell w45">
+							<fmt:parseNumber value="${b.regDate.time}" integerOnly="true"
+								var="regDateNum" />
+							<div class="cell">
+								<c:if test="${((today - regDateNum)/(1000*60*60*24)) < 1}">
+									<fmt:formatDate value="${b.regDate}" pattern="HH:MM"
+										var="regDate" />
+														${regDate}
+													</c:if>
+								<c:if test="${((today - regDateNum)/(1000*60*60*24)) >= 1}">
+									<fmt:formatDate value="${b.regDate}" pattern="MM.dd"
+										var="regDate" />
+														${regDate}
+													</c:if>
+							</div>
+						</div>
 					</div>
 				</c:forEach>
 			</div>
@@ -23,11 +40,11 @@
 			<h3>달력</h3>
 			<hr />
 			<div class="widget-board">
-					<div class="row">
-						<div class="cell title">
-							<jsp:include page="/WEB-INF/views/test/calendar.jsp" flush="flash"/>
-						</div>
+				<div class="row">
+					<div class="cell title">
+						<jsp:include page="/WEB-INF/views/test/calendar.jsp" flush="flash" />
 					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -36,12 +53,27 @@
 			<h3>질문게시판</h3>
 			<hr />
 			<div class="widget-board">
-				<c:forEach items="${noticeList}" var="n">
+				<c:forEach items="${noticeList}" var="b">
 					<div class="row">
 						<div class="cell title">
-							<a href="#">${n.title}</a>
+							<a href="#">${b.title}</a>
 						</div>
-						<div class="cell w45">11-07</div>
+						<div class="cell w45">
+							<fmt:parseNumber value="${b.regDate.time}" integerOnly="true"
+								var="regDateNum" />
+							<div class="cell">
+								<c:if test="${((today - regDateNum)/(1000*60*60*24)) < 1}">
+									<fmt:formatDate value="${b.regDate}" pattern="HH:MM"
+										var="regDate" />
+														${regDate}
+													</c:if>
+								<c:if test="${((today - regDateNum)/(1000*60*60*24)) >= 1}">
+									<fmt:formatDate value="${b.regDate}" pattern="MM.dd"
+										var="regDate" />
+														${regDate}
+													</c:if>
+							</div>
+						</div>
 					</div>
 				</c:forEach>
 			</div>
@@ -50,12 +82,27 @@
 			<h3>정보 공유</h3>
 			<hr />
 			<div class="widget-board">
-				<c:forEach items="${noticeList}" var="n">
+				<c:forEach items="${noticeList}" var="b">
 					<div class="row">
 						<div class="cell title">
-							<a href="#">${n.title}</a>
+							<a href="#">${b.title}</a>
 						</div>
-						<div class="cell w45">11-07</div>
+						<div class="cell w45">
+							<fmt:parseNumber value="${b.regDate.time}" integerOnly="true"
+								var="regDateNum" />
+							<div class="cell">
+								<c:if test="${((today - regDateNum)/(1000*60*60*24)) < 1}">
+									<fmt:formatDate value="${b.regDate}" pattern="HH:MM"
+										var="regDate" />
+														${regDate}
+													</c:if>
+								<c:if test="${((today - regDateNum)/(1000*60*60*24)) >= 1}">
+									<fmt:formatDate value="${b.regDate}" pattern="MM.dd"
+										var="regDate" />
+														${regDate}
+													</c:if>
+							</div>
+						</div>
 					</div>
 				</c:forEach>
 			</div>

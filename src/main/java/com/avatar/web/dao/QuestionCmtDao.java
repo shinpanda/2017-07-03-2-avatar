@@ -10,4 +10,6 @@ public interface QuestionCmtDao {
 
 	List<BoardCmt> getList(String no);
 
+	int deleteQuestion(String no);
+
 }

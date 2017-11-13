@@ -54,13 +54,6 @@ public class BoardController {
 		return "redirect: "+no;
 	}
 	
-	@RequestMapping(value="question/del", method=RequestMethod.GET)
-	public String questionDel(@RequestParam(value="no", defaultValue="") String no,
-			Model model) {
-		model.addAttribute("b", service.getQuestion(no));
-		return "board.question.delete";
-	}
-	
 	@RequestMapping(value="question/reg", method=RequestMethod.GET)
 	public String questionReg(Model model) {
 		model.addAttribute("board", "reg");
@@ -75,13 +68,40 @@ public class BoardController {
 		return "redirect: ../question";
 	}
 	
-	
 	@RequestMapping(value="question/edit", method=RequestMethod.GET)
 	public String questionEdit(@RequestParam(value="no", defaultValue="") String no,
 			Model model) {
 		model.addAttribute("board", "edit");
 		model.addAttribute("b", service.getQuestion(no));
 		return "board.question.edit";
+	}
+	
+	@RequestMapping(value="question/edit", method=RequestMethod.POST)
+	public String questionEdit(Board board) {
+		service.editQuestion(board);
+		return "redirect: "+board.getNo();
+	}
+	
+	@RequestMapping(value="question/del", method=RequestMethod.GET)
+	public String questionDel(@RequestParam(value="no", defaultValue="") String no,
+			Model model) {
+		model.addAttribute("b", service.getQuestion(no));
+		return "board.question.delete";
+	}
+	
+	@RequestMapping(value="question/del", method=RequestMethod.POST)
+	public String questionDel(@RequestParam(value="no", defaultValue="") String no) {
+		System.out.println(no);
+		service.deleteQuestion(no);
+		return "redirect: ../question";
+	}
+	
+	
+	@RequestMapping(value="question/cmt-del", method=RequestMethod.GET)
+	public String questionCmtDel(@RequestParam(value="no", defaultValue="") String no,
+			Model model) {
+		model.addAttribute("b", service.getQuestionCmt(no));
+		return "board.question.cmt-delete";
 	}
 }
 
