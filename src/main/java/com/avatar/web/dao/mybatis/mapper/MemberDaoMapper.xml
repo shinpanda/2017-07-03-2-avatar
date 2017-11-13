@@ -11,9 +11,11 @@
 		values(#{id}, #{pwd}, #{name}, #{email});
 	</insert>
 	
-	<select id="idCheck" resultType="String">
-		select COUNT(*) from Member where memberId=#{id}
+	<select id="idCheck" resultType="int">
+		select COUNT(*) from Member where id=#{id}
 	</select>
-	
+	<select id="emailCheck" resultType="int">
+		select COUNT(*) from Member where email=#{email}
+	</select>
 
 </mapper>    

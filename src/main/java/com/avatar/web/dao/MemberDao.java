@@ -10,4 +10,6 @@ public interface MemberDao {
 
 	int idCheck(String id);
 
+	int emailCheck(String email);
+
 }

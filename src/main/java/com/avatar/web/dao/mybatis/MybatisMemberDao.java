@@ -31,4 +31,12 @@ public class MybatisMemberDao implements MemberDao {
 	}
 
 
+	@Override
+	public int emailCheck(String email) {
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		int result = memberDao.emailCheck(email);
+		return result;
+	}
+
+
 }

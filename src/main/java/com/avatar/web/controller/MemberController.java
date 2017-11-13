@@ -84,10 +84,25 @@ public class MemberController {
 	@ResponseBody
 	public String idCheck(HttpServletRequest request, Model model) {
 		String id = request.getParameter("id");
-		 int rowcount = service.idCheck(id);
-			
-
-		return String.valueOf(rowcount);
+		Gson gson = new Gson();
+		String json = "";
+		int rowcount = service.idCheck(id);
+		String result =String.valueOf(rowcount);
+		json = gson.toJson(rowcount);
+		//System.out.println(rowcount);
+		return json;
+	}
+	@RequestMapping(value="emailCheck")
+	@ResponseBody
+	public String emailCheck(HttpServletRequest request, Model model) {
+		String email = request.getParameter("email");
+		Gson gson = new Gson();
+		String json = "";
+		int rowcount = service.emailCheck(email);
+		String result =String.valueOf(rowcount);
+		json = gson.toJson(rowcount);
+		System.out.println(rowcount);
+		return json;
 	}
 	
 	@RequestMapping(value="chat", method=RequestMethod.GET)

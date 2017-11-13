@@ -33,40 +33,55 @@ $(function(){
 					}); 		
 });
 
-var idCheck = 0;
-var pwdCheck = 0;
 //아이디 체크하여 가입버튼 비활성화, 중복확인.
-function checkId() {
-    var inputed = $('#id').val();
-    $.ajax({
-        data : {
-            id : inputed
-        },
-        url : "idCheck",
-        success : function(data) {
-            if(inputed=="" && data=='0') {
-                $("#sign").prop("disabled", true);
-                $("#sign").css("background-color", "#aaaaaa");
-                $("#id").css("background-color", "#FFCECE");
-                idCheck = 0;
-            } else if (data == '0') {
-                $("#id").css("background-color", "#B0F6AC");
-                idCheck = 1;
-                if(idCheck==1 && pwdCheck == 1) {
-                    $("#sign").prop("disabled", false);
-                    $("#sign").css("background-color", "#4CAF50");
-                    signupCheck();
-                } 
-            } else if (data == '1') {
-                $("#sign").prop("disabled", true);
-                $("#sign").css("background-color", "#aaaaaa");
-                $("#id").css("background-color", "#FFCECE");
-                idCheck = 0;
-            } 
-        }
-    });
-}
-
+$(function(){
+	$("#id").change(function(){
+		 //console.log($("#id").val());
+		$.get("../member/idCheck?${_csrf.parameterName}=${_csrf.token}&id="+$("#id").val() ,function(result){
+//			   alert(result);
+			if(result == 0)
+				$('font[name=check-id]')
+				.html("<span style='color:blue'>**사용가능한 아이디입니다.<\/span><input type='hidden' name='id-check' value='yes'>");
+				else
+				$('font[name=check-id]')
+					.html("<span style='color:red'>**사용불가능한 아이디입니다.<\/span><input type='hidden' name='id-check' value='no'>");
+				
+					
+		});
+	});
+});
+$(function(){
+	$("#email").change(function(){
+	//	 console.log($("#email").val());
+		$.get("../member/emailCheck?${_csrf.parameterName}=${_csrf.token}&email="+$("#email").val() ,function(result){
+//			   alert(result);
+			if(result == 0)
+				$('font[name=check-email]')
+				.html("<span style='color:blue'>**사용가능한 이메일입니다.<\/span><input type='hidden' name='email-check' value='yes'>");
+				else
+				$('font[name=check-email]')
+					.html("<span style='color:red'>**사용불가능한 이메일입니다.<\/span><input type='hidden' name='email-check' value='no'>");
+				
+					
+		});
+	});
+});
+$(function(){
+	$("#classPwd").change(function(){
+	//	 console.log($("#email").val());
+		$.get("../member/classCheck?${_csrf.parameterName}=${_csrf.token}&classPwd="+$("#classPwd").val() ,function(result){
+//			   alert(result);
+			if(result == 0)
+				$('font[name=class-pwd-check]')
+				.html("<span style='color:blue'>**올바른 클래스 비밀번호입니다.<\/span><input type='hidden' name='class-pwd-check' value='yes'>");
+				else
+				$('font[name=class-pwd-check]')
+					.html("<span style='color:red'>**올바른 클래스 비밀번호를 입력해주세요.<\/span><input type='hidden' name='class-pwd-check' value='no'>");
+				
+					
+		});
+	});
+});
 </script>
 </head>
 
@@ -84,7 +99,10 @@ function checkId() {
 			</div>
 			<div class="form-item">
 			<div class="form-title">아이디</div>
-				<input type="text" id="id" name="id" class="form-style" placeholder="아이디를 입력해주세요" oninput="checkId()"/>
+				<input type="text" id="id" name="id" class="form-style" placeholder="아이디를 입력해주세요" "/>
+				<div>
+					<div class="string optional user-id" style="text-align: right;"> <font name="check-id" size="2"></font> </div>
+				</div>
 			</div>
 
 			<div class="form-item">
@@ -101,7 +119,11 @@ function checkId() {
 			
 			<div class="form-item">
 			<div class="form-title">이메일</div>
-				<input type="email" name="email" class="form-style" placeholder="이메일을 입력해주세요" />
+				<input type="email" id="email"name="email" class="form-style" placeholder="이메일을 입력해주세요" />
+					<div>
+						<div class="string optional user-email" style="text-align: right;"> <font name="check-email" size="2"></font> </div>
+					</div>
+				
 			</div>
 			<div class="form-item">
 			<div class="form-title">등급</div>
@@ -120,7 +142,13 @@ function checkId() {
 				</div>
 				<div class="form-item">
 				<div class="form-title">클래스비밀번호</div>
-					<input type="password" name="classPwd" class="form-style" placeholder="클래스 비밀번호를 입력해주세요" />
+					<input type="password" id="classPwd" name="classPwd" class="form-style" placeholder="클래스 비밀번호를 입력해주세요" />
+					
+					<div>
+						<div class="string optional user-classPwd" style="text-align: right;"> <font name="class-pwd-check" size="2"></font> </div>
+					</div>
+					
+					
 				</div>
 			 </div>
 			 </c:if>
