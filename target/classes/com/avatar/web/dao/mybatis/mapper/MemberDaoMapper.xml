@@ -11,7 +11,9 @@
 		values(#{id}, #{pwd}, #{name}, #{email});
 	</insert>
 	
-	
+	<select id="idCheck" resultType="String">
+		select COUNT(*) from Member where memberId=#{id}
+	</select>
 	
 
 </mapper>    

@@ -8,4 +8,6 @@ public interface MemberDao {
 
 	int insert(String id, String pwd, String name, String email);
 
+	int idCheck(String id);
+
 }
