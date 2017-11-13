@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.avatar.web.dao.ClassDao;
 import com.avatar.web.entity.Member;
@@ -22,6 +23,7 @@ import com.avatar.web.entity.Class;
 
 
 import com.avatar.web.service.MemberService;
+import com.google.gson.Gson;
 
 
 @Controller
@@ -77,6 +79,17 @@ public class MemberController {
             return "member.join";
         }
 	}
+	
+	@RequestMapping(value="idCheck")
+	@ResponseBody
+	public String idCheck(HttpServletRequest request, Model model) {
+		String id = request.getParameter("id");
+		 int rowcount = service.idCheck(id);
+			
+
+		return String.valueOf(rowcount);
+	}
+	
 	@RequestMapping(value="chat", method=RequestMethod.GET)
 	public String chat(Principal principal, Model model) {
 		

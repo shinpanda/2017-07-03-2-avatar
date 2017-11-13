@@ -13,8 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.avatar.web.dao.SeatDao;
-import com.avatar.web.entity.SeatView;
+import com.avatar.web.dao.MemberClassDao;
+import com.avatar.web.entity.MemberClassView;
 import com.google.gson.Gson;
 
 @Controller
@@ -22,7 +22,8 @@ import com.google.gson.Gson;
 public class StudentController {
 
 	@Autowired
-	private SeatDao seatDao;
+	private MemberClassDao memberClassDao;
+	
 
 	@RequestMapping("seat-change-ajax")
 	@ResponseBody
@@ -32,9 +33,9 @@ public class StudentController {
 		json.append("[");
 
 		String sessionId =principal.getName();
-		String classId = seatDao.getClassId(sessionId);
+		String classId = memberClassDao.getClassId(sessionId);
 		
-		List<SeatView> list = seatDao.getList(classId);
+		List<MemberClassView> list = memberClassDao.getList(classId);
 				Collections.shuffle(list);
 		
 		for (int i = 0; i < list.size(); i++) {
@@ -64,18 +65,18 @@ public class StudentController {
 	public String seatChange(Model model, Principal principal) {
 		//System.out.println(principal.getName());		
 		
-		String sessionId =principal.getName();
+		String id =principal.getName();
 		
 		//System.out.println(sessionId);
 		
 		
 		
-		String classId = seatDao.getClassId(sessionId);
+		String classId = memberClassDao.getClassId(id);
 		
 		System.out.println(classId);
 		
 		//String classId = "1";
-		List<SeatView> list = seatDao.getList(classId);
+		List<MemberClassView> list = memberClassDao.getList(classId);
 		model.addAttribute("list", list);
 
 		return "student.seat-change";

@@ -14,4 +14,13 @@
 		<!-- select name from Class where id=(select classId from MemberClass where memberId = #{id}); -->
 		select classId from MemberClass where memberId = #{id}
 	</select>
+	
+	<select id="getList" resultType="com.avatar.web.entity.MemberClassView">		
+		select memberName from MebmerClassView where classId=#{classId};
+	</select>
+
+	<select id="getHeader" resultType="com.avatar.web.entity.MemberClassView">		
+		select className, classOpenDate from MebmerClassView where memberId=#{sessionId};
+	</select>	
+	
 </mapper>    

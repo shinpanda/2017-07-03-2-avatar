@@ -23,5 +23,12 @@ public class MybatisMemberDao implements MemberDao {
 		return insert(new Member(id, pwd, name, email));
 	}
 
+	@Override
+	public int idCheck(String id) {
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		int result = memberDao.idCheck(id);
+		return result;
+	}
+
 
 }

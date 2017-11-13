@@ -2,7 +2,7 @@ package com.avatar.web.entity;
 
 import java.util.Date;
 
-public class SeatView {
+public class MemberClassView {
 	private String memberId;
 	private String memberName;
 	private String classId;
@@ -11,7 +11,7 @@ public class SeatView {
 	
 	
 	
-	public SeatView() {
+	public MemberClassView() {
 	}
 	public String getMemberName() {
 		return memberName;
