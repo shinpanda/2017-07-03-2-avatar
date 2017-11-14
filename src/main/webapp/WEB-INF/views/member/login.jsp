@@ -30,9 +30,9 @@
 			<div class="form-item">
 				<input type="password" name="password" class="form-style" placeholder="비밀번호를 입력해주세요" />
 				<!-- <div class="pw-view"><i class="fa fa-eye"></i></div> -->
-				<p>
+				<!-- <p>
 					<a href="#"><small>Forgot Password ?</small></a>
-				</p>
+				</p> -->
 			</div>
 			<div class="form-item">
 				<p class="pull-left">

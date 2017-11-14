@@ -45,6 +45,8 @@ public class MemberController {
 	public String join(Model model) {
 		List<Class> classList = classDao.getList();
 		model.addAttribute("classList", classList);
+		
+		//System.out.println(classList);
 		return "member.join";
 	}
 	
