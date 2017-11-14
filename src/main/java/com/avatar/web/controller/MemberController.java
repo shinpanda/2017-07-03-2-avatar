@@ -45,6 +45,8 @@ public class MemberController {
 	public String join(Model model) {
 		List<Class> classList = classDao.getList();
 		model.addAttribute("classList", classList);
+		
+		//System.out.println(classList);
 		return "member.join";
 	}
 	
@@ -84,12 +86,20 @@ public class MemberController {
 	@ResponseBody
 	public String idCheck(HttpServletRequest request, Model model) {
 		String id = request.getParameter("id");
-		 int rowcount = service.idCheck(id);
-			
-
-		return String.valueOf(rowcount);
+		Gson gson = new Gson();
+		String json = "";
+		json = gson.toJson(service.idCheck(id));
+		return json;
 	}
-	
+	@RequestMapping(value="emailCheck")
+	@ResponseBody
+	public String emailCheck(HttpServletRequest request, Model model) {
+		String email = request.getParameter("email");
+		Gson gson = new Gson();
+		String json = "";
+		json = gson.toJson(service.emailCheck(email));
+		return json;
+	}	
 	@RequestMapping(value="chat", method=RequestMethod.GET)
 	public String chat(Principal principal, Model model) {
 		

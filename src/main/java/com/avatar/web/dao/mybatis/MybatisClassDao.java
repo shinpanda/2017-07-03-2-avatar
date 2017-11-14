@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.avatar.web.dao.ClassDao;
+import com.avatar.web.dao.MemberDao;
 import com.avatar.web.entity.Class;
 
 public class MybatisClassDao implements ClassDao {
