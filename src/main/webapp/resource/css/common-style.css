@@ -17,8 +17,6 @@ a {
 	color: black;
 }
 
-
-
 input[type="text"], textarea {
     font-family: 맑은 고딕, 고딕, sans-serif;
 }
@@ -177,6 +175,12 @@ input[type="text"], textarea {
     padding: 30px;
     width: 100%;
 }
+
+	.main > h3 {
+	    padding-left: 58px;
+	    padding-top: 35px;
+	    margin-bottom: 0px;
+	}
 
 /* footer style */
 .footer {
@@ -684,7 +688,19 @@ input[type="text"], textarea {
 	    border-radius: 3px;
 	    margin-left: 16px;
 	}
-
+	
+	.reg-form{
+		display: flex;
+	    flex-direction: column;
+	    margin: auto;
+	}
+		.reg-form > textarea {
+		    border-radius: 3px;
+		    resize: none;
+		    font-size: 14px;
+		    padding: 7px;
+		    height: 100px;
+		}
 /* del 부분 */
 .del-body {
     background: rgba(96, 125, 139, 0.48);

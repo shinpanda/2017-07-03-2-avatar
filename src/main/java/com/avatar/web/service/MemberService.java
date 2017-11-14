@@ -45,7 +45,6 @@ public class MemberService {
 	
 	public int insertChat(String content, String writerId) {
 		String classId = getClassId(writerId);
-		System.out.println(classId);
 		
 		return chatDao.insert(content, writerId, classId); 
 	}

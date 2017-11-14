@@ -94,7 +94,8 @@ public class MemberController {
 	public String chat(Principal principal, Model model) {
 		
 		model.addAttribute("list", service.getChatList(principal.getName()));
-				
+		model.addAttribute("br", "<br/>");
+		model.addAttribute("cn", "\n");
 		return "member.chat";
 	}
 	
