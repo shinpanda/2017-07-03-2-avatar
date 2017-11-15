@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<jsp:useBean id="now" class="java.util.Date"></jsp:useBean>
+<fmt:formatDate value="${now}" pattern="MM.dd" var="nowTime" />
 <main class="main">
 <h3>질문게시판</h3>
 
@@ -22,22 +24,16 @@
 						<div class="cell title">
 							<a href="./question/${b.no}">${b.title} [${b.countCmt}]</a>
 						</div>
-						<jsp:useBean id="now" class="java.util.Date"></jsp:useBean>
-						<fmt:parseNumber value="${now.time}" integerOnly="true"
-							var="today" />
-						<fmt:parseNumber value="${b.regDate.time}" integerOnly="true"
-							var="regDateNum" />
+						<fmt:formatDate value="${b.regDate}" pattern="MM.dd" var="regDate" />
 						<div class="cell">
-							<c:if test="${((today - regDateNum)/(1000*60*60*24)) < 1}">
+							<c:if test="${nowTime ne regDate}">
+									${regDate}
+							</c:if>
+							<c:if test="${nowTime eq regDate}">
 								<fmt:formatDate value="${b.regDate}" pattern="HH:MM"
 									var="regDate" />
-														${regDate}
-													</c:if>
-							<c:if test="${((today - regDateNum)/(1000*60*60*24)) >= 1}">
-								<fmt:formatDate value="${b.regDate}" pattern="YY.MM.dd"
-									var="regDate" />
-														${regDate}
-													</c:if>
+									${regDate}
+							</c:if>
 						</div>
 						<div class="cell">${b.hit}</div>
 					</div>

@@ -6,13 +6,22 @@
 
 <mapper namespace="com.avatar.web.dao.QuestionCmtDao">
 	<select id="getList" resultType="com.avatar.web.entity.BoardCmt">
-		SELECT no, regDate, content, writerId FROM QuestionComment where QuestionNo = #{no} order by regDate ASC;
+		SELECT no, regDate, content, writerId FROM QuestionComment where QuestionNo = #{no} order by regDate ASC
+	</select>
+	<select id="get" resultType="com.avatar.web.entity.BoardCmt">
+		select no, regDate, content, questionNo as boardNo, writerId from QuestionComment where no = #{no}
 	</select>
 	<insert id="insert" parameterType="com.avatar.web.entity.BoardCmt">
 		insert into QuestionComment(no, content, writerId, questionNo)
 		values ((select IFNULL(max(cast(no as unsigned)), 0)+1 from QuestionComment q), #{content}, #{writerId}, #{boardNo})
 	</insert>
+	<update id="update" parameterType="com.avatar.web.entity.BoardCmt">
+		update QuestionComment set content  = #{content} where no = #{no}
+	</update>
 	<delete id="deleteQuestion">
 		delete from QuestionComment where questionNo = #{no} 
+	</delete>
+	<delete id="delete">
+		delete from QuestionComment where no = #{no} 
 	</delete>
 </mapper>    
