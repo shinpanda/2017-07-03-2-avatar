@@ -60,30 +60,52 @@ $(function(){
 					.html("<span style='color:red'>**사용불가능한 이메일입니다.<\/span><input type='hidden'id='email-check' name='email-check' value='no'>");
 		});
 	});
-	
+	$("#classPwd").change(function(){
+		//	 console.log($("#email").val());
+			$.get("../member/checkPw?${_csrf.parameterName}=${_csrf.token}&classId="+$("#classId").val()+"&classPwd="+$("#classPwd").val() ,function(result){
+//				   alert(result);
+				if(result == 1)
+					$('font[name=check-classPwd]')
+					.html("<span style='color:blue'>**올바른 비밀번호입니다.<\/span><input type='hidden' id='classPwd-check' name='classPwd-check' value='yes'>");
+					else
+					$('font[name=check-classPwd]')
+						.html("<span style='color:red'>**비밀번호를 확인해주세요.<\/span><input type='hidden'id='classPwd-check' name='classPwd-check' value='no'>");
+			});
+		});
 	 signButton.click(function(e){
-		if($("#name").val() == "")
+			if ($("#name").val() == "") {
 				alert("이름을 입력해주세요.");
-		else if($("#id").val() == "")
-			alert("아이디를 입력해주세요.");
-		else if($("#id-check").val() == "no")
-			alert("아이디를 확인해주세요.");
-		else if($("#user-pwd").val() == "")
-			alert("비밀번호를 입력해주세요.")
-		else if($("#user-pwd-repeat").val() == "")
-			alert("비밀번호를 확인을 입력해주세요.")
-		else if($("#pwd-check").val() == "no")
-			alert("비밀번호를 확인해주세요.");	
-		else if($("#email").val() == "")
-			alert("이메일을 입력해주세요.")
-		else if($("#email-check").val() == "no")
-			alert("이메일을 확인해주세요.")
-		else if($("#classPwd").val() == "")
-			alert("클래스 비밀번호를 입력해주세요.")
-			
-		e.preventDefault();	
-	})
-});
+				e.preventDefault();
+			}else if ($("#id").val() == "") {
+				alert("아이디를 입력해주세요.");
+				e.preventDefault();
+			}else if ($("#id-check").val() == "no") {
+				alert("아이디를 확인해주세요.");
+				e.preventDefault();
+			}else if ($("#user-pw").val() == "") {
+				alert("비밀번호를 입력해주세요.")
+				e.preventDefault();
+			}else if ($("#user-pw-repeat").val() == "") {
+				alert("비밀번호를 확인을 입력해주세요.")
+				e.preventDefault();
+			}else if ($("#pwd-check").val() == "no") {
+				alert("비밀번호를 확인해주세요.");
+				e.preventDefault();
+			}else if ($("#email").val() == "") {
+				alert("이메일을 입력해주세요.")
+				e.preventDefault();
+			}else if ($("#email-check").val() == "no") {
+				alert("이메일을 확인해주세요.")
+				e.preventDefault();
+			}else if ($("#classPwd").val() == "") {
+				alert("클래스 비밀번호를 입력해주세요.")
+				e.preventDefault();
+			}else if ($("#classPwd-check").val() == "no") {
+				alert("클래스 비밀번호를 확인주세요.")
+				e.preventDefault();
+			}
+		})
+	});
 </script>
 </head>
 
@@ -139,7 +161,7 @@ $(function(){
 				<div class="form-item">
 				<div class="form-title">클래스이름</div>
 					 
-					<select class="form-style" name="classId">
+					<select class="form-style" id="classId" name="classId">
 					<c:forEach var="c" items="${classList}">
 						<option value="${c.id}">${c.name} </option>
 						</c:forEach>
@@ -150,7 +172,7 @@ $(function(){
 					<input type="password" id="classPwd" name="classPwd" class="form-style" placeholder="클래스 비밀번호를 입력해주세요" />
 					
 					<div>
-						<div class="string optional user-classPwd" style="text-align: right;"> <font name="class-pwd-check" size="2"></font> </div>
+						<div class="string optional user-classPwd" style="text-align: right;"> <font name="check-classPwd" size="2"></font> </div>
 					</div>
 					
 					
