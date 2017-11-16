@@ -49,7 +49,7 @@
 	<bean class="com.avatar.web.service.MemberService" />		
 	<bean class="com.avatar.web.service.BoardService" />
 	<bean class="com.avatar.web.service.HomeService" />
-	<bean class="com.avatar.web.service.TeacherService" />
+	<!-- <bean class="com.avatar.web.service.TeacherService" /> -->
 
 	<context:annotation-config />
 </beans>

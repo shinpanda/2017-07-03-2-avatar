@@ -39,7 +39,7 @@
 					</ul>
 					<ul class="main-menu btn-container">
 						<li><a href="${ctx}/member/chat">채팅방 입장</a>
-						<li><a href="">Complete</a>
+						<!-- <li><a href="">Complete</a> -->
 					</ul>
 				</nav>
 				<nav id="member-menu" class="member-menu">

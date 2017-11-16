@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.avatar.web.dao.NoticeDao">
+	<select id="getList" resultType="com.avatar.web.entity.BoardView">
+		SELECT * FROM NoticeView where classId = #{param5} and
+		(${param2} like '%${param4}%' or ${param3} like '%${param4}%') order by regDate DESC 
+		limit ${(param1-1)*15}, 15
+	</select>
+	<select id="getCount" resultType="int">
+		SELECT count(no) as count FROM
+		NoticeView where
+		classId=#{classId}
+	</select>
+	<select id="get" resultType="com.avatar.web.entity.BoardView">
+		select * from NoticeView where
+		no=#{no}
+	</select>
+	<insert id="insert" parameterType="com.avatar.web.entity.Board">
+		insert into Notice(no, title, content, writerId, classId)
+		values ((select IFNULL(max(cast(no as unsigned)), 0)+1 from Information q), #{title}, #{content}, #{writerId}, #{classId})
+	</insert>
+	<update id="updateHit">
+		update Notice set hit=hit+1 where no=#{no} 
+	</update>
+	<update id="update" parameterType="com.avatar.web.entity.Board">
+		update Notice set title  = #{title}, content  = #{content} where no = #{no}
+	</update>
+	<delete id="delete">
+		delete from Notice where no = #{no} 
+	</delete>
+</mapper>    
