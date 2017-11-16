@@ -21,7 +21,7 @@ public class TeacherService {
 		if(field.indexOf("-") > 0) {
 			String[] fields = field.split("-");
 //			list = noticeDao.getList(page, fields[0], fields[1], query, classId);
-			int count = noticeDao.getCount("c");
+			int count = noticeDao.getCount("1");
 		}
 		else {
 			list = noticeDao.getList(page, field, query, "c");
@@ -32,7 +32,7 @@ public class TeacherService {
 
 	public int getNoticeCount(String id) {
 		//int count = noticeDao.getCount(memberClassDao.getClassId(id));
-		int count = noticeDao.getCount("c");
+		int count = noticeDao.getCount("1");
 		return count;
 	}
 
