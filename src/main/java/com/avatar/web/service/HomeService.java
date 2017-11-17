@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.avatar.web.dao.InformationDao;
 import com.avatar.web.dao.MemberClassDao;
 import com.avatar.web.dao.QuestionDao;
 import com.avatar.web.entity.BoardView;
@@ -14,6 +15,9 @@ public class HomeService {
 	
 	@Autowired
 	private QuestionDao questionDao;
+	
+	@Autowired
+	private InformationDao informationDao;
 	
 	public String getClassId(String id) {
 		return memberClassDao.getClassId(id);
@@ -29,8 +33,7 @@ public class HomeService {
 	}
 
 	public List<BoardView> getInfomationList(String classId) {
-		// TODO Auto-generated method stub
-		return questionDao.getList(classId);
+		return informationDao.getList(classId);
 	}
 
 }

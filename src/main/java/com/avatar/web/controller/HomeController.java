@@ -46,23 +46,23 @@ public class HomeController {
 		
 		 Calendar cal = Calendar.getInstance();
 	      DateData calendarData;
-	      //╟к╩Ж Ё╞б╔
+	      //О©╫к╩О©╫ О©╫О©╫б╔
 	            if(dateData.getDate().equals("")&&dateData.getMonth().equals("")){
 	               dateData = new DateData(String.valueOf(cal.get(Calendar.YEAR)),String.valueOf(cal.get(Calendar.MONTH)),String.valueOf(cal.get(Calendar.DATE)),null);
 	            }
-	            //╟к╩Ж Ё╞б╔ end
+	            //О©╫к╩О©╫ О©╫О©╫б╔ end
 
 	            Map<String, Integer> today_info =  dateData.today_info(dateData);
 	            List<DateData> dateList = new ArrayList<DateData>();
 	            
-	            //╫гаЗюШюн ╢ч╥б ╣╔юлем ╦╝╫╨ф╝©║ ╣╔юлем ╩Пют ╫цюш
-	            //юо╢э ╫цюш юн╣╕╫╨╠НаЖ ╬ф╧╚╟м╣╣ ╬Ь╢б ╣╔юлем ╩Пют
+	            //О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ч╥О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ф╝О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
+	            //О©╫о╢О©╫ О©╫О©╫О©╫О©╫ О©╫н╣О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ф╧О©╫О©╫м╣О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
 	            for(int i=1; i<today_info.get("start"); i++){
 	               calendarData= new DateData(null, null, null, null);
 	               dateList.add(calendarData);
 	            }
 	            
-	            //Ё╞б╔ ╩Пют
+	            //О©╫О©╫б╔ О©╫О©╫О©╫О©╫
 	            for (int i = today_info.get("startDay"); i <= today_info.get("endDay"); i++) {
 	               if(i==today_info.get("today")){
 	                  calendarData= new DateData(String.valueOf(dateData.getYear()), String.valueOf(dateData.getMonth()), String.valueOf(i), "today");
@@ -72,7 +72,7 @@ public class HomeController {
 	               dateList.add(calendarData);
 	            }
 
-	            //╢ч╥б ╨С╟В ╨С ╣╔юлем╥н ╩Пют
+	            //О©╫ч╥О©╫ О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫м╥О©╫ О©╫О©╫О©╫О©╫
 	            int index = 7-dateList.size()%7;
 	            
 	            if(dateList.size()%7!=0){
@@ -84,8 +84,8 @@ public class HomeController {
 	            }
 	            System.out.println(dateList);
 	            
-	            //╧Х©╜©║ ╢Цю╫
-	            model.addAttribute("dateList", dateList);      //Ё╞б╔ ╣╔юлем ╧Х©╜
+	            //О©╫Х©╜О©╫О©╫ О©╫О©╫О©╫О©╫
+	            model.addAttribute("dateList", dateList);      //О©╫О©╫б╔ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫Х©╜
 	            model.addAttribute("today_info", today_info);
 		
 		return "home.index";

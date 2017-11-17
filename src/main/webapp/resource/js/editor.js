@@ -56,6 +56,8 @@ window.addEventListener("load", function() {
 				return;
 			var file = imgButton.files[0];
 			var d = Date.now();
+			var csrfParameter = document.querySelector("meta[name='_csrf_parameter']").content;
+			var csrfToken = document.querySelector("meta[name='_csrf']").content;
 
 			var formData = new FormData();
 			formData.append("now", "" + d);

@@ -63,6 +63,7 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 			String classId = temp[1];*/
 			// jsonObject.remove("id");
 			//System.out.println(session.getPrincipal().getName());
+			content = content.replace("\\n", "<br/>");
 			int result = service.insertChat(content, session.getPrincipal().getName());
 			System.out.println("result"+result);
 			// session.sendMessage(new TextMessage(message.getPayload()));
@@ -71,10 +72,6 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 			System.out.println("sendClass classId : "+service.getClassId(session.getPrincipal().getName()));
 			//sendClass(message, service.getClassId(session.getPrincipal().getName()));
 			sendClass(message, service.getClassId(session.getPrincipal().getName()));
-			/*
-			 * System.out.println("payload : "+message.getPayload());
-			 * System.out.println("toString : "+message.toString());
-			 */
 		}
 	}
 

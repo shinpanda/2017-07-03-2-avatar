@@ -17,8 +17,6 @@ a {
 	color: black;
 }
 
-
-
 input[type="text"], textarea {
     font-family: 맑은 고딕, 고딕, sans-serif;
 }
@@ -176,6 +174,12 @@ input[type="text"], textarea {
     padding: 30px;
     width: 100%;
 }
+
+	.main > h3 {
+	    padding-left: 58px;
+	    padding-top: 35px;
+	    margin-bottom: 0px;
+	}
 
 /* footer style */
 .footer {
@@ -648,6 +652,54 @@ input[type="text"], textarea {
 	    border-radius: 3px;
 	    margin-left: 16px;
 	}
+<<<<<<< HEAD
+=======
+	
+	.reg-form{
+		display: flex;
+	    flex-direction: column;
+	    margin: auto;
+	}
+		.reg-form > textarea {
+		    border-radius: 3px;
+		    resize: none;
+		    font-size: 14px;
+		    padding: 7px;
+		    height: 100px;
+		}
+/* del 부분 */
+.del-body {
+    background: rgba(96, 125, 139, 0.48);
+}
+.simple-container {
+    margin: auto;
+    width: 300px;
+    height: 200px;
+    display: flex;
+    background: white;
+    flex-direction: column;
+    border: 1px solid #a2a2a2;
+    box-shadow: 1px 2px 9px 0px rgba(0, 0, 0, 0.29);
+    justify-content: space-evenly;
+}
+
+	.simple-container div:first-child {
+	    border-top: none;
+	}
+	
+	.simple-container div {
+	    border-top: 1px solid #ebebeb;
+	    display: flex;
+	    align-items: center;
+	    flex-grow: 1;
+	    padding: 0px 20px;
+	}
+	
+	.simple-container div:last-child {
+	    justify-content: space-between;
+	}
+	
+>>>>>>> refs/remotes/origin/master
 
 /* chat */
 .chat-container {

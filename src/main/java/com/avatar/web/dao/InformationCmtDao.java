@@ -4,13 +4,13 @@ import java.util.List;
 
 import com.avatar.web.entity.BoardCmt;
 
-public interface QuestionCmtDao {
+public interface InformationCmtDao {
 
 	int insert(BoardCmt cmt);
 
 	List<BoardCmt> getList(String no);
 
-	int deleteQuestion(String no);
+	int deleteInformation(String no);
 
 	BoardCmt get(String no);
 

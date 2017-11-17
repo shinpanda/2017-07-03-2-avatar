@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <c:set var="param" value="${pageContext.request.requestURL }"/>
+
 
 <!DOCTYPE html>
 <html>
@@ -14,7 +16,7 @@
 
 <script type="text/javascript">
 $(function(){
-	var signButton = $(".form input[type='submit']");
+	var signButton = $("#sign");
     
 	$('#user-pw').keyup(function() {
 		$('font[name=check]').text('');
@@ -26,7 +28,6 @@ $(function(){
 							$('font[name=check]').text('');
 							$('font[name=check]')
 									.html("<span style='color:red'>**패스워드가 같지 않습니다.<\/span><input type='hidden' id='pwd-check' value='no'>");
-
 						} else {
 							$('font[name=check]').text('');
 							$('font[name=check]')
@@ -41,12 +42,10 @@ $(function(){
 //			   alert(result);
 			if(result == 0)
 				$('font[name=check-id]')
-				.html("<span style='color:blue'>**사용가능한 아이디입니다.<\/span><input type='hidden' name='id-check' value='yes'>");
+				.html("<span style='color:blue'>**사용가능한 아이디입니다.<\/span><input type='hidden' id='id-check' name='id-check' value='yes'>");
 				else
 				$('font[name=check-id]')
-					.html("<span style='color:red'>**사용불가능한 아이디입니다.<\/span><input type='hidden' name='id-check' value='no'>");
-				
-					
+					.html("<span style='color:red'>**사용불가능한 아이디입니다.<\/span><input type='hidden' id='id-check' name='id-check' value='no'>");
 		});
 	});
 	$("#email").change(function(){
@@ -55,23 +54,58 @@ $(function(){
 //			   alert(result);
 			if(result == 0)
 				$('font[name=check-email]')
-				.html("<span style='color:blue'>**사용가능한 이메일입니다.<\/span><input type='hidden' name='email-check' value='yes'>");
+				.html("<span style='color:blue'>**사용가능한 이메일입니다.<\/span><input type='hidden' id='email-check' name='email-check' value='yes'>");
 				else
 				$('font[name=check-email]')
-					.html("<span style='color:red'>**사용불가능한 이메일입니다.<\/span><input type='hidden' name='email-check' value='no'>");
-				
-					
+					.html("<span style='color:red'>**사용불가능한 이메일입니다.<\/span><input type='hidden'id='email-check' name='email-check' value='no'>");
 		});
 	});
-	
-	 signButton.click(function(){
-	//	if($("#pwd-check").val() == "no")
-			alert("비밀번호를 확인해주세요.");
-		
-	})
-	 
-	
-});
+	$("#classPwd").change(function(){
+		//	 console.log($("#email").val());
+			$.get("../member/checkPw?${_csrf.parameterName}=${_csrf.token}&classId="+$("#classId").val()+"&classPwd="+$("#classPwd").val() ,function(result){
+//				   alert(result);
+				if(result == 1)
+					$('font[name=check-classPwd]')
+					.html("<span style='color:blue'>**올바른 비밀번호입니다.<\/span><input type='hidden' id='classPwd-check' name='classPwd-check' value='yes'>");
+					else
+					$('font[name=check-classPwd]')
+						.html("<span style='color:red'>**비밀번호를 확인해주세요.<\/span><input type='hidden'id='classPwd-check' name='classPwd-check' value='no'>");
+			});
+		});
+	 signButton.click(function(e){
+			if ($("#name").val() == "") {
+				alert("이름을 입력해주세요.");
+				e.preventDefault();
+			}else if ($("#id").val() == "") {
+				alert("아이디를 입력해주세요.");
+				e.preventDefault();
+			}else if ($("#id-check").val() == "no") {
+				alert("아이디를 확인해주세요.");
+				e.preventDefault();
+			}else if ($("#user-pw").val() == "") {
+				alert("비밀번호를 입력해주세요.")
+				e.preventDefault();
+			}else if ($("#user-pw-repeat").val() == "") {
+				alert("비밀번호를 확인을 입력해주세요.")
+				e.preventDefault();
+			}else if ($("#pwd-check").val() == "no") {
+				alert("비밀번호를 확인해주세요.");
+				e.preventDefault();
+			}else if ($("#email").val() == "") {
+				alert("이메일을 입력해주세요.")
+				e.preventDefault();
+			}else if ($("#email-check").val() == "no") {
+				alert("이메일을 확인해주세요.")
+				e.preventDefault();
+			}else if ($("#classPwd").val() == "") {
+				alert("클래스 비밀번호를 입력해주세요.")
+				e.preventDefault();
+			}else if ($("#classPwd-check").val() == "no") {
+				alert("클래스 비밀번호를 확인주세요.")
+				e.preventDefault();
+			}
+		})
+	});
 </script>
 </head>
 
@@ -85,7 +119,7 @@ $(function(){
 			</h1>
 			<div class="form-item">
 			<div class="form-title">이름</div>
-				<input type="text" name="name" class="form-style" placeholder="이름 입력해주세요" />
+				<input type="text" id="name" name="name" class="form-style" placeholder="이름 입력해주세요" />
 			</div>
 			<div class="form-item">
 			<div class="form-title">아이디</div>
@@ -121,12 +155,15 @@ $(function(){
 				<input type="hidden" name="role" value="${param.role}"/>
 			</div>
 				<c:if test="${param.role eq 'student' }">
+				
+				
 			 <div class="student-form">
 				<div class="form-item">
 				<div class="form-title">클래스이름</div>
-					<select class="form-style" name="classId">
-					<c:forEach var="c" items="${classList}">	
-						<option value="${c.id}">${c.name}</option>
+					 
+					<select class="form-style" id="classId" name="classId">
+					<c:forEach var="c" items="${classList}">
+						<option value="${c.id}">${c.name} </option>
 						</c:forEach>
 					</select>
 				</div>
@@ -135,17 +172,18 @@ $(function(){
 					<input type="password" id="classPwd" name="classPwd" class="form-style" placeholder="클래스 비밀번호를 입력해주세요" />
 					
 					<div>
-						<div class="string optional user-classPwd" style="text-align: right;"> <font name="class-pwd-check" size="2"></font> </div>
+						<div class="string optional user-classPwd" style="text-align: right;"> <font name="check-classPwd" size="2"></font> </div>
 					</div>
 					
 					
 				</div>
+			
 			 </div>
 			 </c:if>
 			 
 			<div class="form-item">
 				<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-				<input type="submit" class="login pull-right" id="sign" value="Sign In" disabled="disabled">
+				<input type="submit" class="login pull-right" id="sign" value="Sign In" />
 				<div class="clear-fix"></div>
 			</div>
 			</form>
