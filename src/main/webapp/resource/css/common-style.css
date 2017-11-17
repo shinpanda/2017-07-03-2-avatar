@@ -36,7 +36,6 @@ input[type="text"], textarea {
 .body{
 	width:100%;
 	height:100%;
-	overflow-x:hidden;
 }
 
 .body > div {
@@ -248,6 +247,7 @@ input[type="text"], textarea {
     box-sizing: border-box;
 }
 
+
 .table-container{
 	margin:auto;
 	width:95%;
@@ -377,16 +377,10 @@ input[type="text"], textarea {
 			color:#505050;
 		}
 /* reg style */
-.board-style.reg-board{
-	position: relative;
-}
-
 .reg-container {
     background: whitesmoke;
     padding: 30px;
     border-radius: 10px;
-    box-sizing: border-box;
-    width: 890px;
 }
 
 	.reg-wrapper {
@@ -460,7 +454,7 @@ input[type="text"], textarea {
 						    cursor: default;
 						}
 				
-					.reg-style-btn-wrapper button.reg-style-btn {
+					button.reg-style-btn {
 					    padding: 2px 5px;
 					    -webkit-appearance: none;
 					    background: none;
@@ -471,7 +465,7 @@ input[type="text"], textarea {
 					    flex-grow: 1;
 					}
 					
-					.reg-style-btn-wrapper button.reg-style-btn:last-child {
+					button.reg-style-btn:last-child {
 					    border-right: 0px;
 					    /* padding-right: 0px; */
 					}	
@@ -485,17 +479,15 @@ input[type="text"], textarea {
 						    /* height: 16px; */
 					} 
 					
-					.reg-style-btn-wrapper .link-box {
+					.link-box {
 					    display: flex;
 					    flex-direction: column;
 					    width: 200px;
 					    border: 1px solid #929292;
 					    background: #f7f7f7;
-					    padding: 7px;
-					    font-size: 13px;
+					    padding: 10px;
+					    font-size: 14px;
 					    position: absolute;
-					    height: 100px;
-    					justify-content: space-around;
 					}
 					.reg-style-btn-wrapper > ul:last-child >li {
 					    -webkit-appearance: none;
@@ -546,33 +538,6 @@ input[type="text"], textarea {
 	.reg-cancel {
 	    margin-left: 10px;
 	}
-	
-	/*  */
-	.img-edit-container {
-	    display: flex;
-	    flex-direction: column;
-	    width: 77px;
-	    border: 1px solid #cacaca;
-	    background: #f7f7f7;
-	    padding: 10px 7px;
-	    font-size: 11px;
-	    position: absolute;
-	    top: 143px;
-	    left: 890px;
-	    height: 100px;
-	    justify-content: space-around;
-	    border-radius: 10px;
-	}
-		.img-edit-container input[type="text"] {
-		    width: 40px;
-		}
-		.btn.img-edit-btn {
-		    width: 36px;
-		    padding: 3px;
-		}
-		.img-edit-container .img-edit-btn-wrapper {
-		    text-align: right;
-		}
 /* detail style */	
 .detail-container {
     text-align: left;
@@ -626,8 +591,7 @@ input[type="text"], textarea {
 	.ed-wrapper{
 		float:right;
 		padding-right:5px;
-	}	
-
+	}
 /*댓글 부분*/
 .cmt-container{
 	border-top: 1px solid rgba(214, 214, 214, 0.7);
@@ -684,39 +648,6 @@ input[type="text"], textarea {
 	    border-radius: 3px;
 	    margin-left: 16px;
 	}
-
-/* del 부분 */
-.del-body {
-    background: rgba(96, 125, 139, 0.48);
-}
-.simple-container {
-    margin: auto;
-    width: 300px;
-    height: 200px;
-    display: flex;
-    background: white;
-    flex-direction: column;
-    border: 1px solid #a2a2a2;
-    box-shadow: 1px 2px 9px 0px rgba(0, 0, 0, 0.29);
-    justify-content: space-evenly;
-}
-
-	.simple-container div:first-child {
-	    border-top: none;
-	}
-	
-	.simple-container div {
-	    border-top: 1px solid #ebebeb;
-	    display: flex;
-	    align-items: center;
-	    flex-grow: 1;
-	    padding: 0px 20px;
-	}
-	
-	.simple-container div:last-child {
-	    justify-content: space-between;
-	}
-	
 
 /* chat */
 .chat-container {
@@ -813,11 +744,11 @@ input[type="text"], textarea {
 
 .seat {
 	display:inline-block;
-	width: 95px;
-	height: 120px;
-	background: url('../images/monitor.png');
+	width: 80px;
+	height: 50px;
+	background: url('../images/image.png');
 	text-align: center;
-    line-height: 163px;
+    line-height: 50px;
 }
 
 #top{
@@ -825,7 +756,7 @@ input[type="text"], textarea {
 	width: 1000px;
 }
 #bottom{
-    padding: 30px 30px;
+    padding: 50px 30px;
 	width: 1000px;
 }
 
@@ -989,8 +920,9 @@ input[type="text"], textarea {
 
 
 
-/*   Calendar  */
+/* Calendar */
 
 #calendar-main{
 	margin-left:0px !important;
 } 
+
