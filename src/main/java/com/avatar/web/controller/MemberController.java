@@ -110,6 +110,13 @@ public class MemberController {
 		json = gson.toJson(classDao.checkPw(classId, classPwd));
 		return json;
 	}	
+	
+	
+	@RequestMapping(value="mypage", method=RequestMethod.GET)
+	public String mypage() {
+		return "member.mypage";
+	}
+	
 	@RequestMapping(value="chat", method=RequestMethod.GET)
 	public String chat(Principal principal, Model model) {
 		
