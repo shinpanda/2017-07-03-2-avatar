@@ -13,11 +13,14 @@
 			<h1 class="logo">
 				<a href="${ctx}/index">Avatar</a>
 			</h1>
-
+			<c:set value="학생" var="role" />
+			<c:if test="${memberRole eq 'ROLE_TEACHER'}">
+				<c:set value="선생님" var="role" />
+			</c:if>
 			<div class="member-info-container">
 				<div class="member-info-wrapper">
 					<h2 class="hidden">멤버 정보</h2>
-					<div>${memberRole}</div>
+					<div>${role}</div>
 					<div>
 						
 						<c:forEach var="h" items="${classInfo}">

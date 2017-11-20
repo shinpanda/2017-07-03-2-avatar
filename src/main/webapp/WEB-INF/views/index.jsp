@@ -12,7 +12,7 @@
 	<div class="widgets row">
 		<div class="widget cell">
 			<c:set value="board/notice" var="noticeLink" />
-			<c:if test="${memberRole eq 'teacher'}"><c:set value="teacher/notice" var="noticeLink" /></c:if>
+			<c:if test="${memberRole eq 'ROLE_TEACHER'}"><c:set value="teacher/notice" var="noticeLink" /></c:if>
 			<h3><a href="${noticeLink}">공지 <span>▶ more</span></a></h3>
 			<hr />
 			<div class="widget-board">
