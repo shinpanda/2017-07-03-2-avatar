@@ -17,8 +17,6 @@ a {
 	color: black;
 }
 
-
-
 input[type="text"], textarea {
     font-family: 맑은 고딕, 고딕, sans-serif;
 }
@@ -36,7 +34,6 @@ input[type="text"], textarea {
 .body{
 	width:100%;
 	height:100%;
-	overflow-x:hidden;
 }
 
 .body > div {
@@ -178,6 +175,12 @@ input[type="text"], textarea {
     width: 100%;
 }
 
+	.main > h3 {
+	    padding-left: 58px;
+	    padding-top: 35px;
+	    margin-bottom: 0px;
+	}
+
 /* footer style */
 .footer {
     text-align: right;
@@ -214,6 +217,12 @@ input[type="text"], textarea {
 		.widgets h3 {
 		    margin: 0;
 		    font-size: 18px;
+		}
+		.widgets h3 span {
+		    font-size: 10px;
+		    float: right;
+		    line-height: 24px; 
+		    padding-top: 4px;
 		}
 		.widget-board{
 			display:table;
@@ -455,7 +464,7 @@ input[type="text"], textarea {
 						    cursor: default;
 						}
 				
-					.reg-style-btn-wrapper button.reg-style-btn {
+					button.reg-style-btn {
 					    padding: 2px 5px;
 					    -webkit-appearance: none;
 					    background: none;
@@ -466,7 +475,7 @@ input[type="text"], textarea {
 					    flex-grow: 1;
 					}
 					
-					.reg-style-btn-wrapper button.reg-style-btn:last-child {
+					button.reg-style-btn:last-child {
 					    border-right: 0px;
 					    /* padding-right: 0px; */
 					}	
@@ -480,17 +489,15 @@ input[type="text"], textarea {
 						    /* height: 16px; */
 					} 
 					
-					.reg-style-btn-wrapper .link-box {
+					.link-box {
 					    display: flex;
 					    flex-direction: column;
 					    width: 200px;
 					    border: 1px solid #929292;
 					    background: #f7f7f7;
-					    padding: 7px;
-					    font-size: 13px;
+					    padding: 10px;
+					    font-size: 14px;
 					    position: absolute;
-					    height: 100px;
-    					justify-content: space-around;
 					}
 					.reg-style-btn-wrapper > ul:last-child >li {
 					    -webkit-appearance: none;
@@ -594,8 +601,7 @@ input[type="text"], textarea {
 	.ed-wrapper{
 		float:right;
 		padding-right:5px;
-	}	
-
+	}
 /*댓글 부분*/
 .cmt-container{
 	border-top: 1px solid rgba(214, 214, 214, 0.7);
@@ -652,7 +658,21 @@ input[type="text"], textarea {
 	    border-radius: 3px;
 	    margin-left: 16px;
 	}
-
+<<<<<<< HEAD
+=======
+	
+	.reg-form{
+		display: flex;
+	    flex-direction: column;
+	    margin: auto;
+	}
+		.reg-form > textarea {
+		    border-radius: 3px;
+		    resize: none;
+		    font-size: 14px;
+		    padding: 7px;
+		    height: 100px;
+		}
 /* del 부분 */
 .del-body {
     background: rgba(96, 125, 139, 0.48);
@@ -685,6 +705,7 @@ input[type="text"], textarea {
 	    justify-content: space-between;
 	}
 	
+>>>>>>> refs/remotes/origin/master
 
 /* chat */
 .chat-container {
@@ -781,11 +802,11 @@ input[type="text"], textarea {
 
 .seat {
 	display:inline-block;
-	width: 95px;
-	height: 120px;
-	background: url('../images/monitor.png');
+	width: 80px;
+	height: 50px;
+	background: url('../images/image.png');
 	text-align: center;
-    line-height: 163px;
+    line-height: 50px;
 }
 
 #top{
@@ -793,7 +814,7 @@ input[type="text"], textarea {
 	width: 1000px;
 }
 #bottom{
-    padding: 30px 30px;
+    padding: 50px 30px;
 	width: 1000px;
 }
 
@@ -957,8 +978,9 @@ input[type="text"], textarea {
 
 
 
-/*   Calendar  */
+/* Calendar */
 
 #calendar-main{
 	margin-left:0px !important;
 } 
+

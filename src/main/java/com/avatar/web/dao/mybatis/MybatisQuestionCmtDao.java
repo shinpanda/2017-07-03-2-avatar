@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.avatar.web.dao.QuestionCmtDao;
+import com.avatar.web.dao.QuestionDao;
 import com.avatar.web.entity.BoardCmt;
 
 
@@ -25,6 +26,31 @@ public class MybatisQuestionCmtDao implements QuestionCmtDao {
 		QuestionCmtDao questionCmtDao = sqlSession.getMapper(QuestionCmtDao.class);
 		List<BoardCmt> list= questionCmtDao.getList(no);
 		return list;
+	}
+
+	@Override
+	public int deleteQuestion(String no) {
+		QuestionCmtDao questionCmtDao = sqlSession.getMapper(QuestionCmtDao.class);
+		return questionCmtDao.deleteQuestion(no);
+	}
+
+	@Override
+	public BoardCmt get(String no) {
+		QuestionCmtDao questionCmtDao = sqlSession.getMapper(QuestionCmtDao.class);
+		BoardCmt cmt = questionCmtDao.get(no);
+		return cmt;
+	}
+
+	@Override
+	public int delete(String no) {
+		QuestionCmtDao questionCmtDao = sqlSession.getMapper(QuestionCmtDao.class);
+		return questionCmtDao.delete(no);
+	}
+
+	@Override
+	public int update(BoardCmt boardCmt) {
+		QuestionCmtDao questionCmtDao = sqlSession.getMapper(QuestionCmtDao.class);
+		return questionCmtDao.update(boardCmt);
 	}
 
 }

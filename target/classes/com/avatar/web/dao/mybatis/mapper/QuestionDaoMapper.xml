@@ -26,4 +26,10 @@
 	<update id="updateHit">
 		update Question set hit=hit+1 where no=#{no} 
 	</update>
+	<update id="update" parameterType="com.avatar.web.entity.Board">
+		update Question set title  = #{title}, content  = #{content} where no = #{no}
+	</update>
+	<delete id="delete">
+		delete from Question where no = #{no} 
+	</delete>
 </mapper>    

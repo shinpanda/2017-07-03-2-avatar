@@ -5,7 +5,7 @@
 window.addEventListener("load", function() {
 		var submitButton = document
 				.querySelector('.chat-message input[type="button"]');
-		var template = document.querySelector('.chat-wrapper template');
+		var template = document.querySelector('template');
 		var chatWindow = document.querySelector('.chat-wrapper');
 		var firstCheck = false;
 		var data = null;
@@ -45,6 +45,16 @@ window.addEventListener("load", function() {
 			//}
 			//else {
 			if(str.indexOf("/member/chat")){
+				var prevRegDate = chatWindow.lastElementChild.querySelector("span");
+				var regDate = new Date(data.date);
+				var rd = regDate.getHours()+":"+(regDate.getMinutes()>=10 ? regDate.getMinutes() : "0"+regDate.getMinutes());
+				if(prevRegDate.textContent != rd){
+					var row = document.createElement("div");
+					row.classList.add( 'row', 'chat-date' );
+					var p = document.createElement("p");
+					p.textContent = regDate.getMonth()+"월"+regDate.getDate()+"일";
+				}
+				
 				if ('content' in template) {
 					var clone = document.importNode(template.content, true);
 	
@@ -53,8 +63,7 @@ window.addEventListener("load", function() {
 					var div = row.querySelector("div");
 	
 					div.querySelector("p").textContent = data.content;
-					var regDate = new Date(data.date);
-					div.querySelector("span").textContent = regDate.getHours()+":"+(regDate.getMinutes()>=10 ? regDate.getMinutes() : "0"+regDate.getMinutes());
+					div.querySelector("span").textContent = rd;
 					chatWindow.appendChild(clone);
 					chatWindow.scrollTop = chatWindow.scrollHeight;
 				}
@@ -65,19 +74,18 @@ window.addEventListener("load", function() {
 			console.log("Server error message: ", event.data);
 		}
 		
-		if(str.indexOf("/member/chat")){
+		if(submitButton!=null){
 			submitButton.onclick = function(e) {
-				var chatMessage = document.querySelector(".chat-message").firstElementChild.value;
+				var chatMessage = document.querySelector(".chat-message").firstElementChild;
+				var mr = chatMessage.nextElementSibling;
 				if(chatMessage ==  ""){
 					alert("내용을 입력해주세요");
 					e.preventDefault();
 				} else{
-					console.log(chatMessage);
 					var json = {
 						/*<security:authentication property="name"/>*/	
-						classId : "c",
-						content : chatMessage,
-						role : "학생",
+						content : chatMessage.value,
+						role : mr.value,
 						date : Date.now()
 					};
 					ws.send(JSON.stringify(json));

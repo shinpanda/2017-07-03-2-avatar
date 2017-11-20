@@ -39,13 +39,13 @@
 					</ul>
 					<ul class="main-menu btn-container">
 						<li><a href="${ctx}/member/chat">채팅방 입장</a>
-						<li><a href="">Complete</a>
+						<!-- <li><a href="">Complete</a> -->
 					</ul>
 				</nav>
 				<nav id="member-menu" class="member-menu">
 					<h1 class="hidden">회원메뉴</h1>
 					<ul>
-						<li><a href="${ctx}/member/home">마이페이지</a></li>
+						<li><a href="${ctx}/member/mypage">마이페이지</a></li>
 						<li><form action="${ctx}/logout" method="post">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							<input type="submit" value="로그아웃" class="logout-btn"/>

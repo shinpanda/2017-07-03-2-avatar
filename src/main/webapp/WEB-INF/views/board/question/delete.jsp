@@ -7,7 +7,6 @@
 		<div>제목 : ${b.title}</div>
 		<div>글쓴이 : ${b.writerId}</div>
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-		<input type="hidden" name="no" value="${b.no}" />
 		<div>
 			<span>삭제하시겠습니까?</span> <input type="submit" class="btn" value="삭제">
 		</div>

@@ -45,6 +45,8 @@ public class MemberController {
 	public String join(Model model) {
 		List<Class> classList = classDao.getList();
 		model.addAttribute("classList", classList);
+		
+		//System.out.println(classList);
 		return "member.join";
 	}
 	
@@ -84,17 +86,43 @@ public class MemberController {
 	@ResponseBody
 	public String idCheck(HttpServletRequest request, Model model) {
 		String id = request.getParameter("id");
-		 int rowcount = service.idCheck(id);
-			
-
-		return String.valueOf(rowcount);
+		Gson gson = new Gson();
+		String json = "";
+		json = gson.toJson(service.idCheck(id));
+		return json;
+	}
+	@RequestMapping(value="emailCheck")
+	@ResponseBody
+	public String emailCheck(HttpServletRequest request, Model model) {
+		String email = request.getParameter("email");
+		Gson gson = new Gson();
+		String json = "";
+		json = gson.toJson(service.emailCheck(email));
+		return json;
+	}	
+	@RequestMapping(value="checkPw")
+	@ResponseBody
+	public String checkPw(HttpServletRequest request, Model model) {
+		String classId = request.getParameter("classId");
+		String classPwd = request.getParameter("classPwd");
+		Gson gson = new Gson();
+		String json = "";
+		json = gson.toJson(classDao.checkPw(classId, classPwd));
+		return json;
+	}	
+	
+	
+	@RequestMapping(value="mypage", method=RequestMethod.GET)
+	public String mypage() {
+		return "member.mypage";
 	}
 	
 	@RequestMapping(value="chat", method=RequestMethod.GET)
 	public String chat(Principal principal, Model model) {
 		
 		model.addAttribute("list", service.getChatList(principal.getName()));
-				
+		model.addAttribute("br", "<br/>");
+		model.addAttribute("cn", "\n");
 		return "member.chat";
 	}
 	
