@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.avatar.web.entity.DateData;
 
 @Controller
-@RequestMapping("/test")
+@RequestMapping("/main")
 public class CalendarController {
 
    @RequestMapping(value="calendar", method=RequestMethod.GET)
@@ -66,6 +66,6 @@ public class CalendarController {
             //배열에 담음
             model.addAttribute("dateList", dateList);      //날짜 데이터 배열
             model.addAttribute("today_info", today_info);
-            return "test.calendar";
+            return "main.calendar";
    }
 }
