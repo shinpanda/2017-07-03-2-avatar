@@ -114,7 +114,9 @@ public class MemberController {
 	
 	
 	@RequestMapping(value="mypage", method=RequestMethod.GET)
-	public String mypage() {
+	public String mypage(Model model) {
+		List<Member> memberList = service.getList();
+		model.addAttribute("memberList", memberList);
 		return "member.mypage";
 	}
 	
