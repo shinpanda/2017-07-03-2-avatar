@@ -18,7 +18,7 @@ import com.avatar.web.entity.MemberClassView;
 public class HeaderPreparerController implements ViewPreparer  {
 	
 	@Autowired
-	private MemberClassDao memberClassDaoDao;
+	private MemberClassDao memberClassDao;
 
 	@Autowired
 	private MemberRoleDao memberRoleDao;
@@ -28,10 +28,10 @@ public class HeaderPreparerController implements ViewPreparer  {
 	public void execute(Request context, AttributeContext attributeContext) {
 		Authentication authentication =SecurityContextHolder.getContext().getAuthentication();
 		String sessionId =authentication.getName();
-		List<MemberClassView> list = memberClassDaoDao.getHeader(sessionId);
+		MemberClassView mcv = memberClassDao.getHeader(sessionId);
 
 
-		attributeContext.putAttribute("classInfo", new Attribute(list),true); 
+		attributeContext.putAttribute("classInfo", new Attribute(mcv),true); 
 		
 	
 		String role = memberRoleDao.getRole(sessionId);

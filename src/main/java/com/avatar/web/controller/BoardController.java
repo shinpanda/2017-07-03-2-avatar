@@ -120,12 +120,12 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="question/cmt-del", method=RequestMethod.POST)
-	public String questionCmtDel(String no, Board board) {
+	public String questionCmtDel(String no, BoardCmt boardCmt) {
 		System.out.println(no);
-		System.out.println(board.getNo());
+		System.out.println("boardNo"+boardCmt.getBoardNo());
 		service.deleteQuestionCmt(no);
 		
-		return "redirect: "+ board.getNo();
+		return "redirect: "+ boardCmt.getBoardNo();
 	}
 	
 	// 정보 공유
@@ -225,5 +225,24 @@ public class BoardController {
 		
 		return "redirect: "+ board.getNo();
 	}
+	
+	@RequestMapping("notice")
+	public String notice(@RequestParam(value="p", defaultValue="1") Integer page, 
+			@RequestParam(value="f", defaultValue="title") String field,
+			@RequestParam(value="q", defaultValue="") String query,
+			Principal principal,
+			Model model) {
+		model.addAttribute("list", service.getNoticeList(page, field, query, principal.getName()));
+		model.addAttribute("count", service.getNoticeCount(principal.getName()));
+		
+		return "board.notice.list";
+	}
+	
+	@RequestMapping(value="notice/{no}")
+	public String noticeDetail(@PathVariable("no") String no, Model model) {
+		model.addAttribute("b", service.getNotice(no));
+		return "board.notice.detail";
+	}
+
 }
 

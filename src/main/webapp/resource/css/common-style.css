@@ -218,6 +218,12 @@ input[type="text"], textarea {
 		    margin: 0;
 		    font-size: 18px;
 		}
+		.widgets h3 span {
+		    font-size: 10px;
+		    float: right;
+		    line-height: 24px; 
+		    padding-top: 4px;
+		}
 		.widget-board{
 			display:table;
 			width:100%;
@@ -652,8 +658,6 @@ input[type="text"], textarea {
 	    border-radius: 3px;
 	    margin-left: 16px;
 	}
-<<<<<<< HEAD
-=======
 	
 	.reg-form{
 		display: flex;
@@ -699,7 +703,6 @@ input[type="text"], textarea {
 	    justify-content: space-between;
 	}
 	
->>>>>>> refs/remotes/origin/master
 
 /* chat */
 .chat-container {
