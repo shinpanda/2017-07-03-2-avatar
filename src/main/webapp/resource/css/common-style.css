@@ -42,6 +42,9 @@ input[type="text"], textarea {
 	width: 100%;
 	min-height: 100%;
 }
+.center{
+	text-align: center;
+}
 /* header style */
 .header {
 	background: #990000;
@@ -222,6 +225,7 @@ input.logout-btn {
 	float: right;
 	line-height: 24px;
 	padding-top: 4px;
+	padding-right: 5px;
 }
 
 .widget-board {
