@@ -38,7 +38,9 @@
 					<ul class="main-menu">
 						<li><a href="${ctx}/board/question">질문게시판</a></li>
 						<li><a href="${ctx}/board/information">정보공유</a></li>
+						<c:if test="${memberRole ne 'ROLE_TEACHER'}">
 						<li><a href="${ctx}/student/seat-change">자리바꾸기</a></li>
+						</c:if>
 					</ul>
 					<ul class="main-menu btn-container">
 						<li><a href="${ctx}/member/chat">채팅방 입장</a>
