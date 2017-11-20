@@ -57,9 +57,15 @@ window.addEventListener("load", function() {
 				
 				if ('content' in template) {
 					var clone = document.importNode(template.content, true);
-	
+					
 					var row = clone.querySelector(".row");
-					row.querySelector("h5").textContent = data.role;
+					var role;
+					if(data.role == "ROLE_TEACHER")
+						role = "선생님";
+					if(data.role == "ROLE_STUDENT")
+						role = "학생";
+					
+					row.querySelector("h5").textContent = role;
 					var div = row.querySelector("div");
 	
 					div.querySelector("p").textContent = data.content;
