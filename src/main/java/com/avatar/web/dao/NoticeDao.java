@@ -7,13 +7,13 @@ import com.avatar.web.entity.BoardView;
 
 public interface NoticeDao {
 
-	List<BoardView> getList(Integer page, String field, String query, String classId);
-	List<BoardView> getList(Integer page, String field, String field2, String query, String classId);
-	List<BoardView> getList(String classId);
+	List<Board> getList(Integer page, String field, String query, String classId);
+	List<Board> getList(Integer page, String field, String field2, String query, String classId);
+	List<Board> getList(String classId);
 
 	int getCount(String classId);
 	
-	BoardView get(String no);
+	Board get(String no);
 	int insert(Board board);
 	int updateHit(String no);
 	int update(Board board);

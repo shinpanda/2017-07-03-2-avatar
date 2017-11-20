@@ -5,18 +5,18 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.avatar.web.dao.NoticeDao">
-	<select id="getList" resultType="com.avatar.web.entity.BoardView">
-		SELECT * FROM NoticeView where classId = #{param5} and
+	<select id="getList" resultType="com.avatar.web.entity.Board">
+		SELECT * FROM Notice where classId = #{param5} and
 		(${param2} like '%${param4}%' or ${param3} like '%${param4}%') order by regDate DESC 
 		limit ${(param1-1)*15}, 15
 	</select>
 	<select id="getCount" resultType="int">
 		SELECT count(no) as count FROM
-		NoticeView where
+		Notice where
 		classId=#{classId}
 	</select>
-	<select id="get" resultType="com.avatar.web.entity.BoardView">
-		select * from NoticeView where
+	<select id="get" resultType="com.avatar.web.entity.Board">
+		select * from Notice where
 		no=#{no}
 	</select>
 	<insert id="insert" parameterType="com.avatar.web.entity.Board">

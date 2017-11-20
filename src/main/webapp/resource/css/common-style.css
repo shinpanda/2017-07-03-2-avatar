@@ -219,6 +219,12 @@ input[type="text"], textarea {
 		    margin: 0;
 		    font-size: 18px;
 		}
+		.widgets h3 span {
+		    font-size: 10px;
+		    float: right;
+		    line-height: 24px; 
+		    padding-top: 4px;
+		}
 		.widget-board{
 			display:table;
 			width:100%;

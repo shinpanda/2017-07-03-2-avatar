@@ -15,18 +15,18 @@ public class MybatisNoticeDao implements NoticeDao {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<BoardView> getList(String classId) {
+	public List<Board> getList(String classId) {
 		// TODO Auto-generated method stub
 		return getList(1, "title","content", "", classId);
 	}
 
 	@Override
-	public List<BoardView> getList(Integer page, String field, String query, String classId) {
+	public List<Board> getList(Integer page, String field, String query, String classId) {
 		return getList(page, field,"content", query, classId);
 	}
 
 	@Override
-	public List<BoardView> getList(Integer page, String field, String field2, String query, String classId) {
+	public List<Board> getList(Integer page, String field, String field2, String query, String classId) {
 		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
 		return noticeDao.getList(page, field, field2, query, classId);
 	}
@@ -38,7 +38,7 @@ public class MybatisNoticeDao implements NoticeDao {
 	}
 
 	@Override
-	public BoardView get(String no) {
+	public Board get(String no) {
 		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
 		return noticeDao.get(no);
 	}

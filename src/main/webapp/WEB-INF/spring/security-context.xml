@@ -11,8 +11,9 @@
 		<intercept-url pattern="/index" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/member/chat" access="hasRole('ROLE_USER')" />
 
-		
-		<form-login login-page="/member/login" default-target-url="/index" />
+		 
+		<!-- <form-login login-page="/member/login" default-target-url="/index" /> -->
+		<form-login login-page="/member/login" authentication-success-handler-ref="" />
 	 	<logout logout-success-url="/member/login" />
 		
 	</http>
