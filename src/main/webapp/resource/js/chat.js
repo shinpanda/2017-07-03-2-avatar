@@ -37,7 +37,8 @@ window.addEventListener("load", function() {
 						}
 	
 						if (permission === "granted") {
-							var n = new Notification(e.data);
+							var n = new Notification(data.content);
+							//var n = new Notification(e.data);
 							/*setTimeout(n.close.bind(n), 4000);*/
 						}
 					});
