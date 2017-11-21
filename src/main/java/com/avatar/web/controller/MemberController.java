@@ -56,7 +56,8 @@ public class MemberController {
 			@RequestParam(value="classPwd", defaultValue="") String classPwd, 
 			@RequestParam(value="role", defaultValue="") String role, 
 			Model model) throws IOException{
-        
+        role = "ROLE_"+role.toUpperCase();
+        System.out.println(role);
 		int result =0;
 		result = classDao.checkPw(classId, classPwd);
 		
@@ -64,14 +65,14 @@ public class MemberController {
 		int row =0;
         if(result > 0){ 
         	
-        	if(role.equals("student"))
+        	if(role.equals("ROLE_STUDENT"))
         		row = service.insert(member,role,classId);
         	else {
         		System.out.println("학생가입오류");
         		 return "member.join";
         	}
             return "redirect:login";
-        }else if(role.equals("teacher")) {
+        }else if(role.equals("ROLE_TEACHER")) {
         	row = service.insert(member,role);
         	
         	return "redirect:login";
@@ -113,7 +114,9 @@ public class MemberController {
 	
 	
 	@RequestMapping(value="mypage", method=RequestMethod.GET)
-	public String mypage() {
+	public String mypage(Model model) {
+		List<Member> memberList = service.getList();
+		model.addAttribute("memberList", memberList);
 		return "member.mypage";
 	}
 	

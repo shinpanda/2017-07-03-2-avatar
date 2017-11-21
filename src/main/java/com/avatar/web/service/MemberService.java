@@ -75,5 +75,9 @@ public class MemberService {
 	int result = memberDao.emailCheck(email);
 		return result;
 	}
+	public List<Member> getList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
