@@ -802,11 +802,11 @@ input[type="text"], textarea {
 
 .seat {
 	display:inline-block;
-	width: 80px;
-	height: 50px;
-	background: url('../images/image.png');
+	width: 95px;
+	height: 95px;
+	background: url('../images/monitor.png');
 	text-align: center;
-    line-height: 50px;
+    line-height: 160px;
 }
 
 #top{
