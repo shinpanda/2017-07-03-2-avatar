@@ -6,7 +6,7 @@
 
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
-<tiles:importAttribute name="classInfo"/>
+
 <tiles:importAttribute name="memberRole"/>
 
 <header class="header">
@@ -22,9 +22,12 @@
 					<h2 class="hidden">멤버 정보</h2>
 					<div>${role}</div>
 					<div>
+					<c:if test="${memberRole ne 'ROLE_ADMIN'}">
+						<tiles:importAttribute name="classInfo"/>
 						<div>${classInfo.className} class</div>
 						<div>
 						<fmt:formatDate value="${classInfo.classOpenDate}" pattern="yyyy.MM.dd" /></div>
+					</c:if>
 					</div>
 				</div>
 			</div>

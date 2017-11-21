@@ -31,7 +31,8 @@
 				</div>
 			</c:if>
 			<div class="row">
-				<h5>${n.role}</h5>
+				<h5><c:if test="${n.role eq 'ROLE_STUDENT'}">학생</c:if>
+			<c:if test="${n.role eq 'ROLE_TEACHER'}">선생님</c:if></h5>
 				<div>
 					<p>${fn:replace(n.content, cn, br)}</p>
 					<span><fmt:formatDate value="${n.regDate}" pattern="HH:mm" /></span>

@@ -28,15 +28,16 @@ public class HeaderPreparerController implements ViewPreparer  {
 	public void execute(Request context, AttributeContext attributeContext) {
 		Authentication authentication =SecurityContextHolder.getContext().getAuthentication();
 		String sessionId =authentication.getName();
-		MemberClassView mcv = memberClassDao.getHeader(sessionId);
-
-
-		attributeContext.putAttribute("classInfo", new Attribute(mcv),true); 
 		
-	
 		String role = memberRoleDao.getRole(sessionId);
 		System.out.println(role+"////controllor");
-		attributeContext.putAttribute("memberRole", new Attribute(role),true); 
+		attributeContext.putAttribute("memberRole", new Attribute(role),true);
+		
+		if(role!="ROLE_ADMIN") {
+			MemberClassView mcv = memberClassDao.getHeader(sessionId);
+	
+			attributeContext.putAttribute("classInfo", new Attribute(mcv),true);
+		}
 	}
 
 }
