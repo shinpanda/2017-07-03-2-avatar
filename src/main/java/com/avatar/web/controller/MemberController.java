@@ -115,9 +115,15 @@ public class MemberController {
 	
 	@RequestMapping(value="mypage", method=RequestMethod.GET)
 	public String mypage(Model model) {
+		return "member.mypage";
+	}
+	
+	
+	@RequestMapping(value="profile", method=RequestMethod.GET)
+	public String profile(Model model) {
 		List<Member> memberList = service.getList();
 		model.addAttribute("memberList", memberList);
-		return "member.mypage";
+		return "member.profile";
 	}
 	
 	@RequestMapping(value="chat", method=RequestMethod.GET)

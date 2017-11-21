@@ -8,12 +8,15 @@
 		<put-attribute name="main" value="/WEB-INF/views/member/chat.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
 	</definition>
-	<definition name="member.mypage" template="/WEB-INF/views/inc/root-layout.jsp" preparer="com.avatar.web.controller.HeaderPreparerController" >
+	<definition name="member.join" template="/WEB-INF/views/member/{1}.jsp" preparer="com.avatar.web.controller.HeaderPreparerController" />
+	<definition name="member.login" template="/WEB-INF/views/member/{1}.jsp" preparer="com.avatar.web.controller.HeaderPreparerController" />
+	<definition name="member.chat" template="/WEB-INF/views/member/{1}.jsp" preparer="com.avatar.web.controller.HeaderPreparerController" />
+	<definition name="member.*" template="/WEB-INF/views/inc/root-layout.jsp" preparer="com.avatar.web.controller.HeaderPreparerController" >
 		<put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
 		<put-attribute name="main" value="/WEB-INF/views/member/mypage.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
 	</definition>
-	<definition name="member.*" template="/WEB-INF/views/member/{1}.jsp" preparer="com.avatar.web.controller.HeaderPreparerController" />
+	
 	<definition name="home.*" template="/WEB-INF/views/inc/root-layout.jsp" preparer="com.avatar.web.controller.HeaderPreparerController" >
 		<put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
 		<put-attribute name="main" value="/WEB-INF/views/{1}.jsp" />

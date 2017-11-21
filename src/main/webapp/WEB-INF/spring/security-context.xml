@@ -10,6 +10,10 @@
 		<intercept-url pattern="/test/**" access="hasAnyRole('ROLE_STUDENT','ROLE_TEACHER')" />
 		<intercept-url pattern="/index" access="hasAnyRole('ROLE_STUDENT','ROLE_TEACHER','ROLE_ADMIN')" />
 		<intercept-url pattern="/member/chat" access="hasAnyRole('ROLE_STUDENT','ROLE_TEACHER')" />
+		<intercept-url pattern="/member/mypage" access="hasAnyRole('ROLE_STUDENT','ROLE_TEACHER','ROLE_ADMIN')" />
+		<intercept-url pattern="/member/profile" access="hasAnyRole('ROLE_STUDENT','ROLE_TEACHER','ROLE_ADMIN')" />
+		<intercept-url pattern="/member/withdraw" access="hasAnyRole('ROLE_STUDENT','ROLE_TEACHER','ROLE_ADMIN')" />
+		<intercept-url pattern="/member/classedit" access="hasAnyRole('ROLE_TEACHER')" />
 
 		<form-login login-page="/member/login" default-target-url="/index"  />
 	 	<logout logout-success-url="/member/login" />
