@@ -13,7 +13,7 @@
 	<definition name="member.chat" template="/WEB-INF/views/member/chat.jsp" preparer="com.avatar.web.controller.HeaderPreparerController" />
 	<definition name="member.*" template="/WEB-INF/views/inc/root-layout.jsp" preparer="com.avatar.web.controller.HeaderPreparerController" >
 		<put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
-		<put-attribute name="main" value="/WEB-INF/views/member/mypage.jsp" />
+		<put-attribute name="main" value="/WEB-INF/views/member/{1}.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
 	</definition>
 	

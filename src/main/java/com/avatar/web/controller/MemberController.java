@@ -120,9 +120,12 @@ public class MemberController {
 	
 	
 	@RequestMapping(value="profile", method=RequestMethod.GET)
-	public String profile(Model model) {
-		List<Member> memberList = service.getList();
-		model.addAttribute("memberList", memberList);
+	public String profile(Principal principal, Model model) {
+		//System.out.println("getName:"+principal.getName());
+		String id = principal.getName();
+		model.addAttribute("member", service.getProfile(id));
+		
+		
 		return "member.profile";
 	}
 	

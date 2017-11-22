@@ -16,7 +16,7 @@
 			<main class="main">
 		
 		
-			<div class="mem-information resume"><h3>회원정보조회/수정</h3></div>
+			<div class="mem-information resume"><h3>회원탈퇴</h3></div>
 			
 			<form method="post">
 				<div class="self-certification-check">
@@ -46,12 +46,8 @@
 					</div>
 					<div class="self">
 					<div class="application-form-wrapper clearfix">
-						<div class="title-box dc-name">클래스 이름</div>
-						<label class="content-box dc-name mem-fixed" id="class-name"><!--${c.name}  --></label>
-					</div>
-					<div class="application-form-wrapper clearfix">
 						<div class="title-box dc-name">등급</div>
-						<label class="content-box dc-name mem-fixed" id="grade">${grade}</label>
+						<label class="content-box dc-name mem-fixed">${grade}</label>
 					</div>
 					</div>
 					<div class="self">

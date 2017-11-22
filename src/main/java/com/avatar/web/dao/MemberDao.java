@@ -12,4 +12,6 @@ public interface MemberDao {
 
 	int emailCheck(String email);
 
+	Member getProfile(String id);
+
 }

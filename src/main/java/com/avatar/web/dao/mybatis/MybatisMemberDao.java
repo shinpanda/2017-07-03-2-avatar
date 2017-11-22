@@ -1,5 +1,6 @@
 package com.avatar.web.dao.mybatis;
 
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,6 +37,13 @@ public class MybatisMemberDao implements MemberDao {
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 		int result = memberDao.emailCheck(email);
 		return result;
+	}
+
+	@Override
+	public Member getProfile(String id) {
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		Member member = memberDao.getProfile(id);
+		return member;
 	}
 
 }

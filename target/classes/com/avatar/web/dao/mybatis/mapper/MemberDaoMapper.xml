@@ -17,5 +17,8 @@
 	<select id="emailCheck" resultType="int">
 		select COUNT(*) from Member where email=#{email}
 	</select>
+	<select id="getProfile" resultType="com.avatar.web.entity.Member">
+		select * from Member where id=#{id}
+	</select>
 
 </mapper>    
