@@ -12,12 +12,6 @@
 </head>
 <body>
 <div id="body">
-
-		
-		
-		
-		
-		
 		<div class="content-container">
 		
 			<main class="main">
