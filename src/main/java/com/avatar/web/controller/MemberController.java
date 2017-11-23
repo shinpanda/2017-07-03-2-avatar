@@ -123,9 +123,9 @@ public class MemberController {
 	public String profile(Principal principal, Model model) {
 		//System.out.println("getName:"+principal.getName());
 		String id = principal.getName();
+		String classId = service.getClassId(id);
 		model.addAttribute("member", service.getProfile(id));
-		
-		
+		model.addAttribute("classId", service.getClassId(id));
 		return "member.profile";
 	}
 	

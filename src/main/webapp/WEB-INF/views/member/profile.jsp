@@ -47,7 +47,7 @@
 					<div class="self">
 					<div class="application-form-wrapper clearfix">
 						<div class="title-box dc-name">클래스 이름</div>
-						<label class="content-box dc-name mem-fixed" id="class-name"><!--${c.name}  --></label>
+						<label class="content-box dc-name mem-fixed" id="class-name">${classId}</label>
 					</div>
 					<div class="application-form-wrapper clearfix">
 						<div class="title-box dc-name">등급</div>

@@ -34,6 +34,10 @@ public class MemberService {
 		String classId = memberClassDao.getClassId(id);
 		return classId;
 	}
+	public String getClassInfo(String id) {
+		String classId = memberClassDao.getClassId(id);
+		return classId;
+	}
 	/*
 	@Transactional
 	public int insert(Member member, Class c){
