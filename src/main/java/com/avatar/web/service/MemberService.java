@@ -12,6 +12,7 @@ import com.avatar.web.dao.MemberDao;
 import com.avatar.web.dao.MemberRoleDao;
 import com.avatar.web.entity.ChatView;
 import com.avatar.web.entity.Member;
+import com.avatar.web.entity.MemberClassView;
 import com.google.gson.JsonElement;
 
 
@@ -34,9 +35,12 @@ public class MemberService {
 		String classId = memberClassDao.getClassId(id);
 		return classId;
 	}
-	public String getClassInfo(String id) {
-		String classId = memberClassDao.getClassId(id);
-		return classId;
+	public MemberClassView getClassInfo(String id) {
+		MemberClassView memberClassView = memberClassDao.getClassInfo(id);
+		String memberClass = memberClassView.getClassName();
+		String memberRole = memberClassView.getMemberRole();
+		System.out.println("className,memberRole : "+memberClass+","+memberRole);
+		return memberClassView;
 	}
 	/*
 	@Transactional
@@ -83,6 +87,11 @@ public class MemberService {
 	public Member getProfile(String id) {
 		Member member = memberDao.getProfile(id);
 		return member;
+	}
+	
+	public int update(String id, String name, String pwd, String email) {
+		int result = memberDao.update(id,name,pwd,email);
+		return result;
 	}
 	
 }

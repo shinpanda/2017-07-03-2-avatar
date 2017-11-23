@@ -156,14 +156,12 @@ $(function(){
 			</div>
 				<c:if test="${param.role eq 'student' }">
 				
-				
 			 <div class="student-form">
 				<div class="form-item">
 				<div class="form-title">클래스이름</div>
-					 
 					<select class="form-style" id="classId" name="classId">
 					<c:forEach var="c" items="${classList}">
-						<option value="${c.id}">${c.name} </option>
+						<option value="${c.id}">${c.name}  </option>
 						</c:forEach>
 					</select>
 				</div>

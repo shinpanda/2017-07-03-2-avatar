@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 
 <c:set var="ctx" value="${pageContext.request.contextPath}" />    
 <!DOCTYPE html>
@@ -18,7 +19,7 @@
 		
 			<div class="mem-information resume"><h3>회원정보조회/수정</h3></div>
 			
-			<form method="post">
+			<form action="?${_csrf.parameterName}=${_csrf.token}" method="post">
 				<div class="self-certification-check">
 					<div class="self">
 					<div class="application-form-wrapper clearfix">
@@ -45,13 +46,19 @@
 					</div>
 					</div>
 					<div class="self">
+					<c:set var="openDate">
+					<fmt:formatDate value="${c.classOpenDate}" pattern="yyyy-MM-dd"/>
+					</c:set>
 					<div class="application-form-wrapper clearfix">
 						<div class="title-box dc-name">클래스 이름</div>
-						<label class="content-box dc-name mem-fixed" id="class-name">${classId}</label>
+						<label class="content-box dc-name mem-fixed" id="class-name">${c.className} 
+					(${openDate})
+						</label>
 					</div>
 					<div class="application-form-wrapper clearfix">
 						<div class="title-box dc-name">등급</div>
-						<label class="content-box dc-name mem-fixed" id="grade">${grade}</label>
+						
+						<label class="content-box dc-name mem-fixed" id="grade">${c.memberRole} </label>
 					</div>
 					</div>
 					<div class="self">

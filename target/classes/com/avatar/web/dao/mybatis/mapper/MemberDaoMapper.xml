@@ -10,7 +10,9 @@
 		insert into Member(id,pwd,name,email)
 		values(#{id}, #{pwd}, #{name}, #{email});
 	</insert>
-	
+	<update id="update" parameterType="com.avatar.web.entity.Member">
+		update Member set name=#{name}, pwd=#{pwd}, email=#{email} where id=#{id};
+	</update>
 	<select id="idCheck" resultType="int">
 		select COUNT(*) from Member where id=#{id}
 	</select>

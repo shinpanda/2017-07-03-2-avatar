@@ -121,12 +121,31 @@ public class MemberController {
 	
 	@RequestMapping(value="profile", method=RequestMethod.GET)
 	public String profile(Principal principal, Model model) {
-		//System.out.println("getName:"+principal.getName());
 		String id = principal.getName();
-		String classId = service.getClassId(id);
 		model.addAttribute("member", service.getProfile(id));
-		model.addAttribute("classId", service.getClassId(id));
+		model.addAttribute("c", service.getClassInfo(id));
 		return "member.profile";
+	}
+	
+	
+	
+	@RequestMapping(value="profile", method=RequestMethod.POST)
+	public String profile(Member member, Principal principal) throws IOException {
+		String id = principal.getName();
+		
+		int result =0;
+		
+		result = service.update(id,member.getName(),member.getPwd(),member.getEmail());
+        if(result > 0){ 
+        	System.out.println("수정 성공");
+        	return "member.mypage";
+        	
+        }else {
+        	System.out.println("수정실패");
+        	return "redirect:profile";
+        }
+		
+		
 	}
 	
 	@RequestMapping(value="chat", method=RequestMethod.GET)
