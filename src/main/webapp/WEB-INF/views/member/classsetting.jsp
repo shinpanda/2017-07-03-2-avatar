@@ -7,6 +7,7 @@
 <html>
 <head>
 <link href="${ctx}/resource/css/memprofile.css" type="text/css" rel="stylesheet">
+<link href="${ctx}/resource/css/classsetting.css" rel="stylesheet" type="text/css" >
 <title>Avatar</title>
 </head>
 <body>
@@ -14,15 +15,24 @@
 		<div class="content-container">
 		
 			<main class="main">
-		
-		
-			<div class="mem-information"><h3>클래스 설정</h3></div>
 			
 			<form method="post">
-				<div class="self-certification-check">
-					클래스 불러오기
-					클래스 생성
-					클래스 삭제
+				<div class="middle">
+					<h1>클래스 설정</h1>
+					<div class="classset">
+					<label> <input type="radio" name="radio" />
+					<!--checked   -->
+						<span class="front-end box">
+							<span>C(2017-11-11)</span>
+						</span>
+					</label> <label> <input type="radio" name="radio" />
+						<span class="back-end box">
+							<span>Back-end</span>
+						</span>
+					</label>
+					
+					</div>
+					
 				</div>
 
 			</form>
