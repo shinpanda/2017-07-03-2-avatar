@@ -24,25 +24,26 @@ window.addEventListener("load", function() {
 			//if(!str.indexOf("/member/chat")){
 			//잠시 notification 설정을 위해 조건문 바꿈
 			
-				if (!"Notification" in window) {
-					alert("This browser does not support desktop notification");
-				} else if (Notification.permission === "granted") {
-					var n = new Notification(data.content);
-					/*setTimeout(n.close.bind(n), 4000);*/
-				} else if (Notification.permission !== 'denied') {
-					Notification.requestPermission(function(permission) {
-	
-						if (!('permission' in Notification)) {
-							Notification.permission = permission;
-						}
-	
-						if (permission === "granted") {
-							var n = new Notification(data.content);
-							//var n = new Notification(e.data);
-							/*setTimeout(n.close.bind(n), 4000);*/
-						}
-					});
-				}
+			if (!("Notification" in window)) {
+				alert("This browser does not support desktop notification");
+			} else if (Notification.permission === "granted") {
+				var n = new Notification(data.content);
+				console.log(data.content);
+				/*setTimeout(n.close.bind(n), 4000);*/
+			} else if (Notification.permission !== 'denied') {
+				Notification.requestPermission(function(permission) {
+
+					if (!('permission' in Notification)) {
+						Notification.permission = permission;
+					}
+
+					if (permission === "granted") {
+						var n = new Notification(data.content);
+						//var n = new Notification(e.data);
+						/*setTimeout(n.close.bind(n), 4000);*/
+					}
+				});
+			} 
 			//}
 			//else {
 			if(str.indexOf("/member/chat")){
