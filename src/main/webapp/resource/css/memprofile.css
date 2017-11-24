@@ -6,7 +6,7 @@ html, body {
 	padding: 0px;
 }
 #body{
-	margin-top: 150px;
+	margin-top: 56px;
 }
 
 #header {
@@ -379,9 +379,12 @@ select.text-right {
 	    padding-left: 70px;
 		height: 50px;
 	/* 	margin-left:51px; */
+		
+}
+	.resume{
 		background: url(../images/resume.png) no-repeat left center;
 		background-size: contain;
-}
+	}
 .mem-cancel{
 	    font-weight: bold;
 	    padding-left: 70px;
@@ -401,7 +404,7 @@ select.text-right {
 }
 .content-box{
 		text-align:center;
-		width:540px;
+		width:350px;
 		
 		border: 1px solid #e0e0e0;
 		float:right;
@@ -423,7 +426,7 @@ select.text-right {
 		border: 1px solid #e0e0e0;
 	    border-radius: 5px;
 	    float: left;
-	    width: 75%;
+	    width: 60%;
 	    text-align: center;
    		padding: 10px;
    	/* 	margin-left: 120px; */
@@ -441,10 +444,10 @@ select.text-right {
 	height: 48px;
     float: right;
     color: #FFF;
-    width: 50%;
+    width: 26%;
     font-weight: 700;
     font-size: 16px;
-    background: rgb(239, 102, 120);
+    background: rgb(128, 115, 117);
     margin-top: 7px;
     display: inline-block;
     line-height: normal;
@@ -502,10 +505,11 @@ select.text-right {
   animation-timing-function: ease-out;
 }
 
-.modal-header {
-  height: 50px;
+.modal-header {    
+  
+  height: 20px;
   padding: 0px 20px 40px 20px;
-  background: #546E7A;
+  background: #990000;
   color: #ffffff;
   font-size: 13px;
 }
@@ -557,7 +561,7 @@ select.text-right {
 }
 
 .modal-trigger {
-  background: #B0BEC5;
+  /* background: #B0BEC5; */
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);

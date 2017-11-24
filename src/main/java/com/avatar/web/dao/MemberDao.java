@@ -12,4 +12,14 @@ public interface MemberDao {
 
 	int emailCheck(String email);
 
+	Member getProfile(String id);
+
+	int update(String id, String name, String pwd, String email);
+
+	int update(Member member);
+
+	int check(String id, String checkpwd);
+
+	void delete(String id);
+
 }

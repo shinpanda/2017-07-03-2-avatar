@@ -40,7 +40,13 @@ public class MybatisMemberClassDao implements MemberClassDao {
 		MemberClassDao memberClassDao = sqlSession.getMapper(MemberClassDao.class);
 		MemberClassView mcv = memberClassDao.getHeader(sessionId);
 		return mcv;
+	}
 
+	@Override
+	public MemberClassView getClassInfo(String id) {
+		MemberClassDao memberClassDao = sqlSession.getMapper(MemberClassDao.class);
+		MemberClassView memberClassView = memberClassDao.getClassInfo(id);
+		return memberClassView;
 	}
 	
 
