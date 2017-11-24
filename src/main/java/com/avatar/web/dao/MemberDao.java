@@ -18,4 +18,8 @@ public interface MemberDao {
 
 	int update(Member member);
 
+	int check(String id, String checkpwd);
+
+	void delete(String id);
+
 }

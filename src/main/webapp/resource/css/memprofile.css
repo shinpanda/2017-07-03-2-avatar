@@ -505,10 +505,11 @@ select.text-right {
   animation-timing-function: ease-out;
 }
 
-.modal-header {
-  height: 50px;
+.modal-header {    
+  
+  height: 20px;
   padding: 0px 20px 40px 20px;
-  background: #546E7A;
+  background: #990000;
   color: #ffffff;
   font-size: 13px;
 }
@@ -560,7 +561,7 @@ select.text-right {
 }
 
 .modal-trigger {
-  background: #B0BEC5;
+  /* background: #B0BEC5; */
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);

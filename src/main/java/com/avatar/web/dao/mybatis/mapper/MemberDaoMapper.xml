@@ -22,5 +22,10 @@
 	<select id="getProfile" resultType="com.avatar.web.entity.Member">
 		select * from Member where id=#{id}
 	</select>
-
+	<select id="check" resultType="int">
+		select COUNT(*) from Member where id=#{param1} and pwd=#{param2}
+	</select>
+	<delete id="delete" parameterType="com.avatar.web.entity.Member" >
+		delete from Member where id=#{id}
+	</delete>
 </mapper>    

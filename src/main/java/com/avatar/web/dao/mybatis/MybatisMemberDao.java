@@ -59,4 +59,16 @@ public class MybatisMemberDao implements MemberDao {
 		return result;
 	}
 
+	@Override
+	public int check(String id, String checkpwd) {
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		return memberDao.check(id,checkpwd);
+	}
+
+	@Override
+	public void delete(String id) {
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		memberDao.delete(id);
+	}
+
 }

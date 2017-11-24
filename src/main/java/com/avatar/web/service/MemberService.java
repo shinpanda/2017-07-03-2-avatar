@@ -93,5 +93,12 @@ public class MemberService {
 		int result = memberDao.update(id,name,pwd,email);
 		return result;
 	}
+	public int check(String id, String checkpwd) {
+		int result = memberDao.check(id,checkpwd);
+		return result;
+	}
+	public void delete(String id) {
+		memberDao.delete(id);
+	}
 	
 }
