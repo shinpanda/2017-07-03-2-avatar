@@ -60,6 +60,4 @@
 		
 	</script>
 </div>
-
-<div>알림창</div>
 </main>
