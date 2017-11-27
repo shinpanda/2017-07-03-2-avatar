@@ -8,23 +8,23 @@ window.addEventListener("load", function() {
 		var template = document.querySelector('template');
 		var chatWindow = document.querySelector('.chat-wrapper');
 		var firstCheck = false;
+		var notification = null;
 		var data = null;
 		if(chatWindow != null)
 			chatWindow.scrollTop = chatWindow.scrollHeight;
 		var str = location.pathname;	
 		const ws = new WebSocket("ws://211.238.142.93/web/echo");
+		//const ws = new WebSocket("ws://211.238.142.93/web/resource/chat-server");
+		//const ws = new WebSocket("ws://localhost/web/echo");
 		
-		ws.onopen = function(e) {
-			
-		};
+		function getContextPath(){
+		    var offset=location.href.indexOf(location.host)+location.host.length;
+		    var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
+		    return ctxPath;
+		}
 
-		//서버로부터 메시지 수신
-		ws.onmessage = function(e) {
-			var data = JSON.parse(e.data);
-			//if(!str.indexOf("/member/chat")){
-			//잠시 notification 설정을 위해 조건문 바꿈
-			
-			var notification = document.createElement("div");
+		var notificationWindow = function(data, role){
+			notification = document.createElement("div");
 			notification.id = "chat-notifi";
 			var notiIdImg = document.createElement("div");
 			notiIdImg.className = "chat-img-wrapper";
@@ -39,10 +39,12 @@ window.addEventListener("load", function() {
 			notiText.className = "chat-text-container";
 			
 			var notiImg = document.createElement("img");
+			console.log(getContextPath()+"/resource/images/student-icon.png");
 			if(role == "선생님")
 				notiImg.src = getContextPath()+"/resource/images/teacher-icon.png";
 			if(role == "학생")
 				notiImg.src = getContextPath()+"/resource/images/student-icon.png";
+			notiImg.style.width="50px";
 			notiImgContainer.appendChild(notiImg);
 			
 			var notiRoleContainer = document.createElement("span");
@@ -55,6 +57,41 @@ window.addEventListener("load", function() {
 			
 			notification.appendChild(notiImgContainer);
 			notification.appendChild(notiText);
+			document.body.appendChild(notification);
+			setTimeout(
+					function() {
+						notification.style.height="0px";
+/*						notification.style.opacity="0";*/
+						setTimeout(function() {document.body.removeChild(notification)}, 1000);
+					}
+					, 3000);
+			notification.onclick = function(evt) {
+				location.href=getContextPath()+"/member/chat";
+				document.body.removeChild(notification);
+			}
+		}
+		
+		
+		
+		ws.onopen = function(e) {
+/*			setTimeout(function(), 3000);*/
+
+		};
+
+		//서버로부터 메시지 수신
+		ws.onmessage = function(e) {
+			var data = JSON.parse(e.data);
+			//if(!str.indexOf("/member/chat")){
+			//잠시 notification 설정을 위해 조건문 바꿈
+			var role;
+			if(data.role == "ROLE_TEACHER")
+				role = "선생님";
+			if(data.role == "ROLE_STUDENT")
+				role = "학생";
+			
+			
+			notificationWindow(data, role);
+			
 
 			/*if (!("Notification" in window)) {
 				alert("This browser does not support desktop notification");
@@ -93,11 +130,6 @@ window.addEventListener("load", function() {
 					var clone = document.importNode(template.content, true);
 					
 					var row = clone.querySelector(".row");
-					var role;
-					if(data.role == "ROLE_TEACHER")
-						role = "선생님";
-					if(data.role == "ROLE_STUDENT")
-						role = "학생";
 					
 					row.querySelector("h5").textContent = role;
 					var div = row.querySelector("div");

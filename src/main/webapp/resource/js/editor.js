@@ -92,8 +92,7 @@ window.addEventListener("load", function() {
 
 	function exec(value, param) {
 		document.execCommand(value, false, param);
-	}
-	;
+	};
 
 	
 	/* 		 function createLink() {
@@ -223,12 +222,18 @@ window.addEventListener("load", function() {
 	var imgCancel = imgEditContainer.querySelector("#img-edit-cancel");
 	var selectImg = null;
 	var content = document.querySelector("#content");
+	var offset = {x:0, y:0}
+	var reset = {left:0, top:0}
+	var selected = null;
+	
 	content.ondblclick  = function(e) {
 		if(e.target.nodeName == "IMG"){
 			imgEditContainer.style.display = "flex";
 			imgWidth.value = parseInt(e.target.width);
 			imgHeight.value = parseInt(e.target.height);
 			selectImg = e.target;
+			reset.left = imgEditContainer.offsetLeft;
+			reset.top = imgEditContainer.offsetTop;
 		}
 	};
 	imgWidth.onkeyup = function() {
@@ -250,11 +255,45 @@ window.addEventListener("load", function() {
 			selectImg.style.width = imgWidth.value+"px";
 		if(imgHeight.value != "")
 			selectImg.style.height = imgHeight.value+"px";
+		imgEditContainer.style.left = reset.left + "px";
+		imgEditContainer.style.top = reset.top + "px";
 		imgEditContainer.style.display = "none";
 	};
 	
 	imgCancel.onclick = function(){
+		imgEditContainer.style.left = reset.left + "px";
+		imgEditContainer.style.top = reset.top + "px";
 		imgEditContainer.style.display = "none";
 	};
-		
+	
+	document.onmousedown = function(e) {
+		if(e.target.classList.contains('img-edit-container')){
+			selected = e.target;
+			//offset.x = e.offsetX;
+			//offset.y = e.offsetY;
+			offset.x = e.offsetX;
+			offset.y = e.offsetY;
+		}
+	}
+	document.onmousemove = function(e) {
+		if(selected == null)
+			return;
+		e.preventDefault();
+		var board = document.querySelector(".board-style");
+ 		/*console.log("e.x :"+e.x+"e.y :"+e.y);
+		console.log("e.clientX :"+e.clientX+"e.clienty :"+e.clientY);
+		console.log("e.offsetX :"+e.offsetX+"e.offsety :"+e.offsetY);
+		console.log("e.screenX :"+e.screenX+"e.screenY :"+e.screenY);
+		console.log(board.offsetLeft);
+		console.log(board.offsetTop);*/
+		selected.style.left = (e.clientX - board.offsetLeft - offset.x) +"px";
+		selected.style.top = (e.clientY - board.offsetTop- offset.y)+"px";
+
+	};
+	
+	imgEditContainer.onmouseup = function(e){
+		selected = null;
+		offset.x = 0;
+		offset.y = 0;
+	}
 });
