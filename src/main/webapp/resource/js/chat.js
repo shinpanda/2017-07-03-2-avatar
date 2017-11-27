@@ -116,14 +116,21 @@ window.addEventListener("load", function() {
 			//}
 			//else {
 			if(str.indexOf("/member/chat")){
-				var prevRegDate = chatWindow.lastElementChild.querySelector("span");
+				var prevRegDates = chatWindow.querySelectorAll(".row.chat-date");
+				prevRegDate = prevRegDates[prevRegDates.length-1].firstElementChild.textContent;
+				prevRegDate = prevRegDate.replace( /(\s*)/g, "");
+
+				console.log(prevRegDate);
 				var regDate = new Date(data.date);
 				var rd = regDate.getHours()+":"+(regDate.getMinutes()>=10 ? regDate.getMinutes() : "0"+regDate.getMinutes());
-				if(prevRegDate.textContent != rd){
+
+				if(prevRegDate != (regDate.getMonth()+1)+"월"+regDate.getDate()+"일"){
 					var row = document.createElement("div");
 					row.classList.add( 'row', 'chat-date' );
 					var p = document.createElement("p");
-					p.textContent = regDate.getMonth()+"월"+regDate.getDate()+"일";
+					p.textContent = (regDate.getMonth()+1)+"월 "+regDate.getDate()+"일";
+					row.appendChild(p);
+					chatWindow.appendChild(row);
 				}
 				
 				if ('content' in template) {
@@ -134,7 +141,8 @@ window.addEventListener("load", function() {
 					row.querySelector("h5").textContent = role;
 					var div = row.querySelector("div");
 	
-					div.querySelector("p").textContent = data.content;
+					//div.querySelector("p").textContent = data.content;
+					div.querySelector("p").innerHTML = data.content;
 					div.querySelector("span").textContent = rd;
 					chatWindow.appendChild(clone);
 					chatWindow.scrollTop = chatWindow.scrollHeight;
