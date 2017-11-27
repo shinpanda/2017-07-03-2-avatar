@@ -49,8 +49,9 @@ window.addEventListener("load", function() {
 			
 			var notiRoleContainer = document.createElement("span");
 			var notiContentContainer = document.createElement("span");
+			var content = data.content;
 			notiRoleContainer.textContent = role;
-			notiContentContainer.textContent = data.content;
+			notiContentContainer.textContent = content.replace(/[<]br[/][>]/gi, " ");
 			notiText.appendChild(notiRoleContainer);
 			notiText.appendChild(notiContentContainer);
 			
@@ -166,6 +167,7 @@ window.addEventListener("load", function() {
 						/*<security:authentication property="name"/>*/	
 						content : chatMessage.value,
 						role : mr.value,
+						msgType : "chat",
 						date : Date.now()
 					};
 					ws.send(JSON.stringify(json));
