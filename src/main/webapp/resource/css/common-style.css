@@ -974,7 +974,28 @@ input[type="text"], textarea {
 
 /* Calendar */
 
-#calendar-main{
+.sun {
+    color: #f3928a;
+}
+
+.sat {
+    color: #749dfd;
+}
+
+.row.week {
+    line-height: 40px;
+}
+
+.day {
+    text-align: center;
+}
+.today {
+	/* border: 1px solid #f7bdbd; */
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+/* #calendar-main{
 	margin-left:0px !important;
 } 
-
+ */
