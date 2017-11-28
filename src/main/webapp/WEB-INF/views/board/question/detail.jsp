@@ -41,7 +41,7 @@
 			<c:forEach items="${cmtList}" var="c" varStatus="i">
 				<div class="cmt-row">
 					<div class="cmt-info">
-						<span><b>${i.count}. </b></span><span><fmt:formatDate
+						<span><b>${i.count}. <c:if test="${username.equals(c.writerId)}">= 글쓴이</c:if></b></span><span><fmt:formatDate
 								value="${c.regDate}" pattern="YY-MM-dd HH:MM" var="regDate" />${regDate}</span>
 						<c:if test="${username.equals(c.writerId)}">
 							<div class="cmt-btn-wrapper">

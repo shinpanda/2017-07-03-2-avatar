@@ -8,6 +8,7 @@ import com.avatar.web.dao.InformationCmtDao;
 import com.avatar.web.dao.InformationDao;
 import com.avatar.web.dao.MemberClassDao;
 import com.avatar.web.dao.MemberDao;
+import com.avatar.web.dao.NoticeDao;
 import com.avatar.web.dao.QuestionCmtDao;
 import com.avatar.web.dao.QuestionDao;
 import com.avatar.web.entity.Board;
@@ -29,6 +30,9 @@ public class BoardService {
 	
 	@Autowired
 	private InformationCmtDao informationCmtDao;
+	
+	@Autowired
+	private NoticeDao noticeDao;
 
 	public List<BoardView> getQuestionList(Integer page, String field, String query, String id) {
 		String classId = memberClassDao.getClassId(id);
@@ -167,7 +171,33 @@ public class BoardService {
 		return result;
 	}
 
-	
+	public List<Board> getNoticeList(Integer page, String field, String query, String id) {
+		String classId = memberClassDao.getClassId(id);
+		List<Board> list = null;
+		
+		if(field.indexOf("-") > 0) {
+			String[] fields = field.split("-");
+//			list = noticeDao.getList(page, fields[0], fields[1], query, classId);
+			int count = noticeDao.getCount("1");
+		}
+		else {
+			list = noticeDao.getList(page, field, query, "c");
+			//list = noticeDao.getList(page, field, query, classId);
+		}
+		return list;
+	}
+
+	public int getNoticeCount(String id) {
+		int count = noticeDao.getCount(memberClassDao.getClassId(id));
+		//int count = noticeDao.getCount("1");
+		return count;
+	}
+
+	public Board getNotice(String no) {
+		int result = noticeDao.updateHit(no);
+		Board b = noticeDao.get(no);
+		return b;
+	}	
 	
 
 

@@ -6,10 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.avatar.web.dao.InformationDao;
 import com.avatar.web.dao.MemberClassDao;
+import com.avatar.web.dao.MemberRoleDao;
+import com.avatar.web.dao.NoticeDao;
 import com.avatar.web.dao.QuestionDao;
+import com.avatar.web.entity.Board;
 import com.avatar.web.entity.BoardView;
 
 public class HomeService {
+	@Autowired
+	private MemberRoleDao memberRoleDao;
+	
 	@Autowired
 	private MemberClassDao memberClassDao;
 	
@@ -17,7 +23,14 @@ public class HomeService {
 	private QuestionDao questionDao;
 	
 	@Autowired
+	private NoticeDao noticeDao;
+	
+	@Autowired
 	private InformationDao informationDao;
+	
+	public String getRole(String id) {
+		return memberRoleDao.getRole(id);
+	}
 	
 	public String getClassId(String id) {
 		return memberClassDao.getClassId(id);
@@ -27,9 +40,9 @@ public class HomeService {
 		return questionDao.getList(classId);
 	}
 
-	public List<BoardView> getNoticeList(String classId) {
+	public List<Board> getNoticeList(String classId) {
 		// TODO Auto-generated method stub
-		return questionDao.getList(classId);
+		return noticeDao.getList(classId);
 	}
 
 	public List<BoardView> getInfomationList(String classId) {

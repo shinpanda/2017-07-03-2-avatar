@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.avatar.web.dao.MemberClassDao;
+import com.avatar.web.dao.MemberRoleDao;
 import com.avatar.web.entity.BoardView;
 import com.avatar.web.entity.DateData;
 import com.avatar.web.service.BoardService;
@@ -32,12 +34,16 @@ import com.avatar.web.service.HomeService;
 @Controller
 @RequestMapping("/*")
 public class HomeController {
-	
+
 	@Autowired
 	private HomeService service;
 	
 	@RequestMapping("index")
 	public String index(Principal principal, Model model,  DateData dateData) {
+		
+		
+		if(service.getRole(principal.getName())=="ROLE_ADMIN")
+			return "redirect:admin/index";
 		String classId = service.getClassId(principal.getName());
 		model.addAttribute("noticeList", service.getNoticeList(classId));
 		model.addAttribute("questionList", service.getQuestionList(classId));

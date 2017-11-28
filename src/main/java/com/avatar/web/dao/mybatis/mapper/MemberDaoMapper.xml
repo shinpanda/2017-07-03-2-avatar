@@ -10,12 +10,22 @@
 		insert into Member(id,pwd,name,email)
 		values(#{id}, #{pwd}, #{name}, #{email});
 	</insert>
-	
+	<update id="update" parameterType="com.avatar.web.entity.Member">
+		update Member set name=#{name}, pwd=#{pwd}, email=#{email} where id=#{id};
+	</update>
 	<select id="idCheck" resultType="int">
 		select COUNT(*) from Member where id=#{id}
 	</select>
 	<select id="emailCheck" resultType="int">
 		select COUNT(*) from Member where email=#{email}
 	</select>
-
+	<select id="getProfile" resultType="com.avatar.web.entity.Member">
+		select * from Member where id=#{id}
+	</select>
+	<select id="check" resultType="int">
+		select COUNT(*) from Member where id=#{param1} and pwd=#{param2}
+	</select>
+	<delete id="delete" parameterType="com.avatar.web.entity.Member" >
+		delete from Member where id=#{id}
+	</delete>
 </mapper>    

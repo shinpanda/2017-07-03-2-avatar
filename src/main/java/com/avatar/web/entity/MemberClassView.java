@@ -8,7 +8,7 @@ public class MemberClassView {
 	private String classId;
 	private String className;
 	private Date classOpenDate;
-	
+	private String memberRole;
 	
 	
 	public MemberClassView() {
@@ -42,6 +42,12 @@ public class MemberClassView {
 	}
 	public void setClassOpenDate(Date classOpenDate) {
 		this.classOpenDate = classOpenDate;
+	}
+	public String getMemberRole() {
+		return memberRole;
+	}
+	public void setMemberRole(String memberRole) {
+		this.memberRole = memberRole;
 	}
 	
 }
