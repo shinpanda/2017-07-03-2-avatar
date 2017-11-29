@@ -170,7 +170,7 @@ window.addEventListener("load", function() {
 						msgType : "chat",
 						date : Date.now()
 					};
-					ws.send(JSON.stringify(json));
+					ws.send(JSON.stringify(json)); // JSON 객체를 문자열로 바꾸는 것
 				}
 				document.querySelector(".chat-message").firstElementChild.value = "";
 			}
