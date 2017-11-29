@@ -11,5 +11,7 @@
 	<select id="checkPw" resultType="int">
         SELECT COUNT(*) FROM Class WHERE id = #{param1} AND pwd = #{param2}
     </select>
-	
+	<select id="getClassList" resultType="com.avatar.web.entity.Class">
+       SELECT * FROM Class where openerId = #{id}
+    </select>
 </mapper>    
