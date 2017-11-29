@@ -168,6 +168,7 @@ input.logout-btn {
 	border: 0px;
 	font-size: 14px;
 	color: white;
+	cursor: pointer;
 }
 
 /* main style */

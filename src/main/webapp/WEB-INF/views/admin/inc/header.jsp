@@ -24,10 +24,35 @@
 					<h1 class="hidden">메인메뉴</h1>
 					<ul class="main-menu">
 						<li><a href="${ctx}/admin/board">게시판관리<img src="${ctx}/resource/images/board.png"></a></li>
-						<li><a href="${ctx}/admin/member">회원관리<img src="${ctx}/resource/images/user.png"></a></li>
-						
+						<li>
+							<a href="${ctx}/admin/member">회원관리<img src="${ctx}/resource/images/user.png"></a>
+							<ul class="sub-menu hidden">
+								<li><a href="${ctx}/admin/member">회원관리</a></li>
+								<li><a href="${ctx}/admin/member/teacher">선생님관리</a></li>
+							</ul>	
+						</li>
+						<li>
+							<a href="${ctx}/admin/class">강의관리</a>
+							<ul class="sub-menu hidden">
+								<li><a href="${ctx}/admin/class">강의관리</a></li>
+								<li><a href="${ctx}/admin/class/lecture-room">강의실관리</a></li>
+							</ul>						
+						</li>
 					</ul>
-					
+					<script>
+						var str = location.pathname;
+						var index = str.indexOf('/', 3);
+						var res = str.substr(index+1);
+						
+						var onLink = "a[href*='"+res+"']";
+						var onLinks = document.querySelectorAll(onLink);
+						for(var i in onLinks){
+							if(typeof onLinks[i].parentNode!="undefined"){
+								onLinks[i].parentNode.parentNode.classList.remove('hidden');
+								onLinks[i].classList.add('on');
+							}
+						}
+					</script>
 				</nav>
 				<nav id="member-menu" class="member-menu">
 					<h1 class="hidden">회원메뉴</h1>

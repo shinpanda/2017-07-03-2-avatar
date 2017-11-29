@@ -70,6 +70,7 @@ input[type="text"], textarea {
 }
 
 .logo {
+	font-size:20px;
 	text-align:left;
 	font-weight: 400;
 	padding-top: 0px;
@@ -79,15 +80,13 @@ input[type="text"], textarea {
 }
 
 .header a {
-	color: #bbb7bf;
-	font-size:20px;
-	
+	color: #bbb7bf;	
 }
+
 .header a img{
 	width:25px;
 	margin-left: 70px;
 }
-
 
 
 .main-menu {
@@ -120,6 +119,13 @@ input[type="text"], textarea {
 	font-size: 14px;
 }
 
+.main-menu > li > a {
+	font-size:20px;
+}
+.sub-menu{
+	padding-left:10px;
+}
+
 .member-menu {
 	position: absolute;
 	bottom: 0px;
@@ -144,16 +150,19 @@ input[type="text"], textarea {
 	padding: 8px;
 	font-size: 14px;
 }
-
 input.logout-btn {
 	-webkit-appearance: none;
 	background: none;
 	padding: 0px;
 	border: 0px;
 	font-size: 14px;
-	color: white;
+/* 	color: white; */
+	color: #bbb7bf;		
+	cursor: pointer;
 }
-
+input.logout-btn:hover {
+	color: rgba(255, 172, 172, 0.68);
+}
 /* main style */
 .main {
 	margin-left: 250px;
