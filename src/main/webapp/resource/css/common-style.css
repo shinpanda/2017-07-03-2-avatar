@@ -42,7 +42,8 @@ input[type="text"], textarea {
 	width: 100%;
 	min-height: 100%;
 }
-.center{
+
+.center {
 	text-align: center;
 }
 /* header style */
@@ -400,15 +401,16 @@ input.logout-btn {
 	color: #505050;
 }
 /* reg style */
-.board-style.reg-board{
+.board-style.reg-board {
 	position: relative;
 }
+
 .reg-container {
 	background: whitesmoke;
 	padding: 30px;
 	border-radius: 10px;
 	box-sizing: border-box;
-    width: 890px;
+	width: 890px;
 }
 
 .reg-wrapper {
@@ -861,16 +863,62 @@ button.reg-style-btn:last-child {
 	background: #142D45;
 	color: white;
 }
+/* chat-message 알림창 */
+div#chat-notifi {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	background: white;
+	height: 50px;
+	width: 220px;
+	border: 1px solid #999999;
+	font-size: 13px;
+	padding: 10px;
+	box-sizing: content-box;
+	display: flex;
+	transition: 1s;
+	transition-property: height, opacity;
+	-webkit-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-moz-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-o-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750);
+}
+
+#chat-notifi .chat-text-container {
+	display: flex;
+	flex-direction: column;
+	table-layout: fixed;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 500px;
+	margin-left: 10px;
+}
+
+#chat-notifi span.chat-img-wrapper {
+	width: 50px;
+}
+
+#chat-notifi .chat-img-wrapper {
+	min-width: 50px;
+}
+
+#chat-notifi .chat-text-container span:first-child {
+	font-weight: bold;
+}
+
+#chat-notifi .chat-text-container span:first-child ~ span {
+	margin-top: 3px;
+}
 
 /*----- seat-change----- */
 .seat {
-
-	display:inline-block;
+	display: inline-block;
 	width: 95px;
 	height: 95px;
 	background: url('../images/monitor.png');
 	text-align: center;
-    line-height: 160px;
+	line-height: 160px;
 }
 
 #top {
@@ -1037,6 +1085,30 @@ button.reg-style-btn:last-child {
 } */
 
 /* Calendar */
-#calendar-main {
-	margin-left: 0px !important;
+
+.sun {
+    color: #f3928a;
 }
+
+.sat {
+    color: #749dfd;
+}
+
+.row.week {
+    line-height: 40px;
+}
+
+.day {
+    text-align: center;
+}
+.today {
+	/* border: 1px solid #f7bdbd; */
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+/* #calendar-main{
+	margin-left:0px !important;
+} 
+ */
+

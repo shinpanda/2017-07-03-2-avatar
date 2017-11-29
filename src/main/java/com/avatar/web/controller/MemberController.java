@@ -2,10 +2,12 @@ package com.avatar.web.controller;
 
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -114,24 +116,65 @@ public class MemberController {
 	
 	
 	@RequestMapping(value="mypage", method=RequestMethod.GET)
-	public String mypage(Model model) {
+	public String mypage(Principal principal,Model model) {
+		String id = principal.getName();
+		model.addAttribute("c", service.getClassInfo(id));
+		
 		return "member.mypage";
 	}
-	
+	@RequestMapping(value="mypage", method=RequestMethod.POST)
+	public String mypage(@RequestParam(value="checkpwd", defaultValue="") String checkpwd,HttpServletRequest request, Principal principal) throws UnsupportedEncodingException {
+		String id = principal.getName();
+		System.out.println("id:"+id+", checkPwd: "+checkpwd);
+		
+		int result =0;
+		result = service.check(id,checkpwd);
+		System.out.println("result: "+result);
+		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
+		if(result >0) {
+			service.delete(id);
+			session.invalidate();
+			System.out.println("탈퇴완료");
+			return "member.login";
+		}else {
+			System.out.println("탈퇴실패");
+			return "member.mypage";
+		}
+	}
+	@RequestMapping(value="classsetting", method=RequestMethod.GET)
+	public String classsetting(Model model) {
+		return "member.classsetting";
+	}
 	
 	@RequestMapping(value="profile", method=RequestMethod.GET)
-	public String profile(Model model) {
-		List<Member> memberList = service.getList();
-		model.addAttribute("memberList", memberList);
+	public String profile(Principal principal, Model model) {
+		String id = principal.getName();
+		model.addAttribute("member", service.getProfile(id));
+		model.addAttribute("c", service.getClassInfo(id));
 		return "member.profile";
 	}
+	@RequestMapping(value="profile", method=RequestMethod.POST)
+	public String profile(Member member, Principal principal) throws IOException {
+		String id = principal.getName();
+		int result =0;
+		
+		result = service.update(id,member.getName(),member.getPwd(),member.getEmail());
+        if(result > 0){ 
+        	System.out.println("수정 성공");
+        	return "redirect:mypage";
+        }else {
+        	System.out.println("수정실패");
+        	return "redirect:profile";
+        }
+	}
+	
 	
 	@RequestMapping(value="chat", method=RequestMethod.GET)
 	public String chat(Principal principal, Model model) {
 		
 		model.addAttribute("list", service.getChatList(principal.getName()));
-		model.addAttribute("br", "<br/>");
-		model.addAttribute("cn", "\n");
+		
 		return "member.chat";
 	}
 	

@@ -12,6 +12,7 @@ import com.avatar.web.dao.MemberDao;
 import com.avatar.web.dao.MemberRoleDao;
 import com.avatar.web.entity.ChatView;
 import com.avatar.web.entity.Member;
+import com.avatar.web.entity.MemberClassView;
 import com.google.gson.JsonElement;
 
 
@@ -33,6 +34,13 @@ public class MemberService {
 	public String getClassId(String id) {
 		String classId = memberClassDao.getClassId(id);
 		return classId;
+	}
+	public MemberClassView getClassInfo(String id) {
+		MemberClassView memberClassView = memberClassDao.getClassInfo(id);
+		String memberClass = memberClassView.getClassName();
+		String memberRole = memberClassView.getMemberRole();
+		System.out.println("className,memberRole : "+memberClass+","+memberRole);
+		return memberClassView;
 	}
 	/*
 	@Transactional
@@ -75,9 +83,22 @@ public class MemberService {
 	int result = memberDao.emailCheck(email);
 		return result;
 	}
-	public List<Member> getList() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public Member getProfile(String id) {
+		Member member = memberDao.getProfile(id);
+		return member;
+	}
+	
+	public int update(String id, String name, String pwd, String email) {
+		int result = memberDao.update(id,name,pwd,email);
+		return result;
+	}
+	public int check(String id, String checkpwd) {
+		int result = memberDao.check(id,checkpwd);
+		return result;
+	}
+	public void delete(String id) {
+		memberDao.delete(id);
 	}
 	
 }

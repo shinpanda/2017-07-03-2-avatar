@@ -1,9 +1,6 @@
 package com.avatar.web;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.InitializingBean;
@@ -13,7 +10,6 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import com.avatar.web.dao.ChatDao;
 import com.avatar.web.service.MemberService;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -53,8 +49,11 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 		super.handleTextMessage(session, message);
 		//System.out.println("test:"+session.getPrincipal().getName());
 		JsonParser jsonParser = new JsonParser();
-
-		JsonObject jsonObject = (JsonObject) jsonParser.parse(message.getPayload());
+		System.out.println(message.getPayload());
+		String msg = message.getPayload().toString().replace("\\n", "<br/>");
+		System.out.println(msg);		
+		//JsonObject jsonObject = (JsonObject) jsonParser.parse(message.getPayload());
+		JsonObject jsonObject = (JsonObject) jsonParser.parse(msg);
 
 		if (!jsonObject.isJsonNull()) {
 			String[] temp = jsonObject.get("content").toString().split("\"");
@@ -63,7 +62,7 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 			String classId = temp[1];*/
 			// jsonObject.remove("id");
 			//System.out.println(session.getPrincipal().getName());
-			content = content.replace("\\n", "<br/>");
+			//content = content.replace("\\n", "<br/>");
 			int result = service.insertChat(content, session.getPrincipal().getName());
 			System.out.println("result"+result);
 			// session.sendMessage(new TextMessage(message.getPayload()));
@@ -71,7 +70,8 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 			// sendClass(message);
 			System.out.println("sendClass classId : "+service.getClassId(session.getPrincipal().getName()));
 			//sendClass(message, service.getClassId(session.getPrincipal().getName()));
-			sendClass(message, service.getClassId(session.getPrincipal().getName()));
+
+			sendClass(new TextMessage(msg.getBytes()), service.getClassId(session.getPrincipal().getName()));
 		}
 	}
 

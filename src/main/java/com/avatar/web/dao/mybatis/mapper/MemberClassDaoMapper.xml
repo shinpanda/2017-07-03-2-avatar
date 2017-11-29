@@ -15,6 +15,11 @@
 		select classId from MemberClass where memberId = #{id}
 	</select>
 	
+	<select id="getClassInfo" resultType="com.avatar.web.entity.MemberClassView">
+		<!-- select name from Class where id=(select classId from MemberClass where memberId = #{id}); -->
+		select * from MemberClassView where memberId = #{id}
+	</select>
+	
 	<select id="getList" resultType="com.avatar.web.entity.MemberClassView">		
 		select memberName from MemberClassView where classId=#{classId};
 	</select>

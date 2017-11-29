@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-<tiles:importAttribute name="memberRole"/>
+<tiles:importAttribute name="memberRole" />
 <main class="main">
 <div class="chat-container">
 	<span>C class</span>
@@ -31,10 +31,12 @@
 				</div>
 			</c:if>
 			<div class="row">
-				<h5><c:if test="${n.role eq 'ROLE_STUDENT'}">학생</c:if>
-			<c:if test="${n.role eq 'ROLE_TEACHER'}">선생님</c:if></h5>
+				<h5>
+					<c:if test="${n.role eq 'ROLE_STUDENT'}">학생</c:if>
+					<c:if test="${n.role eq 'ROLE_TEACHER'}">선생님</c:if>
+				</h5>
 				<div>
-					<p>${fn:replace(n.content, cn, br)}</p>
+					<p>${n.content}</p>
 					<span><fmt:formatDate value="${n.regDate}" pattern="HH:mm" /></span>
 				</div>
 			</div>
@@ -51,8 +53,8 @@
 	</template>
 	<div class="chat-message">
 		<textarea rows="5" cols="55"></textarea>
-		<input type="hidden" value="${memberRole}">
-		<input type="button" value="전송" />
+		<input type="hidden" value="${memberRole}"> <input
+			type="button" value="전송" />
 	</div>
 	<script>
 		

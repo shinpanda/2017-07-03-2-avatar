@@ -1,5 +1,6 @@
 package com.avatar.web.dao.mybatis;
 
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,7 +17,6 @@ public class MybatisMemberDao implements MemberDao {
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 		return memberDao.insert(member);
 	}
-	
 
 	@Override
 	public int insert(String id, String pwd, String name, String email) {
@@ -36,6 +36,39 @@ public class MybatisMemberDao implements MemberDao {
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 		int result = memberDao.emailCheck(email);
 		return result;
+	}
+
+	@Override
+	public Member getProfile(String id) {
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		Member member = memberDao.getProfile(id);
+		return member;
+	}
+
+
+	@Override
+	public int update(String id,String name, String pwd, String email) {
+		return update(new Member(id, pwd, name, email));
+	}
+
+
+	@Override
+	public int update(Member member) {
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		int result = memberDao.update(member);
+		return result;
+	}
+
+	@Override
+	public int check(String id, String checkpwd) {
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		return memberDao.check(id,checkpwd);
+	}
+
+	@Override
+	public void delete(String id) {
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		memberDao.delete(id);
 	}
 
 }

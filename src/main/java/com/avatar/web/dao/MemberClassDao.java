@@ -13,4 +13,6 @@ public interface MemberClassDao {
 
 	MemberClassView getHeader(String sessionId);
 
+	MemberClassView getClassInfo(String id);
+
 }
