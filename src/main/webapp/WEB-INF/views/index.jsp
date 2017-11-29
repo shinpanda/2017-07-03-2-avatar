@@ -45,7 +45,7 @@
 		</div>
 		<div class="widget cell">
 			<h3>
-				달력 <span></span></a>
+				달력 <span></span>
 			</h3>
 			<hr />
 			<div class="widget-board-container">
@@ -136,6 +136,7 @@
 					}
 					
 				</script>
+
 			</div>
 		</div>
 	</div>
