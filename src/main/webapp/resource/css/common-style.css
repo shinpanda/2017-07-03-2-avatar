@@ -1085,6 +1085,67 @@ div#chat-notifi {
 } */
 
 /* Calendar */
-#calendar-main {
-	margin-left: 0px !important;
+/* #calendar-main{
+	margin-left:0px !important;
+} 
+ */
+
+/* calendar 일정 정리 */
+.widget-schedule {
+	margin-top: 5px;
+	width: 100%;
+	height: 120px;
+	background: #f9f9f9;
+	padding: 11px 13px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	border-radius: 7px;
+	justify-content: space-between;
+}
+
+.widget-schedule .schedule_day {
+    text-align: center;
+    width: 100px;
+    line-height: 18px;
+}
+
+.widget-schedule select {
+    height: 24px;
+    margin-left: 10px;
+}
+
+.widget-schedule div {
+    display: flex;
+    font-size: 13px;
+    align-items: center;
+}
+
+.widget-schedule textarea {
+    width: 302.52px;
+    box-sizing: border-box;
+    resize: none;
+    overflow: auto;
+}
+
+.widget-schedule input[type="button"] {
+    width: 70px;
+    margin-left: 10px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background: #a7a7a7;
+    color: white;
+    height: 42px;
+    font-size: 13px;
+}
+
+input.schedule-subject {
+    width: 302.52px;
+    box-sizing: border-box;
+}
+
+.widget-schedule.schedule {
+    justify-content: baseline;
+    height: 100px;
+    margin-top: 5px;
 }
