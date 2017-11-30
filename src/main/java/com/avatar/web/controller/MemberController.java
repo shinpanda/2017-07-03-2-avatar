@@ -143,7 +143,10 @@ public class MemberController {
 		}
 	}
 	@RequestMapping(value="classsetting", method=RequestMethod.GET)
-	public String classsetting(Model model) {
+	public String classsetting(Principal principal, Model model) {
+		String id = principal.getName();
+		model.addAttribute("clist", service.getClassList(id));
+		
 		return "member.classsetting";
 	}
 	

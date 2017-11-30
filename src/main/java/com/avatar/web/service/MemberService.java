@@ -13,7 +13,7 @@ import com.avatar.web.dao.MemberRoleDao;
 import com.avatar.web.entity.ChatView;
 import com.avatar.web.entity.Member;
 import com.avatar.web.entity.MemberClassView;
-import com.google.gson.JsonElement;
+import com.avatar.web.entity.Class;
 
 
 public class MemberService {
@@ -99,6 +99,10 @@ public class MemberService {
 	}
 	public void delete(String id) {
 		memberDao.delete(id);
+	}
+	public List<Class> getClassList(String id) {
+		
+		return classDao.getClassList(id);
 	}
 	
 }

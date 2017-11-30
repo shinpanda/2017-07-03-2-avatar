@@ -1,10 +1,8 @@
 package com.avatar.web.dao.mybatis;
 
 import java.util.List;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.avatar.web.dao.ClassDao;
 import com.avatar.web.dao.MemberDao;
 import com.avatar.web.entity.Class;
@@ -36,7 +34,13 @@ public class MybatisClassDao implements ClassDao {
 		 System.out.println("classDao.checkPw return():"+classDao.checkPw(classId, classPwd));
 		  
         return classDao.checkPw(classId, classPwd);
-		
+	}
+
+	@Override
+	public List<Class> getClassList(String id) {
+		ClassDao classDao = sqlSession.getMapper(ClassDao.class);
+		List<Class> list = classDao.getClassList(id);
+		return list;
 	}
 
 	@Override
