@@ -170,6 +170,9 @@ input.logout-btn {
 	color: white;
 	cursor: pointer;
 }
+input.logout-btn:hover {
+	color: rgba(255, 172, 172, 0.68);
+}
 
 /* main style */
 .main {

@@ -58,7 +58,15 @@ window.addEventListener("load", function() {
 			var d = Date.now();
 			var csrfParameter = document.querySelector("meta[name='_csrf_parameter']").content;
 			var csrfToken = document.querySelector("meta[name='_csrf']").content;
-
+			
+			var size = file.size;
+			if(size > 10*1024*1024){
+				alert("죄송합니다. 10MB를 넘는 파일은 전송할 수 없습니다.");
+				return;
+			}
+			
+			
+			
 			var formData = new FormData();
 			formData.append("now", "" + d);
 			formData.append("file", file);

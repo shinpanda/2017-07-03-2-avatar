@@ -102,8 +102,8 @@
 				
 				var data = {
 						id : roomAdminContainer.querySelector('#room-name').value,
-						row : roomAdminContainer.querySelector('#col').value,  
-						col : roomAdminContainer.querySelector('#row').value,
+						row : roomAdminContainer.querySelector('#row').value,  
+						col : roomAdminContainer.querySelector('#col').value,
 						type : type
 				}
 				formData.append("data", JSON.stringify(data));
