@@ -14,9 +14,16 @@ public class MybatisClassDao implements ClassDao {
 
 	@Override
 	public List<Class> getList() {
-		ClassDao classDao = sqlSession.getMapper(ClassDao.class);
-		List<Class> list = classDao.getList();
+		/*ClassDao classDao = sqlSession.getMapper(ClassDao.class);
+		List<Class> list = classDao.getList();*/
 		
+		return getList(1, "course", "");
+	}
+	
+	@Override
+	public List<Class> getList(Integer page, String field, String query) {
+		ClassDao classDao = sqlSession.getMapper(ClassDao.class);
+		List<Class> list = classDao.getList(page, field, query);
 		return list;
 	}
 
@@ -35,4 +42,11 @@ public class MybatisClassDao implements ClassDao {
 		List<Class> list = classDao.getClassList(id);
 		return list;
 	}
+
+	@Override
+	public int getCount() {
+		ClassDao classDao = sqlSession.getMapper(ClassDao.class);
+		return classDao.getCount();
+	}
+
 }

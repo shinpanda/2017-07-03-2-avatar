@@ -44,6 +44,9 @@ public class BoardController {
 	public String questionDetail(@PathVariable("no") String no, Model model) {
 		model.addAttribute("b", service.getQuestion(no));
 		model.addAttribute("cmtList", service.getQuestionCmtList(no));
+		model.addAttribute("br", "<br/>");
+		model.addAttribute("cn", "\n");
+
 		return "board.question.detail";
 	}
 	
@@ -146,6 +149,9 @@ public class BoardController {
 	public String informationDetail(@PathVariable("no") String no, Model model) {
 		model.addAttribute("b", service.getInformation(no));
 		model.addAttribute("cmtList", service.getInformationCmtList(no));
+		model.addAttribute("br", "<br/>");
+		model.addAttribute("cn", "\n");
+
 		return "board.information.detail";
 	}
 	
