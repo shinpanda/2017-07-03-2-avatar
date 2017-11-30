@@ -884,3 +884,34 @@ button.reg-style-btn:last-child {
 #top #text {
 	padding-left: 130px;
 }
+
+/* 강의실 관리 */
+.box-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.box {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #e9e9e9;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.box h5 {
+    margin: 10px 0px;
+}
+.box div {
+    font-size: 14px;
+}
+
+.box-btn-container {
+    text-align: center;
+}
+.box:hover {
+    border: 2px solid #ffe1ac;
+}

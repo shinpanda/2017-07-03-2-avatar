@@ -46,6 +46,6 @@ public class AdminController {
 	@RequestMapping("class/lecture-room")
 	public String adminLectureRoom() {
 		
-		return "admin.board.list";	
+		return "admin.class.lecture-room";	
 	}
 }
