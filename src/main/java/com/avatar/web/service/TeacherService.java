@@ -1,6 +1,7 @@
 package com.avatar.web.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,6 +10,8 @@ import com.avatar.web.dao.NoticeDao;
 import com.avatar.web.entity.Board;
 import com.avatar.web.entity.BoardCmt;
 import com.avatar.web.entity.BoardView;
+import com.avatar.web.entity.MemberClass;
+import com.avatar.web.entity.MemberClassView;
 
 public class TeacherService {
 	
@@ -59,6 +62,13 @@ public class TeacherService {
 	public int deleteNotice(String no) {
 		int result = noticeDao.delete(no);
 		return result; 
+	}
+
+
+	public List<MemberClass> getSeatList(String id) {
+		String classId = memberClassDao.getClassId(id);
+		
+		return null;
 	}
 	
 }

@@ -224,7 +224,7 @@ input.logout-btn:hover {
 	margin: 0;
 	font-size: 18px;
 }
-
+	
 .widgets h3 span {
 	font-size: 10px;
 	float: right;
@@ -247,7 +247,9 @@ input.logout-btn:hover {
 .widgets.row {
 	height: 50%;
 }
-
+	.widgets .row.board-row {
+	    line-height: 20px;
+	}
 .widget.cell {
 	width: 455px;
 	table-layout: fixed;
@@ -1170,6 +1172,54 @@ input.schedule-subject {
 
 .widget-schedule.schedule {
     justify-content: baseline;
-    height: 100px;
+    min-height: 100px;
+    height: inherit;
     margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+
+/* teacher seat is-complete */
+
+.class-seat-container {
+    margin: 50px;
+}
+
+.class-seat-wrapper {
+    border: 2px solid #4a5169;
+    border-radius: 20px;
+    display: inline-flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+	input.btn.is-complete-button {
+	    font-size: 17px;
+	    font-weight: 700;
+	    background: #0f0d71;
+	    padding: 8px 15px;
+	    color: white;
+	    border-radius: 6px;
+	    width: 66px;
+	}
+.event-label-box {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid #4a5169;
+    font-size: 14px;
+    border-radius: 3px;
+    margin-right: 30px;
+}
+
+.is-complete-event-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.is-complete-event-btn-container {
+    display: inline-flex;
+    width: 145px;
+    justify-content: space-around;
 }

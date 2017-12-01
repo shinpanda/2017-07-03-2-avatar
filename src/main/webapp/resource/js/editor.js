@@ -77,15 +77,13 @@ window.addEventListener("load", function() {
 			};
 
 			xhr.upload.onloadend = function(e) {
-				//var content = document.querySelector('#content');
-				var img = document.createElement('img');
-				//img.src = 'http://i.huffpost.com/gen/5524070/thumbs/o-THE-570.jpg?3'+d+file.name;
-				//img.src = 'http://i.huffpost.com/gen/5524070/thumbs/o-THE-570.jpg?3';
-				img.src = '../../resource/upload/' + d + file.name;
-				content.appendChild(img);
 			}
 
 			xhr.upload.onload = function(e) {
+				//var content = document.querySelector('#content');
+				var img = document.createElement('img');
+				img.src = '../../resource/upload/' + d + file.name;
+				content.appendChild(img);
 			};
 
 			xhr.onerror = function(e) {
