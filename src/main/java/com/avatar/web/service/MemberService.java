@@ -13,6 +13,7 @@ import com.avatar.web.dao.MemberRoleDao;
 import com.avatar.web.entity.ChatView;
 import com.avatar.web.entity.Member;
 import com.avatar.web.entity.MemberClassView;
+import com.google.gson.JsonElement;
 import com.avatar.web.entity.Class;
 
 
@@ -104,5 +105,25 @@ public class MemberService {
 		
 		return classDao.getClassList(id);
 	}
-	
+	public int newClass(Class cl) {
+		int result = classDao.newClass(cl);
+		
+		return result;
+	}
+	public Class getClass(String openerId, String classId) {
+		Class cl = classDao.getClass(openerId,classId);
+		return cl;
+	}
+
+	public int editClass(Class cl) {
+		int result = classDao.editClass(cl);
+
+		return result;
+	}
+	public int getStuCount(String classId) {
+		int result = memberClassDao.getStuCount(classId);
+
+		return result;
+	}
+
 }
