@@ -43,7 +43,8 @@
 	<bean class="com.avatar.web.dao.mybatis.MybatisClassDao" />
 	<bean class="com.avatar.web.dao.mybatis.MybatisMemberRoleDao" />
 	<bean class="com.avatar.web.dao.mybatis.MybatisMemberClassDao" />
-	<bean class="com.avatar.web.dao.mybatis.MybatisNoticeDao" />	
+	<bean class="com.avatar.web.dao.mybatis.MybatisNoticeDao" />
+	<bean class="com.avatar.web.dao.mybatis.MybatisLectureRoomDao" />	
 	
 	<!-- Service 객체들 -->
 	<bean class="com.avatar.web.service.MemberService" />		
