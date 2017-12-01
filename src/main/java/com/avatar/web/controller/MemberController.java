@@ -4,6 +4,9 @@ package com.avatar.web.controller;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -142,14 +145,69 @@ public class MemberController {
 			return "member.mypage";
 		}
 	}
+	
+	@RequestMapping(value="class-list")
+	@ResponseBody
+	public String getList(Principal principal, HttpServletRequest request, Model model) {
+		String openerId = principal.getName();
+		String classId = request.getParameter("classId");
+		Gson gson = new Gson();
+		String json = "";
+		json = gson.toJson(service.getClass(openerId,classId));
+		return json;
+	}	
+	@RequestMapping(value="edit-class", method=RequestMethod.POST)
+	public String editClass(Principal principal
+			,@RequestParam(value="edit-id", defaultValue="") String id
+			,@RequestParam(value="edit-course", defaultValue="") String course
+			,@RequestParam(value="edit-name", defaultValue="") String name
+			,@RequestParam(value="edit-pwd", defaultValue="") String pwd
+			,@RequestParam(value="edit-openDate", defaultValue="") String open
+			,@RequestParam(value="edit-completeDate", defaultValue="") String complete
+			 ) throws ParseException {
+		
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date openDate = transFormat.parse(open);
+		Date completeDate = transFormat.parse(complete);
+		String openerId = principal.getName();
+		/*System.out.println("edit-class: "+openerId+","+course+","+name+","+pwd+","+openDate+","+completeDate);*/
+		Class cl = new Class(id,name,pwd,course,openDate,completeDate,openerId);
+		System.out.println("memberId: "+openerId);
+		int result = service.editClass(cl);
+		System.out.println("result: "+result);
+		
+		return "redirect:classsetting";
+	}
+	
 	@RequestMapping(value="classsetting", method=RequestMethod.GET)
 	public String classsetting(Principal principal, Model model) {
 		String id = principal.getName();
 		model.addAttribute("clist", service.getClassList(id));
-		
 		return "member.classsetting";
 	}
-	
+	@RequestMapping(value="new-class", method=RequestMethod.POST)
+	public String newClass(Principal principal
+			,@RequestParam(value="course", defaultValue="") String course
+			,@RequestParam(value="name", defaultValue="") String name
+			,@RequestParam(value="pwd", defaultValue="") String pwd
+			,@RequestParam(value="openDate", defaultValue="") String open
+			,@RequestParam(value="completeDate", defaultValue="") String complete
+			 ) throws ParseException {
+		
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date openDate = transFormat.parse(open);
+		Date completeDate = transFormat.parse(complete);
+		
+		String openerId = principal.getName();
+		Class cl = new Class(null,name,pwd,course,openDate,completeDate,openerId);
+		System.out.println("memberId: "+openerId);
+		int result = service.newClass(cl);
+		System.out.println("result: "+result);
+		
+		return "redirect:classsetting";
+	}
 	@RequestMapping(value="profile", method=RequestMethod.GET)
 	public String profile(Principal principal, Model model) {
 		String id = principal.getName();
@@ -171,8 +229,6 @@ public class MemberController {
         	return "redirect:profile";
         }
 	}
-	
-	
 	@RequestMapping(value="chat", method=RequestMethod.GET)
 	public String chat(Principal principal, Model model) {
 		

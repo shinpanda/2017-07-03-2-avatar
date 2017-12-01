@@ -104,5 +104,20 @@ public class MemberService {
 		
 		return classDao.getClassList(id);
 	}
-	
+	public int newClass(Class cl) {
+		int result = classDao.newClass(cl);
+		
+		return result;
+	}
+	public Class getClass(String openerId, String classId) {
+		Class cl = classDao.getClass(openerId,classId);
+		return cl;
+	}
+
+	public int editClass(Class cl) {
+		int result = classDao.editClass(cl);
+
+		return result;
+	}
+
 }

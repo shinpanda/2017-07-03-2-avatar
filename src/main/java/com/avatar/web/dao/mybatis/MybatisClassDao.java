@@ -49,4 +49,24 @@ public class MybatisClassDao implements ClassDao {
 		return classDao.getCount();
 	}
 
+	@Override
+	public int newClass(Class cl) {
+		ClassDao classDao = sqlSession.getMapper(ClassDao.class);
+		return classDao.newClass(cl);
+	}
+
+	@Override
+	public Class getClass(String openerId, String classId) {
+		ClassDao classDao = sqlSession.getMapper(ClassDao.class);
+		return classDao.getClass(openerId,classId);
+	}
+
+	@Override
+	public int editClass(Class cl) {
+		System.out.println("mybatis:"+cl.getId()+", "+cl.getOpenerId()+", "+cl.getCourse());
+		
+		ClassDao classDao = sqlSession.getMapper(ClassDao.class);
+		return classDao.editClass(cl);
+	}
+
 }
