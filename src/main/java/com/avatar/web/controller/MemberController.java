@@ -94,7 +94,7 @@ public class MemberController {
 		String id = request.getParameter("id");
 		Gson gson = new Gson();
 		String json = "";
-		json = gson.toJson(service.idCheck(id));
+		System.out.println(service.idCheck(id));
 		return json;
 	}
 	@RequestMapping(value="emailCheck")
@@ -154,6 +154,17 @@ public class MemberController {
 		Gson gson = new Gson();
 		String json = "";
 		json = gson.toJson(service.getClass(openerId,classId));
+		System.out.println(json);
+		return json;
+	}	
+	@RequestMapping(value="student-count")
+	@ResponseBody
+	public String getStuCount(Principal principal, HttpServletRequest request, Model model) {
+		String openerId = principal.getName();
+		String classId = request.getParameter("classId");
+		Gson gson = new Gson();
+		String json = "";
+		json = gson.toJson(service.getStuCount(classId));
 		return json;
 	}	
 	@RequestMapping(value="edit-class", method=RequestMethod.POST)

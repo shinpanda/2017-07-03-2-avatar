@@ -13,25 +13,7 @@
 
 <title>Avatar</title>
 <!-- // jQuery 기본 js파일 -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-<!-- // jQuery UI CSS파일  -->
-<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
-<!-- // jQuery UI 라이브러리 js파일 -->
-<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
-
-
-
-
-
-
-
-
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 	<div id="body">
@@ -134,37 +116,33 @@
 					<div class="modal-box">
 						<div class="modal-header">
 							<div class="close-modal2">&#10006;</div>
-							<h1 style="margin-top: auto;">클래스삭제</h1>
+							<h1 style="margin-top: auto;" id="del-name"></h1>
 						</div>
 						<form action="?${_csrf.parameterName}=${_csrf.token}"
 							method="post">
 							<div class="modal-body center">
-
-								<p>클래스 삭제를 누르면 클래스가 삭제됩니다.</p>
-
+								
 								<div class="dc-name mem-fixed set title">
-									<span class="class-name">과정명 : </span> <input type="text"
-										class="content-box dc-name cell" name="course" />
+									<span class="class-name">과정명 : 
+										<span id="del-course" style="font-variant: all-small-caps; font-size: 27px;"></span></span>
+									<input type="hidden" id="del-id" name="del-id"/>
 								</div>
-
+								
+								<p style="color:red;">**클래스 삭제를 원하시면 클래스에 학생에 존재하지 않아야 합니다.</p>
+								<p id="student-num">현재 클래스 학생수: </p>
+								<p>클래스 비밀번호 입력 후 삭제를 누르면 클래스가 삭제됩니다.</p>
+								<p>클래스 비밀번호가 올바르면 클래스 삭제버튼이 활성화됩니다.</p>
 								<div class="table">
 									<div class="dc-name mem-fixed set">
-										<span class="class-name cell">클래스 이름 : </span> <input
-											type="text" class="content-box dc-name class cell"
-											name="name"> <span class="class-name cell">클래스
-											비밀번호 : </span> <input type="password"
-											class="content-box dc-name class  cell" name="pwd">
-									</div>
-									<div class="dc-name mem-fixed set">
-										<span class="class-name cell">시작일 : </span> <input type="date"
-											class="content-box dc-name class cell" name="openDate">
-										<span class="class-name cell">수료일 : </span> <input type="date"
-											class="content-box dc-name class cell" name="completeDate">
+										<span class="class-name cell">비밀번호 : 
+											<input type="password" class="content-box dc-name class cell" id="del-pwd" name="del-pwd">
+										</span> 
 									</div>
 								</div>
-
-								<br /> <br /> <input class="btn-modal" type="submit"
-									value="클래스 생성">
+								<div class="del-cl" id="delete-cl" style="display:none;" >
+								<p style="color:blue;">**올바른 비밀번호를 입력하였습니다.</p>
+								<input class="btn-modal" type="submit" id="delete-class-btn" value="클래스 삭제">
+								</div>
 							</div>
 						</form>
 					</div>
@@ -214,18 +192,13 @@
 				</div>
 
 			</div>
-
-
 			</main>
 		</div>
 	</div>
 
-
-
 	<script
 		src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js'></script>
 	<script>
-	$(document).ready(function(){
 		/* 추가 */
 		$(".modal-trigger").click(function(e) {
 			e.preventDefault();
@@ -240,36 +213,81 @@
 				"display" : "none"
 			});
 		});
-		/* 삭제2 */
+		/* 2.삭제 */
+		
+		var clPwd = null;
 		$(".modal-trigger2").click(function(e) {
-			e.preventDefault();
+			$.get("../member/class-list?${_csrf.parameterName}=${_csrf.token}&classId=" 
+					+ $(e.target).parents('.class-row').attr('id'), function(result) {
+								var c = JSON.parse(result);
+								clPwd = c['pwd'];
+								$('input[id=del-id]').attr('value',c['id']);
+								$('h1[id=del-name]').text(c['name']+" 클래스 삭제");
+								$('span[id=del-name]').text(c['name']);
+								$('span[id=del-course]').text(c['course']);	
+			})
+			$.get("../member/student-count?${_csrf.parameterName}=${_csrf.token}&classId=" 
+					+ $(e.target).parents('.class-row').attr('id'), function(result) {
+						$('#student-num').append(result+" 명");	 
+						if(result == 0)
+							$('#student-num').append("<strong> (현재 클래스 삭제가 가능합니다.)</strong>");
+						else{
+							$('#student-num').append("<strong style='color:red;'>(현재 클래스 삭제가 불가능합니다.)</strong>");
+						}
+			})
+			$("#del-pwd").change(function(){
+				if($("#del-pwd").val() == clPwd){
+					$("#delete-cl").css({
+						"display" : "block"
+					});
+					$("#delete-class-btn").css({
+						"display" : "unset"
+					});
+					/* <p style="color:blue;">**올바른 비밀번호를 입력하였습니다.</p> */
+					$("#delete-cl").children('p').text("**올바른 비밀번호를 입력하였습니다.");
+					$("#delete-cl").children('p').css({"color":"blue"});
+				}else {
+					$("#delete-cl").css({
+						"display" : "block"
+					});
+					/* <span style='color:red;'>올바른비밀번호를입력해주세요</span> */
+					$("#delete-cl").children('p').text("올바른비밀번호를입력해주세요");
+					$("#delete-cl").children('p').css({"color":"red"});
+					$("#delete-class-btn").css({
+						"display" : "none"
+					});
+					
+				}
+			});
+			
 			$(".modal2").css({
 				"display" : "block"
 			});
 		});
-
 		$(".close-modal2, .modal-sandbox2").click(function() {
 			$(".modal2").css({
 				"display" : "none"
 			});
+			$("#del-pwd").val('');
+			$("#delete-cl").css({
+				"display" : "none"
+			});
+			/* 중복됨 수정해야함 !!!!!??????? */
+		/* 	$('#student-num').css({
+				"display" : "none"
+			}) 
+		    $('##student-num').children("strong").css({
+				"display" : "none"
+			})  */
 		});
-
-		/* 수정 3*/
 		
-		$(".modal-trigger3")
-				.click(
-						function(e) {
+		/* 3.수정 */
+		
+			$(".modal-trigger3").click(function(e) {
 							e.preventDefault();
 							/* console.log($(e.target).parents('.class-row').attr('id')); */
-							
-							$
-									.get(
-											
-											
-											
-											"../member/class-list?${_csrf.parameterName}=${_csrf.token}&classId="
-													+ $(e.target).parents('.class-row').attr('id'),
-											function(result) {
+							$.get("../member/class-list?${_csrf.parameterName}=${_csrf.token}&classId=" 
+									+ $(e.target).parents('.class-row').attr('id'), function(result) {
 												var c = JSON.parse(result);
 												/* var openDate = c['openDate']; */
 												var ope = new Date(
@@ -279,39 +297,21 @@
 												var openDate = ope
 														.getFullYear()
 														+ "-"
-														+ ((ope.getMonth() + 1) >= 10 ? (ope
-																.getMonth() + 1)
-																: "0"
-																		+ (ope
-																				.getMonth() + 1))
+														+ ((ope.getMonth() + 1) >= 10 ? (ope.getMonth() + 1) : "0"
+														+ (ope.getMonth() + 1))
 														+ "-" + ope.getDate();
-												var completeDate = complete
-														.getFullYear()
+												var completeDate = complete.getFullYear() 
 														+ "-"
-														+ ((complete.getMonth() + 1) >= 10 ? (complete
-																.getMonth() + 1)
-																: "0"
-																		+ (complete
-																				.getMonth() + 1))
+														+ ((complete.getMonth() + 1) >= 10 ? (complete.getMonth() + 1): "0"
+														+ (complete.getMonth() + 1))
 														+ "-"
 														+ complete.getDate();
-												$('input[name=edit-id]').attr(
-														'value', c['id']);
-												$('input[name=edit-course]')
-														.attr('value',
-																c['course']);
-												$('input[name=edit-name]')
-														.attr('value',
-																c['name']);
-												$('input[name=edit-pwd]').attr(
-														'value', c['pwd']);
-												$('input[name=edit-openDate]')
-														.attr('value', openDate);
-												$(
-														'input[name=edit-completeDate]')
-														.attr('value',
-																completeDate);
-
+												$('input[name=edit-id]').attr('value', c['id']);
+												$('input[name=edit-course]').attr('value', c['course']);
+												$('input[name=edit-name]').attr('value', c['name']);
+												$('input[name=edit-pwd]').attr('value', c['pwd']);
+												$('input[name=edit-openDate]').attr('value', openDate);
+												$('input[name=edit-completeDate]').attr('value', completeDate);
 											})
 							$(".modal3").css({
 								"display" : "block"
@@ -323,6 +323,5 @@
 				"display" : "none"
 			});
 		});
-	});
 	</script>
 </body>
