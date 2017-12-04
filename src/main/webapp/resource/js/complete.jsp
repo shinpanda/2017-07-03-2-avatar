@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +23,7 @@
 			</div>
 
 			<input type="button" value="다했어요" class="btn complete-btn" />
+			<input type="hidden" value='<security:authentication property="name"/>' />
 		</div>
 	</div>
 </body>
@@ -32,6 +35,8 @@
 
 	const ws = new WebSocket("ws://211.238.142.93/web/echo");
 	var completeButton = document.querySelector('.btn.complete-btn');
+	var memberId = document.querySelector(".push-window-container").querySelector('input[type="hidden"]').value;
+	console.log(memberId);
 	completeButton.onclick = function() {
 		var time = new Date(Date.now());
 		//time = time - document.getElementById("start-time").value;
@@ -40,7 +45,8 @@
 			content : "complete",
 			msgType : "push",
 			role : "student",
-			date : "time"
+			memberId : memberId,
+			date : time
 		}
 		ws.send(JSON.stringify(json));
 		self.close();

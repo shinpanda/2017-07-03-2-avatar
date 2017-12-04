@@ -86,7 +86,6 @@ public class AdminController {
 				if(type.equals("edit"))
 					service.editLectureRoom(id, row, col);
 				if(type.equals("add")) {					
-					System.out.println("�삤�깘?");
 					int result = service.regLectureRoom(id, row, col);
 				}
 			}

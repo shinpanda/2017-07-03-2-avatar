@@ -23,10 +23,10 @@
 	</div>
 	<br />
 	<div class="class-seat-wrapper">
-		<c:forEach begin="0" end="16" step="8">
+		<c:forEach items="${list}" begin="0" end="${list[0].row*list[0].col-1}" step="${list[0].col}" varStatus="status">
 			<div>
-				<c:forEach begin="${status.index}" end="${status.index+7}" var="i">
-					<span class="seat" id="no${i}">이새미</span>
+				<c:forEach begin="${status.index}" end="${status.index+list[0].col-1}" var="i">
+					<span class="seat" id="${list[i].memberId}">${list[i].memberName}</span>
 				</c:forEach>
 			</div>
 		</c:forEach>
@@ -82,9 +82,6 @@
 			startEvent.disabled = false;
 			
 			var eventGenTime = new Date(Date.now());
-
-			/* 서버에 메시지 보냄 */
-
 			var json = {
 				content : "stop",
 				msgType : "push",

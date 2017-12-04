@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.avatar.web.entity.Board;
 import com.avatar.web.entity.MemberClass;
+import com.avatar.web.entity.MemberClassView;
 import com.avatar.web.service.BoardService;
 import com.avatar.web.service.TeacherService;
 
@@ -87,8 +88,9 @@ public class TeacherController {
 	@RequestMapping("is-complete")
 	public String isComplete(Principal principal, Model model){
 		
-		/*List<MemberClass> map = service.getSeatList(principal.getName());
-		*/
+		List<MemberClassView> list = service.getSeatList(principal.getName());
+		model.addAttribute("list", list);
+		
 		return "teacher.is-complete";
 	}
 	

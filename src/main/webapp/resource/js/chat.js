@@ -171,21 +171,25 @@ window.addEventListener("load", function() {
 								}
 							}
 						}
-						else if(msgType == "push"){
+						if(msgType == "push"){
 							if(data.role == "teacher"){
 								if(data.content == "start"){
 									if (win == null)
 										win = open(getContextPath() + "/resource/js/complete.jsp?start-time="+Date.parse(data.date), "_blank", "width=400px, height=300px, menubar=no, toolbar=0, location=no, status=no, scrollbars=0, resizable=no");
 								}
 								else {
+									console.log("창 꺼라");
 									win.close();
-									win == null;
 								}
 							}
-							else if(data.role == "student"){
+							if(data.role == "student"){
+								console.log("학생에게서 온 메시지");
 								var eventLabel = document.querySelector(".event-label-box")
 								.querySelectorAll("label");
 								eventLabel[2].firstElementChild.textContent = parseInt(eventLabel[2].firstElementChild.textContent)+1;
+								var seat = document.querySelector("#"+data.memberId);
+								seat.style.background="url('"+getContextPath()+"/resource/images/completemonitor.png')";
+								seat.style.color = "#990b0d";
 							}
 							//child.document.getElementById("start-time").value = data.date;
 							/*console.log(win.document.getElementById("start-time"));*/

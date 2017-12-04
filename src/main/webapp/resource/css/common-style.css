@@ -47,11 +47,19 @@ input[type="text"], textarea {
 	text-align: center;
 }
 
+
+/* main style */
 .main {
 	margin-left: 250px;
 	box-sizing: border-box;
 	padding: 30px;
 	width: 100%;
+}
+
+.main>h3 {
+	padding-left: 58px;
+	padding-top: 35px;
+	margin-bottom: 0px;
 }
 
 /* header style */
@@ -181,16 +189,8 @@ input.logout-btn {
 input.logout-btn:hover {
 	color: rgba(255, 172, 172, 0.68);
 }
-}
-
-/* main style */
 
 
-.main>h3 {
-	padding-left: 58px;
-	padding-top: 35px;
-	margin-bottom: 0px;
-}
 
 /* footer style */
 .footer {

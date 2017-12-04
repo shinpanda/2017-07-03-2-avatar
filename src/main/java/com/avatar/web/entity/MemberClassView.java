@@ -8,15 +8,10 @@ public class MemberClassView extends MemberClass{
 	private Date classOpenDate;
 	private String memberRole;
 	private String memberEmail;
+	private LectureRoom lectureRoom;
 	
-	
-	public String getMemberEmail() {
-		return memberEmail;
-	}
-	public void setMemberEmail(String memberEmail) {
-		this.memberEmail = memberEmail;
-	}
 	public MemberClassView() {
+		lectureRoom = new LectureRoom();
 	}
 	
 	public MemberClassView(String memberName, String className, Date classOpenDate, String memberRole) {
@@ -25,6 +20,13 @@ public class MemberClassView extends MemberClass{
 		this.className = className;
 		this.classOpenDate = classOpenDate;
 		this.memberRole = memberRole;
+	}
+	
+	public String getMemberEmail() {
+		return memberEmail;
+	}
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
 	}
 
 
@@ -53,6 +55,21 @@ public class MemberClassView extends MemberClass{
 	}
 	public void setMemberRole(String memberRole) {
 		this.memberRole = memberRole;
+	}
+	public int getRow() {
+		return lectureRoom.getRow();
+	}
+
+	public void setRow(int row) {
+		lectureRoom.setRow(row);
+	}
+
+	public int getCol() {
+		return lectureRoom.getCol();
+	}
+
+	public void setCol(int col) {
+		lectureRoom.setCol(col);
 	}
 	
 }
