@@ -69,4 +69,10 @@ public class MybatisClassDao implements ClassDao {
 		return classDao.editClass(cl);
 	}
 
+	@Override
+	public String getTeacherId(String classId) {
+		ClassDao classDao = sqlSession.getMapper(ClassDao.class);
+		return classDao.getTeacherId(classId);
+	}
+
 }

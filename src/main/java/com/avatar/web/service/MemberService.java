@@ -125,5 +125,9 @@ public class MemberService {
 
 		return result;
 	}
+	public String getTeacherId(String classId) {
+		String id = classDao.getTeacherId(classId);
+		return id;
+	}
 
 }

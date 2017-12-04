@@ -33,4 +33,8 @@
     <update id="editClass" parameterType="com.avatar.web.entity.Class">
 		update Class set name=#{name}, pwd=#{pwd}, course=#{course}, openDate=#{openDate}, completeDate=#{completeDate},openerId=#{openerId} where id=#{id}
 	</update>
+	<select id="getTeacherId" resultType="String">
+        SELECT openerId FROM Class WHERE id = #{classId}
+    </select>
+	
 </mapper>    

@@ -1182,6 +1182,7 @@ input.schedule-subject {
 /* teacher seat is-complete */
 
 .class-seat-container {
+    width: 870px;
     margin: 50px;
 }
 
@@ -1212,10 +1213,9 @@ input.schedule-subject {
 }
 
 .is-complete-event-container {
-    display: flex;
-    flex-direction: row;
     align-items: flex-end;
     justify-content: space-between;
+    display: flex;
 }
 
 .is-complete-event-btn-container {
