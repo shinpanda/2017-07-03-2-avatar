@@ -27,5 +27,7 @@
 	<select id="getHeader" resultType="com.avatar.web.entity.MemberClassView">		
 		select className, classOpenDate from MemberClassView where memberId=#{sessionId};
 	</select>	
-	
+	<select id="getStuCount" resultType="int">
+		select COUNT(*) from MemberClass where classId = #{classId}
+	</select>
 </mapper>    

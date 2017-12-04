@@ -6,10 +6,31 @@
     
 <mapper namespace="com.avatar.web.dao.ClassDao">
 	<select id="getList" resultType="com.avatar.web.entity.Class">		
-		select * from Class;
+		SELECT * FROM Class where 
+		${param2} like '%${param3}%' order by openDate DESC 
+		limit ${(param1-1)*15}, 15
+	</select>
+	<select id="getCount" resultType="int">
+		SELECT count(id) as count FROM
+		Class
 	</select>
 	<select id="checkPw" resultType="int">
         SELECT COUNT(*) FROM Class WHERE id = #{param1} AND pwd = #{param2}
     </select>
-	
+	<select id="getClassList" resultType="com.avatar.web.entity.Class">
+       SELECT * FROM Class where openerId = #{id}
+    </select>
+    <insert id="newClass" parameterType="com.avatar.web.entity.Class">
+    <selectKey order="BEFORE" keyProperty="id" resultType="String">
+    	SELECT ifnull(max(cast(id as unsigned)),0) + 1  FROM Class
+    </selectKey>
+	    insert into Class(id,name,pwd,course,openDate,completeDate,openerId)
+			values(#{id}, #{name}, #{pwd}, #{course},#{openDate},#{completeDate}, #{openerId});
+    </insert>
+    <select id="getClass" resultType="com.avatar.web.entity.Class">
+    	select * from Class where openerId=#{openerId} and id=#{classId}
+    </select>
+    <update id="editClass" parameterType="com.avatar.web.entity.Class">
+		update Class set name=#{name}, pwd=#{pwd}, course=#{course}, openDate=#{openDate}, completeDate=#{completeDate},openerId=#{openerId} where id=#{id}
+	</update>
 </mapper>    

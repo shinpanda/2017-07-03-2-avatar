@@ -409,15 +409,37 @@ select.text-right {
 		border: 1px solid #e0e0e0;
 		float:right;
 }
+.content-box.class{
+	width: 240px;
+	margin-right: 10px;
+}
+.dc-name.mem-fixed.set.title{
+	display: flex;
+    justify-content: center;
+}
+	.modal-body div.table{
+		display:table;
+	}
+	.set span.cell {
+    display: table-cell;
+	}
 	.dc-name{
 		/* border: 1px solid #e0e0e0;
    		border-radius: 10px; */
 		font-size: 15px;
 		padding: 10px 0px 10px 0px;
 	}
+	.dc-name.mem-fixed.set{
+		display: table-row;
+	}
 	.mem-fixed{
 		border: none;
 		font-weight: 800;
+	}
+	.class-name{
+	    padding-right: 10px;
+	    line-height: 46px;
+	    vertical-align: middle;
 	}
 	.self{
 	   margin-bottom:20px;
@@ -575,7 +597,7 @@ button.close-modal, .btn-modal {
   outline: none;
   color: #333333;
 }
-
+/* 
 .modal-trigger:hover {
   padding: 20px 60px;
-}
+} */

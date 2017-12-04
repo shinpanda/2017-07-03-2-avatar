@@ -168,6 +168,11 @@ input.logout-btn {
 	border: 0px;
 	font-size: 14px;
 	color: white;
+	cursor: pointer;
+}
+input.logout-btn:hover {
+	color: rgba(255, 172, 172, 0.68);
+}
 }
 
 /* main style */
@@ -244,7 +249,10 @@ input.logout-btn {
 	}
 	
 	.widgets.row {
-		height: 50%;
+	height: 50%;
+}
+	.widgets .row.board-row {
+	    line-height: 20px;
 	}
 
 .widget.cell {

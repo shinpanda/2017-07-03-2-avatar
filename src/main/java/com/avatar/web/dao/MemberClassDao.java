@@ -15,4 +15,6 @@ public interface MemberClassDao {
 
 	MemberClassView getClassInfo(String id);
 
+	int getStuCount(String classId);
+
 }

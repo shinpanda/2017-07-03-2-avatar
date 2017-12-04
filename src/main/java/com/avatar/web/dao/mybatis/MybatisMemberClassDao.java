@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.avatar.web.dao.ClassDao;
 import com.avatar.web.dao.MemberClassDao;
 import com.avatar.web.dao.MemberDao;
 import com.avatar.web.entity.MemberClassView;
@@ -47,6 +48,12 @@ public class MybatisMemberClassDao implements MemberClassDao {
 		MemberClassDao memberClassDao = sqlSession.getMapper(MemberClassDao.class);
 		MemberClassView memberClassView = memberClassDao.getClassInfo(id);
 		return memberClassView;
+	}
+
+	@Override
+	public int getStuCount(String classId) {
+		MemberClassDao memberClassDao = sqlSession.getMapper(MemberClassDao.class);
+		return memberClassDao.getStuCount(classId);
 	}
 	
 

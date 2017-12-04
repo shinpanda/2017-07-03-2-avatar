@@ -22,14 +22,12 @@
 					</a>
 				</h1>
 			</div>
-			
 			<div class="mem-information">
 				<h1 class="mypage">
 					<a href="#" class="modal-trigger" data-modal="modal-name"> 
 						<img src="${ctx}/resource/images/withdraw.png" alt="회원탈퇴" style="width: 200px;" />
 					</a>
 				</h1>
-				
 			</div>
 			<c:if test="${c.memberRole eq 'ROLE_TEACHER' }">
 			<div class="mem-information">
@@ -42,7 +40,7 @@
 			</c:if>
 			
 			
-			<!-- Modal -->
+		<!-- Modal -->
 		<div class="modal" id="modal-name">
 		  <div class="modal-sandbox"></div>
 		  <div class="modal-box">

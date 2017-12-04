@@ -46,8 +46,7 @@
 		</div>
 		<div class="widget cell">
 			<h3>
-				달력
-				<fmt:formatDate value="${b.currentDate}" pattern="YY-MM-dd" var="currentDate" />${regDate}</span>
+				달력 <span></span>
 			</h3>
 			<hr />
 			<div class="widget-board-container">
