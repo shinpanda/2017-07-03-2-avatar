@@ -125,5 +125,9 @@ public class MemberService {
 
 		return result;
 	}
+	public int deleteClass(String openerId, String classId) {
+		int result = classDao.deleteClass(openerId,classId);
+		return result;
+	}
 
 }

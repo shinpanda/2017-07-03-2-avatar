@@ -128,7 +128,6 @@ public class MemberController {
 	@RequestMapping(value="mypage", method=RequestMethod.POST)
 	public String mypage(@RequestParam(value="checkpwd", defaultValue="") String checkpwd,HttpServletRequest request, Principal principal) throws UnsupportedEncodingException {
 		String id = principal.getName();
-		System.out.println("id:"+id+", checkPwd: "+checkpwd);
 		
 		int result =0;
 		result = service.check(id,checkpwd);
@@ -184,9 +183,7 @@ public class MemberController {
 		String openerId = principal.getName();
 		/*System.out.println("edit-class: "+openerId+","+course+","+name+","+pwd+","+openDate+","+completeDate);*/
 		Class cl = new Class(id,name,pwd,course,openDate,completeDate,openerId);
-		System.out.println("memberId: "+openerId);
 		int result = service.editClass(cl);
-		System.out.println("result: "+result);
 		
 		return "redirect:classsetting";
 	}
@@ -213,9 +210,23 @@ public class MemberController {
 		
 		String openerId = principal.getName();
 		Class cl = new Class(null,name,pwd,course,openDate,completeDate,openerId);
-		System.out.println("memberId: "+openerId);
 		int result = service.newClass(cl);
-		System.out.println("result: "+result);
+		
+		return "redirect:classsetting";
+	}
+	
+	@RequestMapping(value="delete-class", method=RequestMethod.POST)
+	public String deleteClass(Principal principal 
+			,@RequestParam(value="del-id", defaultValue="") String classId
+			) throws ParseException {
+		
+		String openerId = principal.getName();
+		System.out.println("memberId: "+openerId);
+		int result = service.deleteClass(openerId,classId);
+		
+		if(result > 0)
+			System.out.println("탈퇴성공");
+		
 		
 		return "redirect:classsetting";
 	}

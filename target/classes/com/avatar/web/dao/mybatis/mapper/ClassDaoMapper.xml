@@ -33,4 +33,9 @@
     <update id="editClass" parameterType="com.avatar.web.entity.Class">
 		update Class set name=#{name}, pwd=#{pwd}, course=#{course}, openDate=#{openDate}, completeDate=#{completeDate},openerId=#{openerId} where id=#{id}
 	</update>
+	<delete id="deleteClass" parameterType="com.avatar.web.entity.Class">
+		delete from Class where openerId = #{openerId} and id = #{classId}
+	
+	
+	</delete>
 </mapper>    

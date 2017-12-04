@@ -63,7 +63,7 @@
 							</div>
 
 						</c:forEach>
-						<input type="submit" value="기본 클래스 변경" />
+						<input class="change-default" type="submit" value="기본 클래스 변경" />
 					</div>
 				</form>
 
@@ -118,7 +118,7 @@
 							<div class="close-modal2">&#10006;</div>
 							<h1 style="margin-top: auto;" id="del-name"></h1>
 						</div>
-						<form action="?${_csrf.parameterName}=${_csrf.token}"
+						<form action="delete-class?${_csrf.parameterName}=${_csrf.token}"
 							method="post">
 							<div class="modal-body center">
 								
@@ -129,7 +129,7 @@
 								</div>
 								
 								<p style="color:red;">**클래스 삭제를 원하시면 클래스에 학생에 존재하지 않아야 합니다.</p>
-								<p id="student-num">현재 클래스 학생수: </p>
+								<p id="student-num"> </p>
 								<p>클래스 비밀번호 입력 후 삭제를 누르면 클래스가 삭제됩니다.</p>
 								<p>클래스 비밀번호가 올바르면 클래스 삭제버튼이 활성화됩니다.</p>
 								<div class="table">
@@ -221,18 +221,18 @@
 					+ $(e.target).parents('.class-row').attr('id'), function(result) {
 								var c = JSON.parse(result);
 								clPwd = c['pwd'];
-								$('input[id=del-id]').attr('value',c['id']);
+								$('input[name=del-id]').attr('value',c['id']);
 								$('h1[id=del-name]').text(c['name']+" 클래스 삭제");
 								$('span[id=del-name]').text(c['name']);
 								$('span[id=del-course]').text(c['course']);	
 			})
 			$.get("../member/student-count?${_csrf.parameterName}=${_csrf.token}&classId=" 
 					+ $(e.target).parents('.class-row').attr('id'), function(result) {
-						$('#student-num').append(result+" 명");	 
+						$('#student-num').append("현재 클래스 학생수: "+result+"명 ");	 
 						if(result == 0)
 							$('#student-num').append("<strong> (현재 클래스 삭제가 가능합니다.)</strong>");
 						else{
-							$('#student-num').append("<strong style='color:red;'>(현재 클래스 삭제가 불가능합니다.)</strong>");
+							$('#student-num').append("<strong style='color:red;'>(현재 클래스 삭제가 불가능합니다.)</strong> ");
 						}
 			})
 			$("#del-pwd").change(function(){
@@ -272,13 +272,11 @@
 			$("#delete-cl").css({
 				"display" : "none"
 			});
-			/* 중복됨 수정해야함 !!!!!??????? */
-		/* 	$('#student-num').css({
-				"display" : "none"
-			}) 
-		    $('##student-num').children("strong").css({
-				"display" : "none"
-			})  */
+			
+			//modal학생수 초기화 .empty()
+			$("#student-num").empty();
+		
+			
 		});
 		
 		/* 3.수정 */

@@ -8,6 +8,24 @@ div.classset{
 	display: grid;
 	text-align: start;
 }
+input.change-default.change-default {
+/*     width: 150px;
+    height: 30px; */
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+    padding: 16px 32px;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;  
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+	input.change-default.change-default:hover {
+	    background-color: #555555;
+	    color: white;
+	}
+
 .middle {
   width: 88%;
   text-align: center;
@@ -83,22 +101,16 @@ img.add-img{
   font-family: "Dax", sans-serif;
   font-weight: 400;
 }
-.middle p span:after {
-  content: '\f0e7';
-  font-family: FontAwesome;
-  color: yellow;
-}
 
 span.class-info{
 	margin-top: 15px;
 	margin-left: 25px;
+	width: 600px;
 }
 	.class-info span.class-course{
 		font-variant: all-small-caps;
 		font-size: 25px;
 	}
-
-
 
 /*modal*/
 .modal,
@@ -167,7 +179,7 @@ span.class-info{
 }
 
 .modal-trigger, button.close-modal, .btn-modal,.modal-trigger2,.modal-trigger3 {
-  padding: 10px 20px;
+  padding: 10px;
   background: transparent;
   text-decoration: none;
 }
