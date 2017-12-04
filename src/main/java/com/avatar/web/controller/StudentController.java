@@ -40,10 +40,11 @@ public class StudentController {
 		String classId = memberClassDao.getClassId(sessionId);
 		
 		List<MemberClassView> list = memberClassDao.getList(classId);
-				Collections.shuffle(list);
+		Collections.shuffle(list);
 		
 		for (int i = 0; i < list.size(); i++) {
 			json.append(String.format("\"%s\"", list.get(i).getMemberName()));
+			memberClassDao.updateSeatNo(list.get(i).getMemberName(), i+1);
 			if (i + 1 < list.size()) {
 				json.append(",");
 			}

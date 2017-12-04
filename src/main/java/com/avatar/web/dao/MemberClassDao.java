@@ -22,4 +22,6 @@ public interface MemberClassDao {
 
 	String getClassName(String classId);
 
+	int updateSeatNo(String memberName, int seatNo);
+
 }

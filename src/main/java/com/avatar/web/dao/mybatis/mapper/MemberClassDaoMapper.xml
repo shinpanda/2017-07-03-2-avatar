@@ -20,8 +20,8 @@
 		select * from MemberClassView where memberId = #{id}
 	</select>
 	
-	<select id="getList" resultType="com.avatar.web.entity.MemberClassView">		
-		select memberName from MemberClassView where classId=#{classId};
+	<select id="getList" resultType="com.avatar.web.entity.MemberClassView">
+		select memberName, seatNo, memberRole from MemberClassView where classId=#{classId} and memberRole != "ROLE_TEACHER" order by seatNo ASC		
 	</select>
 	
 	<select id="getMemberList" resultType="com.avatar.web.entity.MemberClassView">		
@@ -37,8 +37,6 @@
 	<select id="getHeader" resultType="com.avatar.web.entity.MemberClassView">		
 		select className, classOpenDate from MemberClassView where memberId=#{sessionId};
 	</select>	
-	
-	
 
 	<select id="getStuCount" resultType="int">
 		select COUNT(*) from MemberClass where classId = #{classId}
@@ -47,5 +45,9 @@
 	<select id="getClassName" resultType="String">
 		select name from Class where id = #{classId}
 	</select>
+
+	<update id="updateSeatNo">
+		update MemberClass set seatNo=#{param2} where memberId=(select id from Member where name =#{param1});
+	</update>
 
 </mapper>    
