@@ -1,35 +1,51 @@
 package com.avatar.web.controller;
 
-import java.lang.reflect.Method;
-import java.security.Principal;
-import java.util.List;
 
-import org.omg.PortableServer.REQUEST_PROCESSING_POLICY_ID;
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.avatar.web.entity.Class;
-import com.avatar.web.entity.LectureRoom;
+import com.avatar.web.dao.MemberClassDao;
+
+
 import com.avatar.web.service.AdminService;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
 
 @Controller
 @RequestMapping("/admin/*")
 public class AdminController {
 	
 	@Autowired
-	AdminService service;
+	private MemberClassDao memberClassDao;	
+	
+	@Autowired
+	private AdminService service;
 	
 
+
 	@RequestMapping("member")
-	public String member() {
-	
+	public String member(@RequestParam(value="p", defaultValue="1") Integer page, 
+			@RequestParam(value="f", defaultValue="memberId") String field,
+			@RequestParam(value="q", defaultValue="") String query,
+			Principal principal,
+			Model model) {
+		
+		model.addAttribute("list", memberClassDao.getMemberList(page,field,query));
+		model.addAttribute("count", memberClassDao.getMemberCount());
+		
+
 		return "admin.member.list";	
-	}
+
+	} 
+	
+	
+
 
 	@RequestMapping("board")
 	public String board() {
@@ -70,7 +86,7 @@ public class AdminController {
 				if(type.equals("edit"))
 					service.editLectureRoom(id, row, col);
 				if(type.equals("add")) {					
-					System.out.println("오냐?");
+					System.out.println("�삤�깘?");
 					int result = service.regLectureRoom(id, row, col);
 				}
 			}

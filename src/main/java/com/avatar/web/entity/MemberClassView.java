@@ -7,8 +7,15 @@ public class MemberClassView extends MemberClass{
 	private String className;
 	private Date classOpenDate;
 	private String memberRole;
+	private String memberEmail;
 	
 	
+	public String getMemberEmail() {
+		return memberEmail;
+	}
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
+	}
 	public MemberClassView() {
 	}
 	

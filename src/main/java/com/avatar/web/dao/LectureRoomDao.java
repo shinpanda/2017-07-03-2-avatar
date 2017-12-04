@@ -15,4 +15,7 @@ public interface LectureRoomDao {
 	int delete(String id);
 	List<LectureRoom> getList();
 	int getCount();
+	
+	int getRow(String className);
+	int getCol(String className);
 }

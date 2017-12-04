@@ -17,6 +17,9 @@ public interface ClassDao {
 	int newClass(Class cl);
 	Class getClass(@Param("openerId")String openerId, @Param("classId")String classId);
 	int editClass(Class cl);
+
 	String getTeacherId(String classId);
+
+	int deleteClass(@Param("openerId")String openerId, @Param("classId")String classId);
 
 }

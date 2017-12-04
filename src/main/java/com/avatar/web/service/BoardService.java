@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.avatar.web.dao.InformationCmtDao;
 import com.avatar.web.dao.InformationDao;
 import com.avatar.web.dao.MemberClassDao;
-import com.avatar.web.dao.MemberDao;
 import com.avatar.web.dao.NoticeDao;
 import com.avatar.web.dao.QuestionCmtDao;
 import com.avatar.web.dao.QuestionDao;
@@ -100,7 +99,7 @@ public class BoardService {
 		return result; 
 	}
 	
-	// 정보공유
+	// �젙蹂닿났�쑀
 
 	public List<BoardView> getInformationList(Integer page, String field, String query, String id) {
 		String classId = memberClassDao.getClassId(id);
