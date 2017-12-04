@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.avatar.web.dao.LectureRoomDao;
 import com.avatar.web.dao.MemberClassDao;
 import com.avatar.web.entity.MemberClassView;
 import com.google.gson.Gson;
@@ -23,6 +24,9 @@ public class StudentController {
 
 	@Autowired
 	private MemberClassDao memberClassDao;
+	
+	@Autowired
+	private LectureRoomDao lectureRoomDao;
 	
 
 	@RequestMapping("seat-change-ajax")
@@ -73,6 +77,13 @@ public class StudentController {
 		
 		String classId = memberClassDao.getClassId(id);
 		
+		String className = memberClassDao.getClassName(classId);
+		System.out.println(className);
+		int row = lectureRoomDao.getRow(className);
+		int col = lectureRoomDao.getCol(className); 
+		
+		model.addAttribute("row", row);
+		model.addAttribute("col", col);
 		System.out.println(classId);
 		
 		//String classId = "1";

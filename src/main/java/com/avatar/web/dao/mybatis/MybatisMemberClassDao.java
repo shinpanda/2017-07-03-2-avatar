@@ -71,6 +71,12 @@ public class MybatisMemberClassDao implements MemberClassDao {
 		MemberClassDao memberClassDao = sqlSession.getMapper(MemberClassDao.class);
 		return memberClassDao.getStuCount(classId);
 	}
+
+	@Override
+	public String getClassName(String classId) {
+		MemberClassDao memberClassDao = sqlSession.getMapper(MemberClassDao.class);
+		return memberClassDao.getClassName(classId);
+	}
 	
 
 }

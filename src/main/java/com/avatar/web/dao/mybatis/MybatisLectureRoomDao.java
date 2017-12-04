@@ -62,4 +62,18 @@ public class MybatisLectureRoomDao implements LectureRoomDao {
 		return count;
 	}
 
+	@Override
+	public int getRow(String classId) {
+		LectureRoomDao lectureRoomDao = sqlSession.getMapper(LectureRoomDao.class);
+		int row = lectureRoomDao.getRow(classId);
+		return row;
+	}
+
+	@Override
+	public int getCol(String classId) {
+		LectureRoomDao lectureRoomDao = sqlSession.getMapper(LectureRoomDao.class);
+		int col = lectureRoomDao.getCol(classId);
+		return col;
+	}
+
 }

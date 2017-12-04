@@ -12,8 +12,7 @@
 
 	window.addEventListener("load", function(){		
 	
-		var row =document.getElementById("row");
-		var column =document.getElementById("column");
+		
 		
 		var changeButton =document.getElementById("change");
 		var resetButton =document.getElementById("reset");
@@ -30,9 +29,11 @@
 		
 		
 		changeButton.onclick = function(){
-			var b1 = parseInt(row.value);
-		    var b2 = parseInt(column.value);
-				  
+			/* var b1 = parseInt(row.value);
+		    var b2 = parseInt(column.value); */
+		    var b1 = ${col};
+			var b2 = ${row};
+			
 			var tag = "";
 			 var xhr = new XMLHttpRequest();
 				
@@ -109,8 +110,11 @@
 			
 			
 			pickButton.onclick = function(){
-				 var b1 = parseInt(row.value);
-			    var b2 = parseInt(column.value);
+				var b1 = ${col};
+				var b2 = ${row};
+				
+				 //var b1 = parseInt(row.value);
+			   // var b2 = parseInt(column.value);
 				
 					 
 				for(j=1; j<=b2; j++){
@@ -172,22 +176,7 @@
 	<div class="seat-container">
 		<div id ="top" style="display:flex; height:70px;">
 					
-					<div id="text">
-						<span class="input input--haruki">
-							<input class="input__field input__field--haruki" type="number" id="row" min="1" max="8"/>
-							<label class="input__label input__label--haruki" for="row" min="1" max="5">
-								<span class="input__label-content input__label-content--haruki">가로</span>
-							</label>
-						</span>
-						
-						<span class="input input--haruki">
-							<input class="input__field input__field--haruki" type="number" id="column" />
-							<label class="input__label input__label--haruki" for="column">
-								<span class="input__label-content input__label-content--haruki">세로</span>
-							</label>
-						</span>
-						
-					</div>
+					
 					<div id="button">
 					 	<input type="button" class="seat-btn seat-btn-primary seat-btn-lg raised" value="자리바꾸기" id="change" />					 	
 					 	<input type="button" class="seat-btn seat-btn-primary seat-btn-lg raised" value="오늘의 당첨자" id="pick"/>
