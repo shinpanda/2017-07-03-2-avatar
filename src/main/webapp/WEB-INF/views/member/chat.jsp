@@ -7,7 +7,7 @@
 <tiles:importAttribute name="memberRole" />
 <main class="main">
 <div class="chat-container">
-	<span>C class</span>
+	<span>${list[0].className} class</span>
 	<div class="chat-wrapper">
 		<c:forEach items="${list}" var="n" varStatus="status">
 			<c:if test="${status.index-1>0}">
