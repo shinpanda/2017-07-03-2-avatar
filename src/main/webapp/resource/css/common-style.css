@@ -46,6 +46,14 @@ input[type="text"], textarea {
 .center {
 	text-align: center;
 }
+
+.main {
+	margin-left: 250px;
+	box-sizing: border-box;
+	padding: 30px;
+	width: 100%;
+}
+
 /* header style */
 .header {
 	background: #990000;
@@ -176,12 +184,7 @@ input.logout-btn:hover {
 }
 
 /* main style */
-.main {
-	margin-left: 250px;
-	box-sizing: border-box;
-	padding: 30px;
-	width: 100%;
-}
+
 
 .main>h3 {
 	padding-left: 58px;
