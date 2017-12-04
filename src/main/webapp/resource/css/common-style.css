@@ -170,6 +170,10 @@ input.logout-btn {
 	color: white;
 	cursor: pointer;
 }
+input.logout-btn:hover {
+	color: rgba(255, 172, 172, 0.68);
+}
+}
 
 /* main style */
 .main {
@@ -209,26 +213,29 @@ input.logout-btn {
 	box-sizing: border-box;
 }
 
-.widget-container .row {
-	display: table-row;
-}
+	.widget-container .row {
+		display: table-row;
+	}
+		.row.board-row {
+		    line-height: 20px;
+		}
 
-.widget-container .cell {
-	display: table-cell;
-}
-
-.widgets h3 {
-	margin: 0;
-	font-size: 18px;
-}
-
-.widgets h3 span {
-	font-size: 10px;
-	float: right;
-	line-height: 24px;
-	padding-top: 4px;
-	padding-right: 5px;
-}
+	.widget-container .cell {
+		display: table-cell;
+	}
+	
+	.widgets h3 {
+		margin: 0;
+		font-size: 18px;
+	}
+		
+		.widgets h3 span {
+			font-size: 10px;
+			float: right;
+			line-height: 24px;
+			padding-top: 4px;
+			padding-right: 5px;
+		}
 
 .widget-board {
 	display: table;
@@ -237,13 +244,16 @@ input.logout-btn {
 	table-layout: fixed;
 }
 
-.widget {
-	padding: 0px 24px;
-}
-
-.widgets.row {
+	.widget {
+		padding: 0px 24px;
+	}
+	
+	.widgets.row {
 	height: 50%;
 }
+	.widgets .row.board-row {
+	    line-height: 20px;
+	}
 
 .widget.cell {
 	width: 455px;
@@ -251,14 +261,14 @@ input.logout-btn {
 	box-sizing: border-box;
 }
 
-.w45 {
-	width: 45px;
-}
-
-.widget-board .cell.w45 {
-	color: #848484;
-	font-size: 13px;
-}
+	.w45 {
+		width: 45px;
+	}
+	
+	.widget-board .cell.w45 {
+		color: #848484;
+		font-size: 13px;
+	}
 
 /* list */
 /* list 부분 */
@@ -1107,10 +1117,12 @@ div#chat-notifi {
 	font-weight: bold;
 	text-decoration: underline;
 }
+
 /* #calendar-main{
 	margin-left:0px !important;
 } 
  */
+
 /* calendar 일정 정리 */
 .widget-schedule {
 	margin-top: 5px;

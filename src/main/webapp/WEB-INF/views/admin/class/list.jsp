@@ -42,9 +42,8 @@
 			<div class="search-form-container">
 				<form method="get" class="search-form">
 					<select name="f">
-						<option value="title">제목</option>
-						<option value="title-content">제목 + 내용</option>
-						<option value="content">내용</option>
+						<option value="course">과정</option>
+						<option value="openerId">선생님</option>
 					</select> <input type="search" name="q" /> <input type="submit"
 						class="search search-btn-img" />
 				</form>

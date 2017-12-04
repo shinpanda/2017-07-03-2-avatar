@@ -6,7 +6,8 @@
 <tiles:importAttribute name="memberRole" />
 <jsp:useBean id="now" class="java.util.Date"></jsp:useBean>
 <fmt:formatDate value="${now}" pattern="MM.dd" var="nowTime" />
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <main class="main">
 <div class="widget-container">
 	<div class="widgets row">
@@ -50,6 +51,7 @@
 			<hr />
 			<div class="widget-board-container">
 				<div class="widget-board calendar">
+				
 					<div class="row week">
 						<div class="cell day sun">일</div>
 						<div class="cell day">월</div>
@@ -64,9 +66,9 @@
 					<div>일정</div>
 					<div>- 달력 완성</div>
 				</div>
-				<div class="widget-schedule" id="widget-schedule-edit" style="display:none;">
+				<div class="widget-schedule" id="widget-schedule-edit" >
 					<div>
-						<input type="text" readonly="readonly" value="2017-11-28"
+						<input type="text" readonly="readonly" value="" id="year"
 							class="schedule_day"> <select>
 							<c:forEach begin="0" end="23" var="hour">
 								<c:if test="${hour<10}">
@@ -100,7 +102,7 @@
 					var date = new Date();
 					var currentYear = date.getFullYear();
 					var currentMonth = date.getMonth() +1; // 0~11 0:1월
-
+					
 					/* date : 일 day: 요일 */
 					var currentDate = date.getDate();
 					date.setDate(1);
@@ -134,9 +136,10 @@
 						}
 						calendar.appendChild(row);
 					}
-					
+					$(document).ready(function(){
+						$("#year").val(currentYear);
+					});
 				</script>
-
 			</div>
 		</div>
 	</div>
