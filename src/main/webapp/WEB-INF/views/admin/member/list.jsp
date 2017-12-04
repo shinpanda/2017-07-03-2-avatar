@@ -16,7 +16,7 @@
 					<div class="cell w130">등급</div>
 					<div class="cell w130">아이디</div>
 					<div class="cell w130">이름</div>
-					<div class="cell w130">class</div>
+					<div class="cell w130">Class</div>
 					<div class="cell w130">수업시작일</div>
 					<div class="cell ">이메일</div>
 					<div class="cell ">ip</div>

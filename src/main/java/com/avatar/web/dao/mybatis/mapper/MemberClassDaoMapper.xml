@@ -25,7 +25,7 @@
 	</select>
 	
 	<select id="getMemberList" resultType="com.avatar.web.entity.MemberClassView">		
-		SELECT * FROM MemberClassView where ${param2} like '%${param3}%' order by memberRole DESC, classOpenDate DESC limit ${(param1-1)*15}, 15
+		SELECT * FROM MemberClassView  where memberRole !='ROLE_ADMIN' and ${param2} like '%${param3}%' order by memberRole DESC, classOpenDate DESC limit ${(param1-1)*15}, 15
 	</select>
 
 
