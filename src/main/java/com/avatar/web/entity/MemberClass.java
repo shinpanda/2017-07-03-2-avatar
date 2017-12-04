@@ -5,6 +5,7 @@ public class MemberClass {
 	private String id;
 	private String memberId;
 	private String classId;
+	private int seatNo;
 	
 	public MemberClass() {
 	}
@@ -15,6 +16,17 @@ public class MemberClass {
 		this.memberId = memberId;
 		this.classId = classId;
 	}
+	
+	
+	public MemberClass(String id, String memberId, String classId, int seatNo) {
+		super();
+		this.id = id;
+		this.memberId = memberId;
+		this.classId = classId;
+		this.seatNo = seatNo;
+	}
+
+
 	public String getId() {
 		return id;
 	}
@@ -32,6 +44,16 @@ public class MemberClass {
 	}
 	public void setClassId(String classId) {
 		this.classId = classId;
+	}
+
+
+	public int getSeatNo() {
+		return seatNo;
+	}
+
+
+	public void setSeatNo(int seatNo) {
+		this.seatNo = seatNo;
 	}
 	
 	

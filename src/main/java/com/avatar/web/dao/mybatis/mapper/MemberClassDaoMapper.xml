@@ -39,5 +39,9 @@
 	</select>	
 	
 	
-	
+
+	<select id="getStuCount" resultType="int">
+		select COUNT(*) from MemberClass where classId = #{classId}
+	</select>
+
 </mapper>    

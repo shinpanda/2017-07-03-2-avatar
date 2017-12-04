@@ -17,6 +17,9 @@
 			<c:if test="${memberRole eq 'ROLE_TEACHER'}">
 				<c:set value="선생님" var="role" />
 			</c:if>
+			<c:if test="${memberRole eq 'ROLE_ADMIN'}">
+				<c:set value="관리자" var="role" />
+			</c:if>
 			<div class="member-info-container">
 				<div class="member-info-wrapper">
 					<h2 class="hidden">멤버 정보</h2>
@@ -33,6 +36,7 @@
 			</div>
 			<section class="menu-container">
 				<h1 class="hidden">메뉴</h1>
+				<c:if test="${memberRole ne 'ROLE_ADMIN'}">
 				<nav class="menu-wrapper">
 					<h1 class="hidden">메인메뉴</h1>
 					<ul class="main-menu">
@@ -43,10 +47,13 @@
 						</c:if>
 					</ul>
 					<ul class="main-menu btn-container">
-						<li><a href="${ctx}/member/chat">채팅방 입장</a>
-						<!-- <li><a href="">Complete</a> -->
+						<li><a href="${ctx}/member/chat">채팅방 입장</a></li>
+						<c:if test="${memberRole eq 'ROLE_TEACHER'}">
+							<li><a href="${ctx}/teacher/is-complete">Complete</a></li>
+						</c:if>
 					</ul>
 				</nav>
+				</c:if>
 				<nav id="member-menu" class="member-menu">
 					<h1 class="hidden">회원메뉴</h1>
 					<ul>

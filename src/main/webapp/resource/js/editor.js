@@ -58,7 +58,15 @@ window.addEventListener("load", function() {
 			var d = Date.now();
 			var csrfParameter = document.querySelector("meta[name='_csrf_parameter']").content;
 			var csrfToken = document.querySelector("meta[name='_csrf']").content;
-
+			
+			var size = file.size;
+			if(size > 10*1024*1024){
+				alert("죄송합니다. 10MB를 넘는 파일은 전송할 수 없습니다.");
+				return;
+			}
+			
+			
+			
 			var formData = new FormData();
 			formData.append("now", "" + d);
 			formData.append("file", file);
@@ -69,15 +77,13 @@ window.addEventListener("load", function() {
 			};
 
 			xhr.upload.onloadend = function(e) {
-				//var content = document.querySelector('#content');
-				var img = document.createElement('img');
-				//img.src = 'http://i.huffpost.com/gen/5524070/thumbs/o-THE-570.jpg?3'+d+file.name;
-				//img.src = 'http://i.huffpost.com/gen/5524070/thumbs/o-THE-570.jpg?3';
-				img.src = '../../resource/upload/' + d + file.name;
-				content.appendChild(img);
 			}
 
 			xhr.upload.onload = function(e) {
+				//var content = document.querySelector('#content');
+				var img = document.createElement('img');
+				img.src = '../../resource/upload/' + d + file.name;
+				content.appendChild(img);
 			};
 
 			xhr.onerror = function(e) {

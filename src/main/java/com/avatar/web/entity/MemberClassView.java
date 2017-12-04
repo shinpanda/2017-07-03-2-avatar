@@ -2,10 +2,8 @@ package com.avatar.web.entity;
 
 import java.util.Date;
 
-public class MemberClassView {
-	private String memberId;
+public class MemberClassView extends MemberClass{
 	private String memberName;
-	private String classId;
 	private String className;
 	private Date classOpenDate;
 	private String memberRole;
@@ -20,23 +18,23 @@ public class MemberClassView {
 	}
 	public MemberClassView() {
 	}
+	
+	public MemberClassView(String memberName, String className, Date classOpenDate, String memberRole) {
+		super();
+		this.memberName = memberName;
+		this.className = className;
+		this.classOpenDate = classOpenDate;
+		this.memberRole = memberRole;
+	}
+
+
+
+
 	public String getMemberName() {
 		return memberName;
 	}
-	public String getMemberId() {
-		return memberId;
-	}
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
-	}
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
-	}
-	public String getClassId() {
-		return classId;
-	}
-	public void setClassId(String classId) {
-		this.classId = classId;
 	}
 	public String getClassName() {
 		return className;

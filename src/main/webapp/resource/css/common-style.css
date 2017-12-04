@@ -46,6 +46,14 @@ input[type="text"], textarea {
 .center {
 	text-align: center;
 }
+
+.main {
+	margin-left: 250px;
+	box-sizing: border-box;
+	padding: 30px;
+	width: 100%;
+}
+
 /* header style */
 .header {
 	background: #990000;
@@ -168,15 +176,15 @@ input.logout-btn {
 	border: 0px;
 	font-size: 14px;
 	color: white;
+	cursor: pointer;
+}
+input.logout-btn:hover {
+	color: rgba(255, 172, 172, 0.68);
+}
 }
 
 /* main style */
-.main {
-	margin-left: 250px;
-	box-sizing: border-box;
-	padding: 30px;
-	width: 100%;
-}
+
 
 .main>h3 {
 	padding-left: 58px;
@@ -208,26 +216,29 @@ input.logout-btn {
 	box-sizing: border-box;
 }
 
-.widget-container .row {
-	display: table-row;
-}
+	.widget-container .row {
+		display: table-row;
+	}
+		.row.board-row {
+		    line-height: 20px;
+		}
 
-.widget-container .cell {
-	display: table-cell;
-}
-
-.widgets h3 {
-	margin: 0;
-	font-size: 18px;
-}
-
-.widgets h3 span {
-	font-size: 10px;
-	float: right;
-	line-height: 24px;
-	padding-top: 4px;
-	padding-right: 5px;
-}
+	.widget-container .cell {
+		display: table-cell;
+	}
+	
+	.widgets h3 {
+		margin: 0;
+		font-size: 18px;
+	}
+		
+		.widgets h3 span {
+			font-size: 10px;
+			float: right;
+			line-height: 24px;
+			padding-top: 4px;
+			padding-right: 5px;
+		}
 
 .widget-board {
 	display: table;
@@ -236,13 +247,16 @@ input.logout-btn {
 	table-layout: fixed;
 }
 
-.widget {
-	padding: 0px 24px;
-}
-
-.widgets.row {
+	.widget {
+		padding: 0px 24px;
+	}
+	
+	.widgets.row {
 	height: 50%;
 }
+	.widgets .row.board-row {
+	    line-height: 20px;
+	}
 
 .widget.cell {
 	width: 455px;
@@ -250,14 +264,14 @@ input.logout-btn {
 	box-sizing: border-box;
 }
 
-.w45 {
-	width: 45px;
-}
-
-.widget-board .cell.w45 {
-	color: #848484;
-	font-size: 13px;
-}
+	.w45 {
+		width: 45px;
+	}
+	
+	.widget-board .cell.w45 {
+		color: #848484;
+		font-size: 13px;
+	}
 
 /* list */
 /* list 부분 */
@@ -1112,3 +1126,62 @@ div#chat-notifi {
 } 
  */
 
+/* calendar 일정 정리 */
+.widget-schedule {
+	margin-top: 5px;
+	width: 100%;
+	height: 120px;
+	background: #f9f9f9;
+	padding: 11px 13px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	border-radius: 7px;
+	justify-content: space-between;
+}
+
+.widget-schedule .schedule_day {
+    text-align: center;
+    width: 100px;
+    line-height: 18px;
+}
+
+.widget-schedule select {
+    height: 24px;
+    margin-left: 10px;
+}
+
+.widget-schedule div {
+    display: flex;
+    font-size: 13px;
+    align-items: center;
+}
+
+.widget-schedule textarea {
+    width: 302.52px;
+    box-sizing: border-box;
+    resize: none;
+    overflow: auto;
+}
+
+.widget-schedule input[type="button"] {
+    width: 70px;
+    margin-left: 10px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background: #a7a7a7;
+    color: white;
+    height: 42px;
+    font-size: 13px;
+}
+
+input.schedule-subject {
+    width: 302.52px;
+    box-sizing: border-box;
+}
+
+.widget-schedule.schedule {
+    justify-content: baseline;
+    height: 100px;
+    margin-top: 5px;
+}

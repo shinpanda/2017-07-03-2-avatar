@@ -1,36 +1,66 @@
 
 form {
-  background-color: #1a1a1a;
   overflow: hidden;
 }
+div.classset{
+	background-color: #f7f7f7;
+	/* border-radius: 12px; */
+	display: grid;
+	text-align: start;
+}
+input.change-default.change-default {
+/*     width: 150px;
+    height: 30px; */
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+    padding: 16px 32px;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;  
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+	input.change-default.change-default:hover {
+	    background-color: #555555;
+	    color: white;
+	}
 
 .middle {
-  width: 100%;
+  width: 88%;
   text-align: center;
-  /* Made by */
 }
+img.add-img{
+	width: 79px;
+    }
+    
 .middle h1 {
   font-family: "Dax", sans-serif;
-  color: #fff;
+}
+.middle .new-class{
+    display: inherit;
+    width: 100px;
+    
 }
 .middle input[type="radio"] {
   display: none;
 }
 .middle input[type="radio"]:checked + .box {
-  background-color: #007e90;
+  background-color: #a52a2a;
+  border-radius: 10px;
 }
 .middle input[type="radio"]:checked + .box span {
   color: white;
-  transform: translateY(70px);
+  /* transform: translateY(70px); */
 }
 .middle input[type="radio"]:checked + .box span:before {
   transform: translateY(0px);
   opacity: 1;
 }
 .middle .box {
-  width: 200px;
-  height: 200px;
-  background-color: #fff;
+  width: 150px;
+  height: 150px;
+ /*  background-color: #fff; */
   transition: all 250ms ease;
   will-change: transition;
   display: inline-block;
@@ -43,6 +73,10 @@ form {
 .middle .box:active {
   transform: translateY(10px);
 }
+	.middle .box:hover {
+	    border: 2px solid #a52a2a;
+	    border-radius: 12px;
+	}
 .middle .box span {
   position: absolute;
   transform: translate(0, 60px);
@@ -51,7 +85,6 @@ form {
   transition: all 300ms ease;
   font-size: 1.5em;
   user-select: none;
-  color: #007e90;
 }
 .middle .box span:before {
   font-size: 1.2em;
@@ -65,12 +98,125 @@ form {
 }
 
 .middle p {
-  color: #fff;
   font-family: "Dax", sans-serif;
   font-weight: 400;
 }
-.middle p span:after {
-  content: '\f0e7';
-  font-family: FontAwesome;
-  color: yellow;
+
+span.class-info{
+	margin-top: 15px;
+	margin-left: 25px;
+	width: 600px;
 }
+	.class-info span.class-course{
+		font-variant: all-small-caps;
+		font-size: 25px;
+	}
+
+/*modal*/
+.modal,
+.modal-box {
+  z-index: 900;
+}
+.modal-body.center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.modal-sandbox,.modal-sandbox2,.modal-sandbox3 {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: transparent;
+}
+
+.modal,.modal2, .modal3 {
+  display: none; 
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgb(0,0,0);
+  background: rgba(0,0,0,.8);
+  overflow: auto;
+}
+
+.modal-box {
+  position: relative;
+  width: 80%;
+  max-width: 920px;
+  margin: 100px auto;
+  animation-name: modalbox;
+  animation-duration: .3s;
+  animation-timing-function: ease-out;
+}
+
+.modal-header {    
+  
+  height: 20px;
+  padding: 0px 20px 40px 20px;
+  background: #990000;
+ /*  color: #ffffff; */
+  font-size: 13px;
+}
+
+.modal-body {
+  background: #ECEFF1;
+  padding: 30px;
+}
+
+/* Close Button */
+.close-modal,.close-modal2,.close-modal3 {
+  text-align: right;
+  cursor: pointer;
+}
+.btn-modal {
+  text-align: right;
+  cursor: pointer;
+}
+
+.modal-trigger, button.close-modal, .btn-modal,.modal-trigger2,.modal-trigger3 {
+  padding: 10px;
+  background: transparent;
+  text-decoration: none;
+}
+
+.modal-trigger {
+  /* background: #B0BEC5; */
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  transition: ease .2s;
+  /* margin-left: 100px; */
+}
+
+.modal-trigger2{
+	float: right;
+}
+.modal-trigger3{
+	float: right;
+}
+	.class-row{
+	    display: flex;
+	    flex-direction: row;
+	}
+	.class-cell{
+	    display: flex;
+	    flex-direction: column;
+	    flex-grow: 1;
+    }
+img.delete-img {
+    width: 50px;
+}
+button.close-modal, .btn-modal, button.close-modal2, button.close-modal3 {
+  border: 1px solid rgba(51, 51, 51, 0.53);
+  outline: none;
+  color: #333333;
+}
+}
+
+

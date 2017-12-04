@@ -6,45 +6,44 @@
 <jsp:useBean id="now" class="java.util.Date"></jsp:useBean>
 <fmt:formatDate value="${now}" pattern="MM.dd" var="nowTime" />
 <main class="main">
-<h3>공지게시판</h3>
+<h3>강의 관리</h3>
 
 <div class="board-style">
 	<div class="table-container">
 		<div class="table-wrapper">
 			<div class="board-table">
 				<div class="row table-header">
-					<div class="cell w60">no</div>
-					<div class="cell">제목</div>
-					<div class="cell w120">작성날짜</div>
-					<div class="cell w80">조회수</div>
+					<div class="cell w60">id</div>
+					<div class="cell">과정</div>
+					<div class="cell w120">시작일</div>
+					<div class="cell w80">수료일</div>
+					<div class="cell w80">선생님</div>
 				</div>
 				<c:forEach begin="0" end="14" items="${list}" var="b">
 					<div class="row">
-						<div class="cell">${b.no}</div>
+						<div class="cell">${b.id}</div>
 						<div class="cell title">
-							<a href="./notice/${b.no}">${b.title}</a>
+							<a href="./notice/${b.id}">${b.course}</a>
 						</div>
-						<fmt:formatDate value="${b.regDate}" pattern="MM.dd" var="regDate" />
+						<fmt:formatDate value="${b.openDate}" pattern="YY.MM.dd" var="openDate" />
 						<div class="cell">
-							<c:if test="${nowTime ne regDate}">
-									${regDate}
-							</c:if>
-							<c:if test="${nowTime eq regDate}">
-								<fmt:formatDate value="${b.regDate}" pattern="HH:mm"
-									var="regDate" />
-									${regDate}
-							</c:if>
+							${openDate}
 						</div>
-						<div class="cell">${b.hit}</div>
+						<fmt:formatDate value="${b.completeDate}" pattern="YY.MM.dd" var="completeDate" />
+						<div class="cell">
+							${completeDate}
+						</div>
+						<div class="cell">
+							${b.openerId}
+						</div>
 					</div>
 				</c:forEach>
 			</div>
 			<div class="search-form-container">
 				<form method="get" class="search-form">
 					<select name="f">
-						<option value="title">제목</option>
-						<option value="title-content">제목 + 내용</option>
-						<option value="content">내용</option>
+						<option value="course">과정</option>
+						<option value="openerId">선생님</option>
 					</select> <input type="search" name="q" /> <input type="submit"
 						class="search search-btn-img" />
 				</form>

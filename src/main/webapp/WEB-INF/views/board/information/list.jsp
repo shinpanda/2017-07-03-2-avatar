@@ -31,7 +31,7 @@
 									${regDate}
 							</c:if>
 							<c:if test="${nowTime eq regDate}">
-								<fmt:formatDate value="${b.regDate}" pattern="HH:MM"
+								<fmt:formatDate value="${b.regDate}" pattern="HH:mm"
 									var="regDate" />
 									${regDate}
 							</c:if>

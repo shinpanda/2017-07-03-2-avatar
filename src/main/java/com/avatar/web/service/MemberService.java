@@ -14,6 +14,7 @@ import com.avatar.web.entity.ChatView;
 import com.avatar.web.entity.Member;
 import com.avatar.web.entity.MemberClassView;
 import com.google.gson.JsonElement;
+import com.avatar.web.entity.Class;
 
 
 public class MemberService {
@@ -100,7 +101,37 @@ public class MemberService {
 	public void delete(String id) {
 		memberDao.delete(id);
 	}
-	
+
+	public List<Class> getClassList(String id) {
+		
+		return classDao.getClassList(id);
+	}
+	public int newClass(Class cl) {
+		int result = classDao.newClass(cl);
+		
+		return result;
+	}
+	public Class getClass(String openerId, String classId) {
+		Class cl = classDao.getClass(openerId,classId);
+		return cl;
+	}
+
+	public int editClass(Class cl) {
+		int result = classDao.editClass(cl);
+
+		return result;
+	}
+	public int getStuCount(String classId) {
+		int result = memberClassDao.getStuCount(classId);
+
+		return result;
+	}
+	public int deleteClass(String openerId, String classId) {
+		int result = classDao.deleteClass(openerId,classId);
+		return result;
+	}
+
+
 }
 
 	

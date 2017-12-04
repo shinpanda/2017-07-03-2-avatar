@@ -1,6 +1,8 @@
 package com.avatar.web.controller;
 
 import java.security.Principal;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.avatar.web.entity.Board;
+import com.avatar.web.entity.MemberClass;
 import com.avatar.web.service.BoardService;
 import com.avatar.web.service.TeacherService;
 
@@ -80,5 +83,14 @@ public class TeacherController {
 		service.deleteNotice(no);
 		return "redirect: ../notice";
 	}
+	
+	@RequestMapping("is-complete")
+	public String isComplete(Principal principal, Model model){
+		
+		/*List<MemberClass> map = service.getSeatList(principal.getName());
+		*/
+		return "teacher.is-complete";
+	}
+	
 	
 }
