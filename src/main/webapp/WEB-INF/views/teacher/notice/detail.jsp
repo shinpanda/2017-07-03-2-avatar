@@ -11,7 +11,7 @@
 		<div class="info-container">
 			<div class="tr-info clearfix">
 				<span class="title">${b.title}</span> <span class="reg-date"><fmt:formatDate
-						value="${b.regDate}" pattern="YY-MM-dd HH:MM" var="regDate" />${regDate}</span>
+						value="${b.regDate}" pattern="YY-MM-dd HH:mm" var="regDate" />${regDate}</span>
 			</div>
 			<div class="wch-info clearfix">
 				<span class="writer"></span>
