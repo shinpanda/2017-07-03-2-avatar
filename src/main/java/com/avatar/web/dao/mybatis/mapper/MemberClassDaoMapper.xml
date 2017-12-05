@@ -30,4 +30,10 @@
 	<select id="getStuCount" resultType="int">
 		select COUNT(*) from MemberClass where classId = #{classId}
 	</select>
+	<update id="updateDefaultClass" parameterType="com.avatar.web.entity.MemberClass">
+		UPDATE MemberClass SET classId=#{classId} WHERE memberId = #{openerId}
+	</update>
+	<select id="getDefaultClass" resultType="int">
+		select classId from MemberClass where memberID=#{openerId}
+	</select>
 </mapper>    
