@@ -937,12 +937,13 @@ div#chat-notifi {
 
 #top {
 	padding: 50px 30px;
-	width: 1000px;
+	width: 400px;
+	margin-left: 300px;
 }
 
 #bottom {
 	padding: 50px 30px;
-	width: 1000px;
+	width: 800px;
 }
 
 #bottom #area div {
