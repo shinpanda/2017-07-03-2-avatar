@@ -126,11 +126,16 @@ public class MemberService {
 
 		return result;
 	}
+
+	public String getTeacherId(String classId) {
+		String id = classDao.getTeacherId(classId);
+		return id;
+	}
+
 	public int deleteClass(String openerId, String classId) {
 		int result = classDao.deleteClass(openerId,classId);
 		return result;
 	}
-
 
 }
 

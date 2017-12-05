@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class ChatView extends Chat {
 	private String role;
+	private String className;
 
 	public ChatView() {
 		// TODO Auto-generated constructor stub
@@ -20,6 +21,14 @@ public class ChatView extends Chat {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
 	}
 	
 }

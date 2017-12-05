@@ -47,11 +47,19 @@ input[type="text"], textarea {
 	text-align: center;
 }
 
+
+/* main style */
 .main {
 	margin-left: 250px;
 	box-sizing: border-box;
 	padding: 30px;
 	width: 100%;
+}
+
+.main>h3 {
+	padding-left: 58px;
+	padding-top: 35px;
+	margin-bottom: 0px;
 }
 
 /* header style */
@@ -181,16 +189,8 @@ input.logout-btn {
 input.logout-btn:hover {
 	color: rgba(255, 172, 172, 0.68);
 }
-}
-
-/* main style */
 
 
-.main>h3 {
-	padding-left: 58px;
-	padding-top: 35px;
-	margin-bottom: 0px;
-}
 
 /* footer style */
 .footer {
@@ -1184,4 +1184,50 @@ input.schedule-subject {
     justify-content: baseline;
     height: 100px;
     margin-top: 5px;
+}
+
+
+/* teacher seat is-complete */
+
+.class-seat-container {
+    width: 870px;
+    margin: 50px;
+}
+
+.class-seat-wrapper {
+    border: 2px solid #4a5169;
+    border-radius: 20px;
+    display: inline-flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+	input.btn.is-complete-button {
+	    font-size: 17px;
+	    font-weight: 700;
+	    background: #0f0d71;
+	    padding: 8px 15px;
+	    color: white;
+	    border-radius: 6px;
+	    width: 66px;
+	}
+.event-label-box {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid #4a5169;
+    font-size: 14px;
+    border-radius: 3px;
+    margin-right: 30px;
+}
+
+.is-complete-event-container {
+    align-items: flex-end;
+    justify-content: space-between;
+    display: flex;
+}
+
+.is-complete-event-btn-container {
+    display: inline-flex;
+    width: 145px;
+    justify-content: space-around;
 }

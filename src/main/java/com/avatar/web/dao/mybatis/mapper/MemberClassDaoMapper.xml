@@ -21,7 +21,7 @@
 	</select>
 	
 	<select id="getList" resultType="com.avatar.web.entity.MemberClassView">
-		select memberName, seatNo, memberRole from MemberClassView where classId=#{classId} and memberRole != "ROLE_TEACHER" order by seatNo ASC		
+		select memberId, memberName, seatNo, memberRole, row, col from MemberClassView where classId=#{classId} and memberRole != "ROLE_TEACHER" order by seatNo ASC		
 	</select>
 	
 	<select id="getMemberList" resultType="com.avatar.web.entity.MemberClassView">		
