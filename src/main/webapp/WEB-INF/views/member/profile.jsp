@@ -2,23 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
-
 <c:set var="ctx" value="${pageContext.request.contextPath}" />    
-<!DOCTYPE html>
-<html>
-<head>
-<link href="${ctx}/resource/css/memprofile.css" type="text/css" rel="stylesheet">
-<title>Avatar</title>
-</head>
-<body>
-<div id="body">
 		<div class="content-container">
-		
 			<main class="main">
-		
-		
 			<div class="mem-information resume"><h3>회원정보조회/수정</h3></div>
-			
 			<form action="?${_csrf.parameterName}=${_csrf.token}" method="post">
 				<div class="self-certification-check">
 					<div class="self">
@@ -80,5 +67,3 @@
 		</main>
 			
 		</div>
-	</div>
-</body>

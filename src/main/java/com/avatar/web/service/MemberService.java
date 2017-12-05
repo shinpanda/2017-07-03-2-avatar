@@ -136,6 +136,14 @@ public class MemberService {
 		int result = classDao.deleteClass(openerId,classId);
 		return result;
 	}
+	public int updateDefaultClass(String openerId, String classId) {
+		int result = memberClassDao.updateDefaultClass(openerId,classId);
+		return result;
+	}
+	public int getDefaultClass(String openerId) {
+		int result = memberClassDao.getDefaultClass(openerId);
+		return result;
+	}
 
 }
 
