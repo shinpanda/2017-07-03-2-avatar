@@ -65,10 +65,10 @@ public class TeacherService {
 	}
 
 
-	public List<MemberClass> getSeatList(String id) {
+	public List<MemberClassView> getSeatList(String id) {
 		String classId = memberClassDao.getClassId(id);
-		
-		return null;
+		List<MemberClassView> list = memberClassDao.getList(classId);
+		return list;
 	}
 	
 }

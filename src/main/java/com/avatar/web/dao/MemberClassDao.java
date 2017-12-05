@@ -10,11 +10,18 @@ public interface MemberClassDao {
 	String getClassId(String id);
 	
 	List<MemberClassView> getList(String classId);
-
+	List<MemberClassView> getMemberList(int page, String field, String query);
+	
+	int getMemberCount();
+	
 	MemberClassView getHeader(String sessionId);
 
 	MemberClassView getClassInfo(String id);
 
 	int getStuCount(String classId);
+
+	String getClassName(String classId);
+
+	int updateSeatNo(String memberName, int seatNo);
 
 }

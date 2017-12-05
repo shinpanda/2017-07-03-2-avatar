@@ -23,4 +23,13 @@
 	<delete id="delete">
 		delete from LectureRoom where id = #{id} 
 	</delete>
+	
+	
+	<select id="getRow" resultType="int">
+		SELECT row  FROM LectureRoom where id = #{className} 
+	</select>
+	
+	<select id="getCol" resultType="int">
+		SELECT col FROM LectureRoom where id = #{className} 
+	</select>
 </mapper>    
