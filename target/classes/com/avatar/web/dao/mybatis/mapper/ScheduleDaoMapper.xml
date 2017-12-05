@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.avatar.web.dao.ScheduleDao">
+	<select id="getScheduleCheck" resultType="com.avatar.web.entity.Schedule">
+		SELECT * FROM Schedule where dateTime like '${param1}%' and classId = #{param2}
+	</select>
+	
+	<insert id="insert">
+		insert into Schedule(id, dateTime, subject, content, classId)
+		values ((select IFNULL(max(cast(id as unsigned)), 0)+1 from Schedule s), #{dateTime}, #{subject}, #{content}, #{classId})
+	</insert>
+</mapper>    

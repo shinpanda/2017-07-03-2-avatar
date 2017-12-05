@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.security.Principal;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -28,8 +29,12 @@ import com.avatar.web.dao.MemberClassDao;
 import com.avatar.web.dao.MemberRoleDao;
 import com.avatar.web.entity.BoardView;
 import com.avatar.web.entity.DateData;
+import com.avatar.web.entity.Schedule;
 import com.avatar.web.service.BoardService;
 import com.avatar.web.service.HomeService;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 @Controller
 @RequestMapping("/*")
@@ -50,66 +55,40 @@ public class HomeController {
 			model.addAttribute("questionList", service.getQuestionList(classId));
 			model.addAttribute("infomationList", service.getInfomationList(classId));
 
-/*			Calendar cal = Calendar.getInstance();
-			DateData calendarData;
-			// �˻� ��¥
-			if (dateData.getDate().equals("") && dateData.getMonth().equals("")) {
-				dateData = new DateData(String.valueOf(cal.get(Calendar.YEAR)), String.valueOf(cal.get(Calendar.MONTH)),
-						String.valueOf(cal.get(Calendar.DATE)), null);
-			}
-			// �˻� ��¥ end
-
-			Map<String, Integer> today_info = dateData.today_info(dateData);
-			List<DateData> dateList = new ArrayList<DateData>();
-
-			// �������� �޷� ������ ����Ʈ�� ������ ���� ����
-			// �ϴ� ���� �ε������� �ƹ��͵� ���� ������ ����
-			for (int i = 1; i < today_info.get("start"); i++) {
-				calendarData = new DateData(null, null, null, null);
-				dateList.add(calendarData);
-			}
-
-			// ��¥ ����
-			for (int i = today_info.get("startDay"); i <= today_info.get("endDay"); i++) {
-				if (i == today_info.get("today")) {
-					calendarData = new DateData(String.valueOf(dateData.getYear()), String.valueOf(dateData.getMonth()),
-							String.valueOf(i), "today");
-				} else {
-					calendarData = new DateData(String.valueOf(dateData.getYear()), String.valueOf(dateData.getMonth()),
-							String.valueOf(i), "normal_date");
-				}
-				dateList.add(calendarData);
-			}
-
-			// �޷� ��� �� �����ͷ� ����
-			int index = 7 - dateList.size() % 7;
-
-			if (dateList.size() % 7 != 0) {
-
-				for (int i = 0; i < index; i++) {
-					calendarData = new DateData(null, null, null, null);
-					dateList.add(calendarData);
-				}
-			}
-			System.out.println(dateList);
-
-			// �迭�� ����
-			model.addAttribute("dateList", dateList); // ��¥ ������ �迭
-			model.addAttribute("today_info", today_info);*/
-
 			return "home.index";
 		}
 	}
-
-	/*
-	 * @RequestMapping(value="calendar", method=RequestMethod.GET) public String
-	 * calendar(
-	 * 
-	 * Model model, HttpServletRequest request){
-	 * 
-	 * 
-	 * return "test.calendar"; }
-	 */
+	
+	@ResponseBody
+	@RequestMapping("schedule-check")
+	public String scheduleCheck(String date,Principal principal) {
+		/*
+		System.out.println(date);
+		System.out.println(principal.getName());*/
+		List<Schedule> list = service.getScheduleCheck(date,principal.getName());
+		String json ="";
+		Gson gson = new Gson();
+		json = gson.toJson(list);
+	
+		return json;
+	}
+	
+	@ResponseBody
+	@RequestMapping("schedule-upload")
+	public String scheduleUpload(String json, Principal principal) throws ParseException {
+		System.out.println(json);
+		JsonParser jsonParser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) jsonParser.parse(json);
+		
+		//jsonObject.get("msgType").getAsString();
+		String date = jsonObject.get("date").getAsString();
+		String subject = jsonObject.get("subject").getAsString();
+		String content = jsonObject.get("content").getAsString();
+		String writerId = principal.getName();
+		int result = service.insertSchedule(date, subject, content, writerId);
+		return "aa";
+	}
+	
 
 	@ResponseBody
 	@RequestMapping("upload")
