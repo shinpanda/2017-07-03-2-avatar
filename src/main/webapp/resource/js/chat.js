@@ -2,10 +2,9 @@
  * 
  */
 
-window
-		.addEventListener(
-				"load",
-				function() {
+const ws = new WebSocket("ws://211.238.142.93/web/echo");
+window.addEventListener("load", function() {
+
 					var submitButton = document
 							.querySelector('.chat-message input[type="button"]');
 					var template = document.querySelector('template');
@@ -13,10 +12,10 @@ window
 					var firstCheck = false;
 					var notification = null;
 					var data = null;
+					var win = null;
 					if (chatWindow != null)
 						chatWindow.scrollTop = chatWindow.scrollHeight;
 					var str = location.pathname;
-					const ws = new WebSocket("ws://211.238.142.93/web/echo");
 					// const ws = new
 					// WebSocket("ws://211.238.142.93/web/resource/chat-server");
 					// const ws = new WebSocket("ws://localhost/web/echo");
@@ -92,75 +91,108 @@ window
 						var data = JSON.parse(e.data);
 						// if(!str.indexOf("/member/chat")){
 						// 잠시 notification 설정을 위해 조건문 바꿈
-						var role;
-						if (data.role == "ROLE_TEACHER")
-							role = "선생님";
-						if (data.role == "ROLE_STUDENT")
-							role = "학생";
-
-						notificationWindow(data, role);
-
-						/*
-						 * if (!("Notification" in window)) { alert("This
-						 * browser does not support desktop notification"); }
-						 * else if (Notification.permission === "granted") { var
-						 * n = new Notification(data.content);
-						 * console.log(data.content);
-						 * setTimeout(n.close.bind(n), 4000); } else if
-						 * (Notification.permission !== 'denied') {
-						 * Notification.requestPermission(function(permission) {
-						 * 
-						 * if (!('permission' in Notification)) {
-						 * Notification.permission = permission; }
-						 * 
-						 * if (permission === "granted") { var n = new
-						 * Notification(data.content); //var n = new
-						 * Notification(e.data); setTimeout(n.close.bind(n),
-						 * 4000); } }); }
-						 */
-						// }
-						// else {
-						if (str.indexOf("/member/chat")) {
-							var prevRegDates = chatWindow
-									.querySelectorAll(".row.chat-date");
-							prevRegDate = prevRegDates[prevRegDates.length - 1].firstElementChild.textContent;
-							prevRegDate = prevRegDate.replace(/(\s*)/g, "");
-
-							console.log(prevRegDate);
-							var regDate = new Date(data.date);
-							var rd = regDate.getHours()
-									+ ":"
-									+ (regDate.getMinutes() >= 10 ? regDate
-											.getMinutes() : "0"
-											+ regDate.getMinutes());
-
-							if (prevRegDate != (regDate.getMonth() + 1) + "월"
-									+ regDate.getDate() + "일") {
-								var row = document.createElement("div");
-								row.classList.add('row', 'chat-date');
-								var p = document.createElement("p");
-								p.textContent = (regDate.getMonth() + 1) + "월 "
-										+ regDate.getDate() + "일";
-								row.appendChild(p);
-								chatWindow.appendChild(row);
+						
+						var msgType = data.msgType;
+						console.log(msgType);
+						if(msgType == "chat"){
+							var role;
+							if (data.role == "ROLE_TEACHER")
+								role = "선생님";
+							if (data.role == "ROLE_STUDENT")
+								role = "학생";
+	
+							notificationWindow(data, role);
+	
+							/*
+							 * if (!("Notification" in window)) { alert("This
+							 * browser does not support desktop notification"); }
+							 * else if (Notification.permission === "granted") { var
+							 * n = new Notification(data.content);
+							 * console.log(data.content);
+							 * setTimeout(n.close.bind(n), 4000); } else if
+							 * (Notification.permission !== 'denied') {
+							 * Notification.requestPermission(function(permission) {
+							 * 
+							 * if (!('permission' in Notification)) {
+							 * Notification.permission = permission; }
+							 * 
+							 * if (permission === "granted") { var n = new
+							 * Notification(data.content); //var n = new
+							 * Notification(e.data); setTimeout(n.close.bind(n),
+							 * 4000); } }); }
+							 */
+							// }
+							// else {
+							if (str.indexOf("/member/chat")) {
+								var prevRegDates = chatWindow
+										.querySelectorAll(".row.chat-date");
+								if(prevRegDates.length>0)
+									prevRegDate = prevRegDates[prevRegDates.length - 1].firstElementChild.textContent;
+								else
+									prevRegDate = prevRegDates[0].firstElementChild.textContent;
+								prevRegDate = prevRegDate.replace(/(\s*)/g, "");
+	
+								console.log(prevRegDate);
+								var regDate = new Date(data.date);
+								var rd = regDate.getHours()
+										+ ":"
+										+ (regDate.getMinutes() >= 10 ? regDate
+												.getMinutes() : "0"
+												+ regDate.getMinutes());
+	
+								if (prevRegDate != (regDate.getMonth() + 1) + "월"
+										+(regDate.getDate() >= 10 ? regDate
+												.getDate() : "0"
+													+ regDate.getDate()) + "일") {
+									var row = document.createElement("div");
+									row.classList.add('row', 'chat-date');
+									var p = document.createElement("p");
+									p.textContent = (regDate.getMonth() + 1) + "월 "
+											+ regDate.getDate() + "일";
+									row.appendChild(p);
+									chatWindow.appendChild(row);
+								}
+	
+								if ('content' in template) {
+									var clone = document.importNode(
+											template.content, true);
+	
+									var row = clone.querySelector(".row");
+	
+									row.querySelector("h5").textContent = role;
+									var div = row.querySelector("div");
+	
+									// div.querySelector("p").textContent =
+									// data.content;
+									div.querySelector("p").innerHTML = data.content;
+									div.querySelector("span").textContent = rd;
+									chatWindow.appendChild(clone);
+									chatWindow.scrollTop = chatWindow.scrollHeight;
+								}
 							}
-
-							if ('content' in template) {
-								var clone = document.importNode(
-										template.content, true);
-
-								var row = clone.querySelector(".row");
-
-								row.querySelector("h5").textContent = role;
-								var div = row.querySelector("div");
-
-								// div.querySelector("p").textContent =
-								// data.content;
-								div.querySelector("p").innerHTML = data.content;
-								div.querySelector("span").textContent = rd;
-								chatWindow.appendChild(clone);
-								chatWindow.scrollTop = chatWindow.scrollHeight;
+						}
+						if(msgType == "push"){
+							if(data.role == "teacher"){
+								if(data.content == "start"){
+									if (win == null)
+										win = open(getContextPath() + "/resource/js/complete.jsp?start-time="+Date.parse(data.date), "_blank", "width=400px, height=300px, menubar=no, toolbar=0, location=no, status=no, scrollbars=0, resizable=no");
+								}
+								else {
+									console.log("창 꺼라");
+									win.close();
+								}
 							}
+							if(data.role == "student"){
+								console.log("학생에게서 온 메시지");
+								var eventLabel = document.querySelector(".event-label-box")
+								.querySelectorAll("label");
+								eventLabel[2].firstElementChild.textContent = parseInt(eventLabel[2].firstElementChild.textContent)+1;
+								var seat = document.querySelector("#"+data.memberId);
+								seat.style.background="url('"+getContextPath()+"/resource/images/completemonitor.png')";
+								seat.style.color = "#990b0d";
+							}
+							//child.document.getElementById("start-time").value = data.date;
+							/*console.log(win.document.getElementById("start-time"));*/
 						}
 					};
 
@@ -207,4 +239,4 @@ window
 						}
 
 					}
-				});
+});

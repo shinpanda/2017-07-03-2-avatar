@@ -12,7 +12,10 @@ public interface MemberClassDao {
 	String getClassId(String id);
 	
 	List<MemberClassView> getList(String classId);
-
+	List<MemberClassView> getMemberList(int page, String field, String query);
+	
+	int getMemberCount();
+	
 	MemberClassView getHeader(String sessionId);
 
 	MemberClassView getClassInfo(String id);
@@ -22,5 +25,8 @@ public interface MemberClassDao {
 	int updateDefaultClass(@Param("openerId")String openerId, @Param("classId")String classId);
 
 	int getDefaultClass(@Param("openerId")String openerId);
+	String getClassName(String classId);
+
+	int updateSeatNo(String memberName, int seatNo);
 
 }

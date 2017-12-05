@@ -5,9 +5,9 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.avatar.web.dao.ClassDao;
+
 import com.avatar.web.dao.MemberClassDao;
-import com.avatar.web.dao.MemberDao;
+
 import com.avatar.web.entity.MemberClassView;
 
 public class MybatisMemberClassDao implements MemberClassDao {
@@ -20,7 +20,7 @@ public class MybatisMemberClassDao implements MemberClassDao {
 		MemberClassDao memberClassDao = sqlSession.getMapper(MemberClassDao.class);
 		return memberClassDao.insert(memberId, classId);
 	}
-	
+	  
 	@Override
 	public String getClassId(String id) {
 		MemberClassDao memberClassDao = sqlSession.getMapper(MemberClassDao.class);
@@ -34,6 +34,22 @@ public class MybatisMemberClassDao implements MemberClassDao {
 		List<MemberClassView> list = memberClassDao.getList(classId);
 
 		return list;
+	}
+	
+	@Override
+	public List<MemberClassView> getMemberList(int page, String field, String query) {
+		MemberClassDao memberClassDao = sqlSession.getMapper(MemberClassDao.class);
+		System.out.println(page);
+		System.out.println(field);
+		System.out.println(query);
+		return memberClassDao.getMemberList(page, field, query);
+		
+	}
+	
+	@Override
+	public int getMemberCount() {
+		MemberClassDao memberClassDao = sqlSession.getMapper(MemberClassDao.class);
+		return memberClassDao.getMemberCount();
 	}
 
 	@Override
@@ -66,6 +82,16 @@ public class MybatisMemberClassDao implements MemberClassDao {
 	public int getDefaultClass(String openerId) {
 		MemberClassDao memberClassDao = sqlSession.getMapper(MemberClassDao.class);
 		return memberClassDao.getDefaultClass(openerId);
+	}
+	public String getClassName(String classId) {
+		MemberClassDao memberClassDao = sqlSession.getMapper(MemberClassDao.class);
+		return memberClassDao.getClassName(classId);
+	}
+
+	@Override
+	public int updateSeatNo(String memberName, int seatNo) {
+		MemberClassDao memberClassDao = sqlSession.getMapper(MemberClassDao.class);
+		return memberClassDao.updateSeatNo(memberName, seatNo);
 	}
 	
 

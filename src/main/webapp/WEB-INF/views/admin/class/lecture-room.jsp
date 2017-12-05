@@ -15,7 +15,7 @@
 	</div>
 	<div class="box-container">
 		<c:set var="rowNum" value="${count*4-1}" />
-		<c:forEach  items="${list}" begin="0" end="${rowNum}" step="4" >
+		<c:forEach  items="${list}" begin="0" end="${rowNum}" step="4" varStatus="status">
 			<div class="box-row">
 				<c:forEach begin="${status.index}" end="${status.index+3}" var="i">
 					<c:if test="${!empty list[i]}">

@@ -1,0 +1,38 @@
+@charset "UTF-8";
+.push-window {
+    height: 100%;
+    width: 100%;
+    background: #a1cece6b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.push-window-container {
+    display: inline-flex;
+    flex-direction: column;
+    background: white;
+    width: 250px;
+    padding: 32px;
+    justify-content: space-between;
+    height: 150px;
+    border: 1px solid #e8e8e8;
+    box-shadow: 0px 0px 20px #0000002b;
+}
+
+input.btn.complete-btn {
+    padding: 10px;
+    border: none;
+    background: #184067;
+    color: white;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.push-window-container div {
+    font-size: 15px;
+    text-align: center;
+    margin-top: 0px;
+}
+
+.push-window-container h3 {margin: 0;text-align: center;}

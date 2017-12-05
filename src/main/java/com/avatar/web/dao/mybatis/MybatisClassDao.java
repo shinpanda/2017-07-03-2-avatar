@@ -70,6 +70,12 @@ public class MybatisClassDao implements ClassDao {
 	}
 
 	@Override
+	public String getTeacherId(String classId) {
+		ClassDao classDao = sqlSession.getMapper(ClassDao.class);
+		return classDao.getTeacherId(classId);
+	}
+	
+	@Override
 	public int deleteClass(String openerId, String classId) {
 		ClassDao classDao = sqlSession.getMapper(ClassDao.class);
 		return classDao.deleteClass(openerId,classId);
