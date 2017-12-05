@@ -149,7 +149,7 @@
 				while(i < spans.length){
 					spans[i].style.background="url('${ctx}/resource/images/monitor.png')"; 
 					spans[i].style.color="black";
-					spans[i].style.fontWeight="nomal";
+					spans[i].style.fontWeight="normal";
 					spans[i].style.fontSize="initial";
 										
 					i++;
