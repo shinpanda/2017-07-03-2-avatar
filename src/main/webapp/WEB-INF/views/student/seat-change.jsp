@@ -1,19 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:set var="ctx" value="${pageContext.request.contextPath}" />    
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 
 <script type="text/javascript">
 
-
+	
 	window.addEventListener("load", function(){		
 	
-		
-		
 		var changeButton =document.getElementById("change");
 		var resetButton =document.getElementById("reset");
 		var pickButton =document.getElementById("pick");
@@ -22,20 +20,56 @@
 		var container =document.querySelector("#area");
 		
 		//var span = document.createElement("span");
-
 		
+				
+		var b1 = ${col};
+		var b2 = ${row};
 		
-		
-		
+			
+		var xhr = new XMLHttpRequest();
+					
+		xhr.onload = function(e){
+		var count = 0;
+		for(j=1; j<=b2; j++){
+			var div = document.createElement("div");
+			//console.log("b2:"+j);
+			container.appendChild(div);
+			for (i = 1; i <= b1; i++) {
+				var member =JSON.parse(e.target.responseText);
+				if(count < member.length){
+					var li = document.createElement("span");
+					li.textContent = member[count];
+					li.className = "seat";
+					div.appendChild(li);
+				}
+				else {
+					var li = document.createElement("span");
+					li.textContent = "";
+					li.className = "seat";
+					div.appendChild(li);
+				}
+									 
+				count ++;
+			}
+							
+		};
+					
+		};
+					
+		xhr.open("GET", "../student/seat-info-ajax?${_csrf.parameterName}=${_csrf.token}"); 
+		xhr.send(); 
+			
+			
 		
 		changeButton.onclick = function(){
-			/* var b1 = parseInt(row.value);
-		    var b2 = parseInt(column.value); */
-		    var b1 = ${col};
-			var b2 = ${row};
 			
-			var tag = "";
-			 var xhr = new XMLHttpRequest();
+			
+			while(container.hasChildNodes()){
+				container.removeChild(container.firstChild); 
+				
+			} 
+			
+			var xhr = new XMLHttpRequest();
 				
 			 xhr.onload = function(e){
 				 var count = 0;
@@ -110,14 +144,43 @@
 			
 			
 			pickButton.onclick = function(){
-				var b1 = ${col};
-				var b2 = ${row};
 				
-				 //var b1 = parseInt(row.value);
-			   // var b2 = parseInt(column.value);
 				
-					 
+				/* var xhr = new XMLHttpRequest();
+				
+				xhr.onload = function(e){
+				var count = 0;
 				for(j=1; j<=b2; j++){
+					var div = document.createElement("div");
+					//console.log("b2:"+j);
+					container.appendChild(div);
+					for (i = 1; i <= b1; i++) {
+						var member =JSON.parse(e.target.responseText);
+						if(count < member.length){
+							var li = document.createElement("span");
+							li.textContent = member[count];
+							li.className = "seat";
+							div.appendChild(li);
+						}
+						else {
+							var li = document.createElement("span");
+							li.textContent = "";
+							li.className = "seat";
+							div.appendChild(li);
+						}
+											 
+						count ++;
+					}
+									
+				};
+							
+				};
+							
+				xhr.open("GET", "../student/seat-info-ajax?${_csrf.parameterName}=${_csrf.token}"); 
+				xhr.send(); 
+				 */
+									 
+				/* for(j=1; j<=b2; j++){
 					var div = document.createElement("div");
 					
 					container.appendChild(div);
@@ -127,39 +190,15 @@
 							div.appendChild(li);
 						}	
 				}
-				
+				 */
 				 				 
 				var spans = container.querySelectorAll("span");
 				var index = Math.floor(Math.random()*spans.length);
-				spans[index].style.background="url('${ctx}/resource/images/redmonitor.png')";
-				
-				//div.childNodes[index].style.background="url('../../../resource/images/image.png')";
-				
-				
+				spans[index].style.background="url('${ctx}/resource/images/completemonitor.png')";
+								
 				changeButton.disabled = 'true';
 				pickButton.disabled = 'true';		 
-				
-				
-				
-				
-				/*  var xhr = new XMLHttpRequest();
-
-				 xhr.onload = function(e){
-				 	var div = document.createElement("div");
-				 	container.appendChild(div);
-				 	var member =JSON.parse(e.target.responseText);
-				 	 var li = document.createElement("span");
-				  	li.textContent = member[1];
-				 	li.className = "seat";
-				 	div.appendChild(li);
-				 	
-				 };
-				 xhr.open("GET", "../student/sit-change-ajax?${_csrf.parameterName}=${_csrf.token}"); 
-				xhr.send(); 
-				
-				changeButton.disabled = 'true';
-				pickButton.disabled = 'true'; */
-				
+								
 			};	
 			
 			
@@ -171,26 +210,32 @@
 
 
 <body>
-<main class="main">
-<h1> 자리바꾸기 </h1>
+	<main class="main">
+	<h1>자리바꾸기</h1>
 	<div class="seat-container">
-		<div id ="top" style="display:flex; height:70px;">
-					
-					
-					<div id="button">
-					 	<input type="button" class="seat-btn seat-btn-primary seat-btn-lg raised" value="자리바꾸기" id="change" />					 	
-					 	<input type="button" class="seat-btn seat-btn-primary seat-btn-lg raised" value="오늘의 당첨자" id="pick"/>
-					 	<input type="button" class="seat-btn seat-btn-primary seat-btn-lg raised" value="초기화"  id="reset" />
-					 	
-					</div>	
+		<div id="top" style="display: flex; height: 70px;">
+
+
+			<div id="button">
+				<input type="button"
+					class="seat-btn seat-btn-primary seat-btn-lg raised" value="자리바꾸기"
+					id="change" /> <input type="button"
+					class="seat-btn seat-btn-primary seat-btn-lg raised"
+					value="오늘의 당첨자" id="pick" /> <input type="button"
+					class="seat-btn seat-btn-primary seat-btn-lg raised" value="초기화"
+					id="reset" />
+
+			</div>
 		</div>
-		
-		<div id ="bottom" style="height: -webkit-fill-available;margin-left: 75px;">
+
+		<div id="bottom"
+			style="height: -webkit-fill-available; margin-left: 75px;">
 			<div id="area" style="height: -webkit-fill-available;">
 				<!-- <span id="seat"></span>  -->
-				
-			</div>	
+
+			</div>
 		</div>
+		
 	</div>
-</main>
- </body>   
+	</main>
+</body>
