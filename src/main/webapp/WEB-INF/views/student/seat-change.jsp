@@ -199,7 +199,7 @@
 	<main class="main">
 	<h1>자리바꾸기</h1>
 	<div class="seat-container">
-<<<<<<< HEAD
+
 	
 		<div id ="top" style="display:flex; height:70px;">
 					
@@ -207,24 +207,11 @@
 					<div id="button">
 					 	<input type="button" class="seat-btn seat-btn-primary seat-btn-lg raised" value="자리바꾸기" id="change" />					 	
 					 	<input type="button" class="seat-btn seat-btn-primary seat-btn-lg raised" value="오늘의 당첨자" id="pick"/>
-					 	
-					 	
+					 						 	
 					</div>	
-=======
-		<div id="top" style="display: flex; height: 70px;">
 
+		
 
-			<div id="button">
-				<input type="button"
-					class="seat-btn seat-btn-primary seat-btn-lg raised" value="자리바꾸기"
-					id="change" /> <input type="button"
-					class="seat-btn seat-btn-primary seat-btn-lg raised"
-					value="오늘의 당첨자" id="pick" /> <input type="button"
-					class="seat-btn seat-btn-primary seat-btn-lg raised" value="초기화"
-					id="reset" />
-
-			</div>
->>>>>>> refs/remotes/origin/master
 		</div>
 
 		<div id="bottom"
