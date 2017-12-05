@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:set var="ctx" value="${pageContext.request.contextPath}" />    
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,9 +60,6 @@
 		xhr.send(); 
 			
 			
-		
-		
-		
 		
 		changeButton.onclick = function(){
 			if (confirm("자리를 바꾸시겠습니까") == true){  
@@ -183,6 +180,7 @@
 					container.removeChild(container.firstChild); 
 					
 				} */
+
 								
 				/* changeButton.disabled = 'true';
 				pickButton.disabled = 'true';		 */ 
@@ -198,9 +196,10 @@
 
 
 <body>
-<main class="main">
-<h1> 자리바꾸기 </h1>
+	<main class="main">
+	<h1>자리바꾸기</h1>
 	<div class="seat-container">
+<<<<<<< HEAD
 	
 		<div id ="top" style="display:flex; height:70px;">
 					
@@ -211,15 +210,31 @@
 					 	
 					 	
 					</div>	
+=======
+		<div id="top" style="display: flex; height: 70px;">
+
+
+			<div id="button">
+				<input type="button"
+					class="seat-btn seat-btn-primary seat-btn-lg raised" value="자리바꾸기"
+					id="change" /> <input type="button"
+					class="seat-btn seat-btn-primary seat-btn-lg raised"
+					value="오늘의 당첨자" id="pick" /> <input type="button"
+					class="seat-btn seat-btn-primary seat-btn-lg raised" value="초기화"
+					id="reset" />
+
+			</div>
+>>>>>>> refs/remotes/origin/master
 		</div>
-		
-		<div id ="bottom" style="height: -webkit-fill-available;margin-left: 75px;">
+
+		<div id="bottom"
+			style="height: -webkit-fill-available; margin-left: 75px;">
 			<div id="area" style="height: -webkit-fill-available;">
 				<!-- <span id="seat"></span>  -->
-				
-			</div>	
+
+			</div>
 		</div>
 		
 	</div>
-</main>
- </body>   
+	</main>
+</body>

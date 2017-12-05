@@ -23,42 +23,39 @@
 			<div class="middle">
 				<h1>클래스 설정</h1>
 				<div class="new-class">
-					<a href="#" class="modal-trigger" data-modal="modal-name"> <img
+					<a href="#" class="modal-trigger4" data-modal="modal-name4"> <img
 						class="add-img" src="${ctx}/resource/images/add.png" alt="클래스 생성" />
 					</a>
 				</div>
 				<!-- class list  -->
-				<form action="?${_csrf.parameterName}=${_csrf.token}" method="post">
+				<form action="update-default-class?${_csrf.parameterName}=${_csrf.token}" method="post">
 					<div class="classset" >
 						<c:forEach var="cl" items="${clist}">
 							<div class="class-row" id="${cl.id}">
 								<label> 
 									<input type="radio" class="radio"
-									name="class-id" id="class-id" value="${cl.id}" /> <!--checked   -->
-									<span class="front-end box"> <span> ${cl.name}
+									name="class-id" id="${cl.id}" value="${cl.id}" /> <!--checked   -->
+									<span class="front-end box"> <span> ${cl.name} 
 											CLASS</span>
-
-								</span>
+									</span>
 								</label>
 								<div class="class-cell">
 									<span class="class-info"> <b>과정명 :</b> <span
 										class="class-course">${cl.course}</span> <br /> <b>기간 :</b> <fmt:formatDate
 											pattern="yyyy-MM-dd" value="${cl.openDate }" /> ~ <fmt:formatDate
 											pattern="yyyy-MM-dd" value="${cl.completeDate }" />
-										<input type="hidden" 
-									name="c-id" id="c-id" value="${cl.id}" />	
-											
+										<input type="hidden" name="c-id" id="c-id" value="${cl.id}" />	
+										<input type="hidden" name="default-change" id="default-change">	
 									</span>
-									<div class="delete-button">
-
+									<div class="icon-button">
 										<a href="#" class="modal-trigger2" data-modal="modal-name2">
-											<img class="delete-img"
-											src="${ctx}/resource/images/delete.png" alt="클래스 삭제" />
-										</a> <a href="#" class="modal-trigger3" data-modal="modal-name3">
-											<img class="delete-img" src="${ctx}/resource/images/edit.png"
-											alt="클래스 수정" />
+											<img class="delete-img" src="${ctx}/resource/images/delete.png" alt="클래스 삭제" />
+										</a> 
+										<a href="#" class="modal-trigger3" data-modal="modal-name3">
+											<img class="delete-img" src="${ctx}/resource/images/edit.png" alt="클래스 수정" />
 										</a>
 									</div>
+									
 								</div>
 							</div>
 
@@ -70,11 +67,11 @@
 
 
 				<!-- Modal -->
-				<div class="modal" id="modal-name">
-					<div class="modal-sandbox"></div>
+				<div class="modal4" id="modal-name">
+					<div class="modal-sandbox4"></div>
 					<div class="modal-box">
 						<div class="modal-header">
-							<div class="close-modal">&#10006;</div>
+							<div class="close-modal4">&#10006;</div>
 							<h1 style="margin-top: auto;">클래스생성</h1>
 						</div>
 						<form action="new-class?${_csrf.parameterName}=${_csrf.token}"
@@ -83,25 +80,18 @@
 
 								<p>클래스 생성을 누르면 새로운 클래스가 생성됩니다.</p>
 
-								<div class="dc-name mem-fixed set title">
-									<span class="class-name">과정명 : </span> <input type="text"
-										class="content-box dc-name cell" name="course" />
-								</div>
-								<div class="table">
-									<div class="dc-name mem-fixed set">
-										<span class="class-name cell">클래스 이름 : </span> <input
-											type="text" class="content-box dc-name class cell"
-											name="name"> <span class="class-name cell">클래스
-											비밀번호 : </span> <input type="password"
-											class="content-box dc-name class  cell" name="pwd">
-									</div>
-									<div class="dc-name mem-fixed set">
-										<span class="class-name cell">시작일 : </span> <input type="date"
-											class="content-box dc-name class cell" name="openDate">
-										<span class="class-name cell">수료일 : </span> <input type="date"
-											class="content-box dc-name class cell" name="completeDate">
-									</div>
-								</div>
+							<div class="class-name mem-fixed set title">
+									<span class="class-name">과정명 </span> 
+									<input type="text" class="content-box class-input cell" name="course" />
+									<span class="class-name">클래스 이름  </span> 
+									<input type="text" class="content-box class-input cell" name="name"> 
+									<span class="class-name">클래스 비밀번호  </span> 
+									<input type="password" class="content-box class-input cell" name="pwd">
+									<span class="class-name">시작일  </span> 
+									<input type="date" class="content-box class-input class cell" name="openDate">
+									<span class="class-name">수료일  </span> 
+									<input type="date" class="content-box class-input class cell" name="completeDate">
+							</div>
 
 								<br /> <br /> <input class="btn-modal" type="submit"
 									value="클래스 생성">
@@ -109,7 +99,6 @@
 						</form>
 					</div>
 				</div>
-
 				<!-- Modal2 삭제 -->
 				<div class="modal2" id="modal-name">
 					<div class="modal-sandbox2"></div>
@@ -122,7 +111,7 @@
 							method="post">
 							<div class="modal-body center">
 								
-								<div class="dc-name mem-fixed set title">
+								<div class="class-name mem-fixed set title">
 									<span class="class-name">과정명 : 
 										<span id="del-course" style="font-variant: all-small-caps; font-size: 27px;"></span></span>
 									<input type="hidden" id="del-id" name="del-id"/>
@@ -133,9 +122,9 @@
 								<p>클래스 비밀번호 입력 후 삭제를 누르면 클래스가 삭제됩니다.</p>
 								<p>클래스 비밀번호가 올바르면 클래스 삭제버튼이 활성화됩니다.</p>
 								<div class="table">
-									<div class="dc-name mem-fixed set">
+									<div class="class-name mem-fixed set pwd-hide">
 										<span class="class-name cell">비밀번호 : 
-											<input type="password" class="content-box dc-name class cell" id="del-pwd" name="del-pwd">
+											<input type="password" class="content-box class-input class cell" id="del-pwd" name="del-pwd">
 										</span> 
 									</div>
 								</div>
@@ -160,30 +149,26 @@
 							method="post">
 							<div class="modal-body center">
 								<p>클래스 수정을 누르면 클래스가 수정됩니다.</p>
-								<div class="dc-name mem-fixed set title">
-									<span class="class-name">과정명 : </span> <input type="text"
-										class="content-box dc-name cell" name="edit-course" value="" />
-									<input type="hidden" class="content-box dc-name cell"
-										name="edit-id" value="" />
-
-								</div>
-
-								<div class="table">
-									<div class="dc-name mem-fixed set">
-										<span class="class-name cell">클래스 이름 : </span> <input
-											type="text" class="content-box dc-name class cell"
+								<div class="class-name mem-fixed set title">
+									<span class="class-name">과정명 : </span> 
+									<input type="text" class="content-box class-input cell" name="edit-course" />
+									<input type="hidden" class="content-box class-input cell" name="edit-id" />
+										<span class="class-name cell">클래스 이름  </span> <input
+											type="text" class="content-box class-input class cell"
 											name="edit-name"> <span class="class-name cell">클래스
-											비밀번호 : </span> <input type="password"
-											class="content-box dc-name class cell" name="edit-pwd">
-									</div>
-									<div class="dc-name mem-fixed set">
-										<span class="class-name cell">시작일 : </span> <input type="date"
-											class="content-box dc-name class cell" name="edit-openDate">
-										<span class="class-name cell">수료일 : </span> <input type="date"
-											class="content-box dc-name class cell"
+											비밀번호 </span> <input type="password"
+											class="content-box class-input class cell" name="edit-pwd">
+										<span class="class-name cell">시작일 </span> <input type="date"
+											class="content-box class-input class cell" name="edit-openDate">
+										<span class="class-name cell">수료일 </span> <input type="date"
+											class="content-box class-input class cell"
 											name="edit-completeDate">
-									</div>
+
+
+
 								</div>
+
+									
 								<br /> <br /> <input class="btn-modal" type="submit"
 									value="클래스 수정">
 							</div>
@@ -195,21 +180,30 @@
 			</main>
 		</div>
 	</div>
-
-	<script
-		src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js'></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js'></script>
 	<script>
+	$(function()  {
+		$.get("../member/get-default-class?${_csrf.parameterName}=${_csrf.token}", 
+				function(result) {
+				$("input[id='"+result+"']").attr("checked",true);
+				  $("input[type='radio']").change(function(){
+						var changeValue = $("input[type='radio']:checked").val();
+					 	$('input[name=default-change]').attr('value',changeValue);
+				})  
+		});
+		
+	});
+	
 		/* 추가 */
-		$(".modal-trigger").click(function(e) {
+		$(".modal-trigger4").click(function(e) {
 			e.preventDefault();
-			dataModal = $(this).attr("data-modal");
-			$("#" + dataModal).css({
+			$(".modal4").css({
 				"display" : "block"
 			});
 		});
 
-		$(".close-modal, .modal-sandbox").click(function() {
-			$(".modal").css({
+		$(".close-modal4, .modal-sandbox4").click(function() {
+			$(".modal4").css({
 				"display" : "none"
 			});
 		});
@@ -228,11 +222,13 @@
 			})
 			$.get("../member/student-count?${_csrf.parameterName}=${_csrf.token}&classId=" 
 					+ $(e.target).parents('.class-row').attr('id'), function(result) {
-						$('#student-num').append("현재 클래스 학생수: "+result+"명 ");	 
-						if(result == 0)
+						$('#student-num').append("현재 클래스 인원: "+result+"명 ");	 
+						if(result == 0){
 							$('#student-num').append("<strong> (현재 클래스 삭제가 가능합니다.)</strong>");
-						else{
+							$(".pwd-hide").show();
+						}else{
 							$('#student-num').append("<strong style='color:red;'>(현재 클래스 삭제가 불가능합니다.)</strong> ");
+							$(".pwd-hide").hide();
 						}
 			})
 			$("#del-pwd").change(function(){
@@ -259,7 +255,6 @@
 					
 				}
 			});
-			
 			$(".modal2").css({
 				"display" : "block"
 			});

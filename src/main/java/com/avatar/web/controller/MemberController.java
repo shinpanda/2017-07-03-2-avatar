@@ -145,6 +145,28 @@ public class MemberController {
 		}
 	}
 	
+	@RequestMapping(value="update-default-class", method=RequestMethod.POST)
+	public String updateDefaultClass(Principal principal, HttpServletRequest request, Model model) {
+		String openerId = principal.getName();
+		String classId = request.getParameter("default-change");
+		int result = service.updateDefaultClass(openerId,classId);
+		if(result >0) {
+			System.out.println("기본 클래스 변경");
+		}else {
+			System.out.println("기본 클래스 변경 실패");
+		}
+		return "redirect:classsetting";
+	}	
+	@RequestMapping(value="get-default-class")
+	@ResponseBody
+	public String getDefaultClass(Principal principal, HttpServletRequest request, Model model) {
+		String openerId = principal.getName();
+		Gson gson = new Gson();
+		String json = "";
+		json = gson.toJson(service.getDefaultClass(openerId));
+		System.out.println(json);
+		return json;
+	}	
 	@RequestMapping(value="class-list")
 	@ResponseBody
 	public String getList(Principal principal, HttpServletRequest request, Model model) {

@@ -8,6 +8,12 @@ div.classset{
 	display: grid;
 	text-align: start;
 }
+/* dc-name */
+input.class-input{
+    font-size: 17px;
+    padding: 10px 0px 10px 0px;
+}
+
 input.change-default.change-default {
 /*     width: 150px;
     height: 30px; */
@@ -29,6 +35,7 @@ input.change-default.change-default {
 .middle {
   width: 88%;
   text-align: center;
+  margin-top: -75px;
 }
 img.add-img{
 	width: 79px;
@@ -123,7 +130,7 @@ span.class-info{
     flex-direction: column;
     align-items: center;
 }
-.modal-sandbox,.modal-sandbox2,.modal-sandbox3 {
+.modal-sandbox,.modal-sandbox2,.modal-sandbox3,.modal-sandbox4 {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -132,7 +139,7 @@ span.class-info{
   background: transparent;
 }
 
-.modal,.modal2, .modal3 {
+.modal,.modal2, .modal3,.modal4 {
   display: none; 
   position: fixed;
   width: 100%;
@@ -146,7 +153,7 @@ span.class-info{
 
 .modal-box {
   position: relative;
-  width: 80%;
+  width: 550px;
   max-width: 920px;
   margin: 100px auto;
   animation-name: modalbox;
@@ -158,18 +165,18 @@ span.class-info{
   
   height: 20px;
   padding: 0px 20px 40px 20px;
-  background: #990000;
+  background: #3270ad;
  /*  color: #ffffff; */
   font-size: 13px;
 }
 
 .modal-body {
-  background: #ECEFF1;
+  background: #fff;
   padding: 30px;
 }
 
 /* Close Button */
-.close-modal,.close-modal2,.close-modal3 {
+.close-modal,.close-modal2,.close-modal3,.close-modal4 {
   text-align: right;
   cursor: pointer;
 }
@@ -178,13 +185,13 @@ span.class-info{
   cursor: pointer;
 }
 
-.modal-trigger, button.close-modal, .btn-modal,.modal-trigger2,.modal-trigger3 {
+.modal-trigger, button.close-modal, .btn-modal, .modal-trigger2,.modal-trigger3,.modal-trigger4 {
   padding: 10px;
   background: transparent;
   text-decoration: none;
 }
 
-.modal-trigger {
+.modal-trigger, .modal-trigger2,.modal-trigger3,.modal-trigger4 {
   /* background: #B0BEC5; */
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
@@ -206,17 +213,17 @@ span.class-info{
 	}
 	.class-cell{
 	    display: flex;
-	    flex-direction: column;
+	/*     flex-direction: column; */
 	    flex-grow: 1;
     }
+	.icon-button {
+	    margin-top: 50px;
+	}
 img.delete-img {
-    width: 50px;
+    width: 38px;
 }
-button.close-modal, .btn-modal, button.close-modal2, button.close-modal3 {
+button.close-modal, .btn-modal, button.close-modal2, button.close-modal3,button.close-modal4 {
   border: 1px solid rgba(51, 51, 51, 0.53);
   outline: none;
   color: #333333;
 }
-}
-
-

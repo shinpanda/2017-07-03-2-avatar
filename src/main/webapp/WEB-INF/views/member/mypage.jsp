@@ -3,44 +3,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />    
-<!DOCTYPE html>
-<html>
-<head>
-
-<link href="${ctx}/resource/css/memprofile.css" type="text/css" rel="stylesheet">
-<title>Avatar </title>
-</head>
-<body>
-	<div id="body">
-		<div class="content-container">
-			
-			<main class="main" style="display:flex;">
-			<div class="mem-information">
-				<h1 class="mypage">
-					<a href="${ctx}/member/profile"> 
-					<img src="${ctx}/resource/images/profile.png" alt="회원정보조회/수정" style="width: 200px;" />
-					</a>
-				</h1>
+<link href="${ctx}/resource/css/memprofile.css" type="text/css" rel="stylesheet">	
+			<div class="mypage-form">
+				<a href="${ctx}/member/profile" class="mypage-title"> 회원정보조회/수정
+				</a>
+				<a href="#" class="modal-trigger mypage-title"
+					data-modal="modal-name"> 회원탈퇴 </a>
+				<c:if test="${c.memberRole eq 'ROLE_TEACHER' }">
+					<a href="${ctx}/member/classsetting" class="mypage-title"> 클래스
+						설정 </a>
+				</c:if>
 			</div>
-			<div class="mem-information">
-				<h1 class="mypage">
-					<a href="#" class="modal-trigger" data-modal="modal-name"> 
-						<img src="${ctx}/resource/images/withdraw.png" alt="회원탈퇴" style="width: 200px;" />
-					</a>
-				</h1>
-			</div>
-			<c:if test="${c.memberRole eq 'ROLE_TEACHER' }">
-			<div class="mem-information">
-				<h1 class="mypage">
-					<a href="${ctx}/member/classsetting"> 
-						<img src="${ctx}/resource/images/classedit.png" alt="클래스설정" style="width: 200px;" />
-					</a>
-				</h1>
-			</div>
-			</c:if>
-			
-			
-		<!-- Modal -->
+			<!-- Modal -->
 		<div class="modal" id="modal-name">
 		  <div class="modal-sandbox"></div>
 		  <div class="modal-box">
@@ -64,13 +38,8 @@
 		    </form>
 		  </div>
 		</div>
-		
-			</main>
-			
-		</div>
-	</div>
 	
-	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js'></script>
+	
     <script>
     $(".modal-trigger").click(function(e){
     	  e.preventDefault();
@@ -83,4 +52,3 @@
     	});
     
     </script>
-</body>

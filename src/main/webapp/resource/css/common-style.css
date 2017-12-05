@@ -1156,6 +1156,7 @@ div#chat-notifi {
     display: flex;
     font-size: 13px;
     align-items: center;
+    cursor: default;
 }
 
 .widget-schedule textarea {
@@ -1183,10 +1184,41 @@ input.schedule-subject {
 
 .widget-schedule.schedule {
     justify-content: baseline;
-    height: 100px;
+    min-height: 80px;
+    height: fit-content;
     margin-top: 5px;
+    margin-bottom: 5px;
 }
 
+.widget-schedule.schedule-edit {
+    position: relative;
+}
+
+#schedule-add-button {
+    font-size: 11px;
+    color: #464646;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+img#edit-cancel-button {
+    width: 10px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.schedule-content {
+    background: #bdbdbd;
+    padding: 5px;
+   	transition-duration: 500ms;
+	transition-property: height;
+}
+
+.widget-schedule div.schedule-subject {
+    user-select: none;
+    cursor: pointer;
+}
 
 /* teacher seat is-complete */
 

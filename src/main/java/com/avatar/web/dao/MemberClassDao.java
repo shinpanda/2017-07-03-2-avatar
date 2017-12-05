@@ -2,6 +2,8 @@ package com.avatar.web.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.avatar.web.entity.MemberClassView;
 
 public interface MemberClassDao {
@@ -20,6 +22,9 @@ public interface MemberClassDao {
 
 	int getStuCount(String classId);
 
+	int updateDefaultClass(@Param("openerId")String openerId, @Param("classId")String classId);
+
+	int getDefaultClass(@Param("openerId")String openerId);
 	String getClassName(String classId);
 
 	int updateSeatNo(String memberName, int seatNo);

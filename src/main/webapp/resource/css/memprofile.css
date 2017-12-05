@@ -8,7 +8,12 @@ html, body {
 #body{
 	margin-top: 56px;
 }
-
+.body>div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100%;
+}
 #header {
     position: absolute;
 }
@@ -30,7 +35,6 @@ html, body {
    -o-transition:0.5s all;
    -ms-transition:0.5s all;
 }
-
 
 .sub-menu{
 	position:absolute;
@@ -100,10 +104,6 @@ a {
 	color: black;
 }
 
-input[type="text"], textarea {
-    font-family: 맑은 고딕, 고딕, sans-serif;
-}
-
 .hidden{
 	display: none;
 }
@@ -115,7 +115,6 @@ input[type="text"], textarea {
 	}
 /* All Device */
 .content-container {
- 	margin: auto;
 	width: 1140px;
 	min-height: inherit;
 	height: inherit; 
@@ -127,12 +126,7 @@ input[type="text"], textarea {
 	padding: 10px 25px;
 }
 
-
 /* dropdown css */
-
-
-@charset "UTF-8";
-
 .nav-items {
     padding: 0;
     list-style: none;
@@ -370,17 +364,6 @@ select.text-right {
    /*  margin-left: 10px; */
 }
 
-.mem-information > h3 {
-	margin: 10px;
-}
-
-.mem-information{
-	    font-weight: bold;
-	    padding-left: 70px;
-		height: 50px;
-	/* 	margin-left:51px; */
-		
-}
 	.resume{
 		background: url(../images/resume.png) no-repeat left center;
 		background-size: contain;
@@ -403,11 +386,12 @@ select.text-right {
 		
 }
 .content-box{
-		text-align:center;
-		width:350px;
-		
-		border: 1px solid #e0e0e0;
-		float:right;
+		text-align: center;
+	    width: 350px;
+	    border: 1px solid #929292;
+	    height: 17px;
+	    float: right;
+	    border-radius: 7px;
 }
 .content-box.class{
 	width: 240px;
@@ -436,11 +420,13 @@ select.text-right {
 		border: none;
 		font-weight: 800;
 	}
-	.class-name{
+	.class-name {
 	    padding-right: 10px;
-	    line-height: 46px;
+	    line-height: 33px;
 	    vertical-align: middle;
-	}
+	    display: inline-flex;
+	    flex-direction: inherit;
+}
 	.self{
 	   margin-bottom:20px;
 	}
@@ -492,9 +478,6 @@ select.text-right {
 .modal,
 .modal-box {
   z-index: 900;
-}
-.modal-body.center {
-    text-align: center;
 }
 .modal-sandbox {
   position: fixed;
@@ -550,28 +533,6 @@ select.text-right {
   text-align: right;
   cursor: pointer;
 }
-/* Animation */
-/* @-webkit-keyframes modalbox {
-  0% {
-    top: -250px; 
-    opacity: 0;
-  }
-  100% {
-    top: 0; 
-    opacity: 1;
-  }
-}
-
-@keyframes modalbox {
-  0% {
-    top: -250px; 
-    opacity: 0;
-  }
-  100% {
-    top: 0; 
-    opacity: 1;
-  }
-} */
 
 
 .modal-trigger, button.close-modal, .btn-modal {
@@ -601,3 +562,24 @@ button.close-modal, .btn-modal {
 .modal-trigger:hover {
   padding: 20px 60px;
 } */
+/* 추가 */
+.mem-information{
+	font-weight: bold; 
+	padding-left: 70px;
+	height: 50px;
+	/* margin-left:51px; */
+		
+}
+.mypage-title{
+	color:black;
+	margin:60px;
+}
+.mypage-form{
+	width: 950px;
+    border-bottom: 2px solid gray;
+    height: 64px;
+    text-align: center;
+    font-size: 25px;
+    margin: 30px 0px 0px 285px;
+}
+
