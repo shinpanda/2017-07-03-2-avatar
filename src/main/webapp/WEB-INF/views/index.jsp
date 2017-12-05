@@ -64,7 +64,8 @@
 					</div>
 				</div>
 				<div class="widget-schedule schedule" id="widget-schedule-list" style="display:none;">
-					<div>일정<span id="schedule-add-button">+추가</span></div>
+					<div>일정
+					<img src="${ctx}/resource/images/plus-button.png" alt="스케줄 추가" id="schedule-add-button" /></div>
 					
 				</div>
 				<div class="widget-schedule schedule-edit" id="widget-schedule-edit" style="display:none;" >
@@ -145,10 +146,9 @@
 						}
 						calendar.appendChild(row);
 					}
-					calendar.onclick = function(e){
-						if(e.target.id != ""){
+					function calendarClick(target){
+						if(target.id != ""){
 							if(scheduleList.style.display == "flex"){
-								console.log("들어오는 것인가");
 								while(scheduleList.firstElementChild != scheduleList.lastElementChild)
 									scheduleList.removeChild(scheduleList.lastElementChild);	
 								scheduleList.style.display = "none";
@@ -156,8 +156,7 @@
 							if(scheduleEdit.style.display == "flex")
 								scheduleEdit.style.display = "none";
 							
-							var schduleDay = e.target.id;
-							console.log(e.target.id);
+							var scheduleDay = target.id;
 							// 일정이 있는지 체크 일정이 있다면 일정창이 뜰 수 있도록 함
 							var xhr = new XMLHttpRequest();
 							
@@ -173,8 +172,8 @@
 										div.className = "schedule-subject";
 										var span = document.createElement("span");
 										var date = new Date(schedule[i].dateTime);
-										span.textContent = "["+(date.getHours()>=10?date.getHours():"0"+date.getHours())+"시 "+(date.getMinutes()>=10?date.getMinutes():"0"+date.getMinutes())+"분까지]";
-										div.appendChild(span); 
+										span.textContent = " ["+(date.getHours()>=10?date.getHours():"0"+date.getHours())+"시 "+(date.getMinutes()>=10?date.getMinutes():"0"+date.getMinutes())+"분까지]";
+										div.appendChild(span);
 										var img = document.createElement("img");
 										img.id = "schedule-delete-button";
 										img.src = "${ctx}/resource/images/cancel-music-gray.png";
@@ -194,16 +193,16 @@
 									}
 									
 									scheduleList.style.display="flex";
-									document.querySelector("#schedule-day").value = schduleDay;
+									document.querySelector("#schedule-day").value = scheduleDay;
 								
 								}
 								else{
 									scheduleEdit.style.display="flex";
-									document.querySelector("#schedule-day").value = schduleDay;
+									document.querySelector("#schedule-day").value = scheduleDay;
 								}
 									
 							}
-							xhr.open("GET", "schedule-check?date="+e.target.id);
+							xhr.open("GET", "schedule-check?date="+target.id);
 							xhr.send(); 
 							// 일정이 없으면 수정하도록 창이 뜨게 하고 readonly에 현재 날짜를 받아올 수 있도록 함
 							/* schedule_day
@@ -211,6 +210,9 @@
 							
 							edit-table #widget-schedule-edit */
 						}
+					}
+					calendar.onclick = function(e){
+						calendarClick(e.target); 
 					}
 					
 					scheduleAddButton.onclick = function(){
@@ -277,7 +279,7 @@
 					}
 					
 					var editSubmit = document.querySelector("#schedule-submit");
-					editSubmit.onclick = function(){
+					editSubmit.onclick = function(e){
 						var day = scheduleEdit.querySelector("#schedule-day").value;
 						var hour = scheduleEdit.querySelector("#schedule-hour").value;
 						var minutes = scheduleEdit.querySelector("#schedule-minutes").value;
@@ -293,12 +295,15 @@
 						formData.append("json", JSON.stringify(json));
 						var xhr = new XMLHttpRequest();
 						
-						xhr.onload = function(e){
+						xhr.onload = function(evt){
 							scheduleEdit.querySelector("#schedule-hour").value ="";
 							scheduleEdit.querySelector("#schedule-minutes").value="";
 							scheduleEdit.querySelector(".schedule-subject").value="";
 							scheduleEdit.querySelector("textarea").value="";
 							scheduleEdit.style.display = "none";
+							//console.log(document.getElementById(""+day));
+							
+							calendarClick(document.getElementById(""+day));
 						}
 						xhr.open("POST", "schedule-upload?${_csrf.parameterName}=${_csrf.token}");
 						xhr.send(formData); 

@@ -1193,7 +1193,7 @@ input.schedule-subject {
     position: relative;
 }
 
-#schedule-add-button {
+img#schedule-add-button {
     font-size: 11px;
     color: #464646;
     margin-left: 5px;
