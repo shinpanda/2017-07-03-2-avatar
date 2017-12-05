@@ -9,11 +9,9 @@
 
 <script type="text/javascript">
 
-
+	
 	window.addEventListener("load", function(){		
 	
-		
-		
 		var changeButton =document.getElementById("change");
 		var resetButton =document.getElementById("reset");
 		var pickButton =document.getElementById("pick");
@@ -22,20 +20,59 @@
 		var container =document.querySelector("#area");
 		
 		//var span = document.createElement("span");
-
 		
+				
+		var b1 = ${col};
+		var b2 = ${row};
+		
+			
+		var xhr = new XMLHttpRequest();
+					
+		xhr.onload = function(e){
+		var count = 0;
+		for(j=1; j<=b2; j++){
+			var div = document.createElement("div");
+			//console.log("b2:"+j);
+			container.appendChild(div);
+			for (i = 1; i <= b1; i++) {
+				var member =JSON.parse(e.target.responseText);
+				if(count < member.length){
+					var li = document.createElement("span");
+					li.textContent = member[count];
+					li.className = "seat";
+					div.appendChild(li);
+				}
+				else {
+					var li = document.createElement("span");
+					li.textContent = "";
+					li.className = "seat";
+					div.appendChild(li);
+				}
+									 
+				count ++;
+			}
+							
+		};
+					
+		};
+					
+		xhr.open("GET", "../student/seat-info-ajax?${_csrf.parameterName}=${_csrf.token}"); 
+		xhr.send(); 
+			
+			
 		
 		
 		
 		
 		changeButton.onclick = function(){
-			/* var b1 = parseInt(row.value);
-		    var b2 = parseInt(column.value); */
-		    var b1 = ${col};
-			var b2 = ${row};
 			
-			var tag = "";
-			 var xhr = new XMLHttpRequest();
+			
+			while(container.hasChildNodes()){
+				container.removeChild(container.firstChild); 
+				
+			} 
+			
+			var xhr = new XMLHttpRequest();
 				
 			 xhr.onload = function(e){
 				 var count = 0;
@@ -110,14 +147,43 @@
 			
 			
 			pickButton.onclick = function(){
-				var b1 = ${col};
-				var b2 = ${row};
 				
-				 //var b1 = parseInt(row.value);
-			   // var b2 = parseInt(column.value);
 				
-					 
+				/* var xhr = new XMLHttpRequest();
+				
+				xhr.onload = function(e){
+				var count = 0;
 				for(j=1; j<=b2; j++){
+					var div = document.createElement("div");
+					//console.log("b2:"+j);
+					container.appendChild(div);
+					for (i = 1; i <= b1; i++) {
+						var member =JSON.parse(e.target.responseText);
+						if(count < member.length){
+							var li = document.createElement("span");
+							li.textContent = member[count];
+							li.className = "seat";
+							div.appendChild(li);
+						}
+						else {
+							var li = document.createElement("span");
+							li.textContent = "";
+							li.className = "seat";
+							div.appendChild(li);
+						}
+											 
+						count ++;
+					}
+									
+				};
+							
+				};
+							
+				xhr.open("GET", "../student/seat-info-ajax?${_csrf.parameterName}=${_csrf.token}"); 
+				xhr.send(); 
+				 */
+									 
+				/* for(j=1; j<=b2; j++){
 					var div = document.createElement("div");
 					
 					container.appendChild(div);
@@ -127,39 +193,15 @@
 							div.appendChild(li);
 						}	
 				}
-				
+				 */
 				 				 
 				var spans = container.querySelectorAll("span");
 				var index = Math.floor(Math.random()*spans.length);
 				spans[index].style.background="url('${ctx}/resource/images/redmonitor.png')";
-				
-				//div.childNodes[index].style.background="url('../../../resource/images/image.png')";
-				
-				
+								
 				changeButton.disabled = 'true';
 				pickButton.disabled = 'true';		 
-				
-				
-				
-				
-				/*  var xhr = new XMLHttpRequest();
-
-				 xhr.onload = function(e){
-				 	var div = document.createElement("div");
-				 	container.appendChild(div);
-				 	var member =JSON.parse(e.target.responseText);
-				 	 var li = document.createElement("span");
-				  	li.textContent = member[1];
-				 	li.className = "seat";
-				 	div.appendChild(li);
-				 	
-				 };
-				 xhr.open("GET", "../student/sit-change-ajax?${_csrf.parameterName}=${_csrf.token}"); 
-				xhr.send(); 
-				
-				changeButton.disabled = 'true';
-				pickButton.disabled = 'true'; */
-				
+								
 			};	
 			
 			
@@ -191,6 +233,7 @@
 				
 			</div>	
 		</div>
+		
 	</div>
 </main>
  </body>   

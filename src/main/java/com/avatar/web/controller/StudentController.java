@@ -29,6 +29,39 @@ public class StudentController {
 	private LectureRoomDao lectureRoomDao;
 	
 
+	@RequestMapping("seat-info-ajax")
+	@ResponseBody
+	public String seatInfoAjax(Model model, Principal principal) {
+
+		StringBuilder json = new StringBuilder();
+		json.append("[");
+
+		String sessionId =principal.getName();
+		String classId = memberClassDao.getClassId(sessionId);
+		
+		List<MemberClassView> list = memberClassDao.getList(classId);
+		
+
+		for (int i = 0; i < list.size(); i++) {
+			json.append(String.format("\"%s\"", list.get(i).getMemberName()));
+			memberClassDao.updateSeatNo(list.get(i).getMemberName(), i+1);
+			if (i + 1 < list.size()) {
+				json.append(",");
+			}
+		}
+
+		
+		json.append("]");
+
+		return json.toString();
+	}
+
+	
+	
+	
+	
+	
+	
 	@RequestMapping("seat-change-ajax")
 	@ResponseBody
 	public String seatChangeAjax(Model model, Principal principal) {
