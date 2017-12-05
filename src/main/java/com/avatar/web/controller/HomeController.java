@@ -88,7 +88,14 @@ public class HomeController {
 		int result = service.insertSchedule(date, subject, content, writerId);
 		return "aa";
 	}
-	
+	@ResponseBody
+	@RequestMapping("schedule-delete")
+	public String scheduleDelete(String id) {
+		
+		int result = service.deleteSchedule(id);
+		
+		return "0";
+	}
 
 	@ResponseBody
 	@RequestMapping("upload")

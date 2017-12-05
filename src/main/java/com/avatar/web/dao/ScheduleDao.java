@@ -13,4 +13,6 @@ public interface ScheduleDao {
 
 	int insert(Date dateTime, String subject, String content, String classId);
 
+	int delete(String id);
+
 }

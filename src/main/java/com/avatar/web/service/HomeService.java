@@ -70,5 +70,10 @@ public class HomeService {
 		return result;
 	}
 
+	public int deleteSchedule(String id) {
+		int result = scheduleDao.delete(id);
+		return result;
+	}
+
 }
 

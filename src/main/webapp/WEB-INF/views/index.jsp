@@ -168,6 +168,7 @@
 									
 									for(var i=0; i<schedule.length; i++){
 										var div = document.createElement("div");
+										div.id = schedule[i].id;
 										div.textContent = "- "+schedule[i].subject;
 										div.className = "schedule-subject";
 										var span = document.createElement("span");
@@ -175,6 +176,7 @@
 										span.textContent = "["+(date.getHours()>=10?date.getHours():"0"+date.getHours())+"시 "+(date.getMinutes()>=10?date.getMinutes():"0"+date.getMinutes())+"분까지]";
 										div.appendChild(span); 
 										var img = document.createElement("img");
+										img.id = "schedule-delete-button";
 										img.src = "${ctx}/resource/images/cancel-music-gray.png";
 										img.style.width = "7px";
 										img.style["margin-left"] = "5px";
@@ -220,33 +222,58 @@
 					
 					var contentDisplay = false;
 					var prevElement = null;
+					var scheduleDeleteButton = null;
 					scheduleList.onmouseover = function(e){
-						
-					}
-					scheduleList.onmouseleave = function(e){
 						var content = e.target;
 						(e.target.parentElement.className == "schedule-subject")
 							content = e.target.parentElement;
-						content.querySelector("img").style.display = "none";
+						if(content.className == "schedule-subject"){
+							if(prevElement != content){
+								if(prevElement != null)
+									prevElement.querySelector("img").style.display = "none";
+								prevElement = content;
+							}
+							content.querySelector("img").style.display = "unset";
+						}
+						
+					}
+					scheduleList.onmouseleave = function(e){
+						if(prevElement != null)
+							prevElement.querySelector("img").style.display = "none";
 					}
 					
 					
 					scheduleList.onclick = function(e){
 						var content = e.target;
-						if(e.target.parentElement.className == "schedule-subject")
-							content = e.target.parentElement;
-						if(content.className == "schedule-subject"){
-							if(contentDisplay == false){
-								content.nextElementSibling.style.display="block";
-								content.nextElementSibling.style.height = "fit-content";
-								contentDisplay = true;
+						
+						if(content.id == "schedule-delete-button"){
+							var xhr = new XMLHttpRequest();
+							xhr.onload = function(){
+								scheduleList.removeChild(content.parentElement.nextElementSibling);
+								scheduleList.removeChild(content.parentElement);
 							}
-							else{
-								content.nextElementSibling.style.display="none";
-								content.nextElementSibling.style.height = "0px";
-								contentDisplay = false;
+							xhr.open("GET", "schedule-delete?id="+content.parentElement.id);
+							xhr.send();
+							return;
+						}
+						else{
+							if(e.target.parentElement.className == "schedule-subject")
+								content = e.target.parentElement;
+							
+							if(content.className == "schedule-subject"){
+								if(contentDisplay == false){
+									content.nextElementSibling.style.display="block";
+									content.nextElementSibling.style.height = "fit-content";
+									contentDisplay = true;
+								}
+								else{
+									content.nextElementSibling.style.display="none";
+									content.nextElementSibling.style.height = "0px";
+									contentDisplay = false;
+								}
 							}
 						}
+							
 					}
 					
 					var editSubmit = document.querySelector("#schedule-submit");
@@ -267,16 +294,14 @@
 						var xhr = new XMLHttpRequest();
 						
 						xhr.onload = function(e){
-							
+							scheduleEdit.querySelector("#schedule-hour").value ="";
+							scheduleEdit.querySelector("#schedule-minutes").value="";
+							scheduleEdit.querySelector(".schedule-subject").value="";
+							scheduleEdit.querySelector("textarea").value="";
+							scheduleEdit.style.display = "none";
 						}
 						xhr.open("POST", "schedule-upload?${_csrf.parameterName}=${_csrf.token}");
 						xhr.send(formData); 
-						
-						scheduleEdit.querySelector("#schedule-hour").value ="";
-						scheduleEdit.querySelector("#schedule-minutes").value="";
-						scheduleEdit.querySelector(".schedule-subject").value="";
-						scheduleEdit.querySelector("textarea").value="";
-						scheduleEdit.style.display = "none";
 					}
 					
 					var editCancelButton = document.querySelector("#edit-cancel-button");

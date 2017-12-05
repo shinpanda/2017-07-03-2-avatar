@@ -13,4 +13,8 @@
 		insert into Schedule(id, dateTime, subject, content, classId)
 		values ((select IFNULL(max(cast(id as unsigned)), 0)+1 from Schedule s), #{dateTime}, #{subject}, #{content}, #{classId})
 	</insert>
+	
+	<delete id="delete">
+		delete from Schedule where id = #{id} 
+	</delete>
 </mapper>    

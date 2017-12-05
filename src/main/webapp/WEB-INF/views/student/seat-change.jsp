@@ -194,7 +194,7 @@
 				 				 
 				var spans = container.querySelectorAll("span");
 				var index = Math.floor(Math.random()*spans.length);
-				spans[index].style.background="url('${ctx}/resource/images/redmonitor.png')";
+				spans[index].style.background="url('${ctx}/resource/images/completemonitor.png')";
 								
 				changeButton.disabled = 'true';
 				pickButton.disabled = 'true';		 

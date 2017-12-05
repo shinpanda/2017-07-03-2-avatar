@@ -35,5 +35,11 @@ public class MybatisScheduleDao implements ScheduleDao {
 		return scheduleDao.insert(schedule);
 	}
 
+	@Override
+	public int delete(String id) {
+		ScheduleDao scheduleDao = sqlSession.getMapper(ScheduleDao.class);
+		return scheduleDao.delete(id);
+	}
+
 
 }
