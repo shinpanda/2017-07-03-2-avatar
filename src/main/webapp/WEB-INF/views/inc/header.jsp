@@ -11,7 +11,7 @@
 
 <header class="header">
 			<h1 class="logo">
-				<a href="${ctx}/index">Avatar</a>
+				<a href="${ctx}/index"><img src="${ctx}/resource/images/logo2.png" class="logo-img" alt="로고" /></a>
 			</h1>
 			<c:set value="학생" var="role" />
 			<c:if test="${memberRole eq 'ROLE_TEACHER'}">
@@ -54,8 +54,6 @@
 						<c:if test="${memberRole ne 'ROLE_TEACHER'}">
 						<li><a href="${ctx}/student/seat-change">자리바꾸기</a></li>
 						</c:if>
-					</ul>
-					<ul class="main-menu btn-container">
 						<li><a href="${ctx}/member/chat">채팅방 입장</a></li>
 						<c:if test="${memberRole eq 'ROLE_TEACHER'}">
 							<li><a href="${ctx}/teacher/is-complete">Complete</a></li>

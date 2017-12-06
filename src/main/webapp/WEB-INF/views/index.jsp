@@ -65,9 +65,11 @@
 				</div>
 				<div class="widget-schedule schedule" id="widget-schedule-list" style="display:none;">
 					<div>일정
-					<img src="${ctx}/resource/images/plus-button.png" alt="스케줄 추가" id="schedule-add-button" /></div>
+					<c:if test="${memberRole eq 'ROLE_TEACHER'}"><img src="${ctx}/resource/images/plus-button.png" alt="스케줄 추가" id="schedule-add-button" /></c:if></div>
 					
 				</div>
+				
+				<c:if test="${memberRole eq 'ROLE_TEACHER'}">
 				<div class="widget-schedule schedule-edit" id="widget-schedule-edit" style="display:none;" >
 					<div>
 						<input type="text" readonly="readonly" value="" id="schedule-day"
@@ -100,10 +102,83 @@
 						<input type="button" value="등록" id= "schedule-submit"/>
 					</div>
 				</div>
+				
 				<script>
 					var scheduleEdit = document.querySelector("#widget-schedule-edit");
-					var scheduleList = document.querySelector("#widget-schedule-list");
 					var scheduleAddButton = document.querySelector("#schedule-add-button");
+					var editSubmit = document.querySelector("#schedule-submit");
+					editSubmit.onclick = function(e){
+						var day = scheduleEdit.querySelector("#schedule-day").value;
+						var hour = scheduleEdit.querySelector("#schedule-hour").value;
+						var minutes = scheduleEdit.querySelector("#schedule-minutes").value;
+						var subject = scheduleEdit.querySelector(".schedule-subject").value;
+						var content = scheduleEdit.querySelector("textarea").value;
+						
+						var json = {
+								date : day+" "+(hour>=10?hour:"0"+hour)+":"+(minutes>=10?minutes:"0"+minutes)+":00",
+								subject : subject,
+								content : content
+						};
+						var formData = new FormData();
+						formData.append("json", JSON.stringify(json));
+						var xhr = new XMLHttpRequest();
+						
+						xhr.onload = function(evt){
+							scheduleEdit.querySelector("#schedule-hour").value ="";
+							scheduleEdit.querySelector("#schedule-minutes").value="";
+							scheduleEdit.querySelector(".schedule-subject").value="";
+							scheduleEdit.querySelector("textarea").value="";
+							scheduleEdit.style.display = "none";
+							//console.log(document.getElementById(""+day));
+							
+							calendarClick(document.getElementById(""+day));
+						}
+						xhr.open("POST", "schedule-upload?${_csrf.parameterName}=${_csrf.token}");
+						xhr.send(formData); 
+					}
+					
+					var editCancelButton = document.querySelector("#edit-cancel-button");
+					editCancelButton.onmouseover = function(){
+						editCancelButton.src = "${ctx}/resource/images/cancel-music.png";
+					}
+					editCancelButton.onmouseleave = function(){
+						editCancelButton.src = "${ctx}/resource/images/cancel-music-gray.png";
+					}
+					editCancelButton.onclick = function(){
+						scheduleEdit.querySelector("#schedule-hour").value ="";
+						scheduleEdit.querySelector("#schedule-minutes").value="";
+						scheduleEdit.querySelector(".schedule-subject").value="";
+						scheduleEdit.querySelector("textarea").value="";
+						scheduleEdit.style.display = "none";
+					}
+					
+					
+					scheduleEdit.onmouseover = function(){
+						editCancelButton.style.display = "unset";
+					}
+					
+					scheduleEdit.onmouseleave = function(){
+						editCancelButton.style.display = "none";
+					}
+					
+					scheduleAddButton.onclick = function(){
+						while(scheduleList.firstElementChild != scheduleList.lastElementChild)
+							scheduleList.removeChild(scheduleList.lastElementChild);
+						scheduleList.style.display = "none";
+						scheduleEdit.style.display = "flex";
+					}
+				</script>
+				</c:if>
+				<c:if test="${memberRole ne 'ROLE_TEACHER'}">
+					<script>
+					 var scheduleEdit;
+					 var scheduleAddButton;
+					</script>
+				</c:if>
+				<script>
+					
+					var scheduleList = document.querySelector("#widget-schedule-list");
+					
 					/* calendar 용 변수  */
 					var calendar = document.querySelector(".widget-board.calendar");
 					var date = new Date();
@@ -153,8 +228,10 @@
 									scheduleList.removeChild(scheduleList.lastElementChild);	
 								scheduleList.style.display = "none";
 							}
-							if(scheduleEdit.style.display == "flex")
-								scheduleEdit.style.display = "none";
+							if(scheduleEdit != undefined){
+								if(scheduleEdit.style.display == "flex")
+									scheduleEdit.style.display = "none";
+							}
 							
 							var scheduleDay = target.id;
 							// 일정이 있는지 체크 일정이 있다면 일정창이 뜰 수 있도록 함
@@ -193,12 +270,16 @@
 									}
 									
 									scheduleList.style.display="flex";
-									document.querySelector("#schedule-day").value = scheduleDay;
+									if(scheduleEdit != undefined){
+										document.querySelector("#schedule-day").value = scheduleDay;
+									}
 								
 								}
 								else{
-									scheduleEdit.style.display="flex";
-									document.querySelector("#schedule-day").value = scheduleDay;
+									if(scheduleEdit != undefined){
+										scheduleEdit.style.display="flex";
+										document.querySelector("#schedule-day").value = scheduleDay;
+									}
 								}
 									
 							}
@@ -215,12 +296,7 @@
 						calendarClick(e.target); 
 					}
 					
-					scheduleAddButton.onclick = function(){
-						while(scheduleList.firstElementChild != scheduleList.lastElementChild)
-							scheduleList.removeChild(scheduleList.lastElementChild);
-						scheduleList.style.display = "none";
-						scheduleEdit.style.display = "flex";
-					}
+					
 					
 					var contentDisplay = false;
 					var prevElement = null;
@@ -276,61 +352,6 @@
 							}
 						}
 							
-					}
-					
-					var editSubmit = document.querySelector("#schedule-submit");
-					editSubmit.onclick = function(e){
-						var day = scheduleEdit.querySelector("#schedule-day").value;
-						var hour = scheduleEdit.querySelector("#schedule-hour").value;
-						var minutes = scheduleEdit.querySelector("#schedule-minutes").value;
-						var subject = scheduleEdit.querySelector(".schedule-subject").value;
-						var content = scheduleEdit.querySelector("textarea").value;
-						
-						var json = {
-								date : day+" "+(hour>=10?hour:"0"+hour)+":"+(minutes>=10?minutes:"0"+minutes)+":00",
-								subject : subject,
-								content : content
-						};
-						var formData = new FormData();
-						formData.append("json", JSON.stringify(json));
-						var xhr = new XMLHttpRequest();
-						
-						xhr.onload = function(evt){
-							scheduleEdit.querySelector("#schedule-hour").value ="";
-							scheduleEdit.querySelector("#schedule-minutes").value="";
-							scheduleEdit.querySelector(".schedule-subject").value="";
-							scheduleEdit.querySelector("textarea").value="";
-							scheduleEdit.style.display = "none";
-							//console.log(document.getElementById(""+day));
-							
-							calendarClick(document.getElementById(""+day));
-						}
-						xhr.open("POST", "schedule-upload?${_csrf.parameterName}=${_csrf.token}");
-						xhr.send(formData); 
-					}
-					
-					var editCancelButton = document.querySelector("#edit-cancel-button");
-					editCancelButton.onmouseover = function(){
-						editCancelButton.src = "${ctx}/resource/images/cancel-music.png";
-					}
-					editCancelButton.onmouseleave = function(){
-						editCancelButton.src = "${ctx}/resource/images/cancel-music-gray.png";
-					}
-					editCancelButton.onclick = function(){
-						scheduleEdit.querySelector("#schedule-hour").value ="";
-						scheduleEdit.querySelector("#schedule-minutes").value="";
-						scheduleEdit.querySelector(".schedule-subject").value="";
-						scheduleEdit.querySelector("textarea").value="";
-						scheduleEdit.style.display = "none";
-					}
-					
-					
-					scheduleEdit.onmouseover = function(){
-						editCancelButton.style.display = "unset";
-					}
-					
-					scheduleEdit.onmouseleave = function(){
-						editCancelButton.style.display = "none";
 					}
 					
 					
