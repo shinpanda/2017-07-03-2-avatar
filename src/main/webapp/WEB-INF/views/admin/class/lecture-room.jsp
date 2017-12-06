@@ -66,7 +66,7 @@
 	<script>
 		var addButton = document.querySelector(".new-class-btn");
 		var type = null;
-		var boxContainer = document.querySelector(".box-row");
+		var boxContainer = document.querySelector(".box-container");
 		var roomAdminContainer = document.querySelector(".room-add-container");
 		var roomDelContainer = document.querySelector(".room-del-container");
 		var targetBoxId = null;
@@ -78,6 +78,7 @@
 		boxContainer.onclick = function(e) {
 			if (e.target.id == "room-edit-button") {
 				var targetBox = e.target.parentNode.parentNode;
+				console.log(targetBox.id);
 				type = "edit";
 				
 				roomAdminContainer.parentNode.classList.remove("hidden");
