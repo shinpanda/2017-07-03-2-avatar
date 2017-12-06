@@ -60,7 +60,7 @@
 							</div>
 
 						</c:forEach>
-						<input class="change-default" type="submit" value="기본 클래스 변경" />
+						<input class="change-default" type="submit" value="기본 클래스 등록" />
 					</div>
 				</form>
 
@@ -185,11 +185,15 @@
 	$(function()  {
 		$.get("../member/get-default-class?${_csrf.parameterName}=${_csrf.token}", 
 				function(result) {
-				$("input[id='"+result+"']").attr("checked",true);
+				if(result != 0){
+					$("input[id='"+result+"']").attr("checked",true);
+				}
 				  $("input[type='radio']").change(function(){
 						var changeValue = $("input[type='radio']:checked").val();
 					 	$('input[name=default-change]').attr('value',changeValue);
 				})  
+				
+				
 		});
 		
 	});

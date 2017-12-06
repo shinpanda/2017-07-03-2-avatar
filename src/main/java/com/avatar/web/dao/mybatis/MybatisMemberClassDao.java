@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 import com.avatar.web.dao.MemberClassDao;
-
+import com.avatar.web.entity.MemberClass;
 import com.avatar.web.entity.MemberClassView;
 
 public class MybatisMemberClassDao implements MemberClassDao {
@@ -92,6 +92,12 @@ public class MybatisMemberClassDao implements MemberClassDao {
 	public int updateSeatNo(String memberName, int seatNo) {
 		MemberClassDao memberClassDao = sqlSession.getMapper(MemberClassDao.class);
 		return memberClassDao.updateSeatNo(memberName, seatNo);
+	}
+
+	@Override
+	public int getClassEmpty(String memberId) {
+		MemberClassDao memberClassDao = sqlSession.getMapper(MemberClassDao.class);
+		return memberClassDao.getClassEmpty(memberId);
 	}
 	
 

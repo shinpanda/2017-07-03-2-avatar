@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.avatar.web.dao.ClassDao;
+import com.avatar.web.dao.MemberClassDao;
 import com.avatar.web.entity.Member;
 import com.avatar.web.entity.Class;
 
@@ -40,6 +41,8 @@ public class MemberController {
 	private MemberService service;
 	@Autowired
 	private ClassDao classDao;
+	@Autowired
+	private MemberClassDao memberClassDao;
 	
 	
 	@RequestMapping(value="login", method=RequestMethod.GET)
@@ -149,8 +152,17 @@ public class MemberController {
 	public String updateDefaultClass(Principal principal, HttpServletRequest request, Model model) {
 		String openerId = principal.getName();
 		String classId = request.getParameter("default-change");
-		int result = service.updateDefaultClass(openerId,classId);
-		if(result >0) {
+		
+		int classEmpty = memberClassDao.getClassEmpty(openerId);
+		int result = 0;
+		if(classEmpty == 0) {
+			System.out.println("oId,cId :"+openerId+", "+classId);
+			result = memberClassDao.insert(openerId,classId);
+		}else
+			result = service.updateDefaultClass(openerId,classId);
+		
+		
+		if(result > 0) {
 			System.out.println("기본 클래스 변경");
 		}else {
 			System.out.println("기본 클래스 변경 실패");
@@ -163,8 +175,12 @@ public class MemberController {
 		String openerId = principal.getName();
 		Gson gson = new Gson();
 		String json = "";
-		json = gson.toJson(service.getDefaultClass(openerId));
-		System.out.println(json);
+		int classEmpty = memberClassDao.getClassEmpty(openerId);
+		if(classEmpty == 0)
+			json = "0";
+		else
+			json = gson.toJson(service.getDefaultClass(openerId));
+		System.out.println("json: "+json);
 		return json;
 	}	
 	@RequestMapping(value="class-list")
