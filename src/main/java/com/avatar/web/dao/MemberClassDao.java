@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.avatar.web.entity.MemberClass;
 import com.avatar.web.entity.MemberClassView;
 
 public interface MemberClassDao {
@@ -28,5 +29,7 @@ public interface MemberClassDao {
 	String getClassName(String classId);
 
 	int updateSeatNo(String memberName, int seatNo);
+
+	int getClassEmpty(String memberId);
 
 }

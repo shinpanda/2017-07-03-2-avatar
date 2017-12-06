@@ -32,8 +32,6 @@
 	<select id="getMemberCount" resultType="int">	
 		SELECT count(memberId) as count FROM MemberClassView
 	</select>
-	
-	
 	<select id="getHeader" resultType="com.avatar.web.entity.MemberClassView">		
 		select className, classOpenDate from MemberClassView where memberId=#{sessionId};
 	</select>	
@@ -44,8 +42,9 @@
 	<update id="updateDefaultClass" parameterType="com.avatar.web.entity.MemberClass">
 		UPDATE MemberClass SET classId=#{classId} WHERE memberId = #{openerId}
 	</update>
+	
 	<select id="getDefaultClass" resultType="int">
-		select classId from MemberClass where memberID=#{openerId}
+		select classId from MemberClass where memberId=#{openerId}
 	</select>
 	
 	<select id="getClassName" resultType="String">
@@ -55,5 +54,9 @@
 	<update id="updateSeatNo">
 		update MemberClass set seatNo=#{param2} where memberId=(select id from Member where name =#{param1});
 	</update>
+	
+	<select id="getClassEmpty" resultType="int">
+		select COUNT(*) from MemberClass where memberId = #{memberId}
+	</select>
 
 </mapper>    

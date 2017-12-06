@@ -22,14 +22,22 @@
 			</c:if>
 			<div class="member-info-container">
 				<div class="member-info-wrapper">
+					<tiles:importAttribute name="classEmpty"/>
 					<h2 class="hidden">멤버 정보</h2>
-					<div>${role}</div>
+					<div>${role} </div>
 					<div>
 					<c:if test="${memberRole ne 'ROLE_ADMIN'}">
+					<c:if test="${classEmpty == 1 }">
 						<tiles:importAttribute name="classInfo"/>
+						
 						<div>${classInfo.className} class</div>
 						<div>
 						<fmt:formatDate value="${classInfo.classOpenDate}" pattern="yyyy.MM.dd" /></div>
+					</c:if>
+					<c:if test="${classEmpty == 0 }">
+					<div style="font-size:11px;">클래스가 존재하지 않습니다.</div>
+					<div></div>
+					</c:if>
 					</c:if>
 					</div>
 				</div>
@@ -38,6 +46,7 @@
 				<h1 class="hidden">메뉴</h1>
 				<c:if test="${memberRole ne 'ROLE_ADMIN'}">
 				<nav class="menu-wrapper">
+				<c:if test="${classEmpty == 1 }">
 					<h1 class="hidden">메인메뉴</h1>
 					<ul class="main-menu">
 						<li><a href="${ctx}/board/question">질문게시판</a></li>
@@ -52,8 +61,17 @@
 							<li><a href="${ctx}/teacher/is-complete">Complete</a></li>
 						</c:if>
 					</ul>
-				</nav>
 				</c:if>
+				<c:if test="${classEmpty == 0 }">
+				<ul class="main-menu">
+					<li><a href="${ctx}/member/classsetting">클래스 등록 필요</a></li>
+				</ul>
+				</c:if>
+				
+				</nav>
+				
+				</c:if>
+				
 				<nav id="member-menu" class="member-menu">
 					<h1 class="hidden">회원메뉴</h1>
 					<ul>
