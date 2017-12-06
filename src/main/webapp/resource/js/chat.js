@@ -98,7 +98,7 @@ window.addEventListener("load", function() {
 							var role;
 							if (data.role == "ROLE_TEACHER")
 								role = "선생님";
-							if (data.role == "ROLE_STUDENT")
+							if (data.role == "ROLE_STUDENT" || data.role == "ROLE_CLASSPRESIDENT")
 								role = "학생";
 
 							notificationWindow(data, role);

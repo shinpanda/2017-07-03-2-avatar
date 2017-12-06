@@ -7,6 +7,8 @@ public interface MemberRoleDao {
 
 	int insert(String memberId,String role); 
 
-	String getRole(String sessionId); 
+	String getRole(String sessionId);
+
+	int update(String id, String role); 
 
 }

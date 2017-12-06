@@ -33,6 +33,7 @@
 			<div class="row">
 				<h5>
 					<c:if test="${n.role eq 'ROLE_STUDENT'}">학생</c:if>
+					<c:if test="${n.role eq 'ROLE_CLASSPRESIDENT'}">학생</c:if>
 					<c:if test="${n.role eq 'ROLE_TEACHER'}">선생님</c:if>
 				</h5>
 				<div>

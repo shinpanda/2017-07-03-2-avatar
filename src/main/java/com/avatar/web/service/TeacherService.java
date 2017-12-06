@@ -6,17 +6,22 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.avatar.web.dao.MemberClassDao;
+import com.avatar.web.dao.MemberRoleDao;
 import com.avatar.web.dao.NoticeDao;
 import com.avatar.web.entity.Board;
 import com.avatar.web.entity.BoardCmt;
 import com.avatar.web.entity.BoardView;
 import com.avatar.web.entity.MemberClass;
 import com.avatar.web.entity.MemberClassView;
+import com.avatar.web.entity.MemberRole;
 
 public class TeacherService {
 	
 	@Autowired
 	MemberClassDao memberClassDao;
+	
+	@Autowired
+	MemberRoleDao memberRoleDao;
 	
 	@Autowired
 	NoticeDao noticeDao;
@@ -69,6 +74,22 @@ public class TeacherService {
 		String classId = memberClassDao.getClassId(id);
 		List<MemberClassView> list = memberClassDao.getList(classId);
 		return list;
+	}
+
+	public List<MemberClassView> getStudentList(String id) {
+		String classId = memberClassDao.getClassId(id);
+		List<MemberClassView> list = memberClassDao.getList(classId);
+		return list;
+	}
+
+	public MemberClassView getStudentInfo(String memberId) {
+		MemberClassView mcv = memberClassDao.get(memberId);
+		return mcv;
+	}
+
+	public int updateStudent(String id, String role) {
+		int result = memberRoleDao.update(id, role);
+		return result;
 	}
 	
 }

@@ -31,8 +31,6 @@
 
 //11
 	var search = location.search.substring(12);
-	console.log(search);
-
 	const ws2 = new WebSocket("ws://211.238.142.93/web/echo");
 	var completeButton = document.querySelector('.btn.complete-btn');
 	var memberId = document.querySelector(".push-window-container").querySelector('input[type="hidden"]').value;
@@ -46,7 +44,8 @@
 			msgType : "push",
 			role : "student",
 			memberId : memberId,
-			date : time
+			date : time,
+			startTime : search
 		}
 		ws2.send(JSON.stringify(json));
 		self.close();
