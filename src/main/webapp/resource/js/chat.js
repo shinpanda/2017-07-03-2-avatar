@@ -100,7 +100,7 @@ window.addEventListener("load", function() {
 								role = "선생님";
 							if (data.role == "ROLE_STUDENT")
 								role = "학생";
-	
+
 							notificationWindow(data, role);
 	
 							/*
@@ -123,6 +123,7 @@ window.addEventListener("load", function() {
 							 */
 							// }
 							// else {
+							console.log(str);
 							if (str.indexOf("/member/chat")) {
 								var prevRegDates = chatWindow
 										.querySelectorAll(".row.chat-date");

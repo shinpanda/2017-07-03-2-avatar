@@ -83,7 +83,7 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 				// push//
 				System.out.println("오긴 오니?");
 				if(jsonObject.get("role").getAsString().equals("teacher")) 
-					sendClass(new TextMessage(msg.getBytes()), service.getClassId(session.getPrincipal().getName()), session.getRemoteAddress().getAddress());
+					sendPushClass(new TextMessage(msg.getBytes()), service.getClassId(session.getPrincipal().getName()), session.getRemoteAddress().getAddress());
 				if(jsonObject.get("role").getAsString().equals("student"))
 					sendTeacher(new TextMessage(msg.getBytes()), service.getClassId(session.getPrincipal().getName()));
 			}
@@ -111,6 +111,23 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 	public void sendClass(TextMessage message, String classId, InetAddress ipAddress) {
 		// for (WebSocketSession session : list) {
 		for (WebSocketSession session : map.keySet()) {
+			//if (map.get(session).equals(classId) && session.getRemoteAddress().getAddress() != ipAddress) {
+			if (map.get(session).equals(classId)) {
+				if (session.isOpen()) {
+					try {
+						session.sendMessage(message);
+					} catch (Exception ignored) {
+						// this.logger.error("fail to send message!", ignored);
+						System.out.println("fail to send message!" + ignored);
+					}
+				}
+			}
+		}
+	}
+
+	public void sendPushClass(TextMessage message, String classId, InetAddress ipAddress) {
+		// for (WebSocketSession session : list) {
+		for (WebSocketSession session : map.keySet()) {
 			if (map.get(session).equals(classId) && session.getRemoteAddress().getAddress() != ipAddress) {
 			//if (map.get(session).equals(classId)) {
 				if (session.isOpen()) {
@@ -125,6 +142,8 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 		}
 	}
 
+	
+	
 	@Override
 	public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
 		// this.logger.error("web socket error!", exception);

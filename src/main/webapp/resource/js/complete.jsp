@@ -33,7 +33,7 @@
 	var search = location.search.substring(12);
 	console.log(search);
 
-	const ws = new WebSocket("ws://211.238.142.93/web/echo");
+	const ws2 = new WebSocket("ws://211.238.142.93/web/echo");
 	var completeButton = document.querySelector('.btn.complete-btn');
 	var memberId = document.querySelector(".push-window-container").querySelector('input[type="hidden"]').value;
 	console.log(memberId);
@@ -48,7 +48,7 @@
 			memberId : memberId,
 			date : time
 		}
-		ws.send(JSON.stringify(json));
+		ws2.send(JSON.stringify(json));
 		self.close();
 	}
 </script>
