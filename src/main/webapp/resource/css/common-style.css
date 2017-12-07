@@ -245,7 +245,9 @@ input.logout-btn:hover {
 	.widget-container .cell {
 		display: table-cell;
 	}
-	
+	.cell.title a:hover {
+	    color: #777777;
+	}
 	.widgets h3 {
 		margin: 0;
 		font-size: 18px;
@@ -282,7 +284,8 @@ input.logout-btn:hover {
 	table-layout: fixed;
 	box-sizing: border-box;
 }
-
+	
+	
 	.w45 {
 		width: 45px;
 	}

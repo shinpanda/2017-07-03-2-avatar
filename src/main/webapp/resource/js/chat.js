@@ -123,8 +123,8 @@ window.addEventListener("load", function() {
 							 */
 							// }
 							// else {
-							console.log(str);
-							if (str.indexOf("/member/chat")) {
+							
+							if (str.indexOf("/member/chat")>0) {
 								var prevRegDates = chatWindow
 										.querySelectorAll(".row.chat-date");
 								if(prevRegDates.length>0)
