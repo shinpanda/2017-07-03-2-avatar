@@ -8,8 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Avatar</title>
-<link href="${ctx}/resource/css/common-style.css" type="text/css"
-	rel="stylesheet">
+
 <link href="${ctx}/resource/css/admin-style.css" type="text/css"
 	rel="stylesheet">
 </head>

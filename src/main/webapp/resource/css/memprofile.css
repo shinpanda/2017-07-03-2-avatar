@@ -350,7 +350,11 @@ a {
 	padding-bottom: 90px;
 	display: grid;
 }
-
+	h3>span.title-info{
+		font-weight: normal;
+   		 font-size: 11px;
+		
+	}
 .text-right{
 	text-align: right;
 }
@@ -437,8 +441,9 @@ select.text-right {
 	    width: 60%;
 	    text-align: center;
    		padding: 10px;
-   	/* 	margin-left: 120px; */
+   	 	margin-left: 120px;
     	margin-top: 20px;
+    	background: #f7f7f7;
 	}
 	
 /* button */
@@ -567,7 +572,7 @@ button.close-modal, .btn-modal {
 	font-weight: bold; 
 	padding-left: 70px;
 	height: 50px;
-	/* margin-left:51px; */
+	margin-left:120px; 
 		
 }
 .mypage-title{
@@ -579,7 +584,7 @@ button.close-modal, .btn-modal {
     border-bottom: 2px solid gray;
     height: 64px;
     text-align: center;
-    font-size: 25px;
+    font-size: larger;/* 25px */
     margin: 30px 0px 0px 285px;
 }
 
