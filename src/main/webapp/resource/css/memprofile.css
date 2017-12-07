@@ -396,10 +396,15 @@ select.text-right {
 	    height: 17px;
 	    float: right;
 	    border-radius: 7px;
+	    font-size: 17px;
 }
 .content-box.class{
-	width: 240px;
+	/* width: 240px; */
 	margin-right: 10px;
+	height: 39px;
+    font-size: 15px;
+    text-align: center;
+    padding-left: 30px;
 }
 .dc-name.mem-fixed.set.title{
 	display: flex;
