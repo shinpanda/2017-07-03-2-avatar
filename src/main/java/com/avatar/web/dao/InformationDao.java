@@ -13,10 +13,12 @@ public interface InformationDao {
 
 	int getCount(String classId);
 	
+	
 	BoardView get(String no);
 	int insert(Board board);
 	int updateHit(String no);
 	int update(Board board);
 	int delete(String no);
+	
 
 }

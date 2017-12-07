@@ -67,4 +67,6 @@ public class MybatisInformationDao implements InformationDao {
 		InformationDao informationDao = sqlSession.getMapper(InformationDao.class);
 		return informationDao.delete(no);
 	}
+
+
 }

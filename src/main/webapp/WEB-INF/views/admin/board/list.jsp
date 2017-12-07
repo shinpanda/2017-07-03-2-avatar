@@ -13,17 +13,30 @@
 		<div class="table-wrapper">
 			<div class="board-table">
 				<div class="row table-header">
-					<div class="cell w60">no</div>
+				<div class="cell w80">Class</div>
+					<div class="cell w80">게시판</div>
+					<div class="cell w60">no</div>					
 					<div class="cell">제목</div>
+					<div class="cell w80">작성자</div>
 					<div class="cell w120">작성날짜</div>
 					<div class="cell w80">조회수</div>
 				</div>
 				<c:forEach begin="0" end="14" items="${list}" var="b">
 					<div class="row">
+					<c:if test="${b.boardId=='q'}">
+						<c:set var="board" value="질문"/>
+					</c:if>
+					<c:if test="${b.boardId=='i'}">
+						<c:set var="board" value="정보공유"/>
+					</c:if>
+						<div class="cell">${b.classId}</div>
+						<div class="cell">${board}</div>
 						<div class="cell">${b.no}</div>
+						
 						<div class="cell title">
-							<a href="./notice/${b.no}">${b.title}</a>
-						</div>
+							<a href="./board/${b.adminBoardId}">${b.title}  [${b.countCmt}]</a>
+						</div>						
+						<div class="cell">${b.writerId}</div>
 						<fmt:formatDate value="${b.regDate}" pattern="MM.dd" var="regDate" />
 						<div class="cell">
 							<c:if test="${nowTime ne regDate}">
