@@ -59,7 +59,6 @@
 		xhr.open("GET", "../student/seat-info-ajax?${_csrf.parameterName}=${_csrf.token}"); 
 		xhr.send(); 
 			
-			
 		
 		changeButton.onclick = function(){
 			if (confirm("자리를 바꾸시겠습니까") == true){  
@@ -67,8 +66,7 @@
 				while(container.hasChildNodes()){
 					container.removeChild(container.firstChild); 
 					
-				} 
-				
+				}
 				var xhr = new XMLHttpRequest();
 					
 				 xhr.onload = function(e){
@@ -78,26 +76,27 @@
 							//console.log("b2:"+j);
 							container.appendChild(div);
 							 for (i = 1; i <= b1; i++) {
-								var member =JSON.parse(e.target.responseText);
-								 if(count < member.length){
-									 var li = document.createElement("span");
-									 li.textContent = member[count];
-									 li.className = "seat";
-									 div.appendChild(li);
-								 }
-								 else {
-									 var li = document.createElement("span");
-									 li.textContent = "";
-									 li.className = "seat";
-									 div.appendChild(li);
-								 }
-								 //console.log("b1:"+i);
-								 /* var span = document.createElement("span");
-								 span.className = "seat";
-								 span.textContent ="test";
-								 div.appendChild(span); */
-								 //tag+= 'span.appendChild(txt);';
-								 count ++;
+								
+									var member =JSON.parse(e.target.responseText);
+									 if(count < member.length){
+										 var li = document.createElement("span");
+										 li.textContent = member[count];
+										 li.className = "seat";
+										 div.appendChild(li);
+									 }
+									 else {
+										 var li = document.createElement("span");
+										 li.textContent = "";
+										 li.className = "seat";
+										 div.appendChild(li);
+									 }
+									 //console.log("b1:"+i);
+									 /* var span = document.createElement("span");
+									 span.className = "seat";
+									 span.textContent ="test";
+									 div.appendChild(span); */
+									 //tag+= 'span.appendChild(txt);';
+									 count ++;
 							}
 							 //tag += "<br/>";		    
 						};

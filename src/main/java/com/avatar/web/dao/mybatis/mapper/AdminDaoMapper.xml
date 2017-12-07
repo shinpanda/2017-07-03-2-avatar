@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.avatar.web.dao.AdminDao">
+	<select id="getList" resultType="com.avatar.web.entity.AdminBoardView">
+		SELECT * FROM AdminBoardView where 
+		(${param2} like '%${param4}%' or ${param3} like '%${param4}%') order by regDate DESC 
+		limit ${(param1-1)*15}, 15
+	</select>
+	<select id="getCount" resultType="int">
+		SELECT count(no) as count FROM
+		AdminBoardView
+	</select>
+	<select id="get" resultType="com.avatar.web.entity.AdminBoardView">
+		select * from AdminBoardView where
+		adminBoardId=#{adminBoardId}
+	</select>
+	<insert id="insert" parameterType="com.avatar.web.entity.AdminBoardView">
+		insert into AdminBoardView(no, title, content, writerId, classId)
+		values ((select IFNULL(max(cast(no as unsigned)), 0)+1 from Information q), #{title}, #{content}, #{writerId}, #{classId})
+	</insert>
+	<update id="updateHit">
+		update AdminBoardView set hit=hit+1 where no=#{no} 
+	</update>
+	<update id="update" parameterType="com.avatar.web.entity.AdminBoardView">
+		update AdminBoardView set title  = #{title}, content  = #{content} where no = #{no}
+	</update>
+	<delete id="delete">
+		delete from AdminBoardView where no = #{no} 
+	</delete>
+</mapper>    

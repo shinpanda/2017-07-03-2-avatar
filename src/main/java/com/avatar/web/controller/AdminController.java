@@ -6,13 +6,17 @@ import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.avatar.web.dao.AdminBoardCmtDao;
+import com.avatar.web.dao.AdminDao;
 import com.avatar.web.dao.MemberClassDao;
-
-
+import com.avatar.web.entity.BoardCmt;
 import com.avatar.web.service.AdminService;
+
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -27,7 +31,11 @@ public class AdminController {
 	@Autowired
 	private AdminService service;
 	
-
+	@Autowired
+	private AdminDao adminDao;
+	
+	@Autowired
+	private AdminBoardCmtDao adminBoardCmtDao;
 
 	@RequestMapping("member")
 	public String member(@RequestParam(value="p", defaultValue="1") Integer page, 
@@ -48,11 +56,39 @@ public class AdminController {
 
 
 	@RequestMapping("board")
-	public String board() {
+	public String board(@RequestParam(value="p", defaultValue="1") Integer page, 
+			@RequestParam(value="f", defaultValue="title") String field,
+			@RequestParam(value="q", defaultValue="") String query,
+			Principal principal,
+			Model model) {
 		
+		model.addAttribute("list", adminDao.getList(page, field, query));
+		model.addAttribute("count", adminDao.getCount());
+		
+				
 		
 		return "admin.board.list";	
 	}
+	
+	
+	@RequestMapping(value="board/{adminBoardId}", method=RequestMethod.GET)
+	public String boardDetail(@PathVariable("adminBoardId") String adminBoardId, Model model) {
+		model.addAttribute("b", adminDao.get(adminBoardId));
+		model.addAttribute("cmtList", adminBoardCmtDao.getList(adminBoardId));
+		model.addAttribute("br", "<br/>");
+		model.addAttribute("cn", "\n");
+
+		return "admin.board.detail";
+	}
+	
+	@RequestMapping(value="question/{AdminBoardId}", method=RequestMethod.POST)
+	public String questionDetail(@PathVariable("AdminBoardId") String AdminBoardId, BoardCmt cmt, Principal principal) {
+		cmt.setWriterId(principal.getName());
+		cmt.setBoardNo(AdminBoardId);
+		return "redirect: "+AdminBoardId;
+	}
+	
+	
 	
 	@RequestMapping("class")
 	public String adminClass(@RequestParam(value="p", defaultValue="1") Integer page, 

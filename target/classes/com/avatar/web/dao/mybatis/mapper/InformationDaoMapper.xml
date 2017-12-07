@@ -15,6 +15,7 @@
 		InformationView where
 		classId=#{classId}
 	</select>
+	
 	<select id="get" resultType="com.avatar.web.entity.BoardView">
 		select * from InformationView where
 		no=#{no}
