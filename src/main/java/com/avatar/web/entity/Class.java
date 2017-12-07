@@ -10,12 +10,14 @@ public class Class {
 	private Date openDate;
 	private Date completeDate;
 	private String openerId;
+	private String lectureRoom;
+	
 	
 	public Class() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Class(String id, String name, String pwd, String course, Date openDate, Date completeDate, String openerId) {
+	public Class(String id, String name, String pwd, String course, Date openDate, Date completeDate, String openerId, String lectureRoom) {
 		this.id = id;
 		this.name = name;
 		this.pwd = pwd;
@@ -23,6 +25,8 @@ public class Class {
 		this.openDate = openDate;
 		this.completeDate = completeDate;
 		this.openerId = openerId;
+		this.lectureRoom = lectureRoom;
+		
 	}
 
 	public String getId() {
@@ -79,6 +83,14 @@ public class Class {
 
 	public void setOpenerId(String openerId) {
 		this.openerId = openerId;
+	}
+
+	public String getLectureRoom() {
+		return lectureRoom;
+	}
+
+	public void setLectureRoome(String lectureRoom) {
+		this.lectureRoom = lectureRoom;
 	}
 	
 	

@@ -35,6 +35,13 @@ public class MybatisMemberClassDao implements MemberClassDao {
 
 		return list;
 	}
+
+	@Override
+	public List<MemberClassView> getListPage(String classId, int page, String field, String query) {
+		MemberClassDao memberClassDao = sqlSession.getMapper(MemberClassDao.class);
+		List<MemberClassView> list = memberClassDao.getListPage(classId,page,field,query);
+		return list;
+	}
 	
 	@Override
 	public List<MemberClassView> getMemberList(int page, String field, String query) {
@@ -43,8 +50,9 @@ public class MybatisMemberClassDao implements MemberClassDao {
 		System.out.println(field);
 		System.out.println(query);
 		return memberClassDao.getMemberList(page, field, query);
-		
 	}
+
+	
 	
 	@Override
 	public int getMemberCount() {
@@ -99,6 +107,7 @@ public class MybatisMemberClassDao implements MemberClassDao {
 		MemberClassDao memberClassDao = sqlSession.getMapper(MemberClassDao.class);
 		return memberClassDao.getClassEmpty(memberId);
 	}
+
 	
 
 }

@@ -91,6 +91,12 @@
 									<input type="date" class="content-box class-input class cell" name="openDate">
 									<span class="class-name">수료일  </span> 
 									<input type="date" class="content-box class-input class cell" name="completeDate">
+									<span class="class-name">클래스 룸 선택  </span> 
+									<select name="lectureRoom" id="lectureRoom" name="lectureRoom" class="content-box" placeholder="클래스 룸을 선택해주세요(row*column)">
+								    <c:forEach var="room" items="${room}">
+								    <option value="${room.id}">${room.id}강의실 ${room.row} *  ${room.col}</option>
+								    </c:forEach>
+								  </select>
 							</div>
 
 								<br /> <br /> <input class="btn-modal" type="submit"
@@ -158,6 +164,9 @@
 											name="edit-name"> <span class="class-name cell">클래스
 											비밀번호 </span> <input type="password"
 											class="content-box class-input class cell" name="edit-pwd">
+											<span class="class-name cell">클래스 룸
+											 </span> <input type="text"
+											class="content-box class-input class cell" name="edit-lectureRoom">
 										<span class="class-name cell">시작일 </span> <input type="date"
 											class="content-box class-input class cell" name="edit-openDate">
 										<span class="class-name cell">수료일 </span> <input type="date"
@@ -307,6 +316,7 @@
 												$('input[name=edit-course]').attr('value', c['course']);
 												$('input[name=edit-name]').attr('value', c['name']);
 												$('input[name=edit-pwd]').attr('value', c['pwd']);
+												$('input[name=edit-lectureRoom]').attr('value', c['lectureRoom']);
 												$('input[name=edit-openDate]').attr('value', openDate);
 												$('input[name=edit-completeDate]').attr('value', completeDate);
 											})

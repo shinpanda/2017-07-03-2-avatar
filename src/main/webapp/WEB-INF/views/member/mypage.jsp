@@ -10,9 +10,14 @@
 				<a href="#" class="modal-trigger mypage-title"
 					data-modal="modal-name"> 회원탈퇴 </a>
 				<c:if test="${c.memberRole eq 'ROLE_TEACHER' }">
-					<a href="${ctx}/member/classsetting" class="mypage-title"> 클래스
-						설정 </a>
+					<a href="${ctx}/member/classsetting" class="mypage-title"> 클래스 설정 </a>
+					<a href="${ctx}/member/classstudent" class="mypage-title"> 학생 조회 </a>
+					
 				</c:if>
+				<c:if test="${c.memberRole eq 'ROLE_STUDENT' }">
+					<a href="${ctx}/member/classinfo" class="mypage-title"> 클래스 정보 </a>
+				</c:if>
+				
 			</div>
 			<!-- Modal -->
 		<div class="modal" id="modal-name">
