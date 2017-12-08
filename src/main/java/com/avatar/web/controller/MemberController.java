@@ -132,24 +132,7 @@ public class MemberController {
 		return "member.mypage";
 	}
 	
-	@RequestMapping("classstudent")
-	public String classStudent(
-			@RequestParam(value="p", defaultValue="1") Integer page, 
-			@RequestParam(value="f", defaultValue="memberId") String field,
-			@RequestParam(value="q", defaultValue="") String query,
-			Principal principal, Model model) {
-		
-		
-		String id = principal.getName();
-		model.addAttribute("c", service.getClassInfo(id));
-		String classId = memberClassDao.getClassId(id);
-		/*System.out.println("1) id,page,field,query: "+classId+", "+page+", "+field+", "+query);*/
-		model.addAttribute("list", memberClassDao.getListPage(classId,page,field,query));
-		model.addAttribute("count", service.getStuCount(classId));
-		
-		return "member.classstudent";	
 
-	} 
 	
 	@RequestMapping(value="mypage", method=RequestMethod.POST)
 	public String mypage(@RequestParam(value="checkpwd", defaultValue="") String checkpwd,HttpServletRequest request, Principal principal) throws UnsupportedEncodingException {

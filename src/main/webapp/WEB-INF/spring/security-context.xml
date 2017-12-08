@@ -12,7 +12,7 @@
 		<intercept-url pattern="/member/chat" access="hasAnyRole('ROLE_STUDENT','ROLE_TEACHER','ROLE_CLASSPRESIDENT')" />
 		<intercept-url pattern="/member/mypage" access="hasAnyRole('ROLE_STUDENT','ROLE_TEACHER','ROLE_ADMIN','ROLE_CLASSPRESIDENT')" />
 		<intercept-url pattern="/member/profile" access="hasAnyRole('ROLE_STUDENT','ROLE_TEACHER','ROLE_ADMIN','ROLE_CLASSPRESIDENT')" />
-		<intercept-url pattern="/member/classsetting" access="hasAnyRole('ROLE_CLASSPRESIDENT')" />
+		<intercept-url pattern="/member/classsetting" access="hasAnyRole('ROLE_TEACHER')" />
 		
 		
 		<form-login login-page="/member/login" default-target-url="/index"  />

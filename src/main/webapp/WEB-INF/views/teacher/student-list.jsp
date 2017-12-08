@@ -5,10 +5,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:useBean id="now" class="java.util.Date"></jsp:useBean>
 <fmt:formatDate value="${now}" pattern="MM.dd" var="nowTime" />
+<c:set var="ctx" value="${pageContext.request.contextPath}" />  
+<link href="${ctx}/resource/css/memprofile.css" type="text/css" rel="stylesheet">
 <main class="main">
+	<div class="mypage-form" style="margin:0px;">
+			<a href="${ctx}/teacher/student-admin" class="mypage-title"> 반장 설정 </a>		
+			<a href="${ctx}/teacher/student-list" class="mypage-title"> 학생 목록 </a>		
+	</div>
+
 <h3 style="font-size:21px;"> <span>${c.className}</span> 클래스 학생 관리 <span class="title-info">**기본 클래스로 설정된 클래스의 학생만 불러옵니다.</span></h3>
-
-
 <div class="board-style">
 	<div class="table-container">
 		<div class="table-wrapper">
@@ -29,6 +34,9 @@
 						<c:if test="${m.memberRole eq 'ROLE_TEACHER'}">
 							<c:set value="선생님" var="role" />
 						</c:if>
+						<c:if test="${m.memberRole eq 'ROLE_CLASSPRESIDENT'}">
+							<c:set value="반장" var="role" />
+						</c:if>
 						<div class="cell">${role}</div>
 						<div class="cell title">${m.memberId}</a></div>
 						<div class="cell">${m.memberName}</div>
@@ -47,7 +55,6 @@
 						class="search search-btn-img" />
 				</form>
 			</div>
-			${param.p }
 			<c:set var="page" value="${param.p}" />
 					<c:set var="startNum" value="${page-(page-1)%10}" />
 					<c:set var="lastNum"

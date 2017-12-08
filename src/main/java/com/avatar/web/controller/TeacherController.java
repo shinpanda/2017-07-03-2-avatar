@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.avatar.web.dao.MemberClassDao;
 import com.avatar.web.entity.Board;
 import com.avatar.web.entity.MemberClass;
 import com.avatar.web.entity.MemberClassView;
 import com.avatar.web.service.BoardService;
+import com.avatar.web.service.MemberService;
 import com.avatar.web.service.TeacherService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -28,7 +30,10 @@ public class TeacherController {
 	
 	@Autowired
 	private TeacherService service;
-	
+	@Autowired
+	private MemberService mService;
+	@Autowired
+	private MemberClassDao memberClassDao;
 	
 	@RequestMapping("notice")
 	public String notice(@RequestParam(value="p", defaultValue="1") Integer page, 
@@ -98,8 +103,25 @@ public class TeacherController {
 		return "teacher.is-complete";
 	}
 	
+	@RequestMapping("student-list")
+	public String studentList(
+			@RequestParam(value="p", defaultValue="1") Integer page, 
+			@RequestParam(value="f", defaultValue="memberId") String field,
+			@RequestParam(value="q", defaultValue="") String query,
+			Principal principal, Model model) {
+		
+		String id = principal.getName();
+		model.addAttribute("c", mService.getClassInfo(id));
+		String classId = memberClassDao.getClassId(id);
+		/*System.out.println("1) id,page,field,query: "+classId+", "+page+", "+field+", "+query);*/
+		model.addAttribute("list", memberClassDao.getListPage(classId,page,field,query));
+		model.addAttribute("count", mService.getStuCount(classId));
+		
+		return "teacher.student-list";	
+
+	} 
 	
-	@RequestMapping("student")
+	@RequestMapping("student-admin")
 	public String student(@RequestParam(value="p", defaultValue="1") Integer page, 
 			@RequestParam(value="f", defaultValue="memberId") String field,
 			@RequestParam(value="q", defaultValue="") String query,
@@ -108,7 +130,7 @@ public class TeacherController {
 		List<MemberClassView> list = service.getStudentList(principal.getName());
 		model.addAttribute("list", list);
 		
-		return "teacher.admin-student";
+		return "teacher.student-admin";
 	}
 	
 	@RequestMapping("student-info")

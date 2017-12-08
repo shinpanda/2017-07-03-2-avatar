@@ -5,8 +5,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:useBean id="now" class="java.util.Date"></jsp:useBean>
 <fmt:formatDate value="${now}" pattern="MM.dd" var="nowTime" />
+<c:set var="ctx" value="${pageContext.request.contextPath}" />  
+<link href="${ctx}/resource/css/memprofile.css" type="text/css" rel="stylesheet">	
 <main class="main">
-<h3>학생 관리</h3>
+	<div class="mypage-form" style="margin:0px;">
+			<a href="${ctx}/teacher/student-admin" class="mypage-title"> 반장 설정 </a>		
+			<a href="${ctx}/teacher/student-list" class="mypage-title"> 학생 목록 </a>		
+	</div>
+	
+	
+<h3>반장 설정</h3>
 
 <div class="board-style">
 	<div class="class-seat-container">

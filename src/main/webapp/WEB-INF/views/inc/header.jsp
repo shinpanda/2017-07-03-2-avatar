@@ -60,7 +60,7 @@
 						<li><a href="${ctx}/member/chat">채팅방 입장</a></li>
 						<c:if test="${memberRole eq 'ROLE_TEACHER'}">
 							<li><a href="${ctx}/teacher/is-complete">Complete</a></li>
-							<li><a href="${ctx}/teacher/student">학생 관리</a></li>
+							<li><a href="${ctx}/teacher/student-admin">학생 관리</a></li>
 						</c:if>
 					</ul>
 				</c:if>
