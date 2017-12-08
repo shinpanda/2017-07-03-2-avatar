@@ -13,6 +13,7 @@ public interface MemberClassDao {
 	String getClassId(String id);
 	
 	List<MemberClassView> getList(String classId);
+	List<MemberClassView> getListPage(@Param("classId")String classId, @Param("page")int page, @Param("field")String field, @Param("query")String query);
 	List<MemberClassView> getMemberList(int page, String field, String query);
 	
 	int getMemberCount();

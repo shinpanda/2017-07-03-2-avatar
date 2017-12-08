@@ -6,63 +6,48 @@
 <jsp:useBean id="now" class="java.util.Date"></jsp:useBean>
 <fmt:formatDate value="${now}" pattern="MM.dd" var="nowTime" />
 <main class="main">
-<h3>게시판 관리</h3>
+<h3 style="font-size:21px;"> <span>${c.className}</span> 클래스 학생 관리 <span class="title-info">**기본 클래스로 설정된 클래스의 학생만 불러옵니다.</span></h3>
+
 
 <div class="board-style">
 	<div class="table-container">
 		<div class="table-wrapper">
 			<div class="board-table">
 				<div class="row table-header">
-				<div class="cell w80">Class</div>
-					<div class="cell w80">게시판</div>
-					<div class="cell w60">no</div>					
-					<div class="cell">제목</div>
-					<div class="cell w80">작성자</div>
-					<div class="cell w120">작성날짜</div>
-					<div class="cell w80">조회수</div>
+					<div class="cell w130">등급</div>
+					<div class="cell w130">아이디</div>
+					<div class="cell w130">이름</div>
+					<div class="cell w130">Class</div>
+					<div class="cell w130">자리</div>
+					<div class="cell ">이메일</div>
+					<!-- <div class="cell ">ip</div> -->
 				</div>
-				<c:forEach begin="0" end="14" items="${list}" var="b">
+				
+				<c:forEach begin="0" end="14" items="${list}" var="m">
 					<div class="row">
-					<c:if test="${b.boardId=='q'}">
-						<c:set var="board" value="질문"/>
-					</c:if>
-					<c:if test="${b.boardId=='i'}">
-						<c:set var="board" value="정보공유"/>
-					</c:if>
-						<div class="cell">${b.classId}</div>
-						<div class="cell">${board}</div>
-						<div class="cell">${b.no}</div>
-						
-						<div class="cell title">
-							<a href="./board/${b.adminBoardId}">${b.title}  [${b.countCmt}]</a>
-						</div>						
-						<div class="cell">${b.writerId}</div>
-						<fmt:formatDate value="${b.regDate}" pattern="MM.dd" var="regDate" />
-						<div class="cell">
-							<c:if test="${nowTime ne regDate}">
-									${regDate}
-							</c:if>
-							<c:if test="${nowTime eq regDate}">
-								<fmt:formatDate value="${b.regDate}" pattern="HH:MM"
-									var="regDate" />
-									${regDate}
-							</c:if>
-						</div>
-						<div class="cell">${b.hit}</div>
+						<c:set value="학생" var="role" />
+						<c:if test="${m.memberRole eq 'ROLE_TEACHER'}">
+							<c:set value="선생님" var="role" />
+						</c:if>
+						<div class="cell">${role}</div>
+						<div class="cell title">${m.memberId}</a></div>
+						<div class="cell">${m.memberName}</div>
+						<div class="cell">${m.className}</div>
+						<div class="cell">${m.seatNo}</div>
+						<div class="cell">${m.memberEmail}</div>
 					</div>
 				</c:forEach>
 			</div>
 			<div class="search-form-container">
 				<form method="get" class="search-form">
 					<select name="f">
-						<option value="title">제목</option>
-						<option value="title-content">제목 + 내용</option>
-						<option value="content">내용</option>
+						<option value="memberId">아이디</option>
+						<option value="memberName">이름</option>						
 					</select> <input type="search" name="q" /> <input type="submit"
 						class="search search-btn-img" />
 				</form>
-				
 			</div>
+			${param.p }
 			<c:set var="page" value="${param.p}" />
 					<c:set var="startNum" value="${page-(page-1)%10}" />
 					<c:set var="lastNum"

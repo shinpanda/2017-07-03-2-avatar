@@ -196,7 +196,9 @@ public class BoardService {
 		int result = noticeDao.updateHit(no);
 		Board b = noticeDao.get(no);
 		return b;
-	}	
+	}
+
+	
 	
 
 

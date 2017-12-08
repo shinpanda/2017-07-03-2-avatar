@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.avatar.web.dao.ClassDao;
+import com.avatar.web.dao.LectureRoomDao;
 import com.avatar.web.dao.MemberClassDao;
 import com.avatar.web.entity.Member;
 import com.avatar.web.entity.Class;
@@ -43,6 +44,8 @@ public class MemberController {
 	private ClassDao classDao;
 	@Autowired
 	private MemberClassDao memberClassDao;
+	@Autowired
+	private LectureRoomDao roomDao;
 	
 	
 	@RequestMapping(value="login", method=RequestMethod.GET)
@@ -128,10 +131,29 @@ public class MemberController {
 		
 		return "member.mypage";
 	}
+	
+	@RequestMapping("classstudent")
+	public String classStudent(
+			@RequestParam(value="p", defaultValue="1") Integer page, 
+			@RequestParam(value="f", defaultValue="memberId") String field,
+			@RequestParam(value="q", defaultValue="") String query,
+			Principal principal, Model model) {
+		
+		
+		String id = principal.getName();
+		model.addAttribute("c", service.getClassInfo(id));
+		String classId = memberClassDao.getClassId(id);
+		/*System.out.println("1) id,page,field,query: "+classId+", "+page+", "+field+", "+query);*/
+		model.addAttribute("list", memberClassDao.getListPage(classId,page,field,query));
+		model.addAttribute("count", service.getStuCount(classId));
+		
+		return "member.classstudent";	
+
+	} 
+	
 	@RequestMapping(value="mypage", method=RequestMethod.POST)
 	public String mypage(@RequestParam(value="checkpwd", defaultValue="") String checkpwd,HttpServletRequest request, Principal principal) throws UnsupportedEncodingException {
 		String id = principal.getName();
-		
 		int result =0;
 		result = service.check(id,checkpwd);
 		System.out.println("result: "+result);
@@ -212,6 +234,8 @@ public class MemberController {
 			,@RequestParam(value="edit-pwd", defaultValue="") String pwd
 			,@RequestParam(value="edit-openDate", defaultValue="") String open
 			,@RequestParam(value="edit-completeDate", defaultValue="") String complete
+			,@RequestParam(value="edit-lectureRoom", defaultValue="") String lectureRoom
+			
 			 ) throws ParseException {
 		
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -220,7 +244,7 @@ public class MemberController {
 		Date completeDate = transFormat.parse(complete);
 		String openerId = principal.getName();
 		/*System.out.println("edit-class: "+openerId+","+course+","+name+","+pwd+","+openDate+","+completeDate);*/
-		Class cl = new Class(id,name,pwd,course,openDate,completeDate,openerId);
+		Class cl = new Class(id,name,pwd,course,openDate,completeDate,openerId,lectureRoom);
 		int result = service.editClass(cl);
 		
 		return "redirect:classsetting";
@@ -230,7 +254,19 @@ public class MemberController {
 	public String classsetting(Principal principal, Model model) {
 		String id = principal.getName();
 		model.addAttribute("clist", service.getClassList(id));
+		model.addAttribute("c", service.getClassInfo(id));
+		model.addAttribute("room", roomDao.getList());
+		
 		return "member.classsetting";
+	}
+	@RequestMapping(value="classinfo", method=RequestMethod.GET)
+	public String classinfo(Principal principal, Model model) {
+		String id = principal.getName();
+		model.addAttribute("c", service.getClassInfo(id));
+		String classId =service.getClassId(id);
+		String openerId = service.getTeacherId(classId);
+		model.addAttribute("ci", service.getClass(openerId,classId));
+		return "member.classinfo";
 	}
 	@RequestMapping(value="new-class", method=RequestMethod.POST)
 	public String newClass(Principal principal
@@ -239,6 +275,8 @@ public class MemberController {
 			,@RequestParam(value="pwd", defaultValue="") String pwd
 			,@RequestParam(value="openDate", defaultValue="") String open
 			,@RequestParam(value="completeDate", defaultValue="") String complete
+			,@RequestParam(value="lectureRoom", defaultValue="") String lectureRoom
+			
 			 ) throws ParseException {
 		
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -247,7 +285,7 @@ public class MemberController {
 		Date completeDate = transFormat.parse(complete);
 		
 		String openerId = principal.getName();
-		Class cl = new Class(null,name,pwd,course,openDate,completeDate,openerId);
+		Class cl = new Class(null,name,pwd,course,openDate,completeDate,openerId,lectureRoom);
 		int result = service.newClass(cl);
 		
 		return "redirect:classsetting";
