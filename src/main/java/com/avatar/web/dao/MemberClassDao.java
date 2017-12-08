@@ -33,4 +33,6 @@ public interface MemberClassDao {
 
 	int getClassEmpty(String memberId);
 
+	MemberClassView get(String memberId);
+
 }

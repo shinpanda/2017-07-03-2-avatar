@@ -26,7 +26,7 @@
 		<c:forEach items="${list}" begin="0" end="${list[0].row*list[0].col-1}" step="${list[0].col}" varStatus="status">
 			<div>
 				<c:forEach begin="${status.index}" end="${status.index+list[0].col-1}" var="i">
-					<span class="seat" id="${list[i].memberId}">${list[i].memberName}</span>
+					<span class="seat" id="${list[i].memberId}"><c:if test="${list[i].memberRole eq 'ROLE_CLASSPRESIDENT'}">[반장]</c:if>${list[i].memberName}</span>
 				</c:forEach>
 			</div>
 		</c:forEach>

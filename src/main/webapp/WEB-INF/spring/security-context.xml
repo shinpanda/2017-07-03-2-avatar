@@ -4,16 +4,15 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 						http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 	<http> <!-- user-service : auto-config="true" -->
-		<intercept-url pattern="/board/**" access="hasAnyRole('ROLE_STUDENT','ROLE_TEACHER')" />
-		<intercept-url pattern="/student/**" access="hasAnyRole('ROLE_STUDENT')" />
+		<intercept-url pattern="/board/**" access="hasAnyRole('ROLE_STUDENT','ROLE_TEACHER', 'ROLE_CLASSPRESIDENT')" />
+		<intercept-url pattern="/student/**" access="hasAnyRole('ROLE_STUDENT','ROLE_CLASSPRESIDENT')" />
 		<intercept-url pattern="/teacher/**" access="hasAnyRole('ROLE_TEACHER')" />
 		<intercept-url pattern="/admin/**" access="hasAnyRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/test/**" access="hasAnyRole('ROLE_STUDENT','ROLE_TEACHER')" />
-		<intercept-url pattern="/index" access="hasAnyRole('ROLE_STUDENT','ROLE_TEACHER','ROLE_ADMIN')" />
-		<intercept-url pattern="/member/chat" access="hasAnyRole('ROLE_STUDENT','ROLE_TEACHER')" />
-		<intercept-url pattern="/member/mypage" access="hasAnyRole('ROLE_STUDENT','ROLE_TEACHER','ROLE_ADMIN')" />
-		<intercept-url pattern="/member/profile" access="hasAnyRole('ROLE_STUDENT','ROLE_TEACHER','ROLE_ADMIN')" />
-		<intercept-url pattern="/member/classsetting" access="hasAnyRole('ROLE_TEACHER')" />
+		<intercept-url pattern="/index" access="hasAnyRole('ROLE_STUDENT','ROLE_TEACHER','ROLE_ADMIN','ROLE_CLASSPRESIDENT')" />
+		<intercept-url pattern="/member/chat" access="hasAnyRole('ROLE_STUDENT','ROLE_TEACHER','ROLE_CLASSPRESIDENT')" />
+		<intercept-url pattern="/member/mypage" access="hasAnyRole('ROLE_STUDENT','ROLE_TEACHER','ROLE_ADMIN','ROLE_CLASSPRESIDENT')" />
+		<intercept-url pattern="/member/profile" access="hasAnyRole('ROLE_STUDENT','ROLE_TEACHER','ROLE_ADMIN','ROLE_CLASSPRESIDENT')" />
+		<intercept-url pattern="/member/classsetting" access="hasAnyRole('ROLE_CLASSPRESIDENT')" />
 		
 		
 		<form-login login-page="/member/login" default-target-url="/index"  />

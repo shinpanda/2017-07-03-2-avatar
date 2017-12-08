@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.avatar.web.entity.Board;
 import com.avatar.web.entity.MemberClass;
 import com.avatar.web.entity.MemberClassView;
 import com.avatar.web.service.BoardService;
 import com.avatar.web.service.TeacherService;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 @Controller
 @RequestMapping("/teacher/*")
@@ -95,6 +99,42 @@ public class TeacherController {
 	}
 	
 	
+	@RequestMapping("student")
+	public String student(@RequestParam(value="p", defaultValue="1") Integer page, 
+			@RequestParam(value="f", defaultValue="memberId") String field,
+			@RequestParam(value="q", defaultValue="") String query,
+			Principal principal,
+			Model model) {
+		List<MemberClassView> list = service.getStudentList(principal.getName());
+		model.addAttribute("list", list);
+		
+		return "teacher.admin-student";
+	}
 	
+	@RequestMapping("student-info")
+	@ResponseBody
+	public String studentInfo(String memberId) {
+		
+		MemberClassView mcv = service.getStudentInfo(memberId);
+		String json = "";
+		Gson gson = new Gson();
+		json = gson.toJson(mcv);
+		
+		return json;
+	}
+	
+	@RequestMapping("student-update")
+	@ResponseBody
+	public String studentUpdate(String studentInfo) {
+		JsonParser jsonParser = new JsonParser();
+		JsonObject jsonObject = (JsonObject) jsonParser.parse(studentInfo);
+		if (!jsonObject.isJsonNull()) {
+			String id = jsonObject.get("memberId").getAsString();
+			String role = jsonObject.get("role").getAsString();
+			
+			int result = service.updateStudent(id, role);
+		}
+		return "aa";
+	}
 	
 }

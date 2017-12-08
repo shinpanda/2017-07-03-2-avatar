@@ -126,7 +126,6 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 	}
 
 	public void sendPushClass(TextMessage message, String classId, InetAddress ipAddress) {
-		// for (WebSocketSession session : list) {
 		for (WebSocketSession session : map.keySet()) {
 			if (map.get(session).equals(classId) && session.getRemoteAddress().getAddress() != ipAddress) {
 			//if (map.get(session).equals(classId)) {

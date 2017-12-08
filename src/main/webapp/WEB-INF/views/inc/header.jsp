@@ -14,6 +14,9 @@
 				<a href="${ctx}/index"><img src="${ctx}/resource/images/logo2.png" class="logo-img" alt="로고" /></a>
 			</h1>
 			<c:set value="학생" var="role" />
+			<c:if test="${memberRole eq 'ROLE_CLASSPRESIDENT'}">
+				<c:set value="반장" var="role" />
+			</c:if>
 			<c:if test="${memberRole eq 'ROLE_TEACHER'}">
 				<c:set value="선생님" var="role" />
 			</c:if>
@@ -51,12 +54,13 @@
 					<ul class="main-menu">
 						<li><a href="${ctx}/board/question">질문게시판</a></li>
 						<li><a href="${ctx}/board/information">정보공유</a></li>
-						<c:if test="${memberRole ne 'ROLE_TEACHER'}">
+						<c:if test="${memberRole eq 'ROLE_CLASSPRESIDENT'}">
 						<li><a href="${ctx}/student/seat-change">자리바꾸기</a></li>
 						</c:if>
 						<li><a href="${ctx}/member/chat">채팅방 입장</a></li>
 						<c:if test="${memberRole eq 'ROLE_TEACHER'}">
 							<li><a href="${ctx}/teacher/is-complete">Complete</a></li>
+							<li><a href="${ctx}/teacher/student">학생 관리</a></li>
 						</c:if>
 					</ul>
 				</c:if>

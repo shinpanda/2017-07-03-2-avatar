@@ -108,6 +108,11 @@ public class MybatisMemberClassDao implements MemberClassDao {
 		return memberClassDao.getClassEmpty(memberId);
 	}
 
+	@Override
+	public MemberClassView get(String memberId) {
+		MemberClassDao memberClassDao = sqlSession.getMapper(MemberClassDao.class);
+		return memberClassDao.get(memberId);
+	}
 	
 
 }

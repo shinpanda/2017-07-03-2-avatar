@@ -12,4 +12,7 @@
 		insert into MemberRole(memberId,role)
 		values(#{param1}, #{param2});
 	</insert>
+	<update id="update">
+		update MemberRole set role=#{param2} where memberId = #{param1}
+	</update>
 </mapper>    
