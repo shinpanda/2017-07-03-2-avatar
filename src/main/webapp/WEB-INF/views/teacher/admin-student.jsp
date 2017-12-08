@@ -44,10 +44,13 @@
 					
 					studentInfo.firstElementChild.lastElementChild.textContent = data.memberName;
 					var role = (data.memberRole=="ROLE_STUDENT"? "학생":"반장");
+					console.log(role);
 					studentInfo.firstElementChild.nextElementSibling.lastElementChild.textContent = role;
 					studentInfo.querySelector('input[type="button"]').id = data.memberId;
 					if(role == "반장")
 						studentInfo.querySelector('input[type="button"]').value = "일반학생으로 변경";
+					else
+						studentInfo.querySelector('input[type="button"]').value = "반장으로 등급 상승";
 					studentInfo.parentElement.style.display = "unset";
 				}
 				xhr.open("GET", "student-info?memberId="+e.target.id);
