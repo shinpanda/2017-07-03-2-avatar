@@ -4,7 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <c:set var="param" value="${pageContext.request.requestURL }"/>
-
+<jsp:useBean id="now" class="java.util.Date"></jsp:useBean>
+<fmt:formatDate value="${now}" pattern="yyyyMMdd" var="nowTime" />
 
 <!DOCTYPE html>
 <html>
@@ -158,10 +159,15 @@ $(function(){
 				
 			 <div class="student-form">
 				<div class="form-item">
-				<div class="form-title">클래스이름</div>
+				<div class="form-title">클래스이름 </div>
 					<select class="form-style" id="classId" name="classId">
 					<c:forEach var="c" items="${classList}">
-						<option value="${c.id}">${c.name}  </option>
+				 	<fmt:formatDate pattern="yyyyMMdd" value="${c.completeDate }" var="completeD"/>
+					<c:if test="${ nowTime <= completeD}">
+						<option value="${c.id}">${c.name} (과정명: ${c.course} ) : 
+					<fmt:formatDate pattern="yyyy-MM-dd" value="${c.openDate }" /> ~ <fmt:formatDate pattern="yyyy-MM-dd" value="${c.openDate }" /> 
+						</option>
+					</c:if>
 						</c:forEach>
 					</select>
 				</div>
