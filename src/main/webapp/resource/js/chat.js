@@ -127,11 +127,18 @@ window.addEventListener("load", function() {
 							if (str.indexOf("/member/chat")>0) {
 								var prevRegDates = chatWindow
 										.querySelectorAll(".row.chat-date");
+								var prevRegDate;
+								console.log(prevRegDates);
+								console.log(prevRegDates.length);
 								if(prevRegDates.length>0)
 									prevRegDate = prevRegDates[prevRegDates.length - 1].firstElementChild.textContent;
-								else
+								else if(prevRegDates.length = 0)
 									prevRegDate = prevRegDates[0].firstElementChild.textContent;
-								prevRegDate = prevRegDate.replace(/(\s*)/g, "");
+								else
+									prevRegDate = null;
+
+								if(prevRegDate!= null)
+									prevRegDate = prevRegDate.replace(/(\s*)/g, "");
 	
 								console.log(prevRegDate);
 								var regDate = new Date(data.date);
@@ -149,7 +156,9 @@ window.addEventListener("load", function() {
 									row.classList.add('row', 'chat-date');
 									var p = document.createElement("p");
 									p.textContent = (regDate.getMonth() + 1) + "월 "
-											+ regDate.getDate() + "일";
+											+ (regDate.getDate() >= 10 ? regDate
+													.getDate() : "0"
+														+ regDate.getDate()) + "일";
 									row.appendChild(p);
 									chatWindow.appendChild(row);
 								}
