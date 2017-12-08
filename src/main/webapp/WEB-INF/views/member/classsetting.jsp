@@ -44,8 +44,8 @@
 										class="class-course">${cl.course}</span> <br /> <b>기간 :</b> <fmt:formatDate
 											pattern="yyyy-MM-dd" value="${cl.openDate }" /> ~ <fmt:formatDate
 											pattern="yyyy-MM-dd" value="${cl.completeDate }" />
-										<input type="hidden" name="c-id" id="c-id" value="${cl.id}" />	
-										<input type="hidden" name="default-change" id="default-change">	
+										<input type="hidden" name="c-id"value="${cl.id}" />	
+										<input type="hidden" name="default-change">	
 									</span>
 									<div class="icon-button">
 										<a href="#" class="modal-trigger2" data-modal="modal-name2">
@@ -88,13 +88,14 @@
 									<span class="class-name">클래스 비밀번호  </span> 
 									<input type="password" class="content-box class-input cell" name="pwd">
 									<span class="class-name">시작일  </span> 
-									<input type="date" class="content-box class-input class cell" name="openDate">
+									<input type="date" class="content-box class-input cell" name="openDate">
 									<span class="class-name">수료일  </span> 
-									<input type="date" class="content-box class-input class cell" name="completeDate">
+									<input type="date" class="content-box class-input  cell" name="completeDate">
 									<span class="class-name">클래스 룸 선택  </span> 
-									<select name="lectureRoom" id="lectureRoom" name="lectureRoom" class="content-box" placeholder="클래스 룸을 선택해주세요(row*column)">
+									<select name="lectureRoom" id="lectureRoom" class="content-box class">
+									 <option value="">강의실을 선택해주세요.(row x column)</option>
 								    <c:forEach var="room" items="${room}">
-								    <option value="${room.id}">${room.id}강의실 ${room.row} *  ${room.col}</option>
+								    <option value="${room.id}">${room.id}강의실 (${room.row} X ${room.col})</option>
 								    </c:forEach>
 								  </select>
 							</div>
@@ -130,7 +131,7 @@
 								<div class="table">
 									<div class="class-name mem-fixed set pwd-hide">
 										<span class="class-name cell">비밀번호 : 
-											<input type="password" class="content-box class-input class cell" id="del-pwd" name="del-pwd">
+											<input type="password" class="content-box class-input cell" id="del-pwd" name="del-pwd">
 										</span> 
 									</div>
 								</div>
@@ -160,17 +161,20 @@
 									<input type="text" class="content-box class-input cell" name="edit-course" />
 									<input type="hidden" class="content-box class-input cell" name="edit-id" />
 										<span class="class-name cell">클래스 이름  </span> <input
-											type="text" class="content-box class-input class cell"
+											type="text" class="content-box class-input cell"
 											name="edit-name"> <span class="class-name cell">클래스
 											비밀번호 </span> <input type="password"
-											class="content-box class-input class cell" name="edit-pwd">
+											class="content-box class-input cell" name="edit-pwd">
 											<span class="class-name cell">클래스 룸
-											 </span> <input type="text"
-											class="content-box class-input class cell" name="edit-lectureRoom">
-										<span class="class-name cell">시작일 </span> <input type="date"
-											class="content-box class-input class cell" name="edit-openDate">
+											 </span> 
+											<select name="edit-lectureRoom" class="content-box class">
+										<c:forEach var="room" items="${room}">
+											<option value="${room.id}">${room.id}강의실 (${room.row} X ${room.col})</option>
+										</c:forEach>
+									</select> <span class="class-name cell">시작일 </span> <input type="date"
+											class="content-box class-input cell" name="edit-openDate">
 										<span class="class-name cell">수료일 </span> <input type="date"
-											class="content-box class-input class cell"
+											class="content-box class-input cell"
 											name="edit-completeDate">
 
 
@@ -305,18 +309,21 @@
 														+ "-"
 														+ ((ope.getMonth() + 1) >= 10 ? (ope.getMonth() + 1) : "0"
 														+ (ope.getMonth() + 1))
-														+ "-" + ope.getDate();
+														+ "-" 
+														+ (ope.getDate() >= 10 ? "" : "0")
+														+ ope.getDate();
 												var completeDate = complete.getFullYear() 
 														+ "-"
 														+ ((complete.getMonth() + 1) >= 10 ? (complete.getMonth() + 1): "0"
 														+ (complete.getMonth() + 1))
 														+ "-"
+														+ (complete.getDate() >= 10 ? "" : "0")
 														+ complete.getDate();
 												$('input[name=edit-id]').attr('value', c['id']);
 												$('input[name=edit-course]').attr('value', c['course']);
 												$('input[name=edit-name]').attr('value', c['name']);
 												$('input[name=edit-pwd]').attr('value', c['pwd']);
-												$('input[name=edit-lectureRoom]').attr('value', c['lectureRoom']);
+												$('select[name=edit-lectureRoom]').val(c['lectureRoom']);
 												$('input[name=edit-openDate]').attr('value', openDate);
 												$('input[name=edit-completeDate]').attr('value', completeDate);
 											})
