@@ -22,7 +22,12 @@
 			<c:forEach items="${list}" begin="0" end="${list[0].row*list[0].col-1}" step="${list[0].col}" varStatus="status">
 				<div>
 					<c:forEach begin="${status.index}" end="${status.index+list[0].col-1}" var="i">
-						<span class="seat" id="${list[i].memberId}">${list[i].memberName}</span>
+						<c:if test="${list[i].memberRole eq 'ROLE_STUDENT'}">
+							<span class="seat" id="${list[i].memberId}">${list[i].memberName}</span>
+						</c:if>
+						<c:if test="${list[i].memberRole ne 'ROLE_STUDENT'}">
+						<span class="seat" id="${list[i].memberId}" style="color:red;">${list[i].memberName}</span>
+						</c:if>
 					</c:forEach>
 				</div>
 			</c:forEach>
