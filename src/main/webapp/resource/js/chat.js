@@ -194,12 +194,21 @@ window.addEventListener("load", function() {
 							}
 							if(data.role == "student"){
 								console.log("학생에게서 온 메시지");
-								var eventLabel = document.querySelector(".event-label-box")
-								.querySelectorAll("label");
-								eventLabel[2].firstElementChild.textContent = parseInt(eventLabel[2].firstElementChild.textContent)+1;
-								var seat = document.querySelector("#"+data.memberId);
-								seat.style.background="url('"+getContextPath()+"/resource/images/completemonitor.png')";
-								seat.style.color = "#990b0d";
+
+								var eventLabel = document.querySelector(".event-label-box").querySelectorAll("label");
+								var startTime = new Date(parseInt(data.startTime));
+								startTime = startTime
+										.getHours()
+										+ ":"
+										+ (startTime.getMinutes() >= 10 ? startTime
+												.getMinutes() : "0" + startTime.getMinutes());
+								var startEvent = document.querySelector("#is-complete-button");
+								if((eventLabel[0].firstElementChild.textContent == startTime)&&(startEvent.disabled==true)){
+									eventLabel[2].firstElementChild.textContent = parseInt(eventLabel[2].firstElementChild.textContent)+1;
+									var seat = document.querySelector("#"+data.memberId);
+									seat.style.background="url('"+getContextPath()+"/resource/images/completemonitor.png')";
+									seat.style.color = "#990b0d";
+								}
 							}
 							//child.document.getElementById("start-time").value = data.date;
 							/*console.log(win.document.getElementById("start-time"));*/
