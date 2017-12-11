@@ -121,6 +121,13 @@ public class TeacherController {
 
 	} 
 	
+	@RequestMapping(value="student/list", method=RequestMethod.POST)
+	public String studentList(String updateId) {
+		int result = service.updateStudent(updateId, "ROLE_CLASSPRESIDENT");
+		return "redirect: ./list";
+
+	} 
+	
 	@RequestMapping("student/seat")
 	public String student(@RequestParam(value="p", defaultValue="1") Integer page, 
 			@RequestParam(value="f", defaultValue="memberId") String field,

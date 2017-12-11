@@ -22,6 +22,7 @@
 		</div>
 	</div>
 	<br />
+	<c:if test="${list[0].row*list[0].col-1>0}">
 	<div class="class-seat-wrapper">
 		<c:forEach items="${list}" begin="0" end="${list[0].row*list[0].col-1}" step="${list[0].col}" varStatus="status">
 			<div>
@@ -31,6 +32,7 @@
 			</div>
 		</c:forEach>
 	</div>
+	</c:if>
 </div>
 
 <script>

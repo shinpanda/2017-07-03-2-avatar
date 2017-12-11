@@ -440,6 +440,13 @@ input.logout-btn:hover {
 .reg-btn a {
 	color: #505050;
 }
+
+input.btn.roleUpButton {
+    float: right;
+    margin-top: 28px;
+    margin-right: 10px;
+}
+
 /* reg style */
 .board-style.reg-board {
 	position: relative;
