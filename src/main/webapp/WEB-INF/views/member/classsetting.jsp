@@ -40,11 +40,13 @@
 									</span>
 								</label>
 								<div class="class-cell">
-									<span class="class-info"> <b>과정명 :</b> <span
-										class="class-course">${cl.course}</span> <br /> <b>기간 :</b> <fmt:formatDate
+									<span class="class-info"> <b>과정명: </b> 
+									<span class="class-course">${cl.course}</span> <br /> <b>기간: </b> <fmt:formatDate
 											pattern="yyyy-MM-dd" value="${cl.openDate }" /> ~ <fmt:formatDate
-											pattern="yyyy-MM-dd" value="${cl.completeDate }" />
-										<input type="hidden" name="c-id"value="${cl.id}" />	
+											pattern="yyyy-MM-dd" value="${cl.completeDate }" /><br/>
+									<span class="class-room"><b>클래스 룸: ${cl.lectureRoom}</b> </span><br/>
+									<%-- <span class="class-count"><b>클래스 학생수: <span id="${cl.id}"></span> </b></span> --%>
+										<input type="hidden" class="id-count" value="${cl.id}" />	
 										<input type="hidden" name="default-change">	
 									</span>
 									<div class="icon-button">
@@ -196,6 +198,19 @@
 	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js'></script>
 	<script>
 	$(function()  {
+		
+		/* for(var i=0;i<$(".id-count").length;i++){
+			var ddd= $(".id-count").eq(i).val();
+				 $.get("../member/student-count?${_csrf.parameterName}=${_csrf.token}&classId=" 
+						+ ddd).done(function(result){
+						// alert($(".id-count").eq(i).val()+":"+result);
+							$("span[id="+ddd+"]").text(result);
+				}); 
+			
+		}	 */
+		
+		
+		
 		
 		$.get("../member/get-default-class?${_csrf.parameterName}=${_csrf.token}", 
 				function(result) {
