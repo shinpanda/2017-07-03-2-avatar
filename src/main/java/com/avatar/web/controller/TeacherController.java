@@ -103,7 +103,7 @@ public class TeacherController {
 		return "teacher.is-complete";
 	}
 	
-	@RequestMapping("student-list")
+	@RequestMapping("student/list")
 	public String studentList(
 			@RequestParam(value="p", defaultValue="1") Integer page, 
 			@RequestParam(value="f", defaultValue="memberId") String field,
@@ -117,11 +117,18 @@ public class TeacherController {
 		model.addAttribute("list", memberClassDao.getListPage(classId,page,field,query));
 		model.addAttribute("count", mService.getStuCount(classId));
 		
-		return "teacher.student-list";	
+		return "teacher.student.list";	
 
 	} 
 	
-	@RequestMapping("student-admin")
+	@RequestMapping(value="student/list", method=RequestMethod.POST)
+	public String studentList(String updateId) {
+		int result = service.updateStudent(updateId, "ROLE_CLASSPRESIDENT");
+		return "redirect: ./list";
+
+	} 
+	
+	@RequestMapping("student/seat")
 	public String student(@RequestParam(value="p", defaultValue="1") Integer page, 
 			@RequestParam(value="f", defaultValue="memberId") String field,
 			@RequestParam(value="q", defaultValue="") String query,
@@ -130,10 +137,10 @@ public class TeacherController {
 		List<MemberClassView> list = service.getStudentList(principal.getName());
 		model.addAttribute("list", list);
 		
-		return "teacher.student-admin";
+		return "teacher.student.seat";
 	}
 	
-	@RequestMapping("student-info")
+	@RequestMapping("student/student-info")
 	@ResponseBody
 	public String studentInfo(String memberId) {
 		
@@ -145,7 +152,7 @@ public class TeacherController {
 		return json;
 	}
 	
-	@RequestMapping("student-update")
+	@RequestMapping("student/student-update")
 	@ResponseBody
 	public String studentUpdate(String studentInfo) {
 		JsonParser jsonParser = new JsonParser();

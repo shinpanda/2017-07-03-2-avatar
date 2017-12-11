@@ -52,6 +52,20 @@ public class AdminController {
 
 	} 
 	
+	@RequestMapping("teacher")
+	public String teacher(@RequestParam(value="p", defaultValue="1") Integer page, 
+			@RequestParam(value="f", defaultValue="memberId") String field,
+			@RequestParam(value="q", defaultValue="") String query,
+			Principal principal,
+			Model model) {
+		
+		model.addAttribute("list", memberClassDao.getTeacherList(page,field,query));
+		model.addAttribute("count", memberClassDao.getTeacherCount());
+		System.out.println("티쳐"+memberClassDao.getTeacherCount());
+
+		return "admin.member.teacher";	
+
+	} 
 	
 
 

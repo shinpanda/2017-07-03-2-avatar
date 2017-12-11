@@ -28,7 +28,7 @@
 							<a href="${ctx}/admin/member">회원관리<img src="${ctx}/resource/images/user.png"></a>
 							<ul class="sub-menu hidden">
 								<li><a href="${ctx}/admin/member">회원관리</a></li>
-								<li><a href="${ctx}/admin/member/teacher">선생님관리</a></li>
+								<li><a href="${ctx}/admin/teacher">선생님관리</a></li>
 							</ul>	
 						</li>
 						<li>

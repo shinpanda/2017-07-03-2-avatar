@@ -48,6 +48,7 @@
 			startTime : search
 		}
 		ws2.send(JSON.stringify(json));
+		opener.location.reload(true);
 		self.close();
 	}
 </script>

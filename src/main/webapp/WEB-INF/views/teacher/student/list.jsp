@@ -9,21 +9,24 @@
 <link href="${ctx}/resource/css/memprofile.css" type="text/css" rel="stylesheet">
 <main class="main">
 	<div class="mypage-form" style="margin:0px;">
-			<a href="${ctx}/teacher/student-admin" class="mypage-title"> 반장 설정 </a>		
-			<a href="${ctx}/teacher/student-list" class="mypage-title"> 학생 목록 </a>		
+			<a href="${ctx}/teacher/student/seat" class="mypage-title"> 좌석으로 보기 </a>		
+			<a href="${ctx}/teacher/student/list" class="mypage-title"> 목록으로 보기 </a>		
 	</div>
-
 <h3 style="font-size:21px;"> <span>${c.className}</span> 클래스 학생 관리 <span class="title-info">**기본 클래스로 설정된 클래스의 학생만 불러옵니다.</span></h3>
+
+
 <div class="board-style">
 	<div class="table-container">
 		<div class="table-wrapper">
+			<form method="post">
 			<div class="board-table">
 				<div class="row table-header">
-					<div class="cell w130">등급</div>
+					<div class="cell w60"></div>
+					<div class="cell w100">등급</div>
 					<div class="cell w130">아이디</div>
 					<div class="cell w130">이름</div>
-					<div class="cell w130">Class</div>
-					<div class="cell w130">자리</div>
+					<div class="cell w100">Class</div>
+					<div class="cell w100">자리</div>
 					<div class="cell ">이메일</div>
 					<!-- <div class="cell ">ip</div> -->
 				</div>
@@ -37,8 +40,9 @@
 						<c:if test="${m.memberRole eq 'ROLE_CLASSPRESIDENT'}">
 							<c:set value="반장" var="role" />
 						</c:if>
+						<div class="cell"><input type="radio" name="updateId" value="${m.memberId}"></div>
 						<div class="cell">${role}</div>
-						<div class="cell title">${m.memberId}</a></div>
+						<div class="cell">${m.memberId}</a></div>
 						<div class="cell">${m.memberName}</div>
 						<div class="cell">${m.className}</div>
 						<div class="cell">${m.seatNo}</div>
@@ -46,6 +50,12 @@
 					</div>
 				</c:forEach>
 			</div>
+			
+			<div class="btn-container">
+					<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+					<input type="submit" value="반장으로 등급 상승" class="btn roleUpButton"/>
+			</div>
+			</form>
 			<div class="search-form-container">
 				<form method="get" class="search-form">
 					<select name="f">
@@ -93,7 +103,9 @@
 							</c:if>
 						</div>
 					</div>
+					
 		</div>
 	</div>
 </div>
+
 </main>

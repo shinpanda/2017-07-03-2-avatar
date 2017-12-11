@@ -16,6 +16,9 @@ public interface MemberClassDao {
 	List<MemberClassView> getListPage(@Param("classId")String classId, @Param("page")int page, @Param("field")String field, @Param("query")String query);
 	List<MemberClassView> getMemberList(int page, String field, String query);
 	
+	List<MemberClassView> getTeacherList(int page, String field, String query);
+	int getTeacherCount();
+	
 	int getMemberCount();
 	
 	MemberClassView getHeader(String sessionId);
