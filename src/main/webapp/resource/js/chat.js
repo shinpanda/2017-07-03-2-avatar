@@ -190,6 +190,7 @@ window.addEventListener("load", function() {
 								else {
 									console.log("창 꺼라");
 									win.close();
+									location.reload(true);
 								}
 							}
 							if(data.role == "student"){
