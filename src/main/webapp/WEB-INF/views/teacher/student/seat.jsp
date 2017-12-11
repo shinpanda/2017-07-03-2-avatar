@@ -14,7 +14,7 @@
 	</div>
 	
 	
-<h3>반장 설정</h3>
+<h3>좌석으로 보기</h3>
 
 <div class="board-style">
 	<div class="class-seat-container">
