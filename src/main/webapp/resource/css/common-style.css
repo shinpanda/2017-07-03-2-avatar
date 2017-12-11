@@ -1298,6 +1298,9 @@ img#edit-cancel-button {
     justify-content: space-around;
 }
 
+.class-seat-wrapper.teacher-student-seatList .seat{
+	cursor:pointer;
+}
 
 /* teacher admin student */
 .student-info-container {
