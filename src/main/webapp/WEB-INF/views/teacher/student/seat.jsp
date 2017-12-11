@@ -14,22 +14,17 @@
 	</div>
 	
 	
-<h3>반장 설정</h3>
+<h3>좌석으로 보기</h3>
 
 <div class="board-style">
 	<div class="class-seat-container">
 		<c:if test="${list[0].row*list[0].col-1>=0}">
-		<div class="class-seat-wrapper">
+		<div class="class-seat-wrapper teacher-student-seatList">
 			
 			<c:forEach items="${list}" begin="0" end="${(list[0].row*list[0].col-1)}" step="${list[0].col}" varStatus="status">
 				<div>
 					<c:forEach begin="${status.index}" end="${status.index+list[0].col-1}" var="i">
-						<c:if test="${list[i].memberRole eq 'ROLE_STUDENT'}">
-							<span class="seat" id="${list[i].memberId}">${list[i].memberName}</span>
-						</c:if>
-						<c:if test="${list[i].memberRole ne 'ROLE_STUDENT'}">
-						<span class="seat" id="${list[i].memberId}" style="color:red;">${list[i].memberName}</span>
-						</c:if>
+						<span class="seat" id="${list[i].memberId}"><c:if test="${list[i].memberRole eq 'ROLE_CLASSPRESIDENT'}">[반장]</c:if>${list[i].memberName}</span>
 					</c:forEach>
 				</div>
 			</c:forEach>
