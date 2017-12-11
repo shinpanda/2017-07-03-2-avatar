@@ -6,7 +6,7 @@
 
 <mapper namespace="com.avatar.web.dao.MemberRoleDao">
 	<select id="getRole" resultType="String">		
-		select role from MemberRole where memberId =#{sessionId};
+		select role from MemberRole where memberId =#{sessionId}
 	</select>
 	<insert id="insert" parameterType="com.avatar.web.entity.MemberRole">
 		insert into MemberRole(memberId,role)
@@ -15,4 +15,7 @@
 	<update id="update">
 		update MemberRole set role=#{param2} where memberId = #{param1}
 	</update>
+	<select id="getClassPresident" resultType="String">		
+		select mr.memberId from MemberRole mr left outer join MemberClass mc on mr.memberId = mc.memberId where classId = #{classId} and role = "ROLE_CLASSPRESIDENT"
+	</select>
 </mapper>    

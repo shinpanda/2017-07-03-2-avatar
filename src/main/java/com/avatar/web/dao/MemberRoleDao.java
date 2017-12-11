@@ -9,6 +9,8 @@ public interface MemberRoleDao {
 
 	String getRole(String sessionId);
 
-	int update(String id, String role); 
+	int update(String id, String role);
+
+	String getClassPresident(String classId); 
 
 }

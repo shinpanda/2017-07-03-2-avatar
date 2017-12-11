@@ -9,8 +9,8 @@
 <link href="${ctx}/resource/css/memprofile.css" type="text/css" rel="stylesheet">	
 <main class="main">
 	<div class="mypage-form" style="margin:0px;">
-			<a href="${ctx}/teacher/student-admin" class="mypage-title"> 반장 설정 </a>		
-			<a href="${ctx}/teacher/student-list" class="mypage-title"> 학생 목록 </a>		
+			<a href="${ctx}/teacher/student/seat" class="mypage-title"> 좌석으로 보기 </a>		
+			<a href="${ctx}/teacher/student/list" class="mypage-title"> 목록으로 보기 </a>			
 	</div>
 	
 	

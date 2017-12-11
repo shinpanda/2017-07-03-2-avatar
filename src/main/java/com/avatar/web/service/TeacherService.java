@@ -88,6 +88,14 @@ public class TeacherService {
 	}
 
 	public int updateStudent(String id, String role) {
+		if(role.equals("ROLE_CLASSPRESIDENT")) {
+			String classId = memberClassDao.getClassId(id);
+			String classPresidentId = memberRoleDao.getClassPresident(classId);
+			System.out.println();
+			if(classPresidentId != "") {
+				memberRoleDao.update(classPresidentId, "ROLE_STUDENT");
+			}
+		}
 		int result = memberRoleDao.update(id, role);
 		return result;
 	}
