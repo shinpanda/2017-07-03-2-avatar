@@ -18,8 +18,10 @@
 
 <div class="board-style">
 	<div class="class-seat-container">
+		<c:if test="${list[0].row*list[0].col-1>=0}">
 		<div class="class-seat-wrapper">
-			<c:forEach items="${list}" begin="0" end="${list[0].row*list[0].col-1}" step="${list[0].col}" varStatus="status">
+			
+			<c:forEach items="${list}" begin="0" end="${(list[0].row*list[0].col-1)}" step="${list[0].col}" varStatus="status">
 				<div>
 					<c:forEach begin="${status.index}" end="${status.index+list[0].col-1}" var="i">
 						<c:if test="${list[i].memberRole eq 'ROLE_STUDENT'}">
@@ -31,7 +33,9 @@
 					</c:forEach>
 				</div>
 			</c:forEach>
+			
 		</div>
+		</c:if>
 	</div>
 	<div class="student-info-container" style="display:none;">
 		<div class="student-info-wrapper">

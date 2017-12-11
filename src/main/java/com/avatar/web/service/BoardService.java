@@ -3,6 +3,7 @@ package com.avatar.web.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.avatar.web.dao.InformationCmtDao;
 import com.avatar.web.dao.InformationDao;
@@ -62,7 +63,8 @@ public class BoardService {
 		List<BoardCmt> list = questionCmtDao.getList(no);
 		return list;
 	}
-
+	
+	@Transactional
 	public int insertQuestion(Board board) {
 		board.setClassId(memberClassDao.getClassId(board.getWriterId()));
 		int result = questionDao.insert(board);
@@ -77,7 +79,7 @@ public class BoardService {
 		int result = questionCmtDao.insert(cmt);
 		return result; 
 	}
-
+	@Transactional
 	public int deleteQuestion(String no) {
 		int result = questionCmtDao.deleteQuestion(no);
 		result += questionDao.delete(no);
@@ -119,7 +121,7 @@ public class BoardService {
 		int count = informationDao.getCount(memberClassDao.getClassId(id));
 		return count;
 	}
-
+	@Transactional
 	public BoardView getInformation(String no) {
 		int result = informationDao.updateHit(no);
 		System.out.println("information hit result: "+result);
@@ -157,7 +159,8 @@ public class BoardService {
 		int result = informationCmtDao.update(boardCmt);
 		return result;
 	}
-
+	
+	@Transactional
 	public int deleteInformation(String no) {
 		int result = informationCmtDao.deleteInformation(no);
 		result += informationDao.delete(no);
@@ -191,7 +194,8 @@ public class BoardService {
 		//int count = noticeDao.getCount("1");
 		return count;
 	}
-
+	
+	@Transactional
 	public Board getNotice(String no) {
 		int result = noticeDao.updateHit(no);
 		Board b = noticeDao.get(no);
