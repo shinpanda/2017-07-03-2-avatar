@@ -54,8 +54,8 @@
 					<ul class="main-menu">
 						<li><a href="${ctx}/board/question">질문게시판</a></li>
 						<li><a href="${ctx}/board/information">정보공유</a></li>
-						<c:if test="${memberRole eq 'ROLE_CLASSPRESIDENT'}">
-						<li><a href="${ctx}/student/seat-change">자리바꾸기</a></li>
+						<c:if test="${memberRole ne 'ROLE_TEACHER'}">
+							<li><a href="${ctx}/student/seat-change">자리 현황 / 오늘의 당첨자</a></li>
 						</c:if>
 						<li><a href="${ctx}/member/chat">채팅방 입장</a></li>
 						<c:if test="${memberRole eq 'ROLE_TEACHER'}">
