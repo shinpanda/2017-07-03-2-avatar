@@ -21,7 +21,7 @@
 	</select>
 	<insert id="insert" parameterType="com.avatar.web.entity.Board">
 		insert into Notice(no, title, content, writerId, classId)
-		values ((select IFNULL(max(cast(no as unsigned)), 0)+1 from Information q), #{title}, #{content}, #{writerId}, #{classId})
+		values ((select IFNULL(max(cast(no as unsigned)), 0)+1 from Notice q), #{title}, #{content}, #{writerId}, #{classId})
 	</insert>
 	<update id="updateHit">
 		update Notice set hit=hit+1 where no=#{no} 
