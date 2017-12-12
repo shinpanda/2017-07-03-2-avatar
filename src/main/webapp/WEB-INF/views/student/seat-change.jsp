@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 
+<tiles:importAttribute name="memberRole"/>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -59,64 +61,63 @@
 		xhr.open("GET", "../student/seat-info-ajax?${_csrf.parameterName}=${_csrf.token}"); 
 		xhr.send(); 
 			
-		
-		changeButton.onclick = function(){
-			if (confirm("자리를 바꾸시겠습니까") == true){  
-
-				while(container.hasChildNodes()){
-					container.removeChild(container.firstChild); 
-					
+		if(changeButton!=null){
+			changeButton.onclick = function(){
+				if (confirm("자리를 바꾸시겠습니까") == true){  
+	
+					while(container.hasChildNodes()){
+						container.removeChild(container.firstChild); 
+						
+					}
+					var xhr = new XMLHttpRequest();
+						
+					 xhr.onload = function(e){
+						 var count = 0;
+						 for(j=1; j<=b2; j++){
+								var div = document.createElement("div");
+								//console.log("b2:"+j);
+								container.appendChild(div);
+								 for (i = 1; i <= b1; i++) {
+									
+										var member =JSON.parse(e.target.responseText);
+										 if(count < member.length){
+											 var li = document.createElement("span");
+											 li.textContent = member[count];
+											 li.className = "seat";
+											 div.appendChild(li);
+										 }
+										 else {
+											 var li = document.createElement("span");
+											 li.textContent = "";
+											 li.className = "seat";
+											 div.appendChild(li);
+										 }
+										 //console.log("b1:"+i);
+										 /* var span = document.createElement("span");
+										 span.className = "seat";
+										 span.textContent ="test";
+										 div.appendChild(span); */
+										 //tag+= 'span.appendChild(txt);';
+										 count ++;
+								}
+								 //tag += "<br/>";		    
+							};
+						/* var member =JSON.parse(e.target.responseText);
+						
+						for(var i =0; i<member.length; i++){
+							 var li = document.createElement("span");
+							 li.textContent = member[i];
+							 li.className = "seat";
+							 container.appendChild(li);
+						};	  */
+					 };
+						
+					xhr.open("GET", "../student/seat-change-ajax?${_csrf.parameterName}=${_csrf.token}"); 
+					xhr.send(); 
+				}else{  
+				    return;
 				}
-				var xhr = new XMLHttpRequest();
-					
-				 xhr.onload = function(e){
-					 var count = 0;
-					 for(j=1; j<=b2; j++){
-							var div = document.createElement("div");
-							//console.log("b2:"+j);
-							container.appendChild(div);
-							 for (i = 1; i <= b1; i++) {
-								
-									var member =JSON.parse(e.target.responseText);
-									 if(count < member.length){
-										 var li = document.createElement("span");
-										 li.textContent = member[count];
-										 li.className = "seat";
-										 div.appendChild(li);
-									 }
-									 else {
-										 var li = document.createElement("span");
-										 li.textContent = "";
-										 li.className = "seat";
-										 div.appendChild(li);
-									 }
-									 //console.log("b1:"+i);
-									 /* var span = document.createElement("span");
-									 span.className = "seat";
-									 span.textContent ="test";
-									 div.appendChild(span); */
-									 //tag+= 'span.appendChild(txt);';
-									 count ++;
-							}
-							 //tag += "<br/>";		    
-						};
-					/* var member =JSON.parse(e.target.responseText);
-					
-					for(var i =0; i<member.length; i++){
-						 var li = document.createElement("span");
-						 li.textContent = member[i];
-						 li.className = "seat";
-						 container.appendChild(li);
-					};	  */
-				 };
-					
-				xhr.open("GET", "../student/seat-change-ajax?${_csrf.parameterName}=${_csrf.token}"); 
-				xhr.send(); 
-			}else{  
-			    return;
-			}
-
-
+	
 			
 			
 			/* 
@@ -136,7 +137,8 @@
 			
 			};
 			
-			
+		}
+		
 			
 			
 			
@@ -196,7 +198,7 @@
 
 <body>
 	<main class="main">
-	<h1>자리바꾸기</h1>
+	<h1>자리 현황</h1>
 	<div class="seat-container">
 
 	
@@ -204,7 +206,9 @@
 					
 					
 					<div id="button">
-					 	<input type="button" class="seat-btn seat-btn-primary seat-btn-lg raised" value="자리바꾸기" id="change" />					 	
+					<c:if test="${memberRole eq 'ROLE_CLASSPRESIDENT'}">
+					 	<input type="button" class="seat-btn seat-btn-primary seat-btn-lg raised" value="자리바꾸기" id="change" />
+					 </c:if>					 	
 					 	<input type="button" class="seat-btn seat-btn-primary seat-btn-lg raised" value="오늘의 당첨자" id="pick"/>
 					 						 	
 					</div>	

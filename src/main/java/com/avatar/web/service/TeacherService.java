@@ -33,7 +33,7 @@ public class TeacherService {
 		if(field.indexOf("-") > 0) {
 			String[] fields = field.split("-");
 			list = noticeDao.getList(page, fields[0], fields[1], query, classId);
-			int count = noticeDao.getCount("1");
+			int count = noticeDao.getCount(classId);
 		}
 		else {
 			list = noticeDao.getList(page, field, query, classId);
@@ -88,6 +88,14 @@ public class TeacherService {
 	}
 
 	public int updateStudent(String id, String role) {
+		if(role.equals("ROLE_CLASSPRESIDENT")) {
+			String classId = memberClassDao.getClassId(id);
+			String classPresidentId = memberRoleDao.getClassPresident(classId);
+			System.out.println();
+			if(classPresidentId != "") {
+				memberRoleDao.update(classPresidentId, "ROLE_STUDENT");
+			}
+		}
 		int result = memberRoleDao.update(id, role);
 		return result;
 	}

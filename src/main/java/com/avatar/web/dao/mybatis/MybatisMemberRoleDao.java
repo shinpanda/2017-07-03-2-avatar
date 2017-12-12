@@ -30,4 +30,10 @@ public class MybatisMemberRoleDao implements MemberRoleDao {
 		MemberRoleDao memberRoleDao = sqlSession.getMapper(MemberRoleDao.class);
 		return memberRoleDao.update(id, role);
 	}
+
+	@Override
+	public String getClassPresident(String classId) {
+		MemberRoleDao memberRoleDao = sqlSession.getMapper(MemberRoleDao.class);
+		return memberRoleDao.getClassPresident(classId);
+	}
 }

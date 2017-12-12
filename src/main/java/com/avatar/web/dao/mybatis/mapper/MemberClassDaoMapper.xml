@@ -37,6 +37,18 @@
 	<select id="getMemberCount" resultType="int">	
 		SELECT count(memberId) as count FROM MemberClassView
 	</select>
+	
+	
+	<select id="getTeacherList" resultType="com.avatar.web.entity.MemberClassView">		
+		SELECT * FROM MemberClassView where memberRole ='ROLE_TEACHER' and ${param2} like '%${param3}%' order by memberRole DESC, classOpenDate DESC limit ${(param1-1)*15}, 15
+	</select>
+
+	<select id="getTeacherCount" resultType="int">	
+		SELECT count(memberId) as count FROM MemberClassView where memberRole ='ROLE_TEACHER'
+	</select>
+	
+	
+	
 	<select id="getHeader" resultType="com.avatar.web.entity.MemberClassView">		
 		select className, classOpenDate from MemberClassView where memberId=#{sessionId};
 	</select>	

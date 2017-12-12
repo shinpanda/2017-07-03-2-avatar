@@ -28,23 +28,25 @@
 					</a>
 				</div>
 				<!-- class list  -->
-				<form action="update-default-class?${_csrf.parameterName}=${_csrf.token}" method="post">
+				<form action="update-default-class?${_csrf.parameterName}=${_csrf.token}" method="post" class="default-class-form">
 					<div class="classset" >
 						<c:forEach var="cl" items="${clist}">
 							<div class="class-row" id="${cl.id}">
-								<label> 
+								<label class="class-radio"> 
 									<input type="radio" class="radio"
 									name="class-id" id="${cl.id}" value="${cl.id}" /> <!--checked   -->
-									<span class="front-end box"> <span> ${cl.name} 
+									<span class="front-end box"> <span class="name-class"> ${cl.name} 
 											CLASS</span>
 									</span>
 								</label>
 								<div class="class-cell">
-									<span class="class-info"> <b>과정명 :</b> <span
-										class="class-course">${cl.course}</span> <br /> <b>기간 :</b> <fmt:formatDate
+									<span class="class-info"> <b>과정명: </b> 
+									<span class="class-course">${cl.course}</span> <br /> <b>기간: </b> <fmt:formatDate
 											pattern="yyyy-MM-dd" value="${cl.openDate }" /> ~ <fmt:formatDate
-											pattern="yyyy-MM-dd" value="${cl.completeDate }" />
-										<input type="hidden" name="c-id"value="${cl.id}" />	
+											pattern="yyyy-MM-dd" value="${cl.completeDate }" /><br/>
+									<span class="class-room"><b>클래스 룸: ${cl.lectureRoom}</b> </span><br/>
+									<%-- <span class="class-count"><b>클래스 학생수: <span id="${cl.id}"></span> </b></span> --%>
+										<input type="hidden" class="id-count" value="${cl.id}" />	
 										<input type="hidden" name="default-change">	
 									</span>
 									<div class="icon-button">
@@ -119,7 +121,7 @@
 							<div class="modal-body center">
 								
 								<div class="class-name mem-fixed set title">
-									<span class="class-name">과정명 : 
+									<span class="class-name" >과정명 : 
 										<span id="del-course" style="font-variant: all-small-caps; font-size: 27px;"></span></span>
 									<input type="hidden" id="del-id" name="del-id"/>
 								</div>
@@ -196,6 +198,20 @@
 	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js'></script>
 	<script>
 	$(function()  {
+		
+		/* for(var i=0;i<$(".id-count").length;i++){
+			var ddd= $(".id-count").eq(i).val();
+				 $.get("../member/student-count?${_csrf.parameterName}=${_csrf.token}&classId=" 
+						+ ddd).done(function(result){
+						// alert($(".id-count").eq(i).val()+":"+result);
+							$("span[id="+ddd+"]").text(result);
+				}); 
+			
+		}	 */
+		
+		
+		
+		
 		$.get("../member/get-default-class?${_csrf.parameterName}=${_csrf.token}", 
 				function(result) {
 				if(result != 0){
@@ -203,11 +219,30 @@
 				}
 				  $("input[type='radio']").change(function(){
 						var changeValue = $("input[type='radio']:checked").val();
-					 	$('input[name=default-change]').attr('value',changeValue);
+						$("input[type='hidden'").attr('value',changeValue);
 				})  
+				
+				$(".default-class-form").submit(function(e){
+					if(result == $("input[type='radio']:checked").val()){
+						event.preventDefault();
+					}else{
+						var defaultClassName = $("input[type='radio']:checked").val();
+						$.get("../member/class-list?${_csrf.parameterName}=${_csrf.token}&classId=" 
+								+ defaultClassName, function(result) {
+								var c = JSON.parse(result);
+								var className = c['name'];
+							alert("기본 클래스가 "+className+"로 설정되었습니다.");
+						})
+						
+						
+					}
+				});
+				
 				
 				
 		});
+	
+		
 		
 	});
 	

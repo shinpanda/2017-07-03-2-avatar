@@ -127,11 +127,18 @@ window.addEventListener("load", function() {
 							if (str.indexOf("/member/chat")>0) {
 								var prevRegDates = chatWindow
 										.querySelectorAll(".row.chat-date");
+								var prevRegDate;
+								console.log(prevRegDates);
+								console.log(prevRegDates.length);
 								if(prevRegDates.length>0)
 									prevRegDate = prevRegDates[prevRegDates.length - 1].firstElementChild.textContent;
-								else
+								else if(prevRegDates.length = 0)
 									prevRegDate = prevRegDates[0].firstElementChild.textContent;
-								prevRegDate = prevRegDate.replace(/(\s*)/g, "");
+								else
+									prevRegDate = null;
+
+								if(prevRegDate!= null)
+									prevRegDate = prevRegDate.replace(/(\s*)/g, "");
 	
 								console.log(prevRegDate);
 								var regDate = new Date(data.date);
@@ -149,7 +156,9 @@ window.addEventListener("load", function() {
 									row.classList.add('row', 'chat-date');
 									var p = document.createElement("p");
 									p.textContent = (regDate.getMonth() + 1) + "월 "
-											+ regDate.getDate() + "일";
+											+ (regDate.getDate() >= 10 ? regDate
+													.getDate() : "0"
+														+ regDate.getDate()) + "일";
 									row.appendChild(p);
 									chatWindow.appendChild(row);
 								}
@@ -181,16 +190,26 @@ window.addEventListener("load", function() {
 								else {
 									console.log("창 꺼라");
 									win.close();
+									location.reload(true);
 								}
 							}
 							if(data.role == "student"){
 								console.log("학생에게서 온 메시지");
-								var eventLabel = document.querySelector(".event-label-box")
-								.querySelectorAll("label");
-								eventLabel[2].firstElementChild.textContent = parseInt(eventLabel[2].firstElementChild.textContent)+1;
-								var seat = document.querySelector("#"+data.memberId);
-								seat.style.background="url('"+getContextPath()+"/resource/images/completemonitor.png')";
-								seat.style.color = "#990b0d";
+
+								var eventLabel = document.querySelector(".event-label-box").querySelectorAll("label");
+								var startTime = new Date(parseInt(data.startTime));
+								startTime = startTime
+										.getHours()
+										+ ":"
+										+ (startTime.getMinutes() >= 10 ? startTime
+												.getMinutes() : "0" + startTime.getMinutes());
+								var startEvent = document.querySelector("#is-complete-button");
+								if((eventLabel[0].firstElementChild.textContent == startTime)&&(startEvent.disabled==true)){
+									eventLabel[2].firstElementChild.textContent = parseInt(eventLabel[2].firstElementChild.textContent)+1;
+									var seat = document.querySelector("#"+data.memberId);
+									seat.style.background="url('"+getContextPath()+"/resource/images/completemonitor.png')";
+									seat.style.color = "#990b0d";
+								}
 							}
 							//child.document.getElementById("start-time").value = data.date;
 							/*console.log(win.document.getElementById("start-time"));*/
