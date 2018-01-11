@@ -2,7 +2,8 @@
  * 
  */
 
-const ws = new WebSocket("ws://211.238.142.93/web/echo");
+//const ws = new WebSocket("ws://211.238.142.93/web/echo");
+const ws = new WebSocket("ws://localhost/web/echo");
 window.addEventListener("load", function() {
 
 					var submitButton = document

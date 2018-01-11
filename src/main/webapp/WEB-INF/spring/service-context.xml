@@ -14,7 +14,7 @@
 	
 	<bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://211.238.142.247/avatardb?autoReconnect=true&amp;useSSL=false&amp;characterEncoding=UTF-8"/>
+		<property name="url" value="jdbc:mysql://211.238.142.97/avatardb?autoReconnect=true&amp;useSSL=false&amp;characterEncoding=UTF-8"/>
 		<property name="username" value="avatar"/>
 		<property name="password" value="avatar123"/>
 	</bean>
